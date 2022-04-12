@@ -24,7 +24,7 @@ const Slide = ({ item }) => {
       <View 
         style={[
           StyleSheet.absoluteFillObject, 
-          { backgroundColor: 'rgba(23,43,67,.5)' }
+          { backgroundColor: 'rgba(0,0,0,.65)' }
         ]}
       />
       <View style={[styles.content, { width }]}>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   subtitle: {
-    color: COLORS.dark,
+    color: COLORS.grey,
     paddingHorizontal: 25,
     fontSize: 15.5,
     marginTop: 10,

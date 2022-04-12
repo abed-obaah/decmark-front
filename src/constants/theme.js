@@ -1,8 +1,8 @@
 export const COLORS = {
+  primary: '#DEB253',
+  secondary: '#172B43',
   white: '#FFF',
-  dark: '#000',
-  primary: '#172B43',
-  secondary: '#DFB352',
+  dark: '#141414',
   light: '#E5E5E5',
-  grey: '#908e8c',
+  grey: 'rgba(20, 20, 20, .65)',
 }

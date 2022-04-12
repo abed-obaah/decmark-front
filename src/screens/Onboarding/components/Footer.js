@@ -53,9 +53,9 @@ const Footer = (props) => {
       </View>
       <View style={{ marginBottom: 20 }}>
         {currentSlideIndex === slides.length - 1 ?
-          <View style={{height: 50}}>
+          <View style={{height: 45}}>
             <TouchableOpacity style={styles.btn} onPress={() => navigation.replace("SignUp")}>
-              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.white}}>GET STARTED</Text>
+              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.dark}}>GET STARTED</Text>
             </TouchableOpacity>
           </View>
         :
@@ -65,14 +65,14 @@ const Footer = (props) => {
               style={[styles.btn, { 
                 backgroundColor: 'transparent',
                 borderWidth: 1,
-                borderColor: COLORS.primary
+                borderColor: COLORS.light
               }]}
             >
-              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.primary }}>SKIP</Text>
+              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.dark }}>SKIP</Text>
             </TouchableOpacity>
             <View style={{width: 15}} />
             <TouchableOpacity style={styles.btn} onPress={handleNextSlide}>
-              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.white }}>NEXT</Text>
+              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.dark }}>NEXT</Text>
             </TouchableOpacity>
           </View>
         }
@@ -87,9 +87,9 @@ const styles = StyleSheet.create({
   indicator: {
     height: 2.5,
     width: 10,
-    backgroundColor: COLORS.white,
+    backgroundColor: COLORS.light,
     borderWidth: 1,
-    borderColor: 'rgba(23,43,67,.5)',
+    borderColor: COLORS.light,
     marginHorizontal: 3,
     borderRadius: 2
   },
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 45,
     backgroundColor: COLORS.primary,
-    borderRadius: 5,
+    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center'
   }

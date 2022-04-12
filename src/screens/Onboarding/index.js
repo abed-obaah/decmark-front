@@ -1,14 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 import { 
-  StyleSheet, 
   Dimensions, 
   SafeAreaView,
   FlatList,
 } from 'react-native';
 import Slide from './components/Slide';
 import Footer from './components/Footer';
-import { COLORS } from '../../constants/theme';
 
 const { width, height } = Dimensions.get("window")
 
@@ -21,13 +19,13 @@ const slides = [
   },
   {
     id: 2,
-    image: require("../../assets/images/cleaning.jpg"),
+    image: require("../../assets/images/repair.jpg"),
     title: "Welcome 2",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
     id: 3,
-    image: require("../../assets/images/cleaning.jpg"),
+    image: require("../../assets/images/cleaner.jpg"),
     title: "Welcome 3",
     subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   }
