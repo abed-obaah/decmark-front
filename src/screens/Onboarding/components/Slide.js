@@ -6,7 +6,7 @@ import {
   Image,
   Dimensions
 } from 'react-native'
-import { COLORS } from '../../../constants/theme';
+import { COLORS, SIZES } from '../../../constants/theme';
 
 const { width, height } = Dimensions.get("window")
 
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: COLORS.dark,
-    fontSize: 25,
+    fontSize: SIZES.xl,
     fontWeight: 'bold',
     marginTop: 25,
     textAlign: 'center'
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   subtitle: {
     color: COLORS.grey,
     paddingHorizontal: 25,
-    fontSize: 15.5,
+    fontSize: SIZES.md,
     marginTop: 10,
     textAlign: 'center',
     lineHeight: 23

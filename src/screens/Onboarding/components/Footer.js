@@ -7,7 +7,7 @@ import {
   TouchableOpacity 
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { COLORS } from '../../../constants/theme';
+import { COLORS, SIZES } from '../../../constants/theme';
 
 const { height } = Dimensions.get("window")
 
@@ -54,8 +54,8 @@ const Footer = (props) => {
       <View style={{ marginBottom: 20 }}>
         {currentSlideIndex === slides.length - 1 ?
           <View style={{height: 45}}>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.replace("SignUp")}>
-              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.dark}}>GET STARTED</Text>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.replace("LogIn")}>
+              <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark}}>GET STARTED</Text>
             </TouchableOpacity>
           </View>
         :
@@ -68,11 +68,11 @@ const Footer = (props) => {
                 borderColor: COLORS.light
               }]}
             >
-              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.dark }}>SKIP</Text>
+              <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark }}>SKIP</Text>
             </TouchableOpacity>
             <View style={{width: 15}} />
             <TouchableOpacity style={styles.btn} onPress={handleNextSlide}>
-              <Text style={{fontWeight: 'bold', fontSize: 15, color: COLORS.dark }}>NEXT</Text>
+              <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark }}>NEXT</Text>
             </TouchableOpacity>
           </View>
         }
@@ -80,8 +80,6 @@ const Footer = (props) => {
     </View>
   )
 }
-
-export default Footer;
 
 const styles = StyleSheet.create({
   indicator: {
@@ -102,3 +100,5 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
+
+export default Footer;

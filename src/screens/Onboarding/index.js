@@ -1,12 +1,13 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react'
 import { 
   Dimensions, 
   SafeAreaView,
   FlatList,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import Slide from './components/Slide';
 import Footer from './components/Footer';
+import * as NavigationBar from 'expo-navigation-bar';
 
 const { width, height } = Dimensions.get("window")
 
@@ -32,6 +33,9 @@ const slides = [
 ]
 
 const Onboarding = () => {
+  NavigationBar.setBackgroundColorAsync('white')
+  NavigationBar.setButtonStyleAsync("dark");
+
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0)
   const ref = React.useRef(null)
 
@@ -69,9 +73,11 @@ const Onboarding = () => {
         onMomentumScrollEnd={handleUpdateSlideIndex}
         pagingEnabled
         data={slides}
+        keyExtractor={item => item.id}
         contentContainerStyle={{ height: height }}
         horizontal
         showsHorizontalScrollIndicator={false}
+        bounces={false}
         renderItem={({ item }) => <Slide item={item} />}
       />
       <Footer 
