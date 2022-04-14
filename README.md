@@ -10,7 +10,7 @@ git clone https://github.com/decmark/decmark-mobile.git
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+### Compile and hot-reload for development
 ```
 expo start
 ```
