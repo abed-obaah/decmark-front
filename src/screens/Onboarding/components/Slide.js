@@ -4,19 +4,18 @@ import {
   Text, 
   View,
   Image,
-  Dimensions
+  useWindowDimensions
 } from 'react-native'
 import { COLORS, SIZES } from '../../../constants/theme';
 
-const { width, height } = Dimensions.get("window")
-
-const Slide = ({ item }) => {
+export default Slide = ({ item }) => {
+  const { height, width } = useWindowDimensions();
   return (
-    <View style={{ alignItems: 'center', width }}>
+    <View style={{ width, height: height * .80 }}>
       <Image 
         source={item.image} 
         style={{
-          height,
+          height: '100%',
           width,
           resizeMode: 'cover'
         }} 
@@ -29,18 +28,16 @@ const Slide = ({ item }) => {
       />
       <View style={[styles.content, { width }]}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.subtitle}</Text>
+        <Text style={styles.description}>{item.description}</Text>
       </View>
     </View>
   )
 }
 
-export default Slide;
-
 const styles = StyleSheet.create({
   content: {
     position: 'absolute',
-    bottom: height * 0.20,
+    bottom: 0,
     backgroundColor: COLORS.white,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -50,14 +47,15 @@ const styles = StyleSheet.create({
     fontSize: SIZES.xl,
     fontWeight: 'bold',
     marginTop: 25,
-    textAlign: 'center'
-  },
-  subtitle: {
-    color: COLORS.grey,
-    paddingHorizontal: 25,
-    fontSize: SIZES.md,
-    marginTop: 10,
     textAlign: 'center',
+    paddingHorizontal: 25,
+  },
+  description: {
+    color: COLORS.grey,
+    fontSize: SIZES.md,
+    textAlign: 'center',
+    paddingHorizontal: 25,
+    marginTop: 10,
     lineHeight: 23
   },
 })

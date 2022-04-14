@@ -3,22 +3,16 @@ import {
   StyleSheet, 
   Text, 
   View, 
-  Dimensions,
+  useWindowDimensions,
   TouchableOpacity 
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { COLORS, SIZES } from '../../../constants/theme';
+import Paginator from './Paginator';
 
-const { height } = Dimensions.get("window")
-
-const Footer = (props) => {
+export default Footer = ({ currentIndex, handleNextSlide, handleSkipSlide, slides, scrollX }) => {
+  const { height } = useWindowDimensions();
   const navigation = useNavigation();
-  const { 
-    currentSlideIndex, 
-    handleNextSlide, 
-    handleSkipSlide, 
-    slides 
-  } = props
   
   return (
     <View
@@ -29,30 +23,13 @@ const Footer = (props) => {
         backgroundColor: COLORS.white,
       }}
     >
-      <View 
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          marginTop: 20
-        }}
-      >
-        {slides.map((_, i) =>
-          <View 
-            key={i}
-            style={[
-              styles.indicator,
-              currentSlideIndex === i && {
-                backgroundColor: COLORS.primary,
-                width: 25,
-                height: 3.5,
-                borderColor: COLORS.primary
-              }
-            ]} 
-          />
-        )}
-      </View>
+      <Paginator 
+        slides={slides} 
+        scrollX={scrollX}
+      />
+
       <View style={{ marginBottom: 20 }}>
-        {currentSlideIndex === slides.length - 1 ?
+        {currentIndex === slides.length - 1 ?
           <View style={{height: 45}}>
             <TouchableOpacity style={styles.btn} onPress={() => navigation.replace("LogIn")}>
               <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark}}>GET STARTED</Text>
@@ -82,15 +59,6 @@ const Footer = (props) => {
 }
 
 const styles = StyleSheet.create({
-  indicator: {
-    height: 2.5,
-    width: 10,
-    backgroundColor: COLORS.light,
-    borderWidth: 1,
-    borderColor: COLORS.light,
-    marginHorizontal: 3,
-    borderRadius: 2
-  },
   btn: {
     flex: 1,
     height: 45,
@@ -100,5 +68,3 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   }
 })
-
-export default Footer;

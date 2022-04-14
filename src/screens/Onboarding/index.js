@@ -1,64 +1,44 @@
 import React from 'react'
 import { 
-  Dimensions, 
+  useWindowDimensions, 
   SafeAreaView,
   FlatList,
+  Animated
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import Slide from './components/Slide';
 import Footer from './components/Footer';
 import * as NavigationBar from 'expo-navigation-bar';
+import slides from '../../constants/slides';
 
-const { width, height } = Dimensions.get("window")
-
-const slides = [
-  {
-    id: 1,
-    image: require("../../assets/images/cleaning.jpg"),
-    title: "Welcome 1",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  },
-  {
-    id: 2,
-    image: require("../../assets/images/repair.jpg"),
-    title: "Welcome 2",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  },
-  {
-    id: 3,
-    image: require("../../assets/images/cleaner.jpg"),
-    title: "Welcome 3",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-  }
-]
-
-const Onboarding = () => {
+export default Onboarding = () => {
+  const { height, width } = useWindowDimensions();
   NavigationBar.setBackgroundColorAsync('white')
   NavigationBar.setButtonStyleAsync("dark");
 
-  const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0)
-  const ref = React.useRef(null)
+  const [currentIndex, setCurrentIndex] = React.useState(0)
+  const scrollX = React.useRef(new Animated.Value(0)).current
+  const slideRef = React.useRef(null)
 
-  const handleUpdateSlideIndex = (e) => {
+  const handleUpdateIndex = (e) => {
     const contentOffsetX = e.nativeEvent.contentOffset.x
-    const currentIndex = Math.round(contentOffsetX / width)
-    setCurrentSlideIndex(currentIndex)
+    setCurrentIndex(Math.round(contentOffsetX / width))
   }
 
   const handleNextSlide = () => {
-    const nextSlideIndex = currentSlideIndex + 1
+    const nextSlideIndex = currentIndex + 1
     if(nextSlideIndex !== slides.length) {
       const offset = nextSlideIndex * width
-      ref?.current?.scrollToOffset({offset})
-      setCurrentSlideIndex(nextSlideIndex)
+      slideRef?.current?.scrollToOffset({offset})
+      setCurrentIndex(nextSlideIndex)
     }
   }
 
   const handleSkipSlide = () => {
     const lastSlideIndex = slides.length - 1
     const offset = lastSlideIndex * width
-    ref?.current?.scrollToOffset({offset})
-    setCurrentSlideIndex(lastSlideIndex)
+    slideRef?.current?.scrollToOffset({offset})
+    setCurrentIndex(lastSlideIndex)
   }
 
   return (
@@ -69,25 +49,31 @@ const Onboarding = () => {
     >
       <StatusBar style="light" />
       <FlatList 
-        ref={ref}
-        onMomentumScrollEnd={handleUpdateSlideIndex}
-        pagingEnabled
+        ref={slideRef}
+        onMomentumScrollEnd={handleUpdateIndex}
         data={slides}
-        keyExtractor={item => item.id}
-        contentContainerStyle={{ height: height }}
         horizontal
-        showsHorizontalScrollIndicator={false}
+        pagingEnabled
         bounces={false}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ height: height }}
+        keyExtractor={item => item.id}
         renderItem={({ item }) => <Slide item={item} />}
+        onScroll={Animated.event([{
+            nativeEvent: {
+              contentOffset: { x: scrollX }
+            }
+          }],
+          { useNativeDriver: false }
+        )}
       />
       <Footer 
         slides={slides}
-        currentSlideIndex={currentSlideIndex} 
+        scrollX={scrollX}
+        currentIndex={currentIndex} 
         handleNextSlide={handleNextSlide}
         handleSkipSlide={handleSkipSlide}
       />
     </SafeAreaView>
   )
 }
-
-export default Onboarding;
