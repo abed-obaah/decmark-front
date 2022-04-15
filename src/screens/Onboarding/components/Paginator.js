@@ -15,6 +15,7 @@ export default Paginator = ({ slides, scrollX }) => {
       style={{
         flexDirection: 'row',
         justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 20
       }}
     >
@@ -23,6 +24,12 @@ export default Paginator = ({ slides, scrollX }) => {
         const indicatorWidth = scrollX.interpolate({
           inputRange: [(i - 1) * width, i * width, (i + 1) * width],
           outputRange: [10, 20, 10],
+          extrapolate: 'clamp'
+        })
+
+        const height = scrollX.interpolate({
+          inputRange: [(i - 1) * width, i * width, (i + 1) * width],
+          outputRange: [5, 5.5, 5],
           extrapolate: 'clamp'
         })
 
@@ -37,7 +44,7 @@ export default Paginator = ({ slides, scrollX }) => {
             key={i}
             style={[
               styles.indicator,
-              { width: indicatorWidth, opacity }
+              { width: indicatorWidth, opacity, height }
             ]} 
           />
         )
@@ -48,7 +55,6 @@ export default Paginator = ({ slides, scrollX }) => {
 
 const styles = StyleSheet.create({ 
   indicator: {
-    height: 5,
     backgroundColor: COLORS.primary,
     marginHorizontal: 3,
     borderRadius: 5
