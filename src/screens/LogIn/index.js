@@ -10,8 +10,8 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { COLORS, SIZES } from '../../constants/theme';
-import AppInput from '../../components/AppInput';
-import AppButton from '../../components/AppButton';
+import EmailAddress from './components/EmailAddress';
+import PhoneNumber from './components/PhoneNumber';
 
 const { StatusBarManager } = NativeModules;
 
@@ -19,51 +19,11 @@ export default LogIn = ({navigation}) => {
   const tabs = ['Email Address', 'Phone Number']
   const [atciveTab, setActiveTab] = React.useState('Email Address')
 
-  const [inputs, setInputs] = React.useState({
-    email: '',
-    phoneNumber: '',
-    password: ''
-  })
-  const [errors, setErrors] = React.useState({})
-
-  const handleOnChange = (value, input) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [input]: value
-    }))
-  }
-
-  const handleError = (errMsg, input) => {
-    setErrors((prevState) => ({
-      ...prevState,
-      [input]: errMsg
-    }))
-  }
-
-  const handleValidate = () => {
-    let valid = true
-    if(!inputs.email) {
-      handleError("Please enter your email", "email")
-      valid = false
-    } else if(!inputs.email.match(/\S+@\S+\.\S+/)) {
-      handleError("Please enter a valid email address", "email")
-    }
-
-    if(!inputs.password) {
-      handleError("Please enter your password", "password")
-    }
-
-    if(valid) (
-      handleLogin()
-    )
-  }
-
-  const handleLogin = () => {}
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
         showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps={'handled'}
       >
         <StatusBar style="dark" />
         <Text 
@@ -106,27 +66,10 @@ export default LogIn = ({navigation}) => {
         </View>
         <View>
           {atciveTab === 'Email Address' ?
-            <AppInput 
-              label="Email"
-              error={errors.email}
-              onFocus={() => handleError(null, "email")}
-              onChangeText={(value) => handleOnChange(value, 'email')}
-            />
+            <EmailAddress />
           :
-            <AppInput 
-              label="Phone Number"
-              keyboardType="numeric"
-              onChangeText={(value) => handleOnChange(value, 'phoneNumber')}
-            />
+            <PhoneNumber />
           }
-          <AppInput 
-            label="Password"
-            password
-            error={errors.password}
-            onFocus={() => handleError(null, "password")}
-            onChangeText={(value) => handleOnChange(value, 'password')}
-          />
-          <AppButton label="Login" onPress={handleValidate} />
           <Text style={styles.text}>Forgot password?</Text>
           <Text style={styles.text} onPress={() => navigation.navigate("SignUp")}>New to DecMark? Create account</Text>
         </View>
