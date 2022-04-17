@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { COLORS, SIZES } from '../constants/theme';
 import Icon from 'react-native-vector-icons/Ionicons';
+import IconF from 'react-native-vector-icons/Feather';
 
 export default AppInput = ({ 
   label,
@@ -14,7 +15,9 @@ export default AppInput = ({
 
   return (
     <View style={{ marginTop: 25 }}>
-      <Text style={styles.label}>{label}</Text>
+      {label &&
+        <Text style={styles.label}>{label}</Text>
+      }
       <View 
         style={[
           styles.inputContainer, 
@@ -50,7 +53,17 @@ export default AppInput = ({
         }
       </View>
       {error &&
-        <Text style={{ color: COLORS.red, fontSize: 14 }}>{error}</Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
+          <IconF 
+            name='alert-circle'
+            style={{
+              color: COLORS.red,
+              fontSize: 16,
+              paddingRight: 2.5
+            }}
+          />
+          <Text style={{ color: COLORS.red }}>{error}</Text>
+        </View>
       }
     </View>
   )

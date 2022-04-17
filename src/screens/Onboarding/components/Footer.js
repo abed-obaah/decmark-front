@@ -42,7 +42,7 @@ export default Footer = ({ currentIndex, handleNextSlide, handleSkipSlide, slide
               style={[styles.btn, { 
                 backgroundColor: 'transparent',
                 borderWidth: 1,
-                borderColor: COLORS.light
+                borderColor: COLORS.primary
               }]}
             >
               <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark }}>SKIP</Text>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 50,
     backgroundColor: COLORS.primary,
-    borderRadius: 50,
+    borderRadius: SIZES.rounded,
     justifyContent: 'center',
     alignItems: 'center'
   }

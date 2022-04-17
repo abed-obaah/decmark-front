@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
   NativeModules,
+  TouchableOpacity
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { COLORS, SIZES } from '../../constants/theme';
@@ -21,11 +22,12 @@ export default LogIn = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar style="dark" />
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}
+        style={{ paddingHorizontal: 20 }}
       >
-        <StatusBar style="dark" />
         <Text 
           style={{
             fontSize: SIZES.xl,
@@ -41,17 +43,19 @@ export default LogIn = ({navigation}) => {
         }}>
           {tabs.map(item => 
             <View key={item} style={{ position: 'relative' }}>
-              <Text 
-                style={[
-                  styles.tab, 
-                  atciveTab === item && { 
-                    color: COLORS.dark, 
-                  }
-                ]} 
-                onPress={() => setActiveTab(item)}
-              >
-                {item}
-              </Text>
+              <TouchableOpacity onPress={() => setActiveTab(item)}>
+                <Text 
+                  style={[
+                    styles.tab, 
+                    atciveTab === item && { 
+                      color: COLORS.dark, 
+                    }
+                  ]} 
+                  
+                >
+                  {item}
+                </Text>
+              </TouchableOpacity>
               <View 
                 style={{
                   position: 'absolute',
@@ -82,7 +86,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    paddingHorizontal: 20,
     paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT + 20 : 0,
   },
   tab: {
