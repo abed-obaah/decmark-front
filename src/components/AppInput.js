@@ -14,7 +14,7 @@ export default AppInput = ({
   const [hidePassword, setHidePassword] = React.useState(password)
 
   return (
-    <View style={{ marginTop: 25 }}>
+    <View style={{ marginTop: 20 }}>
       {label &&
         <Text style={styles.label}>{label}</Text>
       }

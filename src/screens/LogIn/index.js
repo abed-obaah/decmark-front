@@ -13,6 +13,7 @@ import { StatusBar } from 'expo-status-bar';
 import { COLORS, SIZES } from '../../constants/theme';
 import EmailAddress from './components/EmailAddress';
 import PhoneNumber from './components/PhoneNumber';
+import GoBackNavigation from '../../navigation/GoBackNavigation';
 
 const { StatusBarManager } = NativeModules;
 
@@ -23,6 +24,7 @@ export default LogIn = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
+      <GoBackNavigation />
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}
@@ -62,7 +64,7 @@ export default LogIn = ({navigation}) => {
                   bottom: 10,
                   width: '70%',
                   height: 4,
-                  backgroundColor: atciveTab === item ? COLORS.primary : 'white'
+                  backgroundColor: atciveTab === item ? COLORS.primary : COLORS.white
                 }} 
               />
             </View>
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT + 20 : 0,
+    paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
   },
   tab: {
     color: COLORS.grey,

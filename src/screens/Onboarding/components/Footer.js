@@ -31,7 +31,7 @@ export default Footer = ({ currentIndex, handleNextSlide, handleSkipSlide, slide
       <View style={{ marginBottom: 20 }}>
         {currentIndex === slides.length - 1 ?
           <View style={{height: 50}}>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.replace("LogIn")}>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.replace("WelcomeScreen")}>
               <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark}}>GET STARTED</Text>
             </TouchableOpacity>
           </View>

@@ -3,8 +3,10 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
 
 export default AppButton = ({ 
-  label, 
-  onPress = () => {} 
+  label,
+  marginTop,
+  background,
+  onPress = () => {},
 }) => {
 
   return (
@@ -13,11 +15,13 @@ export default AppButton = ({
       style={{
         flex: 1,
         height: 50,
-        backgroundColor: COLORS.primary,
+        backgroundColor: background ? background : COLORS.primary,
         borderRadius: SIZES.radius,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 25
+        borderWidth: 1,
+        borderColor: COLORS.primary,
+        marginTop: marginTop ? marginTop : 25
       }}
     >
       <Text 

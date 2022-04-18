@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Onboarding from './src/screens/Onboarding';
+import WelcomeScreen from './src/screens/WelcomeScreen';
 import LogIn from './src/screens/LogIn';
 import SignUp from './src/screens/SignUp';
 
@@ -30,6 +31,7 @@ export default function App() {
           {isAppFirstLaunch &&
             <Stack.Screen name='Onboarding' component={Onboarding} />
           }
+          <Stack.Screen name='WelcomeScreen' component={WelcomeScreen} />
           <Stack.Screen name='LogIn' component={LogIn} />
           <Stack.Screen name='SignUp' component={SignUp} />
         </Stack.Navigator>
