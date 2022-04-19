@@ -13,7 +13,7 @@ import { StatusBar } from 'expo-status-bar';
 import { COLORS, SIZES } from '../../constants/theme';
 import EmailAddress from './components/EmailAddress';
 import PhoneNumber from './components/PhoneNumber';
-import GoBackNavigation from '../../navigation/GoBackNavigation';
+import GoBackNavigator from '../../navigators/GoBackNavigator';
 
 const { StatusBarManager } = NativeModules;
 
@@ -24,7 +24,7 @@ export default LogIn = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-      <GoBackNavigation />
+      <GoBackNavigator />
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}

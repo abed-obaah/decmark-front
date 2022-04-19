@@ -11,8 +11,8 @@ import {
   useWindowDimensions
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { COLORS, SIZES } from '../constants/theme';
-import AppButton from '../components/AppButton';
+import { COLORS, SIZES } from '../../constants/theme';
+import AppButton from '../../components/AppButton';
 
 const { StatusBarManager } = NativeModules;
 

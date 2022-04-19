@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { COLORS, SIZES } from '../../constants/theme';
-import GoBackNavigation from '../../navigation/GoBackNavigation';
+import GoBackNavigator from '../../navigators/GoBackNavigator';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const { StatusBarManager } = NativeModules;
@@ -22,7 +22,7 @@ export default SignUp = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-      <GoBackNavigation>
+      <GoBackNavigator>
         <Text 
           style={{
             color: COLORS.grey,
@@ -30,7 +30,7 @@ export default SignUp = ({navigation}) => {
           }}
           onPress={() => navigation.navigate('LogIn')}
         >Login</Text>
-      </GoBackNavigation>
+      </GoBackNavigator>
       <ScrollView 
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}

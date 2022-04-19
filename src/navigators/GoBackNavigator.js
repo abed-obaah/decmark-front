@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLORS } from '../constants/theme';
 import { useNavigation } from '@react-navigation/native';
 
-export default GoBackNavigation = (props) => {
+export default GoBackNavigator = (props) => {
   const navigation = useNavigation();
   
   return (
