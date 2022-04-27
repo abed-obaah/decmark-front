@@ -1,8 +1,10 @@
 import React from 'react';
 import AppButton from '../../../components/AppButton'
 import AppInput from '../../../components/AppInput'
+import { useNavigation } from '@react-navigation/native';
 
 export default PhoneNumber = () => {
+  const navigation = useNavigation()
   const [inputs, setInputs] = React.useState({
     phoneNumber: '',
     password: ''
@@ -40,7 +42,9 @@ export default PhoneNumber = () => {
     )
   }
 
-  const handleLogin = () => {}
+  const handleLogin = () => {
+    navigation.navigate('OTPScreen')
+  }
 
   return (
     <>

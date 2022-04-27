@@ -13,18 +13,16 @@ import { StatusBar } from 'expo-status-bar';
 import { COLORS, SIZES } from '../../constants/theme';
 import EmailAddress from './components/EmailAddress';
 import PhoneNumber from './components/PhoneNumber';
-import GoBackNavigator from '../../navigators/GoBackNavigator';
 
 const { StatusBarManager } = NativeModules;
 
 export default LogIn = ({navigation}) => {
   const tabs = ['Email Address', 'Phone Number']
-  const [atciveTab, setActiveTab] = React.useState('Email Address')
+  const [atciveTab, setActiveTab] = React.useState('Phone Number')
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-      <GoBackNavigator />
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}
@@ -88,7 +86,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
+    // paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
   },
   tab: {
     color: COLORS.grey,

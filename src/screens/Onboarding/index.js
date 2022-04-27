@@ -9,7 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import Slide from './components/Slide';
 import Footer from './components/Footer';
 import * as NavigationBar from 'expo-navigation-bar';
-import slides from '../../constants/slides';
+import slides from './constants/slides';
 
 export default Onboarding = () => {
   const { height, width } = useWindowDimensions();

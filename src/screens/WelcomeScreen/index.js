@@ -28,7 +28,7 @@ export default WelcomeScreen = ({navigation}) => {
       >
         <View style={{ alignItems: 'center' }}>
           <Image 
-            source={require("../assets/images/adaptive-icon.png")} 
+            source={require("../../assets/images/adaptive-icon.png")} 
             style={{
               height: height * .35,
               width,
@@ -39,8 +39,8 @@ export default WelcomeScreen = ({navigation}) => {
         </View>
         <Text style={{ fontSize: SIZES.lg, fontWeight: 'bold', color: COLORS.dark }}>Welcome to DecMark!</Text>
         <Text style={{ fontSize: SIZES.md, color: COLORS.grey }}>It will only take you couple of minutes to get started.</Text>
-        <AppButton label='Create Account' onPress={() => navigation.navigate("SignUp")} />
-        <AppButton label='Login' background='transparent' marginTop={10} onPress={() => navigation.navigate("LogIn")} />
+        <AppButton label='LOG IN' background='transparent' onPress={() => navigation.navigate("LogIn")} />
+        <AppButton label='REGISTER' marginTop={10} onPress={() => navigation.navigate("SignUp")} />
         
       </ScrollView>
       <Text style={{ marginBottom: 35, textAlign: 'center', color: COLORS.grey, paddingTop: 5 }}>

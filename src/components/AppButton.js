@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
 
 export default AppButton = ({ 
@@ -7,6 +7,7 @@ export default AppButton = ({
   marginTop,
   background,
   onPress = () => {},
+  ...props
 }) => {
 
   return (
@@ -15,18 +16,19 @@ export default AppButton = ({
       style={{
         flex: 1,
         height: 50,
-        backgroundColor: background ? background : COLORS.primary,
+        backgroundColor: props.disabled ?  COLORS.diabledBackground : background ? background : COLORS.primary,
         borderRadius: SIZES.radius,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 1,
-        borderColor: COLORS.primary,
+        borderColor: props.disabled ?  COLORS.diabledBackground : COLORS.primary,
         marginTop: marginTop ? marginTop : 25
       }}
+      {...props}
     >
       <Text 
         style={{ 
-          color: COLORS.dark,
+          color: props.disabled ? COLORS.lightGrey : COLORS.dark,
           fontSize: SIZES.md,
           fontWeight: 'bold'
         }}
@@ -34,5 +36,3 @@ export default AppButton = ({
     </TouchableOpacity>
   )
 }
-
-const styles = StyleSheet.create({})

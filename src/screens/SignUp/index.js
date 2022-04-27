@@ -11,26 +11,16 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { COLORS, SIZES } from '../../constants/theme';
-import GoBackNavigator from '../../navigators/GoBackNavigator';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 const { StatusBarManager } = NativeModules;
 
-export default SignUp = ({navigation}) => {
+export default SignUp = ({ }) => {
   const [toggleReferralID, setToggleReferralID] = React.useState(false)
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
-      <GoBackNavigator>
-        <Text 
-          style={{
-            color: COLORS.grey,
-            fontSize: SIZES.md
-          }}
-          onPress={() => navigation.navigate('LogIn')}
-        >Login</Text>
-      </GoBackNavigator>
       <ScrollView 
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}
@@ -99,7 +89,7 @@ export default SignUp = ({navigation}) => {
           }
         </View>
 
-        <AppButton label="Sign Up" />
+        <AppButton label="Submit" />
 
         <Text style={{ marginVertical: 10, textAlign: 'center', color: COLORS.grey, paddingTop: 5 }}>
           By creating an account, you agree to our 
@@ -115,7 +105,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
-    paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
+    // paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
   },
   inputContainer: {
     height: 50,

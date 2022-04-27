@@ -8,7 +8,8 @@ export const COLORS = {
   lighter: '#fafafa',
   grey: 'rgba(20, 20, 20, .5)',
   lightGrey: 'rgba(20, 20, 20, .35)',
-  red: '#D91D13'
+  red: '#D91D13',
+  diabledBackground: 'rgba(222, 178, 83, .5)'
 }
 
 export const SIZES = {
@@ -17,5 +18,5 @@ export const SIZES = {
   md: 16,
   sm: 10,
   radius: 5,
-  rounded: 50
+  rounded: 50,
 }
