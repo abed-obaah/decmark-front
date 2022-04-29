@@ -55,7 +55,7 @@ export default Paginator = ({ slides, scrollX }) => {
 
 const styles = StyleSheet.create({ 
   indicator: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: COLORS.gold,
     marginHorizontal: 3,
     borderRadius: 5
   }

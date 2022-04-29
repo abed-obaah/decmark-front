@@ -1,26 +1,21 @@
 import React from 'react'
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  useWindowDimensions,
-  TouchableOpacity 
-} from 'react-native';
+import { View, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { COLORS, SIZES } from '../../../constants/theme';
+import { SIZES } from '../../../constants/theme';
 import Paginator from './Paginator';
+import styled from 'styled-components/native';
+import AppButton from '../../../components/AppButton';
 
 export default Footer = ({ currentIndex, handleNextSlide, handleSkipSlide, slides, scrollX }) => {
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
   
   return (
-    <View
+    <SlideFooter
       style={{
         height: height * 0.20,
         justifyContent: 'space-between',
         paddingHorizontal: 20,
-        backgroundColor: COLORS.white,
       }}
     >
       <Paginator 
@@ -28,43 +23,34 @@ export default Footer = ({ currentIndex, handleNextSlide, handleSkipSlide, slide
         scrollX={scrollX}
       />
 
-      <View style={{ marginBottom: 20 }}>
+      <View style={{ marginBottom: 20, flexDirection: 'row' }}>
         {currentIndex === slides.length - 1 ?
-          <View style={{height: 50}}>
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.replace("WelcomeScreen")}>
-              <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark}}>GET STARTED</Text>
-            </TouchableOpacity>
-          </View>
+          <AppButton 
+            label="GET STARTED" 
+            radius={SIZES.rounded}
+            onPress={() => navigation.replace("WelcomeScreen")} 
+          />
         :
-          <View style={{ flexDirection: 'row' }}>
-            <TouchableOpacity 
+          <>
+            <AppButton 
+              label="SKIP" 
+              background='transparent'
+              radius={SIZES.rounded}
               onPress={handleSkipSlide}
-              style={[styles.btn, { 
-                backgroundColor: 'transparent',
-                borderWidth: 1,
-                borderColor: COLORS.primary
-              }]}
-            >
-              <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark }}>SKIP</Text>
-            </TouchableOpacity>
+            />
             <View style={{width: 15}} />
-            <TouchableOpacity style={styles.btn} onPress={handleNextSlide}>
-              <Text style={{fontWeight: 'bold', fontSize: SIZES.md, color: COLORS.dark }}>NEXT</Text>
-            </TouchableOpacity>
-          </View>
+            <AppButton 
+              label="NEXT" 
+              radius={SIZES.rounded}
+              onPress={handleNextSlide}
+            />
+          </>
         }
       </View>
-    </View>
+    </SlideFooter>
   )
 }
 
-const styles = StyleSheet.create({
-  btn: {
-    flex: 1,
-    height: 50,
-    backgroundColor: COLORS.primary,
-    borderRadius: SIZES.rounded,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
+const SlideFooter = styled.View`
+  background-color: ${({theme}) => theme.PRIMARY_BACKGROUND_COLOR};
+`

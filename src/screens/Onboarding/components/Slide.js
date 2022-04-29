@@ -1,15 +1,16 @@
 import React from 'react'
 import { 
-  StyleSheet, 
-  Text, 
+  StyleSheet,
   View,
   Image,
   useWindowDimensions
 } from 'react-native'
-import { COLORS, SIZES } from '../../../constants/theme';
+import { LargeText, MediumText } from '../../../components/AppText';
+import styled from 'styled-components/native';
 
 export default Slide = ({ item }) => {
   const { height, width } = useWindowDimensions();
+
   return (
     <View style={{ width, height: height * .80 }}>
       <Image 
@@ -26,36 +27,32 @@ export default Slide = ({ item }) => {
           { backgroundColor: 'rgba(0,0,0,.65)' }
         ]}
       />
-      <View style={[styles.content, { width }]}>
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.description}>{item.description}</Text>
-      </View>
+      <SlideContent style={{ width, paddingHorizontal: 15 }}>
+        <LargeText 
+          style={{ 
+            marginTop: 25,
+            textAlign: 'center',
+          }}
+        >
+          {item.title}
+        </LargeText>
+        <MediumText
+          style={{    
+            textAlign: 'center',
+            marginTop: 10,
+          }}
+        >
+          {item.description}
+        </MediumText>
+      </SlideContent>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-  content: {
-    position: 'absolute',
-    bottom: 0,
-    backgroundColor: COLORS.white,
-    borderTopLeftRadius: 25,
-    borderTopRightRadius: 25,
-  },
-  title: {
-    color: COLORS.dark,
-    fontSize: SIZES.xl,
-    fontWeight: 'bold',
-    marginTop: 25,
-    textAlign: 'center',
-    paddingHorizontal: 25,
-  },
-  description: {
-    color: COLORS.grey,
-    fontSize: SIZES.md,
-    textAlign: 'center',
-    paddingHorizontal: 25,
-    marginTop: 10,
-    lineHeight: 23
-  },
-})
+const SlideContent = styled.View`
+  position: absolute;
+  bottom: 0;
+  background-color: ${({theme}) => theme.PRIMARY_BACKGROUND_COLOR};
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+`

@@ -39,7 +39,7 @@ export default WelcomeScreen = ({navigation}) => {
         </View>
         <Text style={{ fontSize: SIZES.lg, fontWeight: 'bold', color: COLORS.dark }}>Welcome to DecMark!</Text>
         <Text style={{ fontSize: SIZES.md, color: COLORS.grey }}>It will only take you couple of minutes to get started.</Text>
-        <AppButton label='LOG IN' background='transparent' onPress={() => navigation.navigate("LogIn")} />
+        <AppButton label='LOGIN' background='transparent' onPress={() => navigation.navigate("LogIn")} />
         <AppButton label='REGISTER' marginTop={10} onPress={() => navigation.navigate("SignUp")} />
         
       </ScrollView>

@@ -1,9 +1,18 @@
 import styled from 'styled-components/native';
+import { SIZES } from '../constants/theme';
 
-export const Header = styled.Text``
+export const LargeText = styled.Text`
+  color: ${({theme}) => theme.PRIMARY_TEXT_COLOR};
+  font-size: ${SIZES.xl}px;
+  font-weight: bold;
+`
 
-export const SubHeader = styled.Text``
+export const MediumText = styled.Text`
+  color: ${({theme}) => theme.SECONDARY_TEXT_COLOR};
+  font-size: ${SIZES.md}px;
+  line-height: 25px;
+`
 
-export const MediumText = styled.Text``
-
-export const SmallText = styled.Text``
+export const SmallText = styled.Text`
+  line-height: 25px;
+`
