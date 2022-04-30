@@ -24,6 +24,7 @@ export const lightTheme = {
   PRIMARY_BORDER_COLOR: COLORS.light,
   NAVBAR_BUTTON_COLOR: "dark",
   NAVBAR_BACKGROUND_COLOR: COLORS.white,
+  STATUS_BAR_STYLE: "dark",
   ...COLORS
 }
 
@@ -36,6 +37,7 @@ export const darkTheme = {
   PRIMARY_BORDER_COLOR: COLORS.grey,
   NAVBAR_BUTTON_COLOR: "light",
   NAVBAR_BACKGROUND_COLOR: COLORS.dark,
+  STATUS_BAR_STYLE: "light",
   ...COLORS
 }
 
@@ -43,7 +45,7 @@ export const SIZES = {
   xl: 27.5,
   lg: 25,
   md: 16,
-  sm: 10,
+  sm: 13,
   radius: 5,
   rounded: 50,
 }

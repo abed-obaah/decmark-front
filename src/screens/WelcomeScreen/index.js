@@ -2,7 +2,6 @@ import React from 'react';
 import { 
   StyleSheet,
   Platform,
-  Text, 
   View,
   Image,
   SafeAreaView,
@@ -10,18 +9,20 @@ import {
   NativeModules,
   useWindowDimensions
 } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { COLORS, SIZES } from '../../constants/theme';
 import AppButton from '../../components/AppButton';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../redux/slices/themeSlice';
+import { LargeText, MediumText, SmallText, LinkText } from '../../components/AppText';
 
 const { StatusBarManager } = NativeModules;
 
 export default WelcomeScreen = ({navigation}) => {
   const { height, width } = useWindowDimensions()
 
+  const theme = useSelector(selectTheme)
+
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
+    <SafeAreaView style={[styles.container, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps={'handled'}
@@ -37,17 +38,17 @@ export default WelcomeScreen = ({navigation}) => {
             }}
           />
         </View>
-        <Text style={{ fontSize: SIZES.lg, fontWeight: 'bold', color: COLORS.dark }}>Welcome to DecMark!</Text>
-        <Text style={{ fontSize: SIZES.md, color: COLORS.grey }}>It will only take you couple of minutes to get started.</Text>
-        <AppButton label='LOGIN' background='transparent' onPress={() => navigation.navigate("LogIn")} />
-        <AppButton label='REGISTER' marginTop={10} onPress={() => navigation.navigate("SignUp")} />
+        <LargeText>Welcome to DecMark!</LargeText>
+        <MediumText>It will only take you couple of minutes to get started.</MediumText>
+        <AppButton label='REGISTER' onPress={() => navigation.navigate("SignUp")} />
+        <AppButton label='LOGIN' background='transparent' marginTop={10} onPress={() => navigation.navigate("LogIn")} />
         
       </ScrollView>
-      <Text style={{ marginBottom: 35, textAlign: 'center', color: COLORS.grey, paddingTop: 5 }}>
+      <SmallText style={{ marginBottom: 35, textAlign: 'center', paddingTop: 5 }}>
         By creating an account, you agree to our 
-        <Text style={{ color: COLORS.darkGold }}> Terms and Conditions</Text> and 
-        <Text style={{ color: COLORS.darkGold }}> Policy.</Text>
-      </Text>
+        <LinkText> Terms and Conditions</LinkText> and 
+        <LinkText> Policy.</LinkText>
+      </SmallText>
     </SafeAreaView>
   )
 }
@@ -55,7 +56,6 @@ export default WelcomeScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.white,
     paddingHorizontal: 20,
     paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
   }

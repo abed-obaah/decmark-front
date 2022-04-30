@@ -14,5 +14,11 @@ export const MediumText = styled.Text`
 `
 
 export const SmallText = styled.Text`
-  line-height: 25px;
+  color: ${({theme}) => theme.SECONDARY_TEXT_COLOR};
+  font-size: ${SIZES.sm}px;
+  line-height: 15px;
+`
+
+export const LinkText = styled.Text`
+  color: ${({theme}) => theme.darkGold};
 `

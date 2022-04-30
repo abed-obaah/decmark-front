@@ -8,18 +8,10 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import Slide from './components/Slide';
 import Footer from './components/Footer';
-import * as NavigationBar from 'expo-navigation-bar';
 import slides from './constants/slides';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../../redux/slices/themeSlice';
 
 export default Onboarding = () => {
-  const { height, width } = useWindowDimensions();
-
-  const theme = useSelector(selectTheme)
-
-  NavigationBar.setBackgroundColorAsync(theme.NAVBAR_BACKGROUND_COLOR)
-  NavigationBar.setButtonStyleAsync(theme.NAVBAR_BUTTON_COLOR);
+  const { height, width } = useWindowDimensions()
 
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const scrollX = React.useRef(new Animated.Value(0)).current
