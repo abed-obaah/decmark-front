@@ -1,40 +1,26 @@
 import React from 'react';
 import { 
   StyleSheet,
-  Platform,
-  Text, 
   View,
-  SafeAreaView,
-  ScrollView,
-  NativeModules,
   TouchableOpacity
 } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { COLORS, SIZES } from '../../constants/theme';
 import EmailAddress from './components/EmailAddress';
 import PhoneNumber from './components/PhoneNumber';
-
-const { StatusBarManager } = NativeModules;
+import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../redux/slices/themeSlice';
+import { LargeText, MediumText, LinkText } from '../../components/AppText';
 
 export default LogIn = ({navigation}) => {
   const tabs = ['Email Address', 'Phone Number']
   const [atciveTab, setActiveTab] = React.useState('Phone Number')
 
+  const theme = useSelector(selectTheme)
+
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps={'handled'}
-        style={{ paddingHorizontal: 20 }}
-      >
-        <Text 
-          style={{
-            fontSize: SIZES.xl,
-            fontWeight: 'bold',
-            color: COLORS.dark
-          }}
-        >Account Login</Text>
+    <AppSafeAreaView>
+      <AppScrollView>
+        <LargeText>Account Login</LargeText>
         <View style={{
           flex: 1,
           flexDirection: 'row',
@@ -44,17 +30,21 @@ export default LogIn = ({navigation}) => {
           {tabs.map(item => 
             <View key={item} style={{ position: 'relative' }}>
               <TouchableOpacity onPress={() => setActiveTab(item)}>
-                <Text 
+                <MediumText 
                   style={[
-                    styles.tab, 
+                    { 
+                      fontWeight: 'bold',
+                      paddingVertical: 10,
+                      marginVertical: 10
+                    }, 
                     atciveTab === item && { 
-                      color: COLORS.dark, 
+                      color: theme.PRIMARY_TEXT_COLOR, 
                     }
                   ]} 
                   
                 >
                   {item}
-                </Text>
+                </MediumText>
               </TouchableOpacity>
               <View 
                 style={{
@@ -62,7 +52,7 @@ export default LogIn = ({navigation}) => {
                   bottom: 10,
                   width: '70%',
                   height: 4,
-                  backgroundColor: atciveTab === item ? COLORS.primary : COLORS.white
+                  backgroundColor: atciveTab === item ? theme.gold : 'transparent'
                 }} 
               />
             </View>
@@ -74,29 +64,16 @@ export default LogIn = ({navigation}) => {
           :
             <PhoneNumber />
           }
-          <Text style={styles.text}>Forgot password?</Text>
-          <Text style={styles.text} onPress={() => navigation.navigate("SignUp")}>New to DecMark? Create account</Text>
+          <LinkText style={styles.text}>Forgot password?</LinkText>
+          <LinkText style={styles.text} onPress={() => navigation.navigate("SignUp")}>New to DecMark? Create account</LinkText>
         </View>
-      </ScrollView>
-    </SafeAreaView>
+      </AppScrollView>
+    </AppSafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.white,
-    // paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
-  },
-  tab: {
-    color: COLORS.grey,
-    fontWeight: 'bold',
-    fontSize: SIZES.md,
-    paddingVertical: 10,
-    marginVertical: 10,
-  },
   text: {
-    color: COLORS.darkGold,
     textAlign: 'right',
     fontSize: 15,
     fontWeight: 'bold',

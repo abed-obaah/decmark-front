@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../redux/slices/themeSlice';
-import { COLORS } from '../constants/theme';
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 
@@ -13,11 +12,10 @@ import LogIn from '../screens/LogIn';
 import SignUp from '../screens/SignUp';
 import OTPScreen from '../screens/OTPScreen';
 
-const Stack = createStackNavigator()
+export default AuthNavigation = () => {
+  const Stack = createStackNavigator()
 
-export default AuthNavigator = () => {
   const theme = useSelector(selectTheme)
-
   NavigationBar.setBackgroundColorAsync(theme.NAVBAR_BACKGROUND_COLOR)
   NavigationBar.setButtonStyleAsync(theme.NAVBAR_BUTTON_COLOR);
 
@@ -36,10 +34,13 @@ export default AuthNavigator = () => {
   const options = {
     headerShown: true,
     headerStyle: {
-      backgroundColor: COLORS.white
+      backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+      elevation: 0,
+      shadowOpacity: 0,
+      borderBottomWidth: 0
     },
     headerTitle: '',
-    headerTintColor: COLORS.grey, 
+    headerTintColor: theme.SECONDARY_TEXT_COLOR, 
   }
 
   return (

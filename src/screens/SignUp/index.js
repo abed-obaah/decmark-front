@@ -1,38 +1,21 @@
 import React from 'react';
-import { 
-  StyleSheet,
-  Platform,
-  Text, 
-  View,
-  TextInput,
-  SafeAreaView,
-  ScrollView,
-  NativeModules,
-} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { COLORS, SIZES } from '../../constants/theme';
+import { View } from 'react-native';
+import { SIZES } from '../../constants/theme';
 import Icon from 'react-native-vector-icons/AntDesign';
-
-const { StatusBarManager } = NativeModules;
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../../redux/slices/themeSlice';
+import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
+import { LargeText, MediumText, LinkText, SmallText } from '../../components/AppText';
 
 export default SignUp = ({ }) => {
   const [toggleReferralID, setToggleReferralID] = React.useState(false)
 
+  const theme = useSelector(selectTheme)
+
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps={'handled'}
-        style={{ paddingHorizontal: 20 }}
-      >
-        <Text 
-          style={{
-            fontSize: SIZES.xl,
-            fontWeight: 'bold',
-            color: COLORS.dark
-          }}
-        >Create Account</Text>
+    <AppSafeAreaView>
+      <AppScrollView>
+        <LargeText>Create Account</LargeText>
         <AppInput 
           label="First Name"
         />
@@ -52,24 +35,16 @@ export default SignUp = ({ }) => {
           <View 
             style={{
               fontSize: SIZES.md,
-              color: COLORS.grey,
-              marginBottom: 2.5,
-              paddingVertical: 5,
+              paddingVertical: 2.5,
               flexDirection: 'row',
               alignItems: 'center'
             }}
           >
-            <Text 
-              style={{
-                fontSize: SIZES.md,
-                color: COLORS.grey,
-              }}
-              onPress={() => setToggleReferralID(!toggleReferralID)}
-            >Referral ID (Optional)</Text>
+            <MediumText onPress={() => setToggleReferralID(!toggleReferralID)}>Referral ID (Optional)</MediumText>
             <Icon
               name={toggleReferralID ? "caretup" : "caretdown"}
               style={{ 
-                color: COLORS.lightGrey,
+                color: theme.SECONDARY_TEXT_COLOR,
                 fontSize: 13.5,
                 marginLeft: 3.5
               }}
@@ -77,44 +52,18 @@ export default SignUp = ({ }) => {
             />
           </View>
           {toggleReferralID &&
-            <View style={styles.inputContainer}>
-              <TextInput
-                style={{
-                  flex: 1,
-                  fontSize: SIZES.md,
-                  fontWeight: 'bold'
-                }}
-              />
-            </View>
+            <AppInput marginTop={5} />
           }
         </View>
 
         <AppButton label="Submit" />
 
-        <Text style={{ marginVertical: 10, textAlign: 'center', color: COLORS.grey, paddingTop: 5 }}>
+        <SmallText style={{ marginVertical: 10, textAlign: 'center', paddingTop: 5 }}>
           By creating an account, you agree to our 
-          <Text style={{ color: COLORS.darkGold }}> Terms and Conditions</Text> and 
-          <Text style={{ color: COLORS.darkGold }}> Policy.</Text>
-        </Text>
-      </ScrollView>
-    </SafeAreaView>
+          <LinkText> Terms and Conditions</LinkText> and 
+          <LinkText> Policy.</LinkText>
+        </SmallText>
+      </AppScrollView>
+    </AppSafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.white,
-    // paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
-  },
-  inputContainer: {
-    height: 50,
-    backgroundColor: COLORS.lighter,
-    flexDirection: 'row',
-    paddingHorizontal: 15,
-    borderWidth: 1,
-    borderColor: COLORS.light,
-    borderRadius: SIZES.radius,
-    alignItems: 'center'
-  }
-})

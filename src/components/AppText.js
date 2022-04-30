@@ -22,3 +22,7 @@ export const SmallText = styled.Text`
 export const LinkText = styled.Text`
   color: ${({theme}) => theme.darkGold};
 `
+
+export const ErrorText = styled.Text`
+  color: ${({theme}) => theme.red};
+`

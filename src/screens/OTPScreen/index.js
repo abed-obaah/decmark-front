@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
-import { 
-  StyleSheet, 
-  Text, 
-  Pressable, 
-  Keyboard,
-  SafeAreaView,
-  ScrollView
-} from 'react-native'
+import { Pressable, Keyboard } from 'react-native'
 import AppButton from '../../components/AppButton'
 import OTPField from '../../components/OTPField'
-import { COLORS, SIZES } from '../../constants/theme'
+import { SIZES } from '../../constants/theme'
+import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
+import { LargeText, MediumText, LinkText } from '../../components/AppText';
 
 export default OTPScreen = () => {
   const [code, setCode] = useState("")
@@ -17,35 +12,12 @@ export default OTPScreen = () => {
   const MAX_CODE_LENGTH = 5
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps={'handled'}
-        style={{ paddingHorizontal: 20 }}
-      >
+    <AppSafeAreaView>
+      <AppScrollView>
         <Pressable onPress={Keyboard.dismiss}>
-          <Text 
-            style={{
-              fontSize: SIZES.xl,
-              fontWeight: 'bold',
-              color: COLORS.dark,
-              marginBottom: 5
-            }}
-            >Verification code</Text>
-          <Text 
-            style={{
-              color: COLORS.grey,
-              fontSize: SIZES.md,
-              marginBottom: 2.5
-            }}
-          >We have sent a code to your mobile number</Text>
-          <Text 
-            style={{
-              color: COLORS.grey,
-              fontSize: SIZES.md,
-              marginBottom: 10
-            }}
-          >+2348141726099</Text>
+          <LargeText>Verification code</LargeText>
+          <MediumText>We have sent a code to your mobile number</MediumText>
+          <MediumText style={{ marginBottom: 10 }}>+2348141726099</MediumText>
           <OTPField 
             code={code}
             setCode={setCode}
@@ -53,28 +25,20 @@ export default OTPScreen = () => {
             maxLength={MAX_CODE_LENGTH}
             />
           <Pressable>
-            <Text 
+            <LinkText 
               style={{ 
                 textAlign: 'right', 
-                color: COLORS.darkGold,
                 fontSize: SIZES.md,
                 marginVertical: 10
               }}
-            >Resend code?</Text>
+            >Resend code?</LinkText>
           </Pressable>
         </Pressable>
         <AppButton 
           label="Verify"
           disabled={!pinReady}
         />
-      </ScrollView>
-    </SafeAreaView>
+      </AppScrollView>
+    </AppSafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.white
-  }
-})

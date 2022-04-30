@@ -1,14 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { 
-  StyleSheet, 
-  Text, 
+  StyleSheet,
   View,
   TextInput,
   Pressable
 } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '../redux/slices/themeSlice';
+import { LargeText } from './AppText';
 
 export default OTPField = ({ code, setCode, setPinReady, maxLength }) => {
+  const theme = useSelector(selectTheme)
+
   const codeDigitsArray = new Array(maxLength).fill(0)
 
   // ref for text input
@@ -46,12 +50,15 @@ export default OTPField = ({ code, setCode, setPinReady, maxLength }) => {
         style={[
           styles.otpInput,
           inputIsFocused && isDigitFocused ?
-            { borderColor: COLORS.primary, backgroundColor: COLORS.white, }
+            { borderColor: COLORS.gold, backgroundColor: 'transparent', }
             :
-            { borderColor: COLORS.light, backgroundColor: COLORS.lighter, }
+            { 
+              borderColor: theme.PRIMARY_BORDER_COLOR, 
+              backgroundColor: theme.INPUT_BACKGROUND_COLOR
+            }
         ]}
       >
-        <Text style={styles.otpText}>{digit}</Text>
+        <LargeText style={{ color: theme.PRIMARY_TEXT_COLOR, textAlign: "center" }}>{digit}</LargeText>
       </View>
     )
   }
@@ -99,10 +106,4 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.radius,
     padding: 10
   },
-  otpText: {
-    fontSize: SIZES.lg,
-    fontWeight: 'bold',
-    textAlign: "center",
-    color: COLORS.dark
-  }
 })

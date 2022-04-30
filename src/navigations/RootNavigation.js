@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { selectTheme } from '../redux/slices/themeSlice';
 
-import AuthNavigator from './AuthNavigator';
+import AuthNavigation from './AuthNavigation';
 
-export default RootNavigator = () => {
+export default RootNavigation = () => {
   const Stack = createStackNavigator()
 
   const theme = useSelector(selectTheme)
@@ -17,9 +17,9 @@ export default RootNavigator = () => {
       <NavigationContainer>
         <Stack.Navigator 
           screenOptions={{ headerShown: false }}
-          initialRouteName="AuthNavigator"
+          initialRouteName="AuthNavigation"
         >
-          <Stack.Screen name='AuthNavigator' component={AuthNavigator} />
+          <Stack.Screen name='AuthNavigation' component={AuthNavigation} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
