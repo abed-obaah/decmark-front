@@ -1,7 +1,9 @@
 import React from 'react';
 import AppButton from '../../../components/AppButton'
 import AppInput from '../../../components/AppInput'
+import PhoneNumberInput from '../../../components/PhoneNumberInput';
 import { useNavigation } from '@react-navigation/native';
+import { LinkText } from '../../../components/AppText';
 
 export default PhoneNumber = () => {
   const navigation = useNavigation()
@@ -48,9 +50,8 @@ export default PhoneNumber = () => {
 
   return (
     <>
-      <AppInput 
+      <PhoneNumberInput 
         label="Phone Number"
-        keyboardType="numeric"
         error={errors.phoneNumber}
         onFocus={() => handleError(null, "phoneNumber")}
         onChangeText={(value) => handleOnChange(value, 'phoneNumber')}
@@ -62,6 +63,7 @@ export default PhoneNumber = () => {
         onFocus={() => handleError(null, "password")}
         onChangeText={(value) => handleOnChange(value, 'password')}
       />
+      <LinkText style={{ fontSize: 15, paddingTop: 2 }}>Forgot password?</LinkText>
       <AppButton label="Login" onPress={handleValidate} />
     </>
   )

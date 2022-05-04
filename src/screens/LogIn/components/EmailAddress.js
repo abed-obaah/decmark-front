@@ -1,6 +1,7 @@
 import React from 'react'
 import AppButton from '../../../components/AppButton'
 import AppInput from '../../../components/AppInput'
+import { LinkText } from '../../../components/AppText';
 
 export default EmailAddress = () => {
   const [inputs, setInputs] = React.useState({
@@ -59,6 +60,7 @@ export default EmailAddress = () => {
         onFocus={() => handleError(null, "password")}
         onChangeText={(value) => handleOnChange(value, 'password')}
       />
+      <LinkText style={{ fontSize: 15, paddingTop: 2 }}>Forgot password?</LinkText>
       <AppButton label="Login" onPress={handleValidate} />
     </>
   )

@@ -1,7 +1,4 @@
 export const COLORS = {
-  primary: '#DEB253', // gold
-  diabledBackground: 'rgba(222, 178, 83, .5)',
-
   white: '#FFF',
   dark: '#141414',
   gold: '#DEB253',
@@ -34,7 +31,7 @@ export const darkTheme = {
   PRIMARY_BACKGROUND_COLOR: COLORS.dark,
   SECONDARY_BACKGROUND_COLOR: COLORS.lightGrey,
   PRIMARY_TEXT_COLOR: COLORS.white,
-  SECONDARY_TEXT_COLOR: "rgba(255,255,255, .5)",
+  SECONDARY_TEXT_COLOR: "rgba(255,255,255, .35)",
   PRIMARY_BORDER_COLOR: "rgba(255,255,255, .065)",
   INPUT_BACKGROUND_COLOR: "rgba(255,255,255, .05)",
   NAVBAR_BUTTON_COLOR: "light",

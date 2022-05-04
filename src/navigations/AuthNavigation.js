@@ -10,7 +10,9 @@ import Onboarding from '../screens/Onboarding';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import LogIn from '../screens/LogIn';
 import SignUp from '../screens/SignUp';
+import SignUpWithNumber from '../screens/SignUp/SignUpWithNumber';
 import OTPScreen from '../screens/OTPScreen';
+import { SIZES } from '../constants/theme';
 
 export default AuthNavigation = () => {
   const Stack = createStackNavigator()
@@ -39,7 +41,12 @@ export default AuthNavigation = () => {
       shadowOpacity: 0,
       borderBottomWidth: 0
     },
-    headerTitle: '',
+    headerTitleAlign: 'center',
+    headerTitleStyle: { 
+      color: theme.PRIMARY_TEXT_COLOR,
+      fontWeight: 'bold',
+      fontSize: SIZES.lg
+    },
     headerTintColor: theme.SECONDARY_TEXT_COLOR, 
   }
 
@@ -55,9 +62,10 @@ export default AuthNavigation = () => {
             <Stack.Screen name='Onboarding' component={Onboarding} />
           }
           <Stack.Screen name='WelcomeScreen' component={WelcomeScreen} />
-          <Stack.Screen name='LogIn' component={LogIn} options={{...options}} />
-          <Stack.Screen name='SignUp' component={SignUp} options={{...options}} />
-          <Stack.Screen name='OTPScreen' component={OTPScreen} options={{...options}} />
+          <Stack.Screen name='LogIn' component={LogIn} options={{...options, headerTitle: "Account Login"}} />
+          <Stack.Screen name='SignUp' component={SignUp} options={{...options, headerTitle: ""}} />
+          <Stack.Screen name='SignUpWithNumber' component={SignUpWithNumber} options={{...options, headerTitle: "Create Account"}} />
+          <Stack.Screen name='OTPScreen' component={OTPScreen} options={{...options, headerTitle: "Verification"}} />
         </Stack.Navigator>
       </>
     )

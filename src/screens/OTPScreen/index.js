@@ -15,7 +15,6 @@ export default OTPScreen = () => {
     <AppSafeAreaView>
       <AppScrollView>
         <Pressable onPress={Keyboard.dismiss}>
-          <LargeText>Verification code</LargeText>
           <MediumText>We have sent a code to your mobile number</MediumText>
           <MediumText style={{ marginBottom: 10 }}>+2348141726099</MediumText>
           <OTPField 
