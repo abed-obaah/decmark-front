@@ -23,6 +23,7 @@ export const lightTheme = {
   NAVBAR_BUTTON_COLOR: "dark",
   NAVBAR_BACKGROUND_COLOR: COLORS.white,
   STATUS_BAR_STYLE: "dark",
+  HEADER_BACKGROUND_COLOR: COLORS.white,
   ...COLORS
 }
 
@@ -37,6 +38,7 @@ export const darkTheme = {
   NAVBAR_BUTTON_COLOR: "light",
   NAVBAR_BACKGROUND_COLOR: COLORS.dark,
   STATUS_BAR_STYLE: "light",
+  HEADER_BACKGROUND_COLOR: 'rgba(20, 20, 20, .7)',
   ...COLORS
 }
 

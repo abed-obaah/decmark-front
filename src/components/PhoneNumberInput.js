@@ -37,7 +37,7 @@ export default PhoneNumberInput = ({
             paddingRight: 7.5,
             marginRight: 7.5,
             borderRightWidth: 1,
-            borderRightColor: theme.INPUT_BACKGROUND_COLOR,
+            borderRightColor: theme.PRIMARY_BORDER_COLOR,
             flexDirection: 'row',
             alignItems: 'center'
           }}

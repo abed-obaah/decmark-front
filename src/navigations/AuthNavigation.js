@@ -41,9 +41,9 @@ export default AuthNavigation = () => {
       shadowOpacity: 0,
       borderBottomWidth: 0
     },
-    headerTitleAlign: 'center',
+    // headerTitleAlign: 'center',
     headerTitleStyle: { 
-      color: theme.PRIMARY_TEXT_COLOR,
+      // color: theme.PRIMARY_TEXT_COLOR,
       fontWeight: 'bold',
       fontSize: SIZES.lg
     },
