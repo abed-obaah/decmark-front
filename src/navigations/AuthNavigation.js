@@ -12,7 +12,6 @@ import LogIn from '../screens/LogIn';
 import SignUp from '../screens/SignUp';
 import SignUpWithNumber from '../screens/SignUp/SignUpWithNumber';
 import OTPScreen from '../screens/OTPScreen';
-import { SIZES } from '../constants/theme';
 
 export default AuthNavigation = () => {
   const Stack = createStackNavigator()
@@ -43,9 +42,8 @@ export default AuthNavigation = () => {
     },
     // headerTitleAlign: 'center',
     headerTitleStyle: { 
-      // color: theme.PRIMARY_TEXT_COLOR,
       fontWeight: 'bold',
-      fontSize: SIZES.lg
+      fontSize: 22.5
     },
     headerTintColor: theme.SECONDARY_TEXT_COLOR, 
   }

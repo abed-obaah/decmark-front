@@ -1,59 +1,60 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native'
 import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
-import { MediumText } from '../../components/AppText';
+import { MediumText, LinkText } from '../../components/AppText';
 import IndividualFields from './components/IndividualFields';
 import CompanyFields from './components/CompanyFields';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../../redux/slices/themeSlice';
+import { useHeaderHeight } from '@react-navigation/elements';
 
 export default SignUpWithNumber = ({ }) => {
   const theme = useSelector(selectTheme)
+  const headerHeight = useHeaderHeight();
   
   const [toggleReferralID, setToggleReferralID] = React.useState(false)
   const [activeTab, setActiveTab] = React.useState('Personal Account')
 
   return (
     <AppSafeAreaView>
-      <AppScrollView>
-        <MediumText style={{ marginTop: 5 }}>Verified mobile number +2348141726099</MediumText>
-        <View style={{
-          flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: 15
-        }}>
+      <View style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+      }}>
 
-        {['Personal Account', 'Company Account'].map(item => 
-          <View key={item} style={{ position: 'relative' }}>
-            <TouchableOpacity onPress={() => setActiveTab(item)}>
-              <MediumText 
-                style={[
-                  { 
-                    fontWeight: 'bold',
-                    paddingVertical: 10,
-                    marginVertical: 5
-                  }, 
-                  activeTab === item && { 
-                    color: theme.PRIMARY_TEXT_COLOR, 
-                  }
-                ]} 
-              >
-                {item}
-              </MediumText>
-            </TouchableOpacity>
-            <View 
-              style={{
-                position: 'absolute',
-                bottom: 10,
-                width: '70%',
-                height: 4,
-                backgroundColor: activeTab === item ? theme.gold : 'transparent'
-              }} 
-            />
-          </View>
-        )}
+      {['Personal Account', 'Company Account'].map(item => 
+        <View key={item} style={{ position: 'relative', paddingHorizontal: 20 }}>
+          <TouchableOpacity onPress={() => setActiveTab(item)}>
+            <MediumText 
+              style={[
+                { 
+                  fontWeight: 'bold',
+                  paddingVertical: 10,
+                  marginBottom: 5
+                }, 
+                activeTab === item && { 
+                  color: theme.PRIMARY_TEXT_COLOR, 
+                }
+              ]} 
+            >
+              {item}
+            </MediumText>
+          </TouchableOpacity>
+          <View 
+            style={{
+              position: 'absolute',
+              bottom: 10,
+              width: '70%',
+              height: 4,
+              marginLeft: 20,
+              backgroundColor: activeTab === item ? theme.gold : 'transparent'
+            }} 
+          />
         </View>
+      )}
+      </View>
+      <AppScrollView>
+        <MediumText style={{ marginTop: 5 }}>Verified: <LinkText>+2348141726099</LinkText></MediumText>
         {activeTab === 'Personal Account' ?
             <IndividualFields 
               theme={theme}
