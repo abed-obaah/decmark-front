@@ -16,7 +16,7 @@ export default SignUp = ({ navigation }) => {
         <LargeText>Welcome to DecMark!</LargeText>
         <MediumText style={{ paddingVertical: 10 }}>Before we proceed, please enter your active mobile number.</MediumText>
         <PhoneNumberInput />
-        <AppButton label='Confirm' onPress={() => navigation.navigate("SignUpWithNumber")} />
+        <AppButton label='Next' onPress={() => navigation.navigate("SignUpWithNumber")} />
 
         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 50}}>
           <View style={[styles.line, {backgroundColor: theme.PRIMARY_BORDER_COLOR}]} />

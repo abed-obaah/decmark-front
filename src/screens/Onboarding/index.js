@@ -11,7 +11,7 @@ import Footer from './components/Footer';
 import slides from './constants/slides';
 
 export default Onboarding = () => {
-  const { height, width } = useWindowDimensions()
+  const { width } = useWindowDimensions()
 
   const [currentIndex, setCurrentIndex] = React.useState(0)
   const scrollX = React.useRef(new Animated.Value(0)).current

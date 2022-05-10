@@ -3,8 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../redux/slices/themeSlice';
-import * as NavigationBar from 'expo-navigation-bar';
-import { StatusBar } from 'expo-status-bar';
 
 import Onboarding from '../screens/Onboarding';
 import WelcomeScreen from '../screens/WelcomeScreen';
@@ -18,8 +16,6 @@ export default AuthNavigation = () => {
   const Stack = createStackNavigator()
 
   const theme = useSelector(selectTheme)
-  NavigationBar.setBackgroundColorAsync(theme.NAVBAR_BACKGROUND_COLOR)
-  NavigationBar.setButtonStyleAsync(theme.NAVBAR_BUTTON_COLOR);
 
   const [isAppFirstLaunch, setIsAppFirstLaunch] = useState(null)
 
@@ -52,7 +48,6 @@ export default AuthNavigation = () => {
   return (
     isAppFirstLaunch != null && (
       <>
-        <StatusBar style={theme.STATUS_BAR_STYLE} />
         <Stack.Navigator 
           screenOptions={{ headerShown: false }}
           initialRouteName={isAppFirstLaunch ? 'Onboarding' : 'WelcomeScreen'}
