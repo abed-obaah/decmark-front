@@ -53,7 +53,6 @@ export default Onboarding = () => {
         pagingEnabled
         bounces={false}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ height: height }}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <Slide item={item} />}
         onScroll={Animated.event([{

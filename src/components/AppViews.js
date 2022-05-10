@@ -23,7 +23,7 @@ export const AppScrollView = (props) => {
     <ScrollView
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps={'handled'}
-      style={{ paddingHorizontal: 20 }}
+      contentContainerStyle={{ paddingHorizontal: 20 }}
     >
       {props.children}
     </ScrollView>

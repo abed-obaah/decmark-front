@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, useWindowDimensions } from 'react-native';
+import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SIZES } from '../../../constants/theme';
 import Paginator from './Paginator';
@@ -7,13 +7,11 @@ import styled from 'styled-components/native';
 import AppButton from '../../../components/AppButton';
 
 export default Footer = ({ currentIndex, handleNextSlide, handleSkipSlide, slides, scrollX }) => {
-  const { height } = useWindowDimensions();
   const navigation = useNavigation();
   
   return (
     <SlideFooter
       style={{
-        height: height * 0.20,
         justifyContent: 'space-between',
         paddingHorizontal: 20,
       }}
@@ -22,7 +20,7 @@ export default Footer = ({ currentIndex, handleNextSlide, handleSkipSlide, slide
         slides={slides} 
         scrollX={scrollX}
       />
-
+  
       <View style={{ marginBottom: 20, flexDirection: 'row' }}>
         {currentIndex === slides.length - 1 ?
           <AppButton 

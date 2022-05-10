@@ -9,10 +9,10 @@ import { LargeText, MediumText } from '../../../components/AppText';
 import styled from 'styled-components/native';
 
 export default Slide = ({ item }) => {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   return (
-    <View style={{ width, height: height * .80 }}>
+    <View style={{ width, flex: .8 }}>
       <Image 
         source={item.image} 
         style={{
@@ -24,7 +24,7 @@ export default Slide = ({ item }) => {
       <View 
         style={[
           StyleSheet.absoluteFillObject, 
-          { backgroundColor: 'rgba(0,0,0,.65)' }
+          { backgroundColor: 'rgba(0,0,0,.25)' }
         ]}
       />
       <SlideContent style={{ width, paddingHorizontal: 15 }}>

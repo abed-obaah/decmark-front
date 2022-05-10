@@ -63,7 +63,10 @@ export default PhoneNumber = () => {
         onFocus={() => handleError(null, "password")}
         onChangeText={(value) => handleOnChange(value, 'password')}
       />
-      <LinkText style={{ fontSize: 15, paddingTop: 2 }}>Forgot password?</LinkText>
+      <LinkText 
+        style={{ fontSize: 15, paddingTop: 2 }}
+        onPress={() => navigation.navigate("ForgotPasswordScreen")}
+      >Forgot password?</LinkText>
       <AppButton label="Login" onPress={handleValidate} />
     </>
   )

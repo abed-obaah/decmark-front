@@ -12,6 +12,7 @@ import LogIn from '../screens/LogIn';
 import SignUp from '../screens/SignUp';
 import SignUpWithNumber from '../screens/SignUp/SignUpWithNumber';
 import OTPScreen from '../screens/OTPScreen';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 
 export default AuthNavigation = () => {
   const Stack = createStackNavigator()
@@ -64,6 +65,7 @@ export default AuthNavigation = () => {
           <Stack.Screen name='SignUp' component={SignUp} options={{...options, headerTitle: ""}} />
           <Stack.Screen name='SignUpWithNumber' component={SignUpWithNumber} options={{...options, headerTitle: "Create Account"}} />
           <Stack.Screen name='OTPScreen' component={OTPScreen} options={{...options, headerTitle: "Verification"}} />
+          <Stack.Screen name='ForgotPasswordScreen' component={ForgotPasswordScreen} options={{...options, headerTitle: "Forgot Password"}} />
         </Stack.Navigator>
       </>
     )

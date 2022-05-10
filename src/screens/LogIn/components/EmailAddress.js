@@ -2,8 +2,10 @@ import React from 'react'
 import AppButton from '../../../components/AppButton'
 import AppInput from '../../../components/AppInput'
 import { LinkText } from '../../../components/AppText';
+import { useNavigation } from '@react-navigation/native';
 
 export default EmailAddress = () => {
+  const navigation = useNavigation()
   const [inputs, setInputs] = React.useState({
     email: '',
     password: ''
@@ -60,7 +62,10 @@ export default EmailAddress = () => {
         onFocus={() => handleError(null, "password")}
         onChangeText={(value) => handleOnChange(value, 'password')}
       />
-      <LinkText style={{ fontSize: 15, paddingTop: 2 }}>Forgot password?</LinkText>
+      <LinkText 
+        style={{ fontSize: 15, paddingTop: 2 }}
+        onPress={() => navigation.navigate("ForgotPasswordScreen")}
+      >Forgot password?</LinkText>
       <AppButton label="Login" onPress={handleValidate} />
     </>
   )
