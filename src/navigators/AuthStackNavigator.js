@@ -12,9 +12,9 @@ import SignUpWithNumber from '../screens/SignUp/SignUpWithNumber';
 import OTPScreen from '../screens/OTPScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 
-export default AuthNavigation = () => {
-  const Stack = createStackNavigator()
+const Stack = createStackNavigator();
 
+export default AuthStackNavigator = () => {
   const theme = useSelector(selectTheme)
 
   const [isAppFirstLaunch, setIsAppFirstLaunch] = useState(null)

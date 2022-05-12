@@ -2,7 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react'
 import { StatusBar } from 'expo-status-bar';
 import * as NavigationBar from 'expo-navigation-bar';
-import RootNavigation from './src/navigations/RootNavigation';
+import RootNavigator from './src/navigators/RootNavigator';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
 
@@ -13,7 +13,7 @@ export default App = () => {
   return (
     <Provider store={store}>
       <StatusBar style="light" />
-      <RootNavigation />
+      <RootNavigator />
     </Provider>   
   );
 }

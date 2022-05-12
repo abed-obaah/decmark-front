@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import ReceiverHomeScreen from '../screens/ReceiverHomeScreen';
 
-export default DashboardStackNavigation = () => {
+export default DashboardStackNavigator = () => {
   const Stack = createStackNavigator()
 
   return (
