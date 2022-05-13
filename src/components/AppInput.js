@@ -1,8 +1,7 @@
 import React from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 import { COLORS, SIZES } from '../constants/theme';
-import Icon from 'react-native-vector-icons/Ionicons';
-import IconF from 'react-native-vector-icons/Feather';
+import { Ionicons, Feather } from '@expo/vector-icons';
 import { MediumText, ErrorText } from './AppText';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../redux/slices/themeSlice';
@@ -49,7 +48,7 @@ export default AppInput = ({
           {...props}
         />
         {password &&
-          <Icon
+          <Ionicons
             name={hidePassword ? 'ios-eye-off' : 'ios-eye'}
             style={{ 
               color: theme.SECONDARY_TEXT_COLOR,
@@ -62,7 +61,7 @@ export default AppInput = ({
       </View>
       {error &&
         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
-          <IconF 
+          <Feather 
             name='alert-circle'
             style={{
               color: COLORS.red,

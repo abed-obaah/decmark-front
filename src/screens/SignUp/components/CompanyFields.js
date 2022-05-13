@@ -3,7 +3,7 @@ import AppButton from '../../../components/AppButton'
 import AppInput from '../../../components/AppInput'
 import { View } from 'react-native'
 import { SIZES } from '../../../constants/theme'
-import Icon from 'react-native-vector-icons/AntDesign';
+import { AntDesign } from '@expo/vector-icons';
 import { MediumText } from '../../../components/AppText'
 
 export default CompanyFields = ({ theme, toggleReferralID, setToggleReferralID }) => {
@@ -34,7 +34,7 @@ export default CompanyFields = ({ theme, toggleReferralID, setToggleReferralID }
             alignItems: 'center'
           }}
         >
-          <Icon
+          <AntDesign
             name={toggleReferralID ? "caretdown" : "caretright"}
             style={{ 
               color: theme.SECONDARY_TEXT_COLOR,

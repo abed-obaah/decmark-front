@@ -1,8 +1,7 @@
 import React from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 import { COLORS, SIZES } from '../constants/theme';
-import Icon from 'react-native-vector-icons/Feather';
-import Caret from 'react-native-vector-icons/AntDesign';
+import { AntDesign, Feather } from '@expo/vector-icons';
 import { MediumText, ErrorText } from './AppText';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../redux/slices/themeSlice';
@@ -51,7 +50,7 @@ export default PhoneNumberInput = ({
           >
             +234
           </MediumText>
-            <Caret
+            <AntDesign
               name="caretdown"
               style={{ 
                 color: theme.SECONDARY_TEXT_COLOR,
@@ -76,7 +75,7 @@ export default PhoneNumberInput = ({
       </View>
       {error &&
         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
-          <Icon 
+          <Feather 
             name='alert-circle'
             style={{
               color: COLORS.red,
