@@ -1,9 +1,15 @@
 import styled from 'styled-components/native';
 import { SIZES } from '../constants/theme';
 
-export const LargeText = styled.Text`
+export const XtraLargeText = styled.Text`
   color: ${({theme}) => theme.PRIMARY_TEXT_COLOR};
   font-size: ${SIZES.xl}px;
+  font-weight: bold;
+`
+
+export const LargeText = styled.Text`
+  color: ${({theme}) => theme.PRIMARY_TEXT_COLOR};
+  font-size: ${SIZES.lg}px;
   font-weight: bold;
 `
 

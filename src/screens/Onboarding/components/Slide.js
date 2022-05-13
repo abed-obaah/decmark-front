@@ -5,7 +5,7 @@ import {
   Image,
   useWindowDimensions
 } from 'react-native'
-import { LargeText, MediumText } from '../../../components/AppText';
+import { XtraLargeText, MediumText } from '../../../components/AppText';
 import styled from 'styled-components/native';
 
 export default Slide = ({ item }) => {
@@ -28,14 +28,14 @@ export default Slide = ({ item }) => {
         ]}
       />
       <SlideContent style={{ width, paddingHorizontal: 15 }}>
-        <LargeText 
+        <XtraLargeText 
           style={{ 
             marginTop: 25,
             textAlign: 'center',
           }}
         >
           {item.title}
-        </LargeText>
+        </XtraLargeText>
         <MediumText
           style={{    
             textAlign: 'center',

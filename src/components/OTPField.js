@@ -8,7 +8,7 @@ import {
 import { COLORS, SIZES } from '../constants/theme';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../redux/slices/themeSlice';
-import { LargeText } from './AppText';
+import { XtraLargeText } from './AppText';
 
 export default OTPField = ({ code, setCode, setPinReady, maxLength }) => {
   const theme = useSelector(selectTheme)
@@ -58,7 +58,7 @@ export default OTPField = ({ code, setCode, setPinReady, maxLength }) => {
             }
         ]}
       >
-        <LargeText style={{ color: theme.PRIMARY_TEXT_COLOR, textAlign: "center" }}>{digit}</LargeText>
+        <XtraLargeText style={{ color: theme.PRIMARY_TEXT_COLOR, textAlign: "center" }}>{digit}</XtraLargeText>
       </View>
     )
   }

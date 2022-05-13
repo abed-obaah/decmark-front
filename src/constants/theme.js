@@ -43,10 +43,10 @@ export const darkTheme = {
 }
 
 export const SIZES = {
-  xl: 27.5,
-  lg: 25,
-  md: 16,
-  sm: 13,
+  xl: 25,
+  lg: 20,
+  md: 15,
+  sm: 12.5,
   radius: 5,
   rounded: 50,
 }

@@ -1,16 +1,15 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { AppSafeAreaView } from '../../../components/AppViews'
-import { MediumText } from "../../../components/AppText"
+import { AppSafeAreaView, AppScrollView } from '../../../components/AppViews'
 import HomeHeader from "../components/HomeHeader";
+import PopularServices from './components/PopularServices';
 
 export default ReceiverHomeScreen = () => {
   return (
     <AppSafeAreaView>
       <HomeHeader />
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <MediumText>Receiver's Home Screen</MediumText>
-      </View>
+      <AppScrollView>
+        <PopularServices />
+      </AppScrollView>
     </AppSafeAreaView>
   )
 }

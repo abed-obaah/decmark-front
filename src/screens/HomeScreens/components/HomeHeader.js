@@ -57,7 +57,7 @@ export default HomeHeader = () => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 20,
-    borderBottomWidth: 1,
+    borderBottomWidth: .25,
     paddingTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
   },
   subContainer: {

@@ -12,7 +12,7 @@ import {
 import AppButton from '../../components/AppButton';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../../redux/slices/themeSlice';
-import { LargeText, MediumText, SmallText, LinkText } from '../../components/AppText';
+import { XtraLargeText, MediumText, SmallText, LinkText } from '../../components/AppText';
 
 const { StatusBarManager } = NativeModules;
 
@@ -38,7 +38,7 @@ export default WelcomeScreen = ({navigation}) => {
             }}
           />
         </View>
-        <LargeText>Welcome to DecMark!</LargeText>
+        <XtraLargeText>Welcome to DecMark!</XtraLargeText>
         <MediumText>It will only take you couple of minutes to get started.</MediumText>
         <AppButton label='REGISTER' onPress={() => navigation.navigate("SignUp")} />
         <AppButton label='LOGIN' background='transparent' marginTop={10} onPress={() => navigation.navigate("LogIn")} />

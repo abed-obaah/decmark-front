@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Image } from 'react-native'
 import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
-import { LargeText, MediumText, LinkText, SmallText } from '../../components/AppText';
+import { XtraLargeText, MediumText, LinkText, SmallText } from '../../components/AppText';
 import PhoneNumberInput from '../../components/PhoneNumberInput'
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../../redux/slices/themeSlice';
@@ -13,7 +13,7 @@ export default SignUp = ({ navigation }) => {
   return (
     <AppSafeAreaView>
       <AppScrollView>
-        <LargeText>Welcome to DecMark!</LargeText>
+        <XtraLargeText>Welcome to DecMark!</XtraLargeText>
         <MediumText style={{ paddingVertical: 10 }}>Before we proceed, please enter your active mobile number.</MediumText>
         <PhoneNumberInput />
         <AppButton label='Next' onPress={() => navigation.navigate("SignUpWithNumber")} />
