@@ -27,7 +27,7 @@ export default PopularServices = () => {
                     borderRadius: 10
                   }}
                 />
-                <SmallText style={{ textAlign: 'center', marginTop: 5 }}>{item.label}</SmallText>
+                <SmallText style={{ textAlign: 'center', marginTop: 5, color: theme.PRIMARY_TEXT_COLOR }}>{item.label}</SmallText>
               </>
             :
               <View 
@@ -38,10 +38,10 @@ export default PopularServices = () => {
                 justifyContent: 'center',
                 borderRadius: 50,
                 borderWidth: 1,
-                borderColor: theme.INPUT_BACKGROUND_COLOR
+                borderColor: theme.PRIMARY_BORDER_COLOR
               }}
             >
-              <MediumText>More</MediumText>
+              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>More</MediumText>
             </View>
             }
           </View>
