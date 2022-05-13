@@ -2,11 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector } from 'react-redux';
 import { selectTheme } from '../redux/slices/themeSlice';
-
-// Ionicons Icons...
 import { Ionicons } from '@expo/vector-icons';
 
-import ReceiverHomeScreen from '../screens/ReceiverHomeScreen';
+import ReceiverHomeScreen from '../screens/HomeScreens/ReceiverHomeScreen';
 import AvailableServiceScreen from '../screens/AvailableServiceScreen';
 import MessageScreen from '../screens/MessageScreen';
 import WalletScreen from '../screens/WalletScreen';
