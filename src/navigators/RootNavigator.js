@@ -2,18 +2,18 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from 'styled-components';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
+import useTheme from '../hooks/useTheme';
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
 
 import AuthStackNavigator from './AuthStackNavigator';
 import BottomTabNavigator from './BottomTabNavigator';
+import ProfileStackNavigator from './ProfileStackNavigator';
 
 const Stack = createStackNavigator();
 
 export default RootNavigator = () => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   NavigationBar.setBackgroundColorAsync(theme.NAVBAR_BACKGROUND_COLOR)
   NavigationBar.setButtonStyleAsync(theme.NAVBAR_BUTTON_COLOR);
@@ -26,8 +26,9 @@ export default RootNavigator = () => {
           screenOptions={{ headerShown: false }}
           initialRouteName="AuthStackNavigator"
         >
-          <Stack.Screen name='AuthStackNavigator' component={AuthStackNavigator} />
+          {/* <Stack.Screen name='AuthStackNavigator' component={AuthStackNavigator} /> */}
           <Stack.Screen name='BottomTabNavigator' component={BottomTabNavigator} />
+          <Stack.Screen name='ProfileStack' component={ProfileStackNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

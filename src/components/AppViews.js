@@ -1,10 +1,9 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
 import { SafeAreaView, ScrollView } from 'react-native';
+import useTheme from '../hooks/useTheme';
 
 export const AppSafeAreaView = (props) => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   return (
     <SafeAreaView

@@ -3,15 +3,14 @@ import { View, TouchableOpacity } from 'react-native';
 import EmailAddress from './components/EmailAddress';
 import PhoneNumber from './components/PhoneNumber';
 import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../../redux/slices/themeSlice';
+import useTheme from '../../hooks/useTheme';
 import { MediumText, LinkText } from '../../components/AppText';
 
 export default LogIn = ({navigation}) => {
+  const [theme] = useTheme()
+
   const tabs = ['Email Address', 'Phone Number']
   const [activeTab, setActiveTab] = React.useState('Phone Number')
-
-  const theme = useSelector(selectTheme)
 
   return (
     <AppSafeAreaView>

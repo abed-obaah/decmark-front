@@ -4,26 +4,26 @@ import {
   Platform, 
   View,
   Image,
-  Pressable,
   TouchableOpacity,
   NativeModules
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../../../redux/slices/themeSlice';
+import { useNavigation } from '@react-navigation/native';
+import useTheme from '../../../hooks/useTheme';
 
 const { StatusBarManager } = NativeModules;
 
 export default HomeHeader = () => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
+  const navigation = useNavigation()
 
-  // const myAvatar = null
-  const myAvatar = require("../../../assets/images/my_avatar.png")
+  const myAvatar = null
+  // const myAvatar = require("../../../assets/images/my_avatar.png")
 
   return (
     <View style={[styles.container, { borderBottomColor: theme.PRIMARY_BORDER_COLOR }]}>
       <View style={styles.subContainer}>
-        <Pressable>
+        <TouchableOpacity onPress={() => navigation.navigate('ProfileStack', { screen: 'MenuScreen' })}>
           {myAvatar ? 
             <Image 
               source={myAvatar} 
@@ -36,10 +36,10 @@ export default HomeHeader = () => {
             />
           :
             <View style={[styles.avatar, { backgroundColor: theme.PRIMARY_BORDER_COLOR }]}>
-              <Ionicons name="person" size={22.5} color={theme.SECONDARY_TEXT_COLOR} />
+              <Ionicons name="person" size={22.5} color={theme.PRIMARY_TEXT_COLOR} />
             </View>
           }
-        </Pressable>
+        </TouchableOpacity>
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity style={styles.buttons}>
             <Ionicons name="search-outline" size={20} color={theme.PRIMARY_TEXT_COLOR} />

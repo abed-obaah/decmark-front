@@ -4,12 +4,11 @@ import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
 import { MediumText, LinkText } from '../../components/AppText';
 import IndividualFields from './components/IndividualFields';
 import CompanyFields from './components/CompanyFields';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../../redux/slices/themeSlice';
+import useTheme from '../../hooks/useTheme';
 import { useHeaderHeight } from '@react-navigation/elements';
 
-export default SignUpWithNumber = ({ }) => {
-  const theme = useSelector(selectTheme)
+export default SignUpWithNumber = () => {
+  const [theme] = useTheme()
   const headerHeight = useHeaderHeight();
   
   const [toggleReferralID, setToggleReferralID] = React.useState(false)

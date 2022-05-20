@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
+import useTheme from '../hooks/useTheme';
 
 import Onboarding from '../screens/Onboarding';
 import WelcomeScreen from '../screens/WelcomeScreen';
@@ -15,7 +14,7 @@ import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 const Stack = createStackNavigator();
 
 export default AuthStackNavigator = () => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   const [isAppFirstLaunch, setIsAppFirstLaunch] = useState(null)
 

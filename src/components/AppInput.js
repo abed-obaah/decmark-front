@@ -3,8 +3,7 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import { COLORS, SIZES } from '../constants/theme';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { MediumText, ErrorText } from './AppText';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
+import useTheme from '../hooks/useTheme';
 
 export default AppInput = ({ 
   label,
@@ -14,9 +13,8 @@ export default AppInput = ({
   onFocus = () => {},
   ...props
 }) => {
+  const [theme] = useTheme()
   const [hidePassword, setHidePassword] = React.useState(password)
-
-  const theme = useSelector(selectTheme)
 
   return (
     <View style={{ marginTop: marginTop ? marginTop : 20 }}>

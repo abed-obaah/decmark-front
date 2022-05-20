@@ -1,8 +1,7 @@
 import React from 'react'
 import { Text, TouchableOpacity } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
+import useTheme from '../hooks/useTheme';
 
 export default AppButton = ({ 
   label,
@@ -12,7 +11,7 @@ export default AppButton = ({
   onPress = () => {},
   ...props
 }) => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   return (
     <TouchableOpacity

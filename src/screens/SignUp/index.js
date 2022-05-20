@@ -3,12 +3,11 @@ import { StyleSheet, View, Image } from 'react-native'
 import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
 import { XtraLargeText, MediumText, LinkText, SmallText } from '../../components/AppText';
 import PhoneNumberInput from '../../components/PhoneNumberInput'
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../../redux/slices/themeSlice';
+import useTheme from '../../hooks/useTheme';
 import { SIZES } from '../../constants/theme';
 
 export default SignUp = ({ navigation }) => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   return (
     <AppSafeAreaView>

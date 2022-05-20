@@ -1,21 +1,26 @@
 import React from 'react'
-import { StyleSheet, View, Image, useWindowDimensions } from 'react-native'
+import { 
+  StyleSheet, 
+  View, 
+  Image, 
+  TouchableOpacity,
+  useWindowDimensions
+} from 'react-native'
 import { LargeText, SmallText, MediumText } from "../../../../components/AppText"
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../../../../redux/slices/themeSlice';
+import useTheme from '../../../../hooks/useTheme';
 import services from '../constants/services';
 
 export default PopularServices = () => {
   const { width } = useWindowDimensions()
 
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   return (
     <>
-      <LargeText style={{ marginVertical: 5 }}>Popular Services</LargeText>
+      <LargeText style={{ marginVertical: 5 }}>Popular services</LargeText>
       <View style={styles.boxContainer}>
         {services.map((item, i) =>
-          <View key={i} style={styles.box}>
+          <TouchableOpacity key={i} style={styles.box}>
             {item.label ? 
               <>
                 <Image 
@@ -31,20 +36,20 @@ export default PopularServices = () => {
               </>
             :
               <View 
-              style={{
-                width: '100%',
-                height: (width - 40) * 0.23,
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: 50,
-                borderWidth: 1,
-                borderColor: theme.PRIMARY_BORDER_COLOR
-              }}
-            >
-              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>More</MediumText>
-            </View>
+                style={{
+                  width: '100%',
+                  height: (width - 40) * 0.23,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  borderRadius: 50,
+                  borderWidth: 1,
+                  borderColor: theme.PRIMARY_BORDER_COLOR
+                }}
+              >
+                <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>More</MediumText>
+              </View>
             }
-          </View>
+          </TouchableOpacity>
         )}
       </View>
     </>

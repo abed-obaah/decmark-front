@@ -1,7 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
+import useTheme from '../hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
 
 import ReceiverHomeScreen from '../screens/HomeScreens/ReceiverHomeScreen';
@@ -12,7 +11,7 @@ import WalletScreen from '../screens/WalletScreen';
 const Tab = createBottomTabNavigator();
 
 export default BottomTabNavigator = () => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   return (
     <Tab.Navigator

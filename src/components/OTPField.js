@@ -6,12 +6,11 @@ import {
   Pressable
 } from 'react-native';
 import { COLORS, SIZES } from '../constants/theme';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
 import { XtraLargeText } from './AppText';
+import useTheme from '../hooks/useTheme';
 
 export default OTPField = ({ code, setCode, setPinReady, maxLength }) => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   const codeDigitsArray = new Array(maxLength).fill(0)
 

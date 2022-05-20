@@ -10,16 +10,15 @@ import {
   useWindowDimensions
 } from 'react-native';
 import AppButton from '../../components/AppButton';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../../redux/slices/themeSlice';
+import useTheme from '../../hooks/useTheme';
 import { XtraLargeText, MediumText, SmallText, LinkText } from '../../components/AppText';
 
 const { StatusBarManager } = NativeModules;
 
 export default WelcomeScreen = ({navigation}) => {
-  const { height, width } = useWindowDimensions()
+  const [theme] = useTheme()
 
-  const theme = useSelector(selectTheme)
+  const { height, width } = useWindowDimensions()
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme.PRIMARY_BACKGROUND_COLOR }]}>

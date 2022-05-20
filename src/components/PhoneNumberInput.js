@@ -3,8 +3,7 @@ import { StyleSheet, TextInput, View } from 'react-native'
 import { COLORS, SIZES } from '../constants/theme';
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { MediumText, ErrorText } from './AppText';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '../redux/slices/themeSlice';
+import useTheme from '../hooks/useTheme';
 
 export default PhoneNumberInput = ({
   label,
@@ -14,7 +13,7 @@ export default PhoneNumberInput = ({
   onFocus = () => {},
   ...props
 }) => {
-  const theme = useSelector(selectTheme)
+  const [theme] = useTheme()
 
   return (
     <View style={{ marginTop: marginTop ? marginTop : 20 }}>
