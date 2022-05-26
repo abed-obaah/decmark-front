@@ -3,11 +3,11 @@ import {
   StyleSheet,
   Platform, 
   View,
-  Image,
   TouchableOpacity,
   NativeModules
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import MyAvatar from '../../../global/MyAvatar';
 import { useNavigation } from '@react-navigation/native';
 import useTheme from '../../../hooks/useTheme';
 
@@ -17,28 +17,11 @@ export default HomeHeader = () => {
   const [theme] = useTheme()
   const navigation = useNavigation()
 
-  const myAvatar = null
-  // const myAvatar = require("../../../assets/images/my_avatar.png")
-
   return (
     <View style={[styles.container, { borderBottomColor: theme.PRIMARY_BORDER_COLOR }]}>
       <View style={styles.subContainer}>
         <TouchableOpacity onPress={() => navigation.navigate('ProfileStack', { screen: 'MenuScreen' })}>
-          {myAvatar ? 
-            <Image 
-              source={myAvatar} 
-              style={{
-                height: 35,
-                width: 35,
-                resizeMode: 'cover',
-                borderRadius: 50
-              }} 
-            />
-          :
-            <View style={[styles.avatar, { backgroundColor: theme.PRIMARY_BORDER_COLOR }]}>
-              <Ionicons name="person" size={22.5} color={theme.PRIMARY_TEXT_COLOR} />
-            </View>
-          }
+          <MyAvatar />
         </TouchableOpacity>
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity style={styles.buttons}>
@@ -65,11 +48,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: 'center',
     paddingVertical: 6
-  },
-  avatar: {
-    paddingHorizontal: 6.5,
-    paddingVertical: 5,
-    borderRadius: 50
   },
   buttons: {
     paddingHorizontal: 10,

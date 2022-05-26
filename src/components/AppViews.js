@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { SafeAreaView, ScrollView, View } from 'react-native';
 import useTheme from '../hooks/useTheme';
 
 export const AppSafeAreaView = (props) => {
@@ -18,13 +18,25 @@ export const AppSafeAreaView = (props) => {
 }
 
 export const AppScrollView = (props) => {
+  const [theme] = useTheme()
+  
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps={'handled'}
-      contentContainerStyle={{ paddingHorizontal: 20 }}
+      contentContainerStyle={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR, paddingHorizontal: 20, ...props.style }}
     >
       {props.children}
     </ScrollView>
+  )
+}
+
+export const AppView = (props) => {
+  const [theme] = useTheme()
+
+  return (
+    <View style={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR, ...props.style }}>
+      {props.children}
+    </View>
   )
 }
