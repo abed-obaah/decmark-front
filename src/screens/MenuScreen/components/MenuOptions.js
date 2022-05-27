@@ -2,9 +2,11 @@ import React from 'react'
 import { 
   StyleSheet, 
   TouchableOpacity, 
-  View
+  View,
+  ImageBackground,
+  Text
 } from 'react-native'
-import { MediumText } from '../../../components/AppText'
+import { MediumText, SmallText } from '../../../components/AppText'
 import { Ionicons, EvilIcons, MaterialIcons, FontAwesome5, Feather } from '@expo/vector-icons';
 import useTheme from '../../../hooks/useTheme';
 
@@ -51,6 +53,32 @@ export default MenuOptions = () => {
 
   return (
     <>
+      <ImageBackground 
+        source={require("../../../assets/images/mode.jpg")} 
+        resizeMode="cover" 
+        imageStyle={{ borderRadius: 5 }}
+        style={{ width: '100%', height: 55 }}
+      >
+        <View 
+          style={{ 
+            backgroundColor: 'rgba(20, 20, 20, .95)',
+            height: '100%',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingHorizontal: 12
+          }}
+        >
+          <View>
+            <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+              Provider 
+              <Text style={{ color: theme.gold }}> mode</Text>
+            </MediumText>
+            <SmallText>Activate to become a service provider</SmallText>
+          </View>
+          <MaterialIcons name="east" size={20} color={theme.SECONDARY_TEXT_COLOR} />
+        </View>
+      </ImageBackground>
       {menuOptions.map((item, i) => 
         <TouchableOpacity key={i} onPress={() => item.screen}>
           <View style={styles.menuItem}>

@@ -8,6 +8,7 @@ export default AppButton = ({
   marginTop,
   background,
   radius,
+  buttonHeight,
   onPress = () => {},
   ...props
 }) => {
@@ -18,7 +19,7 @@ export default AppButton = ({
       onPress={onPress}
       style={{
         flex: 1,
-        height: 50,
+        height: buttonHeight ? buttonHeight : 50,
         backgroundColor: 
           props.disabled ?  
             theme.lightGold 

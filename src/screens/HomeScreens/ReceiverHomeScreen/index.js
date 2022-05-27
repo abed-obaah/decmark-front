@@ -2,6 +2,7 @@ import React from 'react'
 import { AppSafeAreaView, AppScrollView } from '../../../components/AppViews'
 import HomeHeader from "../components/HomeHeader";
 import PopularServices from './components/PopularServices';
+import RatedProviders from './components/RatedProviders';
 
 export default ReceiverHomeScreen = () => {
   return (
@@ -9,6 +10,7 @@ export default ReceiverHomeScreen = () => {
       <HomeHeader />
       <AppScrollView>
         <PopularServices />
+        <RatedProviders />
       </AppScrollView>
     </AppSafeAreaView>
   )

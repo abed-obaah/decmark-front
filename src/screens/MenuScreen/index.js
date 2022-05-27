@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { View, TouchableOpacity, ImageBackground, Text } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import { AppView, AppScrollView, AppSafeAreaView } from '../../components/AppViews'
 import MyAvatar from '../../global/MyAvatar';
 import { SmallText, LargeText, MediumText } from '../../components/AppText'
-import { Ionicons, EvilIcons, MaterialIcons } from '@expo/vector-icons';
+import { Ionicons, EvilIcons } from '@expo/vector-icons';
 import useTheme from '../../hooks/useTheme';
 import MenuOptions from './components/MenuOptions';
 
@@ -13,12 +13,7 @@ export default MenuScreen = () => {
 
   return (
     <AppSafeAreaView>
-      <AppView 
-        style={{ 
-          paddingHorizontal : 20,
-          paddingBottom: 10
-        }}
-      >
+      <AppView style={{ paddingHorizontal : 20 }}>
         <View
           style={{ 
             flexDirection: 'row',
@@ -41,7 +36,7 @@ export default MenuScreen = () => {
            </View>
           <EvilIcons 
             name="chevron-right" 
-            size={35} 
+            size={30} 
             color={theme.SECONDARY_TEXT_COLOR} 
             style={{ 
               justifyContent: 'flex-end',
@@ -94,32 +89,6 @@ export default MenuScreen = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <ImageBackground 
-          source={require("../../assets/images/mode.jpg")} 
-          resizeMode="cover" 
-          imageStyle={{ borderRadius: 5 }}
-          style={{ width: '100%', height: 55 }}
-        >
-          <View 
-            style={{ 
-              backgroundColor: 'rgba(20, 20, 20, .95)',
-              height: '100%',
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              paddingHorizontal: 12
-            }}
-          >
-            <View>
-              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
-                Provider 
-                <Text style={{ color: theme.gold }}> mode</Text>
-              </MediumText>
-              <SmallText>Activate to become a service provider</SmallText>
-            </View>
-            <MaterialIcons name="east" size={20} color={theme.SECONDARY_TEXT_COLOR} />
-          </View>
-        </ImageBackground>
       </AppView>
 
       <AppScrollView>
