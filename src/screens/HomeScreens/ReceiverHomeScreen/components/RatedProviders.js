@@ -84,28 +84,34 @@ export default RatedProviders = () => {
           <View 
             style={{
               flexDirection: 'row',
-              // alignItems: 'center',
+              alignItems: 'center',
             }}
           >
             <View 
               style={{ 
                 backgroundColor: theme.PRIMARY_BORDER_COLOR, 
-                height: 40,
-                width: 40, 
+                height: 35,
+                width: 35, 
                 justifyContent: 'center',
                 alignItems: 'center',
                 borderRadius: 50
               }}
             >
-              <Ionicons name="person" size={22.5} color={theme.PRIMARY_TEXT_COLOR} />
+              <Ionicons name="person" size={20} color={theme.PRIMARY_TEXT_COLOR} />
             </View>
-            <View style={{ marginLeft: 7.5 }}>
-              <LargeText numberOfLines={1} >{item.name}</LargeText>
+            <View style={{ marginLeft: 5 }}>
+              <MediumText 
+                numberOfLines={1} 
+                style={{ 
+                  color: theme.PRIMARY_TEXT_COLOR, 
+                  fontWeight: 'bold',
+                }}
+              >{item.name}</MediumText>
               <MediumText>{item.category}</MediumText>
             </View>
           </View>
           <View>
-            <LargeText>₦ {item.price}</LargeText>
+            <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR, fontWeight: 'bold', }}>₦{item.price}</MediumText>
           </View>
         </View>
         <SmallText>{item.description}</SmallText>
@@ -138,13 +144,13 @@ export default RatedProviders = () => {
 
   return (
     <View style={{ marginBottom: 22.5 }}>
-      <LargeText>Rated providers</LargeText>
+      <LargeText style={{ paddingHorizontal: 20 }}>Rated providers</LargeText>
       <FlatList 
         data={providers}
         horizontal
         bounces={false}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ marginVertical: 10 }}
+        contentContainerStyle={{ marginVertical: 10, paddingHorizontal: 20 }}
         keyExtractor={(_, i) => i}
         renderItem={({ item, i }) => 
           <ProviderSlide item={item} />

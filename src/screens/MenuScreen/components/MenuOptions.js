@@ -56,23 +56,28 @@ export default MenuOptions = () => {
       <ImageBackground 
         source={require("../../../assets/images/mode.jpg")} 
         resizeMode="cover" 
-        imageStyle={{ borderRadius: 5 }}
+        imageStyle={{ 
+          borderRadius: 5, 
+          borderWidth: 1, 
+          borderColor: theme.PRIMARY_BORDER_COLOR,
+        }}
         style={{ width: '100%', height: 55 }}
       >
         <View 
           style={{ 
-            backgroundColor: 'rgba(20, 20, 20, .95)',
+            backgroundColor: theme.mode === 'light' ? 'rgba(255, 255, 255, .5)' : 'rgba(20, 20, 20, .95)',
             height: '100%',
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingHorizontal: 12
+            paddingHorizontal: 12,
+            borderRadius: 5
           }}
         >
           <View>
             <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
               Provider 
-              <Text style={{ color: theme.gold }}> mode</Text>
+              <Text style={{ color: theme.mode === 'light' ? theme.darkGold : theme.gold }}> mode</Text>
             </MediumText>
             <SmallText>Activate to become a service provider</SmallText>
           </View>

@@ -16,7 +16,7 @@ export default PopularServices = () => {
   const [theme] = useTheme()
 
   return (
-    <View style={{ marginBottom: 22.5 }}>
+    <View style={{ marginBottom: 22.5, paddingHorizontal: 20 }}>
       <LargeText style={{ marginVertical: 5 }}>Popular services</LargeText>
       <View style={styles.boxContainer}>
         {services.map((item, i) =>
