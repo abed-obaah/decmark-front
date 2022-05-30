@@ -1,7 +1,7 @@
 import React from 'react'
 import { 
   StyleSheet, 
-  Text, 
+  Image, 
   View, 
   FlatList,
   useWindowDimensions
@@ -11,95 +11,44 @@ import AppButton from '../../../../components/AppButton';
 import { SIZES } from '../../../../constants/theme';
 import useTheme from '../../../../hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
+import { AppSectionView } from '../../../../components/AppViews';
+import providers from '../constants/providers';
 
 export default RatedProviders = () => {
   const { width } = useWindowDimensions()
   const [theme] = useTheme()
-
-  const providers = [
-    {
-      name: "John Adibe",
-      category: "Cleaner",
-      price: '40,500',
-      description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
-      location: "Ogba, Lagos"
-    },
-    {
-      name: "Chidera",
-      category: "Repairs",
-      price: '40,500',
-      description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
-      location: "Ikeja, Lagos"
-    },
-    {
-      name: "Paul",
-      category: "Repairs",
-      price: '70,500',
-      description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
-      location: "Ikeja, Lagos"
-    },
-    {
-      name: "Miracle",
-      category: "Repairs",
-      price: '70,500',
-      description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
-      location: "Ikeja, Lagos"
-    },
-    {
-      name: "Christian",
-      category: "Repairs",
-      price: '70,500',
-      description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
-      location: "Ikeja, Lagos"
-    },
-    {
-      name: "Dominic",
-      category: "Repairs",
-      price: '70,500',
-      description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
-      location: "Ikeja, Lagos"
-    },
-  ]
   
   const ProviderSlide = ({ item }) => {
     return (
       <View 
         style={{ 
           backgroundColor: 'transparent',
-          width: width - 90,
+          width: width - 120,
           marginRight: 15,
-          padding: 10,
           borderWidth: 1,
           borderRadius: SIZES.radius,
           borderColor: theme.PRIMARY_BORDER_COLOR
         }}
       >
-        <View
+        <Image 
+          source={require("../../../../assets/images/my_avatar.png")} 
           style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginBottom: 10
+            width: '100%',
+            height: 100,
+            borderTopLeftRadius: SIZES.radius,
+            borderTopRightRadius: SIZES.radius,
+            resizeMode: 'cover'
           }}
-        >
-          <View 
+        />
+        <View style={{ padding: 10 }}>
+          <View
             style={{
               flexDirection: 'row',
-              alignItems: 'center',
+              justifyContent: 'space-between',
+              marginBottom: 10
             }}
           >
-            <View 
-              style={{ 
-                backgroundColor: theme.PRIMARY_BORDER_COLOR, 
-                height: 35,
-                width: 35, 
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderRadius: 50
-              }}
-            >
-              <Ionicons name="person" size={20} color={theme.PRIMARY_TEXT_COLOR} />
-            </View>
-            <View style={{ marginLeft: 5 }}>
+            <View>
               <MediumText 
                 numberOfLines={1} 
                 style={{ 
@@ -109,41 +58,47 @@ export default RatedProviders = () => {
               >{item.name}</MediumText>
               <MediumText>{item.category}</MediumText>
             </View>
+            <View>
+              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR, fontWeight: 'bold', }}>₦{item.price}</MediumText>
+            </View>
           </View>
-          <View>
-            <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR, fontWeight: 'bold', }}>₦{item.price}</MediumText>
-          </View>
-        </View>
-        <SmallText>{item.description}</SmallText>
-        <View 
-          style={{ 
-            flexDirection: 'row', 
-            alignItems: 'center',
-            marginTop: 25
-          }}
-        >
+          <SmallText>{item.description}</SmallText>
           <View 
-            style={{
+            style={{ 
               flexDirection: 'row', 
-              alignItems: 'center', 
-              width: '50%',
+              alignItems: 'center',
+              marginTop: 25
             }}
           >
-            <Ionicons name="location-outline" size={20} color={theme.gold} />
-            <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR, marginLeft: 2.5 }}>{item.location}</SmallText>
+            <View 
+              style={{
+                flexDirection: 'row', 
+                alignItems: 'center', 
+                width: '60%',
+              }}
+            >
+              <Ionicons name="location-outline" size={20} color={theme.gold} />
+              <SmallText 
+                numberOfLines={1}
+                style={{ 
+                  color: theme.PRIMARY_TEXT_COLOR, 
+                  marginLeft: 1 
+                }}
+              >{item.location}</SmallText>
+            </View>
+            <AppButton 
+              label="Hire" 
+              marginTop={.5} 
+              buttonHeight={40}
+            />
           </View>
-          <AppButton 
-            label="Hire" 
-            marginTop={.5} 
-            buttonHeight={40}
-          />
         </View>
       </View>
     )
   }
 
   return (
-    <View style={{ marginBottom: 22.5 }}>
+    <AppSectionView>
       <LargeText style={{ paddingHorizontal: 20 }}>Rated providers</LargeText>
       <FlatList 
         data={providers}
@@ -156,7 +111,7 @@ export default RatedProviders = () => {
           <ProviderSlide item={item} />
         }
       />
-    </View>
+    </AppSectionView>
   )
 }
 

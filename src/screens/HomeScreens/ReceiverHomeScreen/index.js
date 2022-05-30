@@ -1,6 +1,5 @@
 import React from 'react'
-import { ScrollView } from 'react-native';
-import { AppSafeAreaView } from '../../../components/AppViews'
+import { AppSafeAreaView, AppRareScrollView } from '../../../components/AppViews'
 import HomeHeader from "../components/HomeHeader";
 import CategorySection from "./components/CategorySection";
 import PopularServices from './components/PopularServices';
@@ -10,11 +9,11 @@ export default ReceiverHomeScreen = () => {
   return (
     <AppSafeAreaView>
       <HomeHeader />
-      <ScrollView>
+      <AppRareScrollView>
         <CategorySection />
         <PopularServices />
         <RatedProviders />
-      </ScrollView>
+      </AppRareScrollView>
     </AppSafeAreaView>
   )
 }

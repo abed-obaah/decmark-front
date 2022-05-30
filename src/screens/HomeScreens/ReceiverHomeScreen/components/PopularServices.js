@@ -7,6 +7,7 @@ import {
   useWindowDimensions
 } from 'react-native'
 import { LargeText, SmallText, MediumText } from "../../../../components/AppText"
+import { AppSectionView } from '../../../../components/AppViews';
 import useTheme from '../../../../hooks/useTheme';
 import services from '../constants/services';
 
@@ -16,7 +17,7 @@ export default PopularServices = () => {
   const [theme] = useTheme()
 
   return (
-    <View style={{ marginBottom: 22.5, paddingHorizontal: 20 }}>
+    <AppSectionView style={{ paddingHorizontal: 20 }}>
       <LargeText style={{ marginVertical: 5 }}>Popular services</LargeText>
       <View style={styles.boxContainer}>
         {services.map((item, i) =>
@@ -52,7 +53,7 @@ export default PopularServices = () => {
           </TouchableOpacity>
         )}
       </View>
-    </View>
+    </AppSectionView>
   )
 }
 
