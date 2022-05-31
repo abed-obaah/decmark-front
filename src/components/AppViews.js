@@ -10,6 +10,7 @@ export const AppSafeAreaView = (props) => {
       style={{
         flex: 1,
         backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+        ...props.style
       }}
     >
       {props.children}

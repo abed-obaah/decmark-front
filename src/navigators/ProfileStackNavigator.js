@@ -5,6 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import useTheme from '../hooks/useTheme';
 
 import MenuScreen from '../screens/MenuScreen';
+import ModeScreen from '../screens/HomeScreens/ModeScreen';
 
 const Stack = createStackNavigator();
 
@@ -44,6 +45,13 @@ export default ProfileStackNavigator = () => {
             </TouchableOpacity>
           ),
         }} 
+      />
+      <Stack.Screen 
+        name='ModeScreen' 
+        component={ModeScreen} 
+        options={{
+          headerShown: false
+        }}
       />
     </Stack.Navigator>
   )

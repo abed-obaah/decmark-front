@@ -1,12 +1,13 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { AppSafeAreaView, AppRareScrollView } from '../../../components/AppViews'
+import HomeHeader from "../components/HomeHeader";
 
 export default ProviderHomeScreen = () => {
   return (
-    <View>
-      <Text>Provider Home Screen</Text>
-    </View>
+    <AppSafeAreaView>
+      <HomeHeader />
+      <AppRareScrollView>
+      </AppRareScrollView>
+    </AppSafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({})

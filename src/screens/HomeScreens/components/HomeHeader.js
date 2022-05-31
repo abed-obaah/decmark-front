@@ -41,9 +41,6 @@ export default HomeHeader = () => {
           <LargeText>DecMark</LargeText>
         </View>
         <View style={{ flexDirection: "row" }}>
-          {/* <TouchableOpacity style={styles.buttons}>
-            <Ionicons name="search-outline" size={20} color={theme.PRIMARY_TEXT_COLOR} />
-          </TouchableOpacity> */}
           <View style={{ width: 10 }}/>
           <TouchableOpacity style={styles.buttons}>
             <Ionicons name="notifications" size={20} color={theme.PRIMARY_TEXT_COLOR} />

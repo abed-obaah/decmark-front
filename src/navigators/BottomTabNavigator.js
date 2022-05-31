@@ -19,7 +19,7 @@ export default BottomTabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        initialRouteName: "ReceiverHomeScreen",
+        initialRouteName: "HomeScreen",
         headerShown: false,
         tabBarStyle: {
           backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
@@ -28,41 +28,22 @@ export default BottomTabNavigator = () => {
         }
       }}
     >
-      {userMode === "receiver" ? 
-        <Tab.Screen 
-          name="ReceiverHomeScreen" 
-          component={ReceiverHomeScreen}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
-            tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
-            tabBarIcon: ({ focused }) => (
-              <Ionicons 
-                name={focused ? "home" : "home-outline"}
-                color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR} 
-                size={24} 
-              />
-            ),
-          }}
-        />
-      :
-        <Tab.Screen 
-          name="ProviderHomeScreen" 
-          component={ProviderHomeScreen}
-          options={{
-            tabBarLabel: 'Home',
-            tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
-            tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
-            tabBarIcon: ({ focused }) => (
-              <Ionicons 
-                name={focused ? "home" : "home-outline"}
-                color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR} 
-                size={24} 
-              />
-            ),
-          }}
-        />
-      }
+      <Tab.Screen 
+        name="HomeScreen" 
+        component={userMode === "receiver" ? ReceiverHomeScreen : ProviderHomeScreen}
+        options={{
+          tabBarLabel: 'Home',
+          tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
+          tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
+          tabBarIcon: ({ focused }) => (
+            <Ionicons 
+              name={focused ? "home" : "home-outline"}
+              color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR} 
+              size={24} 
+            />
+          ),
+        }}
+      />
       <Tab.Screen 
         name="AvailableServiceScreen" 
         component={AvailableServiceScreen}
