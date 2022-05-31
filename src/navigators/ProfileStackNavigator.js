@@ -33,11 +33,11 @@ export default ProfileStackNavigator = () => {
           headerTitle: "",
           headerRight: () => (
             <TouchableOpacity
-              // onPress={handleToggleTheme}
+              onPress={handleToggleTheme}
               style={{ paddingRight: 20 }}
             >
               <Ionicons 
-                name={theme.mode === "light" ? "sunny" : "moon"} 
+                name={theme.mode === "light" ? "moon" : "sunny"} 
                 size={24} 
                 color={theme.SECONDARY_TEXT_COLOR} 
               />

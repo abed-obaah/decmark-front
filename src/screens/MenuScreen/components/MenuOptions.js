@@ -9,9 +9,11 @@ import {
 import { MediumText, SmallText } from '../../../components/AppText'
 import { Ionicons, EvilIcons, MaterialIcons, FontAwesome5, Feather } from '@expo/vector-icons';
 import useTheme from '../../../hooks/useTheme';
+import useSwitchUserMode from '../../../hooks/useSwitchUserMode';
 
 export default MenuOptions = () => {
   const [theme] = useTheme()
+  const [userMode, handleToggleUserMode] = useSwitchUserMode()
 
   const menuOptions = [
     {
@@ -53,37 +55,39 @@ export default MenuOptions = () => {
 
   return (
     <>
-      <ImageBackground 
-        source={require("../../../assets/images/mode.jpg")} 
-        resizeMode="cover" 
-        imageStyle={{ 
-          borderRadius: 5, 
-          borderWidth: 1, 
-          borderColor: theme.PRIMARY_BORDER_COLOR,
-        }}
-        style={{ width: '100%', height: 55 }}
-      >
-        <View 
-          style={{ 
-            backgroundColor: theme.mode === 'light' ? 'rgba(255, 255, 255, .5)' : 'rgba(20, 20, 20, .95)',
-            height: '100%',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingHorizontal: 12,
-            borderRadius: 5
+      <TouchableOpacity onPress={handleToggleUserMode}>
+        <ImageBackground 
+          source={require("../../../assets/images/mode.jpg")} 
+          resizeMode="cover" 
+          imageStyle={{ 
+            borderRadius: 5, 
+            borderWidth: 1, 
+            borderColor: theme.PRIMARY_BORDER_COLOR,
           }}
+          style={{ width: '100%', height: 55 }}
         >
-          <View>
-            <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
-              Provider 
-              <Text style={{ color: theme.mode === 'light' ? theme.darkGold : theme.gold }}> mode</Text>
-            </MediumText>
-            <SmallText>Activate to become a service provider</SmallText>
+          <View 
+            style={{ 
+              backgroundColor: theme.mode === 'light' ? 'rgba(255, 255, 255, .5)' : 'rgba(20, 20, 20, .95)',
+              height: '100%',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingHorizontal: 12,
+              borderRadius: 5
+            }}
+          >
+            <View>
+              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+                {userMode === "provider" ? "Receiver" : "Provider" }
+                <Text style={{ color: theme.mode === 'light' ? theme.darkGold : theme.gold }}> mode</Text>
+              </MediumText>
+              <SmallText>Activate to become a service {userMode === "provider" ? "receiver" : "provider" }</SmallText>
+            </View>
+            <MaterialIcons name="east" size={20} color={theme.SECONDARY_TEXT_COLOR} />
           </View>
-          <MaterialIcons name="east" size={20} color={theme.SECONDARY_TEXT_COLOR} />
-        </View>
-      </ImageBackground>
+        </ImageBackground>
+      </TouchableOpacity>
       {menuOptions.map((item, i) => 
         <TouchableOpacity key={i} onPress={() => item.screen}>
           <View style={styles.menuItem}>

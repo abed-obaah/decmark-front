@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, FlatList, TouchableOpacity } from 'react-native'
 import { AppSectionView } from '../../../../components/AppViews'
-import { LargeText, SmallText, MediumText } from "../../../../components/AppText"
+import { LargeText, MediumText } from "../../../../components/AppText"
 import AppSearchInput from '../../../../components/AppSearchInput'
 import useTheme from '../../../../hooks/useTheme';
 

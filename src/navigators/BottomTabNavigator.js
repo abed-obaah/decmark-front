@@ -1,9 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import useTheme from '../hooks/useTheme';
+import useSwitchUserMode from '../hooks/useSwitchUserMode';
 import { Ionicons } from '@expo/vector-icons';
 
 import ReceiverHomeScreen from '../screens/HomeScreens/ReceiverHomeScreen';
+import ProviderHomeScreen from '../screens/HomeScreens/ProviderHomeScreen';
 import AvailableServiceScreen from '../screens/AvailableServiceScreen';
 import MessageScreen from '../screens/MessageScreen';
 import WalletScreen from '../screens/WalletScreen';
@@ -12,6 +14,7 @@ const Tab = createBottomTabNavigator();
 
 export default BottomTabNavigator = () => {
   const [theme] = useTheme()
+  const [userMode] = useSwitchUserMode()
 
   return (
     <Tab.Navigator
@@ -25,22 +28,41 @@ export default BottomTabNavigator = () => {
         }
       }}
     >
-      <Tab.Screen 
-        name="ReceiverHomeScreen" 
-        component={ReceiverHomeScreen}
-        options={{
-          tabBarLabel: 'Home',
-          tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
-          tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
-          tabBarIcon: ({ focused }) => (
-            <Ionicons 
-              name={focused ? "home" : "home-outline"}
-              color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR} 
-              size={24} 
-            />
-          ),
-        }}
-      />
+      {userMode === "receiver" ? 
+        <Tab.Screen 
+          name="ReceiverHomeScreen" 
+          component={ReceiverHomeScreen}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
+            tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
+            tabBarIcon: ({ focused }) => (
+              <Ionicons 
+                name={focused ? "home" : "home-outline"}
+                color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR} 
+                size={24} 
+              />
+            ),
+          }}
+        />
+      :
+        <Tab.Screen 
+          name="ProviderHomeScreen" 
+          component={ProviderHomeScreen}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
+            tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
+            tabBarIcon: ({ focused }) => (
+              <Ionicons 
+                name={focused ? "home" : "home-outline"}
+                color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR} 
+                size={24} 
+              />
+            ),
+          }}
+        />
+      }
       <Tab.Screen 
         name="AvailableServiceScreen" 
         component={AvailableServiceScreen}

@@ -5,24 +5,17 @@ import { lightTheme, darkTheme } from '../../constants/theme';
 const themeSlice = createSlice({
   name: 'theme',
   initialState: {
-    theme: lightTheme
+    theme: darkTheme
   },
   reducers: {
-    setTheme: (state, action) => {
-      switch (action.payload) {
-        case "light":
-          return state.theme = lightTheme
-        case "dark":
-          return state.theme = darkTheme
-        default:
-          return state.theme
-      }
+    swithTheme: (state, action) => {
+      state.theme = action.payload
     }
   }
 })
 
 // Actions
-export const { setTheme } = themeSlice.actions
+export const { swithTheme } = themeSlice.actions
 
 // Selectors
 export const selectTheme = (state) => state.theme.theme

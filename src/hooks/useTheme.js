@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectTheme, setTheme } from '../redux/slices/themeSlice';
+import { selectTheme, swithTheme } from '../redux/slices/themeSlice';
+import { lightTheme, darkTheme } from '../constants/theme';
 
 export default useTheme = () => {
   const dispatch = useDispatch()
@@ -8,9 +8,9 @@ export default useTheme = () => {
 
   const handleToggleTheme = () => {
     if(theme.mode === "light") {
-      dispatch(setTheme("light"))
+      dispatch(swithTheme(darkTheme))
     } else {
-      dispatch(setTheme("dark"))
+      dispatch(swithTheme(lightTheme))
     }
   }
 
