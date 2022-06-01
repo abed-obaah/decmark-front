@@ -4,16 +4,26 @@ import HomeHeader from "../components/HomeHeader";
 import CategorySection from "./components/CategorySection";
 import PopularServices from './components/PopularServices';
 import RatedProviders from './components/RatedProviders';
+import ModeScreen from '../ModeScreen';
+import useSwitchUserMode from '../../../hooks/useSwitchUserMode';
 
 export default ReceiverHomeScreen = () => {
+  const [a, b, isModeSwitch] = useSwitchUserMode()
+
   return (
-    <AppSafeAreaView>
-      <HomeHeader />
-      <AppRareScrollView>
-        <CategorySection />
-        <PopularServices />
-        <RatedProviders />
-      </AppRareScrollView>
-    </AppSafeAreaView>
+    <>
+      {isModeSwitch ? 
+        <ModeScreen />
+      :
+        <AppSafeAreaView>
+          <HomeHeader />
+          <AppRareScrollView>
+            <CategorySection />
+            <PopularServices />
+            <RatedProviders />
+          </AppRareScrollView>
+        </AppSafeAreaView>
+      }
+    </>
   )
 }

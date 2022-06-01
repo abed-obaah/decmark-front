@@ -5,21 +5,24 @@ import {
   Image,
   NativeModules,
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 import { AppSafeAreaView, AppView } from '../../components/AppViews'
 import { MediumText, XtraLargeText } from '../../components/AppText'
 import useSwitchUserMode from '../../hooks/useSwitchUserMode'
 import useTheme from '../../hooks/useTheme'
+import { toggleIsModeSwitch } from '../../redux/slices/userSlice';
 
 const { StatusBarManager } = NativeModules;
 
-export default ModeScreen = ({ navigation }) => {
+export default ModeScreen = () => {
+  const dispatch = useDispatch()
   const [theme] = useTheme()
   const [userMode] = useSwitchUserMode()
 
   useEffect(() => {
     setTimeout(() => (
-      navigation.replace("BottomTabNavigator", { screen: "HomeScreen" })
-    ), 1500)
+      dispatch(toggleIsModeSwitch(false))
+    ), 2000)
   }, [])
 
   return (

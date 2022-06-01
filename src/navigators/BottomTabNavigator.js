@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 
 export default BottomTabNavigator = () => {
   const [theme] = useTheme()
-  const [userMode] = useSwitchUserMode()
+  const [userMode, b, isModeSwitch] = useSwitchUserMode()
 
   return (
     <Tab.Navigator
@@ -22,6 +22,7 @@ export default BottomTabNavigator = () => {
         initialRouteName: "HomeScreen",
         headerShown: false,
         tabBarStyle: {
+          display: isModeSwitch ? "none" : "flex",
           backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
           paddingVertical: 10,
           borderTopColor: theme.PRIMARY_BORDER_COLOR

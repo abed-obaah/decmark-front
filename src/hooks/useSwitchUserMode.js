@@ -1,14 +1,17 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { selectUserMode, switchUserMode } from '../redux/slices/userSlice';
+import { selectUserMode, switchUserMode, toggleIsModeSwitch, selectIsModeSwitch } from '../redux/slices/userSlice';
 import { useNavigation } from '@react-navigation/native';
 
 export default useSwitchUserMode = () => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
   const userMode = useSelector(selectUserMode) 
+  const isModeSwitch = useSelector(selectIsModeSwitch) 
   
   const handleToggleUserMode = () => {
-    navigation.replace("ProfileStack", { screen: "ModeScreen" })
+    dispatch(toggleIsModeSwitch(true))
+
+    navigation.navigate("BottomTabNavigator", { screen: "HomeScreen" })
 
     if(userMode === "receiver") {
       dispatch(switchUserMode("provider"))
@@ -17,5 +20,5 @@ export default useSwitchUserMode = () => {
     }
   }
 
-  return [userMode, handleToggleUserMode];
+  return [userMode, handleToggleUserMode, isModeSwitch];
 }
