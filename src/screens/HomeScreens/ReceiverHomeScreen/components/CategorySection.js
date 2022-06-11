@@ -27,10 +27,10 @@ export default CategorySection = () => {
   ]
 
   return (
-    <AppSectionView style={{  }}>
+    <AppSectionView>
       <View style={{ paddingHorizontal: 20 }}>
         <LargeText style={{ marginBottom: 10 }}>Hi, John 👋</LargeText>
-        <AppSearchInput />
+        <AppSearchInput placeholder="Search for a service" />
       </View>
       <FlatList 
         data={categories}

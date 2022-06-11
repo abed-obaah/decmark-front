@@ -80,7 +80,7 @@ export default MenuOptions = () => {
             <View>
               <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
                 {userMode === "provider" ? "Receiver" : "Provider" }
-                <Text style={{ color: theme.mode === 'light' ? theme.darkGold : theme.gold }}> mode</Text>
+                <Text style={{ color: theme.GOLDEN_TEXT }}> Mode</Text>
               </MediumText>
               <SmallText>Activate to become a service {userMode === "provider" ? "receiver" : "provider" }</SmallText>
             </View>

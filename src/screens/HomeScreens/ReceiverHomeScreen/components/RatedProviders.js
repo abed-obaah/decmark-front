@@ -53,13 +53,13 @@ export default RatedProviders = () => {
                 numberOfLines={1} 
                 style={{ 
                   color: theme.PRIMARY_TEXT_COLOR, 
-                  fontWeight: 'bold',
+                  fontFamily: 'FONT_SEMI_BOLD',
                 }}
               >{item.name}</MediumText>
               <MediumText>{item.category}</MediumText>
             </View>
             <View>
-              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR, fontWeight: 'bold', }}>₦{item.price}</MediumText>
+              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR, fontFamily: 'FONT_SEMI_BOLD', }}>₦{item.price}</MediumText>
             </View>
           </View>
           <SmallText>{item.description}</SmallText>

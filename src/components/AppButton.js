@@ -42,7 +42,7 @@ export default AppButton = ({
             : 
               background ? theme.PRIMARY_TEXT_COLOR : COLORS.dark,
           fontSize: SIZES.md,
-          fontWeight: 'bold'
+          fontFamily: 'FONT_SEMI_BOLD'
         }}
       >
         {label}

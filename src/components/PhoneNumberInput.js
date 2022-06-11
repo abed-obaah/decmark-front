@@ -43,7 +43,7 @@ export default PhoneNumberInput = ({
           <MediumText 
             style={{
               color: theme.PRIMARY_TEXT_COLOR,
-              fontWeight: 'bold',
+              fontFamily: 'FONT_SEMI_BOLD',
               paddingRight: 7.5,
             }}
           >
@@ -65,7 +65,7 @@ export default PhoneNumberInput = ({
           style={{
             flex: 1,
             fontSize: SIZES.md,
-            fontWeight: 'bold',
+            fontFamily: 'FONT_SEMI_BOLD',
             color: theme.PRIMARY_TEXT_COLOR
           }}
           keyboardType="numeric"

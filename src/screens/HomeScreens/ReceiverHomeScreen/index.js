@@ -4,7 +4,7 @@ import HomeHeader from "../components/HomeHeader";
 import CategorySection from "./components/CategorySection";
 import PopularServices from './components/PopularServices';
 import RatedProviders from './components/RatedProviders';
-import ModeScreen from '../ModeScreen';
+import SwitchModeInfo from '../components/SwitchModeInfo';
 import useSwitchUserMode from '../../../hooks/useSwitchUserMode';
 
 export default ReceiverHomeScreen = () => {
@@ -13,7 +13,7 @@ export default ReceiverHomeScreen = () => {
   return (
     <>
       {isModeSwitch ? 
-        <ModeScreen />
+        <SwitchModeInfo />
       :
         <AppSafeAreaView>
           <HomeHeader />

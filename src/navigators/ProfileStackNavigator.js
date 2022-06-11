@@ -37,7 +37,7 @@ export default ProfileStackNavigator = () => {
               style={{ paddingRight: 20 }}
             >
               <Ionicons 
-                name={theme.mode === "light" ? "moon" : "sunny"} 
+                name={theme.mode === "light" ? "sunny" : "moon"} 
                 size={24} 
                 color={theme.SECONDARY_TEXT_COLOR} 
               />

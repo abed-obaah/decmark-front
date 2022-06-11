@@ -39,7 +39,7 @@ export default AppInput = ({
           style={{
             flex: 1,
             fontSize: SIZES.md,
-            fontWeight: 'bold',
+            fontFamily: 'FONT_SEMI_BOLD',
             color: theme.PRIMARY_TEXT_COLOR
           }}
           secureTextEntry={hidePassword}

@@ -38,8 +38,7 @@ export default AuthStackNavigator = () => {
     },
     // headerTitleAlign: 'center',
     headerTitleStyle: { 
-      fontWeight: 'bold',
-      fontSize: 22.5
+      fontFamily: 'FONT_SEMI_BOLD',
     },
     headerTintColor: theme.SECONDARY_TEXT_COLOR, 
   }

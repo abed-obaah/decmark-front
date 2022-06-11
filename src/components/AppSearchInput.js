@@ -8,7 +8,8 @@ import { Feather, Ionicons } from '@expo/vector-icons';
 export default AppSearchInput = ({ 
   error, 
   onPress,
-  onFocus
+  onFocus,
+  placeholder
 }) => {
   const [theme] = useTheme()
 
@@ -31,7 +32,7 @@ export default AppSearchInput = ({
             fontSize: SIZES.md,
             color: theme.PRIMARY_TEXT_COLOR
           }}
-          placeholder="Search for a service"
+          placeholder={placeholder}
           placeholderTextColor={theme.SECONDARY_TEXT_COLOR}
         />
         <TouchableOpacity

@@ -1,9 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+// userMode: receiver || provider
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    userMode: "receiver",
+    userMode: "provider",
     isModeSwitch: false
   },
   reducers: {

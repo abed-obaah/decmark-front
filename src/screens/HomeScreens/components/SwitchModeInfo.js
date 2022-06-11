@@ -6,15 +6,15 @@ import {
   NativeModules,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { AppSafeAreaView, AppView } from '../../components/AppViews'
-import { MediumText, XtraLargeText } from '../../components/AppText'
-import useSwitchUserMode from '../../hooks/useSwitchUserMode'
-import useTheme from '../../hooks/useTheme'
-import { toggleIsModeSwitch } from '../../redux/slices/userSlice';
+import { AppSafeAreaView, AppView } from '../../../components/AppViews'
+import { MediumText, XtraLargeText } from '../../../components/AppText'
+import useSwitchUserMode from '../../../hooks/useSwitchUserMode'
+import useTheme from '../../../hooks/useTheme'
+import { toggleIsModeSwitch } from '../../../redux/slices/userSlice';
 
 const { StatusBarManager } = NativeModules;
 
-export default ModeScreen = () => {
+export default SwitchModeInfo = () => {
   const dispatch = useDispatch()
   const [theme] = useTheme()
   const [userMode] = useSwitchUserMode()
@@ -36,7 +36,7 @@ export default ModeScreen = () => {
         }}
       >
         <Image 
-          source={require("../../assets/images/logo.png")} 
+          source={require("../../../assets/images/logo.png")} 
           style={{
             width: 35,
             height: 35
@@ -50,8 +50,11 @@ export default ModeScreen = () => {
           justifyContent: 'center'
         }}
       >
-        <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>You are being redirected as a</MediumText>
-        <XtraLargeText style={{ fontSize: 70 }}>{userMode === "provider" ? "Provider" : "Receiver"}</XtraLargeText>
+        <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>Welcome to</MediumText>
+        <XtraLargeText style={{ fontSize: 70, textTransform: 'capitalize' }}>
+          {userMode} 
+          <MediumText style={{ color: theme.GOLDEN_TEXT }}> Mode</MediumText>
+        </XtraLargeText>
       </AppView>
     </AppSafeAreaView>
   )

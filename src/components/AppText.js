@@ -4,13 +4,13 @@ import { SIZES } from '../constants/theme';
 export const XtraLargeText = styled.Text`
   color: ${({theme}) => theme.PRIMARY_TEXT_COLOR};
   font-size: ${SIZES.xl}px;
-  font-weight: bold;
+  font-family: 'FONT_SEMI_BOLD';
 `
 
 export const LargeText = styled.Text`
   color: ${({theme}) => theme.PRIMARY_TEXT_COLOR};
   font-size: ${SIZES.lg}px;
-  font-weight: bold;
+  font-family: 'FONT_SEMI_BOLD';
 `
 
 export const MediumText = styled.Text`
@@ -24,8 +24,8 @@ export const SmallText = styled.Text`
 `
 
 export const LinkText = styled.Text`
-  color: ${({theme}) => theme.darkGold};
-  font-weight: bold;
+  color: ${({theme}) => theme.GOLDEN_TEXT};
+  font-family: 'FONT_SEMI_BOLD';
 `
 
 export const ErrorText = styled.Text`
