@@ -36,8 +36,9 @@ export default AuthStackNavigator = () => {
       shadowOpacity: 0,
       borderBottomWidth: 0
     },
-    // headerTitleAlign: 'center',
+    headerTitleAlign: 'center',
     headerTitleStyle: { 
+      color: theme.PRIMARY_TEXT_COLOR,
       fontFamily: 'FONT_SEMI_BOLD',
     },
     headerTintColor: theme.SECONDARY_TEXT_COLOR, 

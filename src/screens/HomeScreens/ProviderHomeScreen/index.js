@@ -1,5 +1,5 @@
-import React from 'react'
-import { ScrollView, TouchableOpacity, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react'
+import { ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
 import { AppSafeAreaView, AppRareScrollView, AppSectionView } from '../../../components/AppViews'
 import HomeHeader from "../components/HomeHeader";
 import SwitchModeInfo from '../components/SwitchModeInfo';
@@ -7,10 +7,13 @@ import useSwitchUserMode from '../../../hooks/useSwitchUserMode';
 import { LargeText, MediumText } from '../../../components/AppText';
 import useTheme from '../../../hooks/useTheme';
 import { FontAwesome } from '@expo/vector-icons';
+import GroupTab from '../../../components/GroupTab';
 
 export default ProviderHomeScreen = () => {
   const [theme] = useTheme()
   const [a, b, isModeSwitch] = useSwitchUserMode()
+
+  const [activeTab, setActiveTab] = useState(1)
   
   return (
     <>
@@ -24,32 +27,11 @@ export default ProviderHomeScreen = () => {
               <LargeText>Hi, John 👋</LargeText>
               <MediumText>Explore DecMark services</MediumText>
             </AppSectionView>
-            <View 
-              style={{ 
-                paddingHorizontal: 20,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                borderBottomWidth: 1,
-                borderBottomColor: theme.PRIMARY_BORDER_COLOR,
-              }}
-            >
-              <TouchableOpacity>
-                <MediumText>Trending</MediumText>
-              </TouchableOpacity>
-              <TouchableOpacity 
-                style={{
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                  borderBottomWidth: 3,
-                  borderBottomColor: theme.gold,
-                }}
-              >
-                <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR, fontFamily: 'FONT_SEMI_BOLD' }}>Services</MediumText>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <MediumText>Offers (5)</MediumText>
-              </TouchableOpacity>
-            </View>
+            <GroupTab 
+              tabs={["Trending", "Services", `Offers(${5})`]}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
           </ScrollView>
             <TouchableOpacity 
               style={[
