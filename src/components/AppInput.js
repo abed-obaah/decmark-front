@@ -76,9 +76,9 @@ export default AppInput = ({
 
 const styles = StyleSheet.create({
   inputContainer: {
-    height: 50,
     flexDirection: 'row',
     paddingHorizontal: 15,
+    paddingVertical: 8.5,
     borderWidth: 1,
     borderRadius: SIZES.radius,
     alignItems: 'center'

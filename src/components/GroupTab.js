@@ -1,7 +1,6 @@
 import React from 'react'
 import { 
   View,
-  StyleSheet, 
   TouchableOpacity, 
 } from 'react-native'
 import useTheme from '../hooks/useTheme'
@@ -43,5 +42,3 @@ export default GroupTab = ({ tabs, activeTab, setActiveTab }) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({})

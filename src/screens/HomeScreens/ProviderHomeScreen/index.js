@@ -9,7 +9,7 @@ import useTheme from '../../../hooks/useTheme';
 import { FontAwesome } from '@expo/vector-icons';
 import GroupTab from '../../../components/GroupTab';
 
-export default ProviderHomeScreen = () => {
+export default ProviderHomeScreen = ({ navigation }) => {
   const [theme] = useTheme()
   const [a, b, isModeSwitch] = useSwitchUserMode()
 
@@ -34,6 +34,7 @@ export default ProviderHomeScreen = () => {
             />
           </ScrollView>
             <TouchableOpacity 
+              onPress={() => navigation.navigate("ServiceStack", { screen: "AddServiceScreen" })}
               style={[
                 styles.floatBtn,
                 {

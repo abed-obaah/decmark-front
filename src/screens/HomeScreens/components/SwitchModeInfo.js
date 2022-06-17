@@ -51,7 +51,7 @@ export default SwitchModeInfo = () => {
         }}
       >
         <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>Welcome to</MediumText>
-        <XtraLargeText style={{ fontSize: 70, textTransform: 'capitalize' }}>
+        <XtraLargeText style={{ fontSize: 60, textTransform: 'capitalize' }}>
           {userMode} 
           <MediumText style={{ color: theme.GOLDEN_TEXT }}> Mode</MediumText>
         </XtraLargeText>

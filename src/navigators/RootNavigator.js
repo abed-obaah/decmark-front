@@ -9,6 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import AuthStackNavigator from './AuthStackNavigator';
 import BottomTabNavigator from './BottomTabNavigator';
 import ProfileStackNavigator from './ProfileStackNavigator';
+import ServiceStackNavigator from './ServiceStackNavigator';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ export default RootNavigator = () => {
           {/* <Stack.Screen name='AuthStackNavigator' component={AuthStackNavigator} /> */}
           <Stack.Screen name='BottomTabNavigator' component={BottomTabNavigator} />
           <Stack.Screen name='ProfileStack' component={ProfileStackNavigator} />
+          <Stack.Screen name='ServiceStack' component={ServiceStackNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
