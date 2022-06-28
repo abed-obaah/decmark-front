@@ -2,6 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
 import AppInput from '../../components/AppInput'
 import AppButton from '../../components/AppButton';
+import AppTextarea from '../../components/AppTextarea';
 
 const AddServiceScreen = () => {
   return (
@@ -19,10 +20,8 @@ const AddServiceScreen = () => {
         <AppInput 
           label="Duration (Hours)"
         />
-        <AppInput 
+        <AppTextarea 
           label="Description"
-          multiline={true}
-          numberOfLines={5}
         />
         <AppButton label="Post" />
       </AppScrollView>

@@ -21,6 +21,7 @@ export default BottomTabNavigator = () => {
       screenOptions={{
         initialRouteName: "HomeScreen",
         headerShown: false,
+        tabBarHideOnKeyboard: true,
         tabBarStyle: {
           display: isModeSwitch ? "none" : "flex",
           backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,

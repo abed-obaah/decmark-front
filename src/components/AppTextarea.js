@@ -1,20 +1,17 @@
 import React from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 import { COLORS, SIZES } from '../constants/theme';
-import { Ionicons, Feather } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import { MediumText, ErrorText } from './AppText';
 import useTheme from '../hooks/useTheme';
 
-export default AppInput = ({ 
+export default AppTextarea = ({ 
   label,
-  password,
   error,
   marginTop,
-  onFocus = () => {},
-  ...props
+  onFocus = () => {}
 }) => {
   const [theme] = useTheme()
-  const [hidePassword, setHidePassword] = React.useState(password)
 
   return (
     <View style={{ marginTop: marginTop ? marginTop : 20 }}>
@@ -37,25 +34,13 @@ export default AppInput = ({
             onFocus()
           }}
           style={{
-            flex: 1,
             fontSize: SIZES.md,
             fontFamily: 'FONT_SEMI_BOLD',
             color: theme.PRIMARY_TEXT_COLOR
           }}
-          secureTextEntry={hidePassword}
-          {...props}
+          multiline={true}
+          numberOfLines={5}
         />
-        {password &&
-          <Ionicons
-            name={hidePassword ? 'ios-eye-off' : 'ios-eye'}
-            style={{ 
-              color: theme.SECONDARY_TEXT_COLOR,
-              fontSize: 22,
-              marginLeft: 8 
-            }}
-            onPress={() => setHidePassword(!hidePassword)}
-          />
-        }
       </View>
       {error &&
         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 4 }}>
@@ -76,11 +61,8 @@ export default AppInput = ({
 
 const styles = StyleSheet.create({
   inputContainer: {
-    height: 50,
-    flexDirection: 'row',
     paddingHorizontal: 15,
     borderWidth: 1,
     borderRadius: SIZES.radius,
-    alignItems: 'center'
   }
 })
