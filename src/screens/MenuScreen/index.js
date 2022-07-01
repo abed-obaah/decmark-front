@@ -7,14 +7,15 @@ import { Ionicons, EvilIcons } from '@expo/vector-icons';
 import useTheme from '../../hooks/useTheme';
 import MenuOptions from './components/MenuOptions';
 
-export default MenuScreen = () => {
+export default MenuScreen = ({ navigation }) => {
   const [theme] = useTheme()
   const [amountVisible, setAmountVisible] = useState(false)
 
   return (
     <AppSafeAreaView>
       <AppView style={{ paddingHorizontal : 20 }}>
-        <View
+        <TouchableOpacity
+          onPress={() => navigation.navigate("ProfileStack", { screen: "AccountScreen" })}
           style={{ 
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -36,14 +37,14 @@ export default MenuScreen = () => {
            </View>
           <EvilIcons 
             name="chevron-right" 
-            size={30} 
+            size={35} 
             color={theme.SECONDARY_TEXT_COLOR} 
             style={{ 
               justifyContent: 'flex-end',
               right: 0
             }}
           />
-        </View>
+        </TouchableOpacity>
 
         <View
           style={{

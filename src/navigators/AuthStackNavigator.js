@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useTheme from '../hooks/useTheme';
+import { MaterialIcons } from '@expo/vector-icons';
 
 import Onboarding from '../screens/Onboarding';
 import WelcomeScreen from '../screens/WelcomeScreen';
@@ -42,6 +43,9 @@ export default AuthStackNavigator = () => {
       fontFamily: 'FONT_SEMI_BOLD',
     },
     headerTintColor: theme.SECONDARY_TEXT_COLOR, 
+    headerBackImage: () => (
+      <MaterialIcons name="west" size={24} color={theme.SECONDARY_TEXT_COLOR} />
+    )
   }
 
   return (

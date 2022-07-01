@@ -7,7 +7,7 @@ import {
   Text
 } from 'react-native'
 import { MediumText, SmallText } from '../../../components/AppText'
-import { Ionicons, EvilIcons, MaterialIcons, FontAwesome5, Feather } from '@expo/vector-icons';
+import { Ionicons, EvilIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
 import useTheme from '../../../hooks/useTheme';
 import useSwitchUserMode from '../../../hooks/useSwitchUserMode';
 
@@ -17,40 +17,35 @@ export default MenuOptions = () => {
 
   const menuOptions = [
     {
-      lable: "Account",
-      icon: <Feather name="user" size={20} color={theme.SECONDARY_TEXT_COLOR} />,
-      screen: "sdfsdf"
-    },
-    {
-      lable: "Verification",
-      icon: <MaterialIcons name="verified-user" size={20} color={theme.SECONDARY_TEXT_COLOR} />,
-      screen: "sdfsdf"
-    },
-    {
       lable: "Settings",
-      icon: <Ionicons name="settings-outline" size={20} color={theme.SECONDARY_TEXT_COLOR} />,
-      screen: "sdfsdf"
-    },
-    {
-      lable: "Referral",
-      icon: <Feather name="users" size={20} color={theme.SECONDARY_TEXT_COLOR} />,
-      screen: "sdfsdf"
-    },
-    {
-      lable: "Customer Support",
-      icon: <FontAwesome5 name="headphones-alt" size={20} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="settings" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Security",
-      icon: <MaterialIcons name="security" size={20} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="shield-checkmark" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
-      lable: "Review App",
-      icon: <FontAwesome5 name="heart" size={20} color={theme.SECONDARY_TEXT_COLOR} />,
+      lable: "Verification",
+      icon: <Entypo name="v-card" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
-    }
+    },
+    {
+      lable: "Notifications",
+      icon: <Ionicons name="notifications" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      screen: "sdfsdf"
+    },
+    {
+      lable: "Help & Support",
+      icon: <Ionicons name="help-circle" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      screen: "sdfsdf"
+    },
+    {
+      lable: "My Referral",
+      icon: <Ionicons name="person-add" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      screen: "sdfsdf"
+    },
   ]
 
   return (

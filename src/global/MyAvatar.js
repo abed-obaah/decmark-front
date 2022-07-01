@@ -18,7 +18,7 @@ export default MyAvatar = ({ size }) => {
             height: "100%",
             width: "100%",
             resizeMode: 'cover',
-            borderRadius: 50
+            borderRadius: 200
           }} 
         />
       :
@@ -29,7 +29,7 @@ export default MyAvatar = ({ size }) => {
             width: "100%", 
             justifyContent: 'center',
             alignItems: 'center',
-            borderRadius: 50
+            borderRadius: 150
           }}
         >
           <Ionicons name="person" size={22.5} color={theme.PRIMARY_TEXT_COLOR} />

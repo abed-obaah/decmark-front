@@ -5,6 +5,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import useTheme from '../hooks/useTheme';
 
 import MenuScreen from '../screens/MenuScreen';
+import AccountScreen from '../screens/AccountScreen';
 
 const Stack = createStackNavigator();
 
@@ -20,7 +21,7 @@ export default ProfileStackNavigator = () => {
       borderBottomWidth: 0
     },
     headerTitleAlign: 'center',
-    headerTitleStyle: { fontSize: 22.5 },
+    headerTitleStyle: { fontSize: 22.5, color: theme.PRIMARY_TEXT_COLOR },
     headerTintColor: theme.SECONDARY_TEXT_COLOR, 
     headerBackImage: () => (
       <MaterialIcons name="west" size={24} color={theme.SECONDARY_TEXT_COLOR} />
@@ -46,6 +47,13 @@ export default ProfileStackNavigator = () => {
               />
             </TouchableOpacity>
           ),
+        }} 
+      />
+      <Stack.Screen 
+        name='AccountScreen' 
+        component={AccountScreen} 
+        options={{ 
+          headerTitle: "Account Info"
         }} 
       />
     </Stack.Navigator>
