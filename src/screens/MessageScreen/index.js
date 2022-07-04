@@ -1,25 +1,15 @@
 import React from 'react'
-import { 
-  View,
-  Platform,
-  NativeModules,
-  StyleSheet
-} from 'react-native'
-import { AppSafeAreaView } from '../../components/AppViews'
-import { LargeText, MediumText, SmallText } from "../../components/AppText"
-import useTheme from '../../hooks/useTheme';
+import { View } from 'react-native'
+import { AppSafeAreaView } from '@components/AppViews'
+import { MediumText, SmallText } from "@components/AppText"
+import useTheme from '@hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
-
-const { StatusBarManager } = NativeModules;
 
 export default MessageScreen = () => {
   const [theme] = useTheme()
 
   return (
     <AppSafeAreaView>
-      <View style={[styles.headerContainer, { borderBottomColor: theme.PRIMARY_BORDER_COLOR }]}>
-        <LargeText>Messages</LargeText>
-      </View>
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Ionicons 
           name="ios-chatbox-ellipses" 
@@ -40,13 +30,3 @@ export default MessageScreen = () => {
     </AppSafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-  headerContainer: {
-    paddingHorizontal: 20,
-    borderBottomWidth: .5,
-    justifyContent: 'center',
-    paddingVertical: 10,
-    marginTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
-  },
-})

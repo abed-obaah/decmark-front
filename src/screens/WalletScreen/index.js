@@ -1,18 +1,14 @@
 import { useState } from 'react'
 import { 
   View,
-  NativeModules,
-  Platform,
   TouchableOpacity,
   useWindowDimensions,
   StyleSheet
 } from 'react-native'
-import { AppRareScrollView, AppSafeAreaView, AppSectionView } from '../../components/AppViews'
-import useTheme from '../../hooks/useTheme';
-import { LargeText, MediumText, SmallText } from "../../components/AppText"
+import { AppRareScrollView, AppSafeAreaView, AppSectionView } from '@components/AppViews'
+import useTheme from '@hooks/useTheme';
+import { LargeText, MediumText, SmallText } from "@components/AppText"
 import { Ionicons } from '@expo/vector-icons';
-
-const { StatusBarManager } = NativeModules;
 
 export default WalletScreen = () => {
   const [theme] = useTheme()
@@ -32,18 +28,11 @@ export default WalletScreen = () => {
     {
       icon: 'move',
       text: 'Transfer'
-    },
-    // {
-    //   icon: 'cash-outline',
-    //   text: 'Tip'
-    // },
+    }
   ]
 
   return (
     <AppSafeAreaView>
-      <View style={[styles.headerContainer, { borderBottomColor: theme.PRIMARY_BORDER_COLOR }]}>
-        <LargeText>Wallet</LargeText>
-      </View>
       <AppRareScrollView>
         <AppSectionView style={{ paddingHorizontal: 20 }}>
           <View
@@ -123,13 +112,6 @@ export default WalletScreen = () => {
 }
 
 const styles = StyleSheet.create({
-  headerContainer: {
-    paddingHorizontal: 20,
-    borderBottomWidth: .5,
-    justifyContent: 'center',
-    paddingVertical: 10,
-    marginTop: Platform.OS === "android" ? StatusBarManager.HEIGHT : 0,
-  },
   overview: {
     flexDirection: 'row',
     justifyContent: 'space-between',

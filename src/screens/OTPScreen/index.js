@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Pressable, Keyboard, View } from 'react-native'
-import AppButton from '../../components/AppButton'
-import OTPField from '../../components/OTPField'
-import { SIZES } from '../../constants/theme'
-import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
-import { MediumText, LinkText } from '../../components/AppText';
+import AppButton from '@components/AppButton'
+import OTPField from '@components/OTPField'
+import { SIZES } from '@constants/theme'
+import { AppSafeAreaView, AppScrollView } from '@components/AppViews';
+import { MediumText, LinkText } from '@components/AppText';
 
 export default OTPScreen = ({navigation}) => {
   const [code, setCode] = useState("")
@@ -26,7 +26,7 @@ export default OTPScreen = ({navigation}) => {
             setCode={setCode}
             setPinReady={setPinReady}
             maxLength={MAX_CODE_LENGTH}
-            />
+          />
         </Pressable>
         <AppButton 
           label="Verify"

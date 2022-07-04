@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { View, TouchableOpacity } from 'react-native';
+import Clipboard from 'expo-clipboard';
 import { AppView, AppScrollView, AppSafeAreaView } from '../../components/AppViews'
 import MyAvatar from '../../global/MyAvatar';
-import { SmallText, LargeText, MediumText } from '../../components/AppText'
+import { SmallText, LargeText, MediumText } from '@components/AppText'
 import { Ionicons, EvilIcons } from '@expo/vector-icons';
-import useTheme from '../../hooks/useTheme';
+import useTheme from '@hooks/useTheme';
 import MenuOptions from './components/MenuOptions';
 
 export default MenuScreen = ({ navigation }) => {
@@ -32,7 +33,18 @@ export default MenuScreen = ({ navigation }) => {
             <View style={{ width: 10 }} />
             <View>
               <LargeText>@johnphealipto</LargeText>
-              <SmallText style={{ marginTop: 5 }}>UID: T76HJK9_DM</SmallText>
+              <TouchableOpacity
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginTop: 5
+                }}
+                // onPress={() => Clipboard.setString('T76HJK9_DM')} 
+              >
+                <SmallText style={{ marginRight: 5 }}>UID: T76HJK9_DM</SmallText>
+                <Ionicons name="copy" size={15} color={theme.SECONDARY_TEXT_COLOR} />
+                <SmallText style={{ marginRight: 5 }}>T76HJK9_DM</SmallText>
+              </TouchableOpacity>
             </View>
            </View>
           <EvilIcons 

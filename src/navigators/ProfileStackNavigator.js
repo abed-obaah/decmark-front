@@ -2,10 +2,10 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import useTheme from '../hooks/useTheme';
+import useTheme from '@hooks/useTheme';
 
-import MenuScreen from '../screens/MenuScreen';
-import AccountScreen from '../screens/AccountScreen';
+import MenuScreen from '@screens/MenuScreen';
+import AccountScreen from '@screens/AccountScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +21,10 @@ export default ProfileStackNavigator = () => {
       borderBottomWidth: 0
     },
     headerTitleAlign: 'center',
-    headerTitleStyle: { fontSize: 22.5, color: theme.PRIMARY_TEXT_COLOR },
+    headerTitleStyle: { 
+      color: theme.PRIMARY_TEXT_COLOR,
+      fontFamily: 'FONT_SEMI_BOLD', 
+    },
     headerTintColor: theme.SECONDARY_TEXT_COLOR, 
     headerBackImage: () => (
       <MaterialIcons name="west" size={24} color={theme.SECONDARY_TEXT_COLOR} />

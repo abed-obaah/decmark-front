@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import useTheme from '../hooks/useTheme';
+import useTheme from '@hooks/useTheme';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import Onboarding from '../screens/Onboarding';
-import WelcomeScreen from '../screens/WelcomeScreen';
-import LogIn from '../screens/LogIn';
-import SignUp from '../screens/SignUp';
-import SignUpWithNumber from '../screens/SignUp/SignUpWithNumber';
-import OTPScreen from '../screens/OTPScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import Onboarding from '@screens/Onboarding';
+import WelcomeScreen from '@screens/WelcomeScreen';
+import LogIn from '@screens/LogIn';
+import SignUp from '@screens/SignUp';
+import SignUpWithNumber from '@screens/SignUp/SignUpWithNumber';
+import OTPScreen from '@screens/OTPScreen';
+import ForgotPasswordScreen from '@screens/ForgotPasswordScreen';
 
 const Stack = createStackNavigator();
 
@@ -21,7 +21,7 @@ export default AuthStackNavigator = () => {
 
   useEffect(async () => {
     const appData = await AsyncStorage.getItem("isAppFirstLaunch")
-    if(appData == null) {
+    if(appData === null) {
       setIsAppFirstLaunch(true)
       // AsyncStorage.setItem("isAppFirstLaunch", 'false')
     } else {
@@ -49,7 +49,7 @@ export default AuthStackNavigator = () => {
   }
 
   return (
-    isAppFirstLaunch != null && (
+    isAppFirstLaunch !== null && (
       <>
         <Stack.Navigator 
           screenOptions={{ headerShown: false }}

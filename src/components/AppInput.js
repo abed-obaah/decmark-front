@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 import { COLORS, SIZES } from '../constants/theme';
 import { Ionicons, Feather } from '@expo/vector-icons';
@@ -14,27 +14,35 @@ export default AppInput = ({
   ...props
 }) => {
   const [theme] = useTheme()
-  const [hidePassword, setHidePassword] = React.useState(password)
+  const [hidePassword, setHidePassword] = useState(password)
+  const [backgroundColor, setBackgroundColor] = useState(theme.INPUT_BACKGROUND_COLOR)
+  const [borderColor, setBorderColor] = useState(theme.PRIMARY_BORDER_COLOR)
 
   return (
     <View style={{ marginTop: marginTop ? marginTop : 20 }}>
       {label &&
-        <MediumText style={{ marginBottom: 3 }}>{label}</MediumText>
+        <MediumText style={{ marginBottom: 3, color: theme.PRIMARY_TEXT_COLOR }}>{label}</MediumText>
       }
       <View 
         style={[
           styles.inputContainer, 
-          { backgroundColor: theme.INPUT_BACKGROUND_COLOR },
+          { backgroundColor },
           error ? 
             { borderColor: COLORS.red } 
           : 
-            { borderColor: theme.PRIMARY_BORDER_COLOR }
+            { borderColor }
         ]}
       >
         <TextInput
           autoCorrect={false}
+          onBlur={() => {
+            setBackgroundColor(theme.INPUT_BACKGROUND_COLOR);
+            setBorderColor(theme.PRIMARY_BORDER_COLOR)
+          }}
           onFocus={() => {
-            onFocus()
+            onFocus();
+            setBackgroundColor(theme.PRIMARY_BACKGROUND_COLOR);
+            setBorderColor(theme.gold)
           }}
           style={{
             flex: 1,
@@ -49,7 +57,7 @@ export default AppInput = ({
           <Ionicons
             name={hidePassword ? 'ios-eye-off' : 'ios-eye'}
             style={{ 
-              color: theme.SECONDARY_TEXT_COLOR,
+              color: theme.gold,
               fontSize: 22,
               marginLeft: 8 
             }}

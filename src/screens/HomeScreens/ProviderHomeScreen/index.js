@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
 import { ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
-import { AppSafeAreaView, AppRareScrollView, AppSectionView } from '../../../components/AppViews'
-import HomeHeader from "../components/HomeHeader";
+import { AppSafeAreaView, AppSectionView } from '@components/AppViews'
 import SwitchModeInfo from '../components/SwitchModeInfo';
-import useSwitchUserMode from '../../../hooks/useSwitchUserMode';
-import { LargeText, MediumText } from '../../../components/AppText';
-import useTheme from '../../../hooks/useTheme';
+import useSwitchUserMode from '@hooks/useSwitchUserMode';
+import { LargeText, MediumText } from '@components/AppText';
+import useTheme from '@hooks/useTheme';
 import { FontAwesome } from '@expo/vector-icons';
-import GroupTab from '../../../components/GroupTab';
+import GroupTab from '@components/GroupTab';
 
 export default ProviderHomeScreen = ({ navigation }) => {
   const [theme] = useTheme()
-  const [a, b, isModeSwitch] = useSwitchUserMode()
+  const [x, y, isModeSwitch] = useSwitchUserMode()
 
   const [activeTab, setActiveTab] = useState(1)
   
@@ -21,7 +20,6 @@ export default ProviderHomeScreen = ({ navigation }) => {
         <SwitchModeInfo />
       :
         <AppSafeAreaView style={{ position: 'relative' }}>
-          <HomeHeader />
           <ScrollView>
             <AppSectionView style={{ paddingHorizontal: 20 }}>
               <LargeText>Hi, John 👋</LargeText>

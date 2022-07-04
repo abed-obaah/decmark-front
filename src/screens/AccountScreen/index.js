@@ -3,27 +3,27 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native'
-import { AppScrollView, AppSafeAreaView } from '../../components/AppViews'
+import { AppScrollView, AppSafeAreaView } from '@components/AppViews'
 import MyAvatar from '../../global/MyAvatar'
 import { Ionicons } from '@expo/vector-icons';
-import useTheme from '../../hooks/useTheme';
-import { MediumText, LargeText } from '../../components/AppText';
+import useTheme from '@hooks/useTheme';
+import { MediumText, LargeText } from '@components/AppText';
 
 export default AccountScreen = () => {
   const [theme] = useTheme()
 
   const options = [
     {
-      name: "John Adibe",
-      icon: <Ionicons name="person-outline" size={20} color={theme.PRIMARY_TEXT_COLOR} />
+      name: "Edit Profle",
+      icon: <Ionicons name="person-outline" size={20} color={theme.SECONDARY_TEXT_COLOR} />
     },
     {
       name: "Terms and Conditions",
-      icon: <Ionicons name="newspaper-outline" size={20} color={theme.PRIMARY_TEXT_COLOR} />
+      icon: <Ionicons name="newspaper-outline" size={20} color={theme.SECONDARY_TEXT_COLOR} />
     },
     {
       name: "Privacy Policy",
-      icon: <Ionicons name="shield-checkmark-outline" size={20} color={theme.PRIMARY_TEXT_COLOR} />
+      icon: <Ionicons name="shield-checkmark-outline" size={20} color={theme.SECONDARY_TEXT_COLOR} />
     }
   ]
 
@@ -38,7 +38,16 @@ export default AccountScreen = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{ marginTop: 30 }}>
+        <View
+          style={{
+            alignItems: 'center',
+            marginVertical: 15
+          }}
+        >
+          <LargeText>John Adibe</LargeText>
+          <MediumText>john.adibe@decmark.com</MediumText>
+        </View>
+        <View style={{ marginTop: 20 }}>
           {options.map((item, i) => 
             <View 
               key={i}
@@ -70,7 +79,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     right: 0,
-    padding: 10,
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRadius: 50
   }
 })

@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native'
 import { ErrorText } from './AppText'
 import { COLORS, SIZES } from '../constants/theme'
@@ -12,21 +12,31 @@ export default AppSearchInput = ({
   placeholder
 }) => {
   const [theme] = useTheme()
+  const [backgroundColor, setBackgroundColor] = useState(theme.INPUT_BACKGROUND_COLOR)
+  const [borderColor, setBorderColor] = useState(theme.PRIMARY_BORDER_COLOR)
 
   return (
     <View>
       <View 
         style={[
           styles.inputContainer, 
-          { backgroundColor: theme.INPUT_BACKGROUND_COLOR },
+          { backgroundColor },
           error ? 
             { borderColor: COLORS.red } 
           : 
-            { borderColor: theme.PRIMARY_BORDER_COLOR }
+            { borderColor }
         ]}
       >
         <TextInput
           autoCorrect={false}
+          onBlur={() => {
+            setBackgroundColor(theme.INPUT_BACKGROUND_COLOR);
+            setBorderColor(theme.PRIMARY_BORDER_COLOR)
+          }}
+          onFocus={() => {
+            setBackgroundColor(theme.PRIMARY_BACKGROUND_COLOR);
+            setBorderColor(theme.gold)
+          }}
           style={{
             flex: 1,
             fontSize: SIZES.md,
