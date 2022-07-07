@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { View, TouchableOpacity } from 'react-native';
-import Clipboard from 'expo-clipboard';
+import * as Clipboard from 'expo-clipboard';
 import { AppView, AppScrollView, AppSafeAreaView } from '../../components/AppViews'
 import MyAvatar from '../../global/MyAvatar';
-import { SmallText, LargeText, MediumText } from '@components/AppText'
+import { SmallText, LargeText } from '@components/AppText'
 import { Ionicons, EvilIcons } from '@expo/vector-icons';
 import useTheme from '@hooks/useTheme';
 import MenuOptions from './components/MenuOptions';
@@ -39,11 +39,10 @@ export default MenuScreen = ({ navigation }) => {
                   alignItems: 'center',
                   marginTop: 5
                 }}
-                // onPress={() => Clipboard.setString('T76HJK9_DM')} 
+                onPress={() => Clipboard.setString('T76HJK9_DM')} 
               >
                 <SmallText style={{ marginRight: 5 }}>UID: T76HJK9_DM</SmallText>
                 <Ionicons name="copy" size={15} color={theme.SECONDARY_TEXT_COLOR} />
-                <SmallText style={{ marginRight: 5 }}>T76HJK9_DM</SmallText>
               </TouchableOpacity>
             </View>
            </View>
@@ -106,8 +105,32 @@ export default MenuScreen = ({ navigation }) => {
 
       <AppScrollView>
         <MenuOptions />
-        <MediumText style={{ paddingBottom: 15 }}>Version 1.0.0</MediumText>
       </AppScrollView>
+
+      <AppView 
+        style={{ 
+          paddingHorizontal: 20,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          borderTopWidth: 1,
+          borderTopColor: theme.PRIMARY_BORDER_COLOR
+        }}
+      >
+        <TouchableOpacity  style={{ paddingVertical: 10 }}>
+          <Ionicons 
+            name="log-out-outline"
+            size={26} 
+            color={theme.PRIMARY_TEXT_COLOR} 
+          />
+        </TouchableOpacity>
+        <TouchableOpacity  style={{ paddingVertical: 10 }}>
+          <Ionicons 
+            name="heart-outline"
+            size={26} 
+            color={theme.PRIMARY_TEXT_COLOR} 
+          />
+        </TouchableOpacity>
+      </AppView>
 
     </AppSafeAreaView>
   )

@@ -6,17 +6,19 @@ import {
   FlatList,
   useWindowDimensions
 } from 'react-native'
-import { LargeText, SmallText, MediumText } from "../../../../components/AppText"
-import AppButton from '../../../../components/AppButton';
-import { SIZES } from '../../../../constants/theme';
-import useTheme from '../../../../hooks/useTheme';
+import { LargeText, SmallText, MediumText } from "@components/AppText"
+import AppButton from '@components/AppButton';
+import { SIZES } from '@constants/theme';
+import useTheme from '@hooks/useTheme';
 import { Ionicons } from '@expo/vector-icons';
-import { AppSectionView } from '../../../../components/AppViews';
+import { AppSectionView } from '@components/AppViews';
 import providers from '../constants/providers';
+import { useNavigation } from '@react-navigation/native';
 
 export default RatedProviders = () => {
   const { width } = useWindowDimensions()
   const [theme] = useTheme()
+  const navigation = useNavigation();
   
   const ProviderSlide = ({ item }) => {
     return (
@@ -31,7 +33,7 @@ export default RatedProviders = () => {
         }}
       >
         <Image 
-          source={require("../../../../assets/images/my_avatar.png")} 
+          source={require("@assets/images/my_avatar.png")} 
           style={{
             width: '100%',
             height: 100,
@@ -90,6 +92,7 @@ export default RatedProviders = () => {
               label="Hire" 
               marginTop={.5} 
               buttonHeight={40}
+              onPress={() => navigation.navigate('ProfileStack', { screen: 'ProviderProfileScreen' })}
             />
           </View>
         </View>

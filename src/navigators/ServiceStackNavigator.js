@@ -1,8 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import useTheme from '../hooks/useTheme';
+import useTheme from '@hooks/useTheme';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import AddServiceScreen from '../screens/AddServiceScreen';
+import AddServiceScreen from '@screens/AddServiceScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +18,10 @@ export default ServiceStackNavigator = () => {
       borderBottomWidth: 0,
     },
     headerTitleAlign: 'center',
-    headerTitleStyle: { color: theme.PRIMARY_TEXT_COLOR },
+    headerTitleStyle: { 
+      color: theme.PRIMARY_TEXT_COLOR,
+      fontFamily: 'FONT_SEMI_BOLD', 
+    },
     headerBackImage: () => (
       <MaterialIcons name="west" size={24} color={theme.SECONDARY_TEXT_COLOR} />
     )
@@ -29,7 +32,7 @@ export default ServiceStackNavigator = () => {
       <Stack.Screen 
         name='AddServiceScreen' 
         component={AddServiceScreen} 
-        options={{ headerTitle: "Create Service" }} 
+        options={{ headerTitle: "Create service" }} 
       />
     </Stack.Navigator>
   )

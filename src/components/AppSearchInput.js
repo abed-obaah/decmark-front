@@ -55,7 +55,7 @@ export default AppSearchInput = ({
             borderWidth: 1,
             borderColor: theme.gold,
             padding: 5,
-            paddingHorizontal: 7.5
+            paddingHorizontal: 7
           }}
         >
           <Ionicons name="search-outline" size={20} color="black" />

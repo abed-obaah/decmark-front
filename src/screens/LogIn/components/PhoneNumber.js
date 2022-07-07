@@ -1,9 +1,9 @@
 import React from 'react';
-import AppButton from '../../../components/AppButton'
-import AppInput from '../../../components/AppInput'
-import PhoneNumberInput from '../../../components/PhoneNumberInput';
+import AppButton from '@components/AppButton'
+import AppInput from '@components/AppInput'
+import PhoneNumberInput from '@components/PhoneNumberInput';
 import { useNavigation } from '@react-navigation/native';
-import { LinkText } from '../../../components/AppText';
+import { LinkText } from '@components/AppText';
 
 export default PhoneNumber = () => {
   const navigation = useNavigation()

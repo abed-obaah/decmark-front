@@ -6,10 +6,10 @@ import {
   ImageBackground,
   Text
 } from 'react-native'
-import { MediumText, SmallText } from '../../../components/AppText'
+import { MediumText, SmallText } from '@components/AppText'
 import { Ionicons, EvilIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
-import useTheme from '../../../hooks/useTheme';
-import useSwitchUserMode from '../../../hooks/useSwitchUserMode';
+import useTheme from '@hooks/useTheme';
+import useSwitchUserMode from '@hooks/useSwitchUserMode';
 
 export default MenuOptions = () => {
   const [theme] = useTheme()
@@ -18,32 +18,37 @@ export default MenuOptions = () => {
   const menuOptions = [
     {
       lable: "Settings",
-      icon: <Ionicons name="settings" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="settings" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Security",
-      icon: <Ionicons name="shield-checkmark" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="shield-checkmark" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Verification",
-      icon: <Entypo name="v-card" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Entypo name="v-card" size={23} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Notifications",
-      icon: <Ionicons name="notifications" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="notifications" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
+      screen: "sdfsdf"
+    },
+    {
+      lable: "History",
+      icon: <Ionicons name="time" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Help & Support",
-      icon: <Ionicons name="help-circle" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="help-circle" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "My Referral",
-      icon: <Ionicons name="person-add" size={22} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="person-add" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
   ]
@@ -86,7 +91,7 @@ export default MenuOptions = () => {
       {menuOptions.map((item, i) => 
         <TouchableOpacity key={i} onPress={() => item.screen}>
           <View style={styles.menuItem}>
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               {item.icon}
               <View style={{ marginLeft: 20 }}>
                 <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>{item.lable}</MediumText>
@@ -100,29 +105,15 @@ export default MenuOptions = () => {
           </View>
         </TouchableOpacity>
       )}
-      <TouchableOpacity>
-        <View style={styles.menuItem}>
-          <View style={{ flexDirection: 'row' }}>
-          <Ionicons name="exit-outline" size={20} color={theme.red} />
-            <View style={{ marginLeft: 20 }}>
-              <MediumText style={{ color: theme.red }}>Logout</MediumText>
-            </View>
-          </View>
-        </View>
-      </TouchableOpacity>
     </>
   )
 }
 
 const styles = StyleSheet.create({
-  userMode: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 18
-  },
   menuItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 18
   }
 })

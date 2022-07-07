@@ -6,6 +6,7 @@ import useTheme from '@hooks/useTheme';
 
 import MenuScreen from '@screens/MenuScreen';
 import AccountScreen from '@screens/AccountScreen';
+import ProviderProfileScreen from '@screens/ProviderProfileScreen';
 
 const Stack = createStackNavigator();
 
@@ -57,6 +58,13 @@ export default ProfileStackNavigator = () => {
         component={AccountScreen} 
         options={{ 
           headerTitle: "Account Info"
+        }} 
+      />
+      <Stack.Screen 
+        name='ProviderProfileScreen' 
+        component={ProviderProfileScreen} 
+        options={{ 
+          headerTitle: "Provider's profile"
         }} 
       />
     </Stack.Navigator>

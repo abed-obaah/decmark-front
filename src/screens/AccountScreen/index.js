@@ -24,6 +24,10 @@ export default AccountScreen = () => {
     {
       name: "Privacy Policy",
       icon: <Ionicons name="shield-checkmark-outline" size={20} color={theme.SECONDARY_TEXT_COLOR} />
+    },
+    {
+      name: "Activities",
+      icon: <Ionicons name="list" size={20} color={theme.SECONDARY_TEXT_COLOR} />
     }
   ]
 
