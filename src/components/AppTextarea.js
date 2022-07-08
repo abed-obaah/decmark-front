@@ -1,9 +1,9 @@
-import React from 'react'
+import { useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
-import { COLORS, SIZES } from '../constants/theme';
+import { COLORS, SIZES } from '@constants/theme';
 import { Feather } from '@expo/vector-icons';
 import { MediumText, ErrorText } from './AppText';
-import useTheme from '../hooks/useTheme';
+import useTheme from '@hooks/useTheme';
 
 export default AppTextarea = ({ 
   label,
@@ -12,28 +12,42 @@ export default AppTextarea = ({
   onFocus = () => {}
 }) => {
   const [theme] = useTheme()
+  const [backgroundColor, setBackgroundColor] = useState(theme.INPUT_BACKGROUND_COLOR)
+  const [borderColor, setBorderColor] = useState(theme.PRIMARY_BORDER_COLOR)
 
   return (
     <View style={{ marginTop: marginTop ? marginTop : 20 }}>
       {label &&
-        <MediumText style={{ marginBottom: 3 }}>{label}</MediumText>
+        <MediumText 
+          style={{ 
+            marginBottom: 3, 
+            color: theme.PRIMARY_TEXT_COLOR 
+          }}
+        >{label}</MediumText>
       }
       <View 
         style={[
           styles.inputContainer, 
-          { backgroundColor: theme.INPUT_BACKGROUND_COLOR },
+          { backgroundColor },
           error ? 
             { borderColor: COLORS.red } 
           : 
-            { borderColor: theme.PRIMARY_BORDER_COLOR }
+            { borderColor }
         ]}
       >
         <TextInput
           autoCorrect={false}
+          onBlur={() => {
+            setBackgroundColor(theme.INPUT_BACKGROUND_COLOR);
+            setBorderColor(theme.PRIMARY_BORDER_COLOR)
+          }}
           onFocus={() => {
-            onFocus()
+            onFocus();
+            setBackgroundColor(theme.PRIMARY_BACKGROUND_COLOR);
+            setBorderColor(theme.gold)
           }}
           style={{
+            textAlignVertical: 'top',
             fontSize: SIZES.md,
             fontFamily: 'FONT_SEMI_BOLD',
             color: theme.PRIMARY_TEXT_COLOR
@@ -61,7 +75,7 @@ export default AppTextarea = ({
 
 const styles = StyleSheet.create({
   inputContainer: {
-    paddingHorizontal: 15,
+    padding: 15,
     borderWidth: 1,
     borderRadius: SIZES.radius,
   }

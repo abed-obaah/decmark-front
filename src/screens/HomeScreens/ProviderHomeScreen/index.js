@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { useState } from 'react'
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { AppSafeAreaView, AppSectionView } from '@components/AppViews'
 import SwitchModeInfo from '../components/SwitchModeInfo';
 import useSwitchUserMode from '@hooks/useSwitchUserMode';
@@ -7,12 +7,15 @@ import { LargeText, MediumText } from '@components/AppText';
 import useTheme from '@hooks/useTheme';
 import { FontAwesome } from '@expo/vector-icons';
 import GroupTab from '@components/GroupTab';
+import MyServices from './components/MyServices';
+import Offers from './components/Offers';
 
 export default ProviderHomeScreen = ({ navigation }) => {
   const [theme] = useTheme()
   const [x, y, isModeSwitch] = useSwitchUserMode()
-
   const [activeTab, setActiveTab] = useState(1)
+
+  const tabs = [ <Offers />, <MyServices />, <Offers /> ]
   
   return (
     <>
@@ -20,7 +23,7 @@ export default ProviderHomeScreen = ({ navigation }) => {
         <SwitchModeInfo />
       :
         <AppSafeAreaView style={{ position: 'relative' }}>
-          <ScrollView>
+          <View style={{ flex: 1 }}>
             <AppSectionView style={{ paddingHorizontal: 20 }}>
               <LargeText>Hi, John 👋</LargeText>
               <MediumText>Explore DecMark services</MediumText>
@@ -30,7 +33,10 @@ export default ProviderHomeScreen = ({ navigation }) => {
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />
-          </ScrollView>
+
+            {tabs[activeTab]}
+          </View>
+          {activeTab === 1 &&
             <TouchableOpacity 
               onPress={() => navigation.navigate("ServiceStack", { screen: "AddServiceScreen" })}
               style={[
@@ -43,6 +49,7 @@ export default ProviderHomeScreen = ({ navigation }) => {
             >
               <FontAwesome name="plus" size={24} color={theme.dark} />
             </TouchableOpacity>
+          }
         </AppSafeAreaView>
       }
     </>

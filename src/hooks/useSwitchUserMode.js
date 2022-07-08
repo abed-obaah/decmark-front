@@ -8,16 +8,13 @@ export default useSwitchUserMode = () => {
   const userMode = useSelector(selectUserMode) 
   const isModeSwitch = useSelector(selectIsModeSwitch) 
   
-  const handleToggleUserMode = () => {
-    dispatch(toggleIsModeSwitch(true))
-
-    navigation.navigate("BottomTabNavigator", { screen: "HomeScreen" })
-
-    if(userMode === "receiver") {
-      dispatch(switchUserMode("provider"))
-    } else {
-      dispatch(switchUserMode("receiver"))
-    }
+  const handleToggleUserMode = (mode) => {
+    dispatch(switchUserMode(mode))
+    
+    setTimeout(() => {
+      dispatch(toggleIsModeSwitch(true))
+      navigation.navigate("BottomTabNavigator", { screen: "HomeScreen" })
+    }, 750);
   }
 
   return [userMode, handleToggleUserMode, isModeSwitch];

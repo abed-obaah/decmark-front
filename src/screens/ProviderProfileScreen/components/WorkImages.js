@@ -1,5 +1,4 @@
-import { 
-  StyleSheet, 
+import {
   View, 
   Image, 
   useWindowDimensions 
@@ -10,7 +9,7 @@ export default WorkImages = () => {
   const { width } = useWindowDimensions()
 
   return (
-    <>
+    <View style={{ marginTop: 20 }}>
       <LargeText style={{ marginBottom: 5 }}>Images</LargeText>
       <View
         style={{
@@ -55,8 +54,6 @@ export default WorkImages = () => {
           />
         </View>
       </View>
-    </>
+    </View>
   )
 }
-
-const styles = StyleSheet.create({})

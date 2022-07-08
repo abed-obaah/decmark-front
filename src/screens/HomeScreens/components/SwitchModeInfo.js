@@ -6,11 +6,11 @@ import {
   NativeModules,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { AppSafeAreaView, AppView } from '../../../components/AppViews'
-import { MediumText, XtraLargeText } from '../../../components/AppText'
-import useSwitchUserMode from '../../../hooks/useSwitchUserMode'
-import useTheme from '../../../hooks/useTheme'
-import { toggleIsModeSwitch } from '../../../redux/slices/userSlice';
+import { AppSafeAreaView, AppView } from '@components/AppViews'
+import { MediumText, XtraLargeText } from '@components/AppText'
+import useSwitchUserMode from '@hooks/useSwitchUserMode'
+import useTheme from '@hooks/useTheme'
+import { toggleIsModeSwitch } from '@redux/slices/userSlice';
 
 const { StatusBarManager } = NativeModules;
 
@@ -36,7 +36,7 @@ export default SwitchModeInfo = () => {
         }}
       >
         <Image 
-          source={require("../../../assets/images/logo.png")} 
+          source={require("@assets/images/logo.png")} 
           style={{
             width: 35,
             height: 35
