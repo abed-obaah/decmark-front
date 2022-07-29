@@ -1,9 +1,6 @@
-import {
-  View,
-  StyleSheet
-} from 'react-native'
+import { useRef } from 'react';
+import { View, Image, Animated, StyleSheet } from 'react-native'
 import { AppScrollView, AppSafeAreaView } from '@components/AppViews'
-import MyAvatar from '../../global/MyAvatar'
 import { MaterialIcons } from '@expo/vector-icons';
 import { MediumText, XtraLargeText } from '@components/AppText';
 import AppButton from '@components/AppButton';
@@ -11,14 +8,37 @@ import WorkImages from './components/WorkImages';
 import RatingsReviews from './components/RatingsReviews';
 import Bio from './components/Bio';
 
-export default ProviderProfileScreen = () => {
+export default ProviderProfileScreen = ({navigation}) => {
+  const scrollY = useRef(new Animated.Value(0)).current
+
+  const IMG_SIZE = 200
+
+  const imgSize = scrollY.interpolate({
+    inputRange: [0, 100],
+    outputRange: [IMG_SIZE, IMG_SIZE / 2],
+    extrapolate: 'clamp'
+  })
+  
   return (
     <AppSafeAreaView>
-      <AppScrollView>
-        <View style={styles.avatar}>
-          <View style={{ position: 'relative' }}>
-            <MyAvatar size={150} />
-          </View>
+      <AppScrollView
+        onScroll={Animated.event([
+          {
+            nativeEvent: {
+              contentOffset: { y: scrollY }
+            }
+          }],
+          { useNativeDriver: false }
+        )}
+        scrollEventThrottle={16}
+      >
+        <View style={{ alignItems: 'center' }}>
+          <Animated.View style={styles.imgContainer(imgSize, IMG_SIZE, scrollY)}> 
+            <Image 
+              source={require("@assets/images/my_avatar.png")} 
+              style={styles.img(IMG_SIZE)} 
+            />
+          </Animated.View>
         </View>
         <View
           style={{
@@ -31,23 +51,31 @@ export default ProviderProfileScreen = () => {
         <Bio />
         <RatingsReviews />
         <WorkImages />
+        <AppButton 
+          label="Schedule" 
+          marginTop={20} 
+          buttonHeight={45}  
+          onPress={() => navigation.navigate('ServiceStack', { screen: 'ScheduleServiceScreen' })}
+        />
       </AppScrollView>
-      <View 
-        style={{ 
-          flexDirection: 'row',
-          paddingHorizontal: 20,
-          marginBottom: 5
-        }}
-      >
-        <AppButton label="Chat" marginTop={10} buttonHeight={45} />
-      </View>
     </AppSafeAreaView>
   )
 }
 
-const styles = StyleSheet.create({
-  avatar: {
-    alignItems: 'center',
-    marginTop: 15,
-  },
+const styles = StyleSheet.create({ 
+  imgContainer: (imgSize, IMG_SIZE, scrollY) => ({
+    height: imgSize, 
+    width: imgSize,
+    marginTop: scrollY.interpolate({
+      inputRange: [0, 100],
+      outputRange: [0, IMG_SIZE / 2],
+      extrapolate: 'clamp'
+    })
+  }),
+  img: (IMG_SIZE) => ({
+    height: "100%",
+    width: "100%",
+    resizeMode: 'cover',
+    borderRadius: IMG_SIZE / 2
+  })
 })

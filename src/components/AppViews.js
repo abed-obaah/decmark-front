@@ -26,6 +26,7 @@ export const AppScrollView = (props) => {
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps={'handled'}
       contentContainerStyle={{ backgroundColor: theme.PRIMARY_BACKGROUND_COLOR, paddingHorizontal: 20, ...props.style }}
+      { ...props }
     >
       {props.children}
     </ScrollView>

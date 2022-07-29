@@ -1,10 +1,6 @@
-import { 
-  View, 
-  Linking,
-  TouchableOpacity 
-} from 'react-native';
+import { View } from 'react-native';
 import useTheme from '@hooks/useTheme';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { MediumText, LargeText } from '@components/AppText';
 
 export default Bio = () => {
@@ -13,20 +9,7 @@ export default Bio = () => {
   return (
     <>
       <View style={{ marginTop: 15 }}>
-        <View 
-          style={{ 
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            marginBottom: 2 
-          }}
-        >
-          <LargeText>Bio</LargeText>
-          <TouchableOpacity
-            onPress={() => Linking.openURL(`tel:+2348141726099`)}
-          >
-            <Entypo name="old-phone" size={24} color={theme.gold} />
-          </TouchableOpacity>
-        </View>
+        <LargeText style={{marginBottom: 2}}>Bio</LargeText>
         <MediumText>Hi there! I can perfom your cleaning services for you at a fast workrate.</MediumText>
       </View>
 

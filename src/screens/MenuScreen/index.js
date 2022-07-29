@@ -16,7 +16,13 @@ export default MenuScreen = ({ navigation }) => {
 
   return (
     <AppSafeAreaView>
-      <AppView style={{ paddingHorizontal : 20 }}>
+      <AppView 
+        style={{ 
+          paddingHorizontal: 20,
+          borderBottomWidth: 1,
+          borderBottomColor: theme.PRIMARY_BORDER_COLOR
+        }}
+      >
         <TouchableOpacity
           onPress={() => navigation.navigate("ProfileStack", { screen: "AccountScreen" })}
           style={{ 
@@ -88,7 +94,7 @@ export default MenuScreen = ({ navigation }) => {
           >
             <TouchableOpacity onPress={() => setAmountVisible(!amountVisible)}>
               <Ionicons 
-                name={amountVisible ? "eye-off" : "eye"} 
+                name={amountVisible ? "eye-off-outline" : "eye-outline"} 
                 size={26} 
                 color={theme.PRIMARY_TEXT_COLOR} 
               />
@@ -136,7 +142,6 @@ export default MenuScreen = ({ navigation }) => {
                 <MediumText 
                   style={{
                     color: item === userMode ? theme.dark : theme.SECONDARY_TEXT_COLOR,
-                    // fontFamily: 'FONT_SEMI_BOLD',
                     textTransform: 'capitalize',
                   }}
                 >{item}</MediumText>

@@ -72,6 +72,7 @@ export default PhoneNumberInput = ({
           }}
           style={{
             flex: 1,
+            height: '100%',
             fontSize: SIZES.md,
             fontFamily: 'FONT_SEMI_BOLD',
             color: theme.PRIMARY_TEXT_COLOR

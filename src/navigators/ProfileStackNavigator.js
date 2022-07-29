@@ -64,7 +64,7 @@ export default ProfileStackNavigator = () => {
         name='ProviderProfileScreen' 
         component={ProviderProfileScreen} 
         options={{ 
-          headerTitle: "Provider's profile"
+          headerTitle: "Provider's Profile"
         }} 
       />
     </Stack.Navigator>

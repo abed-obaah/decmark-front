@@ -3,6 +3,8 @@ import useTheme from '@hooks/useTheme';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import AddServiceScreen from '@screens/AddServiceScreen';
+import ScheduleServiceScreen from '@screens/ScheduleServiceScreen';
+import OfferDetailScreen from '@screens/OfferDetailScreen';
 
 const Stack = createStackNavigator();
 
@@ -32,7 +34,17 @@ export default ServiceStackNavigator = () => {
       <Stack.Screen 
         name='AddServiceScreen' 
         component={AddServiceScreen} 
-        options={{ headerTitle: "Create service" }} 
+        options={{ headerTitle: "Create Service" }} 
+      />
+      <Stack.Screen 
+        name='ScheduleServiceScreen' 
+        component={ScheduleServiceScreen} 
+        options={{ headerTitle: "Schedule Service" }} 
+      />
+      <Stack.Screen 
+        name='OfferDetailScreen' 
+        component={OfferDetailScreen} 
+        options={{ headerTitle: "Offer Details" }} 
       />
     </Stack.Navigator>
   )

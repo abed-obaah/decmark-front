@@ -1,10 +1,9 @@
-import { StyleSheet, Text, View } from 'react-native'
 import { AppSafeAreaView, AppScrollView } from '@components/AppViews';
 import AppInput from '@components/AppInput'
 import AppButton from '@components/AppButton';
 import AppTextarea from '@components/AppTextarea';
 
-const AddServiceScreen = () => {
+export default ScheduleServiceScreen = () => {
   return (
     <AppSafeAreaView>
       <AppScrollView>
@@ -23,14 +22,8 @@ const AddServiceScreen = () => {
         <AppTextarea 
           label="Description"
         />
-        <AppButton label="Post" />
+        <AppButton label="Submit Request" />
       </AppScrollView>
     </AppSafeAreaView>
   )
 }
-
-export default AddServiceScreen;
-
-const styles = StyleSheet.create({
-
-})

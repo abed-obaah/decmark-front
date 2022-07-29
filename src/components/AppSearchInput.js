@@ -39,6 +39,7 @@ export default AppSearchInput = ({
           }}
           style={{
             flex: 1,
+            height: '100%',
             fontSize: SIZES.md,
             color: theme.PRIMARY_TEXT_COLOR
           }}

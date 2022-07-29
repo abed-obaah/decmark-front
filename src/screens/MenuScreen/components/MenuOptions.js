@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native'
 import { MediumText } from '@components/AppText'
-import { Ionicons, EvilIcons, Entypo } from '@expo/vector-icons';
+import { Ionicons, EvilIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import useTheme from '@hooks/useTheme';
 
 export default MenuOptions = () => {
@@ -14,37 +14,37 @@ export default MenuOptions = () => {
   const menuOptions = [
     {
       lable: "Settings",
-      icon: <Ionicons name="settings" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="settings-outline" size={24} color={theme.PRIMARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Security",
-      icon: <Ionicons name="shield-checkmark" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="shield-checkmark-outline" size={24} color={theme.PRIMARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Verification",
-      icon: <Entypo name="v-card" size={23} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <MaterialCommunityIcons name="card-account-details-star-outline" size={24} color={theme.PRIMARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Notifications",
-      icon: <Ionicons name="notifications" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="notifications-outline" size={24} color={theme.PRIMARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "History",
-      icon: <Ionicons name="time" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="time-outline" size={24} color={theme.PRIMARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "Help & Support",
-      icon: <Ionicons name="help-circle" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="help-circle-outline" size={24} color={theme.PRIMARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
     {
       lable: "My Referral",
-      icon: <Ionicons name="person-add" size={24} color={theme.SECONDARY_TEXT_COLOR} />,
+      icon: <Ionicons name="person-add-outline" size={24} color={theme.PRIMARY_TEXT_COLOR} />,
       screen: "sdfsdf"
     },
   ]

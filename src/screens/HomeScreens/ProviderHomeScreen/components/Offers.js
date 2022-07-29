@@ -120,7 +120,7 @@ export default Offers = () => {
               label="Review & Accept Offer" 
               marginTop={.5}
               buttonHeight={45}
-              // onPress={() => navigation.navigate('ProfileStack', { screen: 'ProviderProfileScreen' })}
+              onPress={() => navigation.navigate('ServiceStack', { screen: 'OfferDetailScreen' })}
             />
           </View>
         </View>
