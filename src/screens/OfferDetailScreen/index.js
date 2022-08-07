@@ -92,9 +92,11 @@ export default OfferDetailScreen = () => {
         <View 
           style={{ 
             flexDirection: 'row',
-            marginBottom: 5
+            marginBottom: 15
           }}
         >
+          <AppButton label="Decline" background='transparent' marginTop={20} buttonHeight={45} />
+          <View style={{ width: 20  }} />
           <AppButton label="Accept" marginTop={20} buttonHeight={45} />
         </View>
       </AppScrollView>

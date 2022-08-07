@@ -12,7 +12,7 @@ import MyAvatar from '../global/MyAvatar';
 
 import ReceiverHomeScreen from '@screens/HomeScreens/ReceiverHomeScreen';
 import ProviderHomeScreen from '@screens/HomeScreens/ProviderHomeScreen';
-import AvailableServiceScreen from '@screens/AvailableServiceScreen';
+import MyServiceScreen from '@screens/MyServiceScreen';
 import MessageScreen from '@screens/MessageScreen';
 import WalletScreen from '@screens/WalletScreen';
 
@@ -95,8 +95,8 @@ export default BottomTabNavigator = ({ navigation }) => {
         }}
       />
       <Tab.Screen 
-        name="AvailableServiceScreen" 
-        component={AvailableServiceScreen}
+        name="MyServiceScreen" 
+        component={MyServiceScreen}
         options={{
           tabBarLabel: 'Services',
           tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
@@ -108,7 +108,13 @@ export default BottomTabNavigator = ({ navigation }) => {
               size={24} 
             />
           ),
-          headerTitle: "Services"
+          headerTitle: "My Services",
+          headerStyle: {
+            backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
+            elevation: 0,
+            shadowOpacity: 0,
+            borderBottomWidth: 0
+          },
         }}
       />
       <Tab.Screen 

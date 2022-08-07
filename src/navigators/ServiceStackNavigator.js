@@ -5,6 +5,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import AddServiceScreen from '@screens/AddServiceScreen';
 import ScheduleServiceScreen from '@screens/ScheduleServiceScreen';
 import OfferDetailScreen from '@screens/OfferDetailScreen';
+import AvailableServiceScreen from '@screens/AvailableServiceScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,7 +18,8 @@ export default ServiceStackNavigator = () => {
       backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
       elevation: 0,
       shadowOpacity: 0,
-      borderBottomWidth: 0,
+      borderBottomWidth: 1,
+      borderBottomColor: theme.PRIMARY_BORDER_COLOR
     },
     headerTitleAlign: 'center',
     headerTitleStyle: { 
@@ -45,6 +47,11 @@ export default ServiceStackNavigator = () => {
         name='OfferDetailScreen' 
         component={OfferDetailScreen} 
         options={{ headerTitle: "Offer Details" }} 
+      />
+      <Stack.Screen 
+        name='AvailableServiceScreen' 
+        component={AvailableServiceScreen} 
+        options={{ headerTitleAlign: 'left', }} 
       />
     </Stack.Navigator>
   )

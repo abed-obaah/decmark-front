@@ -6,52 +6,63 @@ import {
   TouchableOpacity,
   useWindowDimensions
 } from 'react-native'
-import { LargeText, SmallText, MediumText } from "../../../../components/AppText"
-import { AppSectionView } from '../../../../components/AppViews';
-import useTheme from '../../../../hooks/useTheme';
+import { useNavigation } from '@react-navigation/native';
+import { LargeText, SmallText, MediumText } from "@components/AppText"
+import { AppSectionView } from '@components/AppViews';
+import useTheme from '@hooks/useTheme';
 import services from '../constants/services';
 
 export default PopularServices = () => {
   const { width } = useWindowDimensions()
-
   const [theme] = useTheme()
+  const navigation = useNavigation();
 
   return (
     <AppSectionView style={{ paddingHorizontal: 20 }}>
       <LargeText style={{ marginVertical: 5 }}>Popular services</LargeText>
       <View style={styles.boxContainer}>
         {services.map((item, i) =>
-          <TouchableOpacity key={i} style={styles.box}>
-            {item.label ? 
-              <>
-                <Image 
-                  source={item.image}
-                  style={{
-                    width: '100%',
-                    height: (width - 40) * 0.23,
-                    resizeMode: 'cover',
-                    borderRadius: 10
-                  }}
-                />
-                <SmallText style={{ textAlign: 'center', marginTop: 5, color: theme.PRIMARY_TEXT_COLOR }}>{item.label}</SmallText>
-              </>
-            :
-              <View 
+          <TouchableOpacity 
+            key={i} 
+            style={styles.box}
+            onPress={() => 
+              navigation.navigate("ServiceStack", { 
+                screen: "AvailableServiceScreen",
+                params: { service: item.label }
+              })
+            }
+          >
+            <>
+              <Image 
+                source={item.image}
                 style={{
                   width: '100%',
                   height: (width - 40) * 0.23,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  borderRadius: 50,
-                  borderWidth: 1,
-                  borderColor: theme.PRIMARY_BORDER_COLOR
+                  resizeMode: 'cover',
+                  borderRadius: 10
                 }}
-              >
-                <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>More</MediumText>
-              </View>
-            }
+              />
+              <SmallText style={{ textAlign: 'center', marginTop: 5, color: theme.PRIMARY_TEXT_COLOR }}>{item.label}</SmallText>
+            </>
           </TouchableOpacity>
         )}
+        <TouchableOpacity
+          style={styles.box}
+        >
+          <View 
+            style={{
+              width: '100%',
+              height: (width - 40) * 0.23,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRadius: 50,
+              borderWidth: 1,
+              borderColor: theme.PRIMARY_BORDER_COLOR
+            }}
+          >
+            <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>More</MediumText>
+          </View>
+        </TouchableOpacity>
       </View>
     </AppSectionView>
   )

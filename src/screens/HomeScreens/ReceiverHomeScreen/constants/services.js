@@ -27,8 +27,4 @@ export default [
     image: require("../../../../assets/images/services-furniture.jpg"),
     label: "Furniture"
   },
-  {
-    image: require("../../../../assets/images/services-furniture.jpg"),
-    label: null
-  },
 ]

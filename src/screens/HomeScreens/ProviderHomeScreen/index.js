@@ -13,9 +13,13 @@ import Offers from './components/Offers';
 export default ProviderHomeScreen = ({ navigation }) => {
   const [theme] = useTheme()
   const [x, y, isModeSwitch] = useSwitchUserMode()
-  const [activeTab, setActiveTab] = useState(1)
 
-  const tabs = [ <Offers />, <MyServices />, <Offers /> ]
+  const [activeTab, setActiveTab] = useState(1)
+  const tabs = {
+    0: <Offers />,
+    1: <MyServices />,
+    2: <Offers />
+  }
   
   return (
     <>

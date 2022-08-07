@@ -27,7 +27,7 @@ export default RootNavigator = () => {
           screenOptions={{ headerShown: false }}
           initialRouteName="AuthStackNavigator"
         >
-          {/* <Stack.Screen name='AuthStackNavigator' component={AuthStackNavigator} /> */}
+          <Stack.Screen name='AuthStackNavigator' component={AuthStackNavigator} />
           <Stack.Screen name='BottomTabNavigator' component={BottomTabNavigator} />
           <Stack.Screen name='ProfileStack' component={ProfileStackNavigator} />
           <Stack.Screen name='ServiceStack' component={ServiceStackNavigator} />

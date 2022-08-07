@@ -1,18 +1,19 @@
 import React from 'react'
 import { 
   View,
-  TouchableOpacity, 
+  TouchableOpacity,
+  useWindowDimensions 
 } from 'react-native'
 import useTheme from '../hooks/useTheme'
 import { MediumText } from './AppText'
 
 export default GroupTab = ({ tabs, activeTab, setActiveTab }) => {
   const [theme] = useTheme()
+  const { width } = useWindowDimensions()
 
   return (
     <View 
-      style={{ 
-        paddingHorizontal: 20,
+      style={{
         flexDirection: 'row',
         justifyContent: 'space-between',
         borderBottomWidth: 1,
@@ -24,6 +25,8 @@ export default GroupTab = ({ tabs, activeTab, setActiveTab }) => {
           key={i}
           onPress={() => setActiveTab(i)}
           style={{
+            width: width / tabs.length,
+            alignItems: 'center',
             paddingHorizontal: 10,
             paddingBottom: 5,
             borderBottomWidth: 3,
