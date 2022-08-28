@@ -28,7 +28,7 @@ export default GroupTab = ({ tabs, activeTab, setActiveTab }) => {
             width: width / tabs.length,
             alignItems: 'center',
             paddingHorizontal: 10,
-            paddingBottom: 5,
+            paddingBottom: 10,
             borderBottomWidth: 3,
             borderBottomColor: activeTab === i ? theme.gold : 'transparent',
           }}

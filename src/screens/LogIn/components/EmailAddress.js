@@ -1,7 +1,7 @@
 import React from 'react'
-import AppButton from '../../../components/AppButton'
-import AppInput from '../../../components/AppInput'
-import { LinkText } from '../../../components/AppText';
+import AppButton from '@components/AppButton'
+import AppInput from '@components/AppInput'
+import { LinkText } from '@components/AppText';
 import { useNavigation } from '@react-navigation/native';
 
 export default EmailAddress = () => {

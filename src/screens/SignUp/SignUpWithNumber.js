@@ -7,7 +7,8 @@ import CompanyFields from './components/CompanyFields';
 import useTheme from '../../hooks/useTheme';
 import { useHeaderHeight } from '@react-navigation/elements';
 
-export default SignUpWithNumber = () => {
+export default SignUpWithNumber = ({ route }) => {
+  const { phoneNumber } = route.params;
   const [theme] = useTheme()
   const headerHeight = useHeaderHeight();
   
@@ -24,17 +25,23 @@ export default SignUpWithNumber = () => {
         />
       </View>
       <AppScrollView>
-        <MediumText style={{ marginTop: 5 }}>Number: </MediumText>
-        <LinkText>+2348141726099</LinkText>
+        <View
+          style={{ alignItems: 'center' }}
+        >
+          <MediumText style={{ marginTop: 5 }}>Number: </MediumText>
+          <LinkText>+234{phoneNumber}</LinkText>
+        </View>
         {activeTab ?
           <CompanyFields
             theme={theme}
+            phoneNumber={phoneNumber}
             toggleReferralID={toggleReferralID}
             setToggleReferralID={setToggleReferralID} 
           />
         :
           <IndividualFields 
             theme={theme}
+            phoneNumber={phoneNumber}
             toggleReferralID={toggleReferralID}
             setToggleReferralID={setToggleReferralID} 
           />

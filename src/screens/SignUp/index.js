@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, View, Image } from 'react-native'
 import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
 import { XtraLargeText, MediumText, LinkText, SmallText } from '../../components/AppText';
@@ -7,15 +7,33 @@ import useTheme from '../../hooks/useTheme';
 import { SIZES } from '../../constants/theme';
 
 export default SignUp = ({ navigation }) => {
-  const [theme] = useTheme()
+  const [theme] = useTheme();
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [error, setError] = useState(null);
+
+  const handleValidateNumber = () => {
+    if((phoneNumber.length > 10) || (phoneNumber.length < 10)) {
+      setError("Number should be 10 digits")
+    } 
+    else {
+      setError(null)
+      setPhoneNumber('')
+      navigation.navigate("SignUpWithNumber", { phoneNumber: phoneNumber })
+    }
+  }
 
   return (
     <AppSafeAreaView>
       <AppScrollView>
         <XtraLargeText>Welcome to DecMark!</XtraLargeText>
         <MediumText style={{ paddingVertical: 10 }}>Before we proceed, please enter your active mobile number.</MediumText>
-        <PhoneNumberInput />
-        <AppButton label='Next' onPress={() => navigation.navigate("SignUpWithNumber")} />
+        <PhoneNumberInput
+          error={error}
+          onFocus={() => setError(null)}
+          placeholder='Eg: 80 XXXX XXXX'
+          onChangeText={(value) => setPhoneNumber(value)}
+        />
+        <AppButton label='Next' onPress={handleValidateNumber} />
 
         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 50}}>
           <View style={[styles.line, {backgroundColor: theme.PRIMARY_BORDER_COLOR}]} />

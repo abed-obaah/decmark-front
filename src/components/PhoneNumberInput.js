@@ -78,6 +78,7 @@ export default PhoneNumberInput = ({
             color: theme.PRIMARY_TEXT_COLOR
           }}
           keyboardType="numeric"
+          placeholderTextColor={theme.SECONDARY_TEXT_COLOR}
           {...props}
         />
       </View>
