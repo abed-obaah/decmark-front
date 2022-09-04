@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native'
 import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
-import { MediumText, LinkText } from '../../components/AppText';
 import IndividualFields from './components/IndividualFields';
 import CompanyFields from './components/CompanyFields';
 import useTheme from '../../hooks/useTheme';
@@ -25,12 +24,6 @@ export default SignUpWithNumber = ({ route }) => {
         />
       </View>
       <AppScrollView>
-        <View
-          style={{ alignItems: 'center' }}
-        >
-          <MediumText style={{ marginTop: 5 }}>Number: </MediumText>
-          <LinkText>+234{phoneNumber}</LinkText>
-        </View>
         {activeTab ?
           <CompanyFields
             theme={theme}

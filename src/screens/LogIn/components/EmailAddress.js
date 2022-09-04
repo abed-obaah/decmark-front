@@ -1,50 +1,44 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Keyboard } from 'react-native';
 import AppButton from '@components/AppButton'
 import AppInput from '@components/AppInput'
 import { LinkText } from '@components/AppText';
 import { useNavigation } from '@react-navigation/native';
+import useOnChange from '@hooks/forms/useOnChange';
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, resetAuth } from '@redux/authSlice';
+import useValidateLogin from '../hooks/useValidateLogin';
 
 export default EmailAddress = () => {
-  const navigation = useNavigation()
-  const [inputs, setInputs] = React.useState({
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const { success } = useSelector((state) => state.auth);
+  const { inputs, handleChangeInput } = useOnChange({
     email: '',
     password: ''
-  })
-  const [errors, setErrors] = React.useState({})
+  });
+  const { errors, handleError, hanleValidateLogin } = useValidateLogin(inputs, 'email');
 
-  const handleOnChange = (value, input) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [input]: value
-    }))
-  }
-
-  const handleError = (errMsg, input) => {
-    setErrors((prevState) => ({
-      ...prevState,
-      [input]: errMsg
-    }))
-  }
-
-  const handleValidate = () => {
-    let valid = true
-    if(!inputs.email) {
-      handleError("Please enter your email", "email")
-      valid = false
-    } else if(!inputs.email.match(/\S+@\S+\.\S+/)) {
-      handleError("Please enter a valid email address", "email")
+  useEffect(() => {
+    if(success) {
+      navigation.replace('BottomTabNavigator', { screen: 'HomeScreen' })
     }
 
-    if(!inputs.password) {
-      handleError("Please enter your password", "password")
-    }
+    dispatch(resetAuth())
+  }, [success])
+  
 
+  const handleLoginUser = () => {
+    Keyboard.dismiss();
+    const valid = hanleValidateLogin();
+    const userData = {
+      handle: inputs.email,
+	    password: inputs.password
+    }
     if(valid) (
-      handleLogin()
+      dispatch(loginUser(userData))
     )
   }
-
-  const handleLogin = () => {}
 
   return (
     <>
@@ -52,21 +46,21 @@ export default EmailAddress = () => {
         label="Email"
         autoCapitalize="none"
         error={errors.email}
-        onFocus={() => handleError(null, "email")}
-        onChangeText={(value) => handleOnChange(value, 'email')}
+        onFocus={() => handleError("email", null)}
+        onChangeText={(value) => handleChangeInput('email', value)}
       />
       <AppInput 
         label="Password"
         password
         error={errors.password}
-        onFocus={() => handleError(null, "password")}
-        onChangeText={(value) => handleOnChange(value, 'password')}
+        onFocus={() => handleError("password", null)}
+        onChangeText={(value) => handleChangeInput('password', value)}
       />
       <LinkText 
         style={{ fontSize: 15, paddingTop: 2 }}
         onPress={() => navigation.navigate("ForgotPasswordScreen")}
       >Forgot password?</LinkText>
-      <AppButton label="Login" onPress={handleValidate} />
+      <AppButton label="Login" onPress={handleLoginUser} />
     </>
   )
 }

@@ -12,7 +12,7 @@ export default OTPScreen = ({navigation}) => {
   const MAX_CODE_LENGTH = 5
 
   const handleVerifyOtp = () => {
-    navigation.navigate('BottomTabNavigator', { screen: 'ReceiverHomeScreen' })
+    navigation.navigate('BottomTabNavigator', { screen: 'HomeScreen' })
   }
 
   return (

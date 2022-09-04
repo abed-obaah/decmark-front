@@ -1,51 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Keyboard } from 'react-native';
 import AppButton from '@components/AppButton'
 import AppInput from '@components/AppInput'
+import { useDispatch, useSelector } from 'react-redux';
 import PhoneNumberInput from '@components/PhoneNumberInput';
 import { useNavigation } from '@react-navigation/native';
 import { LinkText } from '@components/AppText';
+import useValidateLogin from '../hooks/useValidateLogin';
+import useOnChange from '@hooks/forms/useOnChange';
+import { loginUser, resetAuth } from '../../../redux/authSlice';
 
 export default PhoneNumber = () => {
-  const navigation = useNavigation()
-  const [inputs, setInputs] = React.useState({
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+  const { success } = useSelector((state) => state.auth);
+  const { inputs, handleChangeInput } = useOnChange({
     phoneNumber: '',
     password: ''
-  })
-  const [errors, setErrors] = React.useState({})
+  });
+  const { errors, handleError, hanleValidateLogin } = useValidateLogin(inputs, 'phoneNumber');
 
-  const handleOnChange = (value, input) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [input]: value
-    }))
-  }
-
-  const handleError = (errMsg, input) => {
-    setErrors((prevState) => ({
-      ...prevState,
-      [input]: errMsg
-    }))
-  }
-
-  const handleValidate = () => {
-    let valid = true
-
-    if(!inputs.phoneNumber) {
-      handleError("Please enter your phone number", "phoneNumber")
-      valid = false
-    }
-    if(!inputs.password) {
-      handleError("Please enter your password", "password")
-      valid = false
+  useEffect(() => {
+    if(success) {
+      navigation.replace('BottomTabNavigator', { screen: 'HomeScreen' })
     }
 
+    dispatch(resetAuth())
+  }, [success])
+  
+
+  const handleLoginUser = () => {
+    Keyboard.dismiss();
+    const valid = hanleValidateLogin();
+    const userData = {
+      handle: '234' + inputs.phoneNumber,
+	    password: inputs.password
+    }
     if(valid) (
-      handleLogin()
+      dispatch(loginUser(userData))
     )
-  }
-
-  const handleLogin = () => {
-    navigation.navigate('OTPScreen')
   }
 
   return (
@@ -53,21 +46,21 @@ export default PhoneNumber = () => {
       <PhoneNumberInput 
         label="Phone Number"
         error={errors.phoneNumber}
-        onFocus={() => handleError(null, "phoneNumber")}
-        onChangeText={(value) => handleOnChange(value, 'phoneNumber')}
+        onFocus={() => handleError("phoneNumber", null)}
+        onChangeText={(value) => handleChangeInput('phoneNumber', value)}
       />
       <AppInput 
         label="Password"
         password
         error={errors.password}
-        onFocus={() => handleError(null, "password")}
-        onChangeText={(value) => handleOnChange(value, 'password')}
+        onFocus={() => handleError("password", null)}
+        onChangeText={(value) => handleChangeInput('password', value)}
       />
       <LinkText 
         style={{ fontSize: 15, paddingTop: 2 }}
         onPress={() => navigation.navigate("ForgotPasswordScreen")}
       >Forgot password?</LinkText>
-      <AppButton label="Login" onPress={handleValidate} />
+      <AppButton label="Login" onPress={handleLoginUser} />
     </>
   )
 }

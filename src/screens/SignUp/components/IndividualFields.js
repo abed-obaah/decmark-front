@@ -1,80 +1,72 @@
-import React, { useState } from 'react'
-import AppButton from '../../../components/AppButton'
-import AppInput from '../../../components/AppInput'
+import React, { useEffect } from 'react'
+import AppButton from '@components/AppButton'
+import AppInput from '@components/AppInput'
 import { View } from 'react-native'
-import { SIZES } from '../../../constants/theme'
+import { SIZES } from '@constants/theme'
 import { AntDesign } from '@expo/vector-icons';
-import { MediumText } from '../../../components/AppText'
-import { useSelector, useDispatch } from 'react-redux'
-import { registerUser } from '../../../redux/authSlice'
+import { MediumText } from '@components/AppText'
+import { useDispatch, useSelector } from 'react-redux'
+import { registerUser } from '@redux/authSlice';
+import { useNavigation } from '@react-navigation/native';
+import useOnChange from '@hooks/forms/useOnChange';
+import { resetAuth } from '@redux/authSlice';
 
 export default IndividualFields = ({ theme, toggleReferralID, setToggleReferralID, phoneNumber }) => {
+  const navigation = useNavigation();
   const dispatch = useDispatch();
-  const [inputs, setInputs] = useState({
+  const { success } = useSelector((state) => state.auth);
+  const { inputs, errors, handleError, handleChangeInput, handleValidateForm } = useOnChange({
     first_name: "",
 		last_name: "",
 		email: "",
-		phone: phoneNumber,
+		phone: "234" + phoneNumber,
 		password: "",
-		password_confirmation: "",
 		accept_terms: true
   });
-  const [errors, setErrors] = useState({})
 
-  const handleOnChange = (value, input) => {
-    setInputs((prevState) => ({
-      ...prevState,
-      [input]: value
-    }))
-  }
-
-  const handleError = (errMsg, input) => {
-    setErrors((prevState) => ({
-      ...prevState,
-      [input]: errMsg
-    }))
-  }
-
-  const handleValidate = () => {
-    let valid = true
-    if(!inputs.email) {
-      handleError("Please enter your email", "email")
-      valid = false
-    } else if(!inputs.email.match(/\S+@\S+\.\S+/)) {
-      handleError("Please enter a valid email address", "email")
+  useEffect(() => {
+    if(success) {
+      navigation.navigate("LogIn")
     }
 
-    if(!inputs.password) {
-      handleError("Please enter your password", "password")
-    }
-
-    if(valid) (
-      handleLogin()
-    )
-  }
-
-  const handleLogin = () => {}
+    dispatch(resetAuth())
+  }, [success, navigation, dispatch])
+  
 
   const handleRegisterUser = () => {
-    // dispatch(registerUser())
-    console.log(inputs)
+    const valid = handleValidateForm();
+    if(valid) (
+      dispatch(registerUser(inputs))
+    )
   }
 
   return (
     <>
       <AppInput 
         label="First Name"
+        error={errors.first_name}
+        onFocus={() => handleError("first_name", null)}
+        onChangeText={(value) => handleChangeInput('first_name', value)}
       />
       <AppInput 
         label="Last Name"
+        error={errors.last_name}
+        onFocus={() => handleError("last_name", null)}
+        onChangeText={(value) => handleChangeInput('last_name', value)}
       />
       <AppInput 
         label="Email"
         autoCapitalize='none'
+        error={errors.email}
+        onFocus={() => handleError("email", null)}
+        onChangeText={(value) => handleChangeInput('email', value)}
       />
       <AppInput 
         label="Password"
         password
+        error={errors.password}
+        onFocus={() => handleError(null, "password")}
+        onChangeText={(value) => handleChangeInput('password', value)}
       />
 
       <View style={{ marginTop: 20 }}>
@@ -89,13 +81,13 @@ export default IndividualFields = ({ theme, toggleReferralID, setToggleReferralI
           <AntDesign
             name={toggleReferralID ? "caretdown" : "caretright"}
             style={{ 
-              color: theme.SECONDARY_TEXT_COLOR,
+              color: theme.PRIMARY_TEXT_COLOR,
               fontSize: 13.5,
               marginRight: 3.5
             }}
             onPress={() => setToggleReferralID(!toggleReferralID)}
           />
-          <MediumText onPress={() => setToggleReferralID(!toggleReferralID)}>Referral ID (Optional)</MediumText>
+          <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }} onPress={() => setToggleReferralID(!toggleReferralID)}>Referral ID (Optional)</MediumText>
         </View>
         {toggleReferralID &&
           <AppInput marginTop={5} />

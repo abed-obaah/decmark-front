@@ -3,6 +3,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import useTheme from '@hooks/useTheme';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useSelector } from 'react-redux'
+import AppLoader from '@components/ui/AppLoader';
+import AppAlert from '@components/ui/AppAlert';
 
 import Onboarding from '@screens/Onboarding';
 import WelcomeScreen from '@screens/WelcomeScreen';
@@ -15,7 +18,8 @@ import ForgotPasswordScreen from '@screens/ForgotPasswordScreen';
 const Stack = createStackNavigator();
 
 export default AuthStackNavigator = () => {
-  const [theme] = useTheme()
+  const { isLoading, error } = useSelector((state) => state.auth);
+  const [theme] = useTheme();
 
   const [isAppFirstLaunch, setIsAppFirstLaunch] = useState(null)
 
@@ -51,6 +55,8 @@ export default AuthStackNavigator = () => {
   return (
     isAppFirstLaunch !== null && (
       <>
+        {isLoading && <AppLoader />}
+        {error && <AppAlert message={error} />}
         <Stack.Navigator 
           screenOptions={{ headerShown: false }}
           initialRouteName={isAppFirstLaunch ? 'Onboarding' : 'WelcomeScreen'}
