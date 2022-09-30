@@ -1,19 +1,18 @@
 import React from 'react'
 import { View, Image } from 'react-native';
+import { useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import useTheme from '@hooks/useTheme';
 
-export default MyAvatar = ({ size }) => {
-  const [theme] = useTheme()
-
-  // const myAvatar = null
-  const myAvatar = require("@assets/images/my_avatar.png")
+export default MyAvatar = ({ size, iconSize = 20 }) => {
+  const [theme] = useTheme();
+  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <View style={{ height: size, width: size }}>
-      {myAvatar ? 
+      {userInfo.data.profile_img ? 
         <Image 
-          source={myAvatar} 
+          source={userInfo.data.profile_img}
           style={{
             height: "100%",
             width: "100%",
@@ -32,7 +31,7 @@ export default MyAvatar = ({ size }) => {
             borderRadius: 150
           }}
         >
-          <Ionicons name="person" size={22.5} color={theme.PRIMARY_TEXT_COLOR} />
+          <Ionicons name="person" size={iconSize} color={theme.PRIMARY_TEXT_COLOR} />
         </View>
       }
     </View>

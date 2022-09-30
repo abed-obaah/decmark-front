@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from 'styled-components';
 import useTheme from '@hooks/useTheme';
 import * as NavigationBar from 'expo-navigation-bar';
 import { StatusBar } from 'expo-status-bar';
+import { useSelector, useDispatch } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { setUserInfo } from '@redux/authSlice';
 
 import AuthStackNavigator from './AuthStackNavigator';
 import BottomTabNavigator from './BottomTabNavigator';
@@ -14,10 +17,26 @@ import ServiceStackNavigator from './ServiceStackNavigator';
 const Stack = createStackNavigator();
 
 export default RootNavigator = () => {
-  const [theme] = useTheme()
+  const [theme] = useTheme();
+  const dispatch = useDispatch();
+  const { userInfo, success } = useSelector((state) => state.auth)
 
   NavigationBar.setBackgroundColorAsync(theme.NAVBAR_BACKGROUND_COLOR)
   NavigationBar.setButtonStyleAsync(theme.NAVBAR_BUTTON_COLOR);
+
+  useEffect(() => {
+    getUserInfo();
+  }, [success])
+  
+  const getUserInfo = async () => {
+    try {
+      const info = await AsyncStorage.getItem('user_info')
+      dispatch(setUserInfo(info != null ? JSON.parse(info) : null))
+    } 
+    catch(e) {
+      // error reading value
+    }
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -25,12 +44,17 @@ export default RootNavigator = () => {
       <NavigationContainer>
         <Stack.Navigator 
           screenOptions={{ headerShown: false }}
-          initialRouteName="AuthStackNavigator"
+          initialRouteName="AuthStack"
         >
-          <Stack.Screen name='AuthStackNavigator' component={AuthStackNavigator} />
-          <Stack.Screen name='BottomTabNavigator' component={BottomTabNavigator} />
-          <Stack.Screen name='ProfileStack' component={ProfileStackNavigator} />
-          <Stack.Screen name='ServiceStack' component={ServiceStackNavigator} />
+          {!userInfo ?
+            <Stack.Screen name='AuthStack' component={AuthStackNavigator} />
+            :
+            <>
+              <Stack.Screen name='BottomTabNavigator' component={BottomTabNavigator} />
+              <Stack.Screen name='ProfileStack' component={ProfileStackNavigator} />
+              <Stack.Screen name='ServiceStack' component={ServiceStackNavigator} />
+            </>
+          }
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

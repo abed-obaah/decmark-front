@@ -21,12 +21,9 @@ export default EmailAddress = () => {
 
   useEffect(() => {
     if(success) {
-      navigation.replace('BottomTabNavigator', { screen: 'HomeScreen' })
+      dispatch(resetAuth())
     }
-
-    dispatch(resetAuth())
   }, [success])
-  
 
   const handleLoginUser = () => {
     Keyboard.dismiss();

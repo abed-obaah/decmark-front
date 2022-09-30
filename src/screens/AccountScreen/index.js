@@ -6,11 +6,13 @@ import {
 import { AppScrollView, AppSafeAreaView } from '@components/AppViews'
 import MyAvatar from '../../global/MyAvatar'
 import { Ionicons } from '@expo/vector-icons';
+import { useSelector } from 'react-redux';
 import useTheme from '@hooks/useTheme';
 import { MediumText, LargeText } from '@components/AppText';
 
 export default AccountScreen = () => {
-  const [theme] = useTheme()
+  const [theme] = useTheme();
+  const { userInfo } = useSelector((state) => state.auth);
 
   const options = [
     {
@@ -36,7 +38,7 @@ export default AccountScreen = () => {
       <AppScrollView>
         <View style={styles.avatar}>
           <View style={{ position: 'relative' }}>
-            <MyAvatar size={200} />
+            <MyAvatar size={200} iconSize={100} />
             <TouchableOpacity style={[{ backgroundColor: theme.gold }, styles.editAvatar]}>
               <Ionicons name="ios-camera" size={22} color={theme.dark} />
             </TouchableOpacity>
@@ -48,8 +50,8 @@ export default AccountScreen = () => {
             marginVertical: 15
           }}
         >
-          <LargeText>John Adibe</LargeText>
-          <MediumText>john.adibe@decmark.com</MediumText>
+          <LargeText>{userInfo.data.first_name} {userInfo.data.last_name}</LargeText>
+          <MediumText>{userInfo.data.email}</MediumText>
         </View>
         <View style={{ marginTop: 20 }}>
           {options.map((item, i) => 

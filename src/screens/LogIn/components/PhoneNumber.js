@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { LinkText } from '@components/AppText';
 import useValidateLogin from '../hooks/useValidateLogin';
 import useOnChange from '@hooks/forms/useOnChange';
-import { loginUser, resetAuth } from '../../../redux/authSlice';
+import { loginUser, resetAuth } from '@redux/authSlice';
 
 export default PhoneNumber = () => {
   const navigation = useNavigation();
@@ -22,10 +22,8 @@ export default PhoneNumber = () => {
 
   useEffect(() => {
     if(success) {
-      navigation.replace('BottomTabNavigator', { screen: 'HomeScreen' })
+      dispatch(resetAuth())
     }
-
-    dispatch(resetAuth())
   }, [success])
   
 

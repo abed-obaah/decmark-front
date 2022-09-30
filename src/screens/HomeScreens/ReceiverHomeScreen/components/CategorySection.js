@@ -1,12 +1,15 @@
 import React from 'react'
-import { View, FlatList, TouchableOpacity } from 'react-native'
+import { View, FlatList, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 import { AppSectionView } from '../../../../components/AppViews'
 import { LargeText, MediumText } from "../../../../components/AppText"
 import AppSearchInput from '../../../../components/AppSearchInput'
 import useTheme from '../../../../hooks/useTheme';
 
 export default CategorySection = () => {
-  const [ theme ] = useTheme()
+  const [ theme ] = useTheme();
+  const { userInfo } = useSelector((state) => state.auth);
+
   const categories = [
     {
       name: "General",
@@ -29,7 +32,7 @@ export default CategorySection = () => {
   return (
     <AppSectionView>
       <View style={{ paddingHorizontal: 20 }}>
-        <LargeText style={{ marginBottom: 10 }}>Hi, John 👋</LargeText>
+        <LargeText style={{ marginBottom: 10 }}>Hi, {userInfo.data.first_name} 👋</LargeText>
         <AppSearchInput placeholder="Search for a service" />
       </View>
       <FlatList 

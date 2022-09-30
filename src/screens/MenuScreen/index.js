@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { View, TouchableOpacity } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import { useSelector } from 'react-redux';
 import { AppView, AppScrollView, AppSafeAreaView } from '../../components/AppViews'
 import MyAvatar from '../../global/MyAvatar';
 import { SmallText, LargeText, MediumText } from '@components/AppText'
@@ -8,11 +9,15 @@ import { Ionicons, EvilIcons } from '@expo/vector-icons';
 import useTheme from '@hooks/useTheme';
 import useSwitchUserMode from '@hooks/useSwitchUserMode';
 import MenuOptions from './components/MenuOptions';
+import { logoutUser } from '@redux/authSlice';
+import { useDispatch } from 'react-redux';
 
 export default MenuScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   const [theme] = useTheme()
   const [userMode, handleToggleUserMode] = useSwitchUserMode()
   const [amountVisible, setAmountVisible] = useState(false)
+  const { userInfo } = useSelector((state) => state.auth);
 
   return (
     <AppSafeAreaView>
@@ -38,20 +43,9 @@ export default MenuScreen = ({ navigation }) => {
             }}
           >
             <MyAvatar size={45} />
-            <View style={{ width: 10 }} />
-            <View>
-              <LargeText>@johnphealipto</LargeText>
-              <TouchableOpacity
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginTop: 5
-                }}
-                onPress={() => Clipboard.setString('T76HJK9_DM')} 
-              >
-                <SmallText style={{ marginRight: 5 }}>UID: T76HJK9_DM</SmallText>
-                <Ionicons name="copy" size={15} color={theme.SECONDARY_TEXT_COLOR} />
-              </TouchableOpacity>
+            <View style={{ marginLeft: 10 }}>
+              <LargeText>@{userInfo.data.first_name.toLowerCase()}_{userInfo.data.last_name.toLowerCase()}</LargeText>
+              <SmallText>{userInfo.data.email}</SmallText>
             </View>
            </View>
           <EvilIcons 
@@ -164,14 +158,14 @@ export default MenuScreen = ({ navigation }) => {
           borderTopColor: theme.PRIMARY_BORDER_COLOR
         }}
       >
-        <TouchableOpacity  style={{ paddingVertical: 10 }}>
+        <TouchableOpacity style={{ paddingVertical: 10 }} onPress={() => dispatch(logoutUser())}>
           <Ionicons 
             name="log-out-outline"
             size={26} 
             color={theme.PRIMARY_TEXT_COLOR} 
           />
         </TouchableOpacity>
-        <TouchableOpacity  style={{ paddingVertical: 10 }}>
+        <TouchableOpacity style={{ paddingVertical: 10 }}>
           <Ionicons 
             name="heart-outline"
             size={26} 

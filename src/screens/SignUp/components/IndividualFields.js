@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import AppButton from '@components/AppButton'
 import AppInput from '@components/AppInput'
-import { View } from 'react-native'
+import { View, Keyboard } from 'react-native'
 import { SIZES } from '@constants/theme'
 import { AntDesign } from '@expo/vector-icons';
 import { MediumText } from '@components/AppText'
@@ -21,6 +21,7 @@ export default IndividualFields = ({ theme, toggleReferralID, setToggleReferralI
 		email: "",
 		phone: "234" + phoneNumber,
 		password: "",
+		gender: "male",
 		accept_terms: true
   });
 
@@ -34,6 +35,7 @@ export default IndividualFields = ({ theme, toggleReferralID, setToggleReferralI
   
 
   const handleRegisterUser = () => {
+    Keyboard.dismiss()
     const valid = handleValidateForm();
     if(valid) (
       dispatch(registerUser(inputs))

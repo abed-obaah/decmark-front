@@ -2,7 +2,8 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = 'https://staging.decmark.com/v1/user';
+// const BASE_URL = 'https://staging.decmark.com/v1/user';
+const BASE_URL = 'https://decmark.com/v1/user';
 
 const config = {
   headers: {
@@ -49,16 +50,6 @@ export const loginUser = createAsyncThunk(
   }
 )
 
-const getUserInfo = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('user_info')
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } 
-  catch(e) {
-    // error reading value
-  }
-}
-
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
@@ -68,10 +59,17 @@ const authSlice = createSlice({
     error: null
   },
   reducers: {
+    setUserInfo: (state, action) => {
+      state.userInfo = action.payload
+    },
     resetAuth: state => {
       state.isLoading = false
       state.success = null
       state.error = null
+    },
+    logoutUser: state => {
+      state.userInfo = null
+      AsyncStorage.removeItem('user_info')
     }
   },
   extraReducers: {
@@ -95,7 +93,6 @@ const authSlice = createSlice({
     [loginUser.fulfilled]: (state, action) => {
       state.isLoading = false
       state.success = true
-      state.userInfo = action.payload
     },
     [loginUser.rejected]: (state, action) => {
       state.isLoading = false
@@ -104,5 +101,5 @@ const authSlice = createSlice({
   }
 })
 
-export const { resetAuth } = authSlice.actions;
+export const { resetAuth, logoutUser, setUserInfo } = authSlice.actions;
 export default authSlice.reducer;
