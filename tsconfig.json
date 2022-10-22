@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@globals/*": ["./src/globals/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@components/*": ["./src/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@navigations/*": ["src/navigations/*"],
+      "@redux/*": ["./src/redux/*"]
+    }
+  },
+  "extends": "expo/tsconfig.base",
+  "exclude": ["node_modules", "babel.config.js"]
+}

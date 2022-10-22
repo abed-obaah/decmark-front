@@ -2,11 +2,11 @@ import React from 'react'
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 import { LargeText } from '../AppText';
 import { COLORS, SIZES } from '@constants/theme';
-import { useDispatch } from 'react-redux';
 import { resetAuth } from '@redux/authSlice';
+import { useAppDispatch } from '@hooks/useAppStore';
 
 const AppAlert = ({ message }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <View style={[ StyleSheet.absoluteFillObject, styles.body ]}>

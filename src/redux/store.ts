@@ -8,5 +8,8 @@ export const store = configureStore({
     theme: themeReducer,
     user: userReducer,
     auth: authReducer,
-  }
-})
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

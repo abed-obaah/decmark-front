@@ -1,47 +1,46 @@
-import React from 'react'
-import { 
-  View,
-  TouchableOpacity,
-  useWindowDimensions 
-} from 'react-native'
-import useTheme from '../hooks/useTheme'
-import { MediumText } from './AppText'
+import React from "react";
+import { View, TouchableOpacity, useWindowDimensions } from "react-native";
+import useTheme from "../hooks/useAppTheme";
+import { MediumText } from "./AppText";
 
 export default GroupTab = ({ tabs, activeTab, setActiveTab }) => {
-  const [theme] = useTheme()
-  const { width } = useWindowDimensions()
+  const { theme } = useTheme();
+  const { width } = useWindowDimensions();
 
   return (
-    <View 
+    <View
       style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+        flexDirection: "row",
+        justifyContent: "space-between",
         borderBottomWidth: 1,
         borderBottomColor: theme.PRIMARY_BORDER_COLOR,
       }}
     >
-      {tabs.map((item, i) =>
-        <TouchableOpacity 
+      {tabs.map((item, i) => (
+        <TouchableOpacity
           key={i}
           onPress={() => setActiveTab(i)}
           style={{
             width: width / tabs.length,
-            alignItems: 'center',
+            alignItems: "center",
             paddingHorizontal: 10,
             paddingBottom: 10,
             borderBottomWidth: 3,
-            borderBottomColor: activeTab === i ? theme.gold : 'transparent',
+            borderBottomColor: activeTab === i ? theme.gold : "transparent",
           }}
         >
           <MediumText
-            style={{ 
-              color: activeTab === i ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR
+            style={{
+              color:
+                activeTab === i
+                  ? theme.PRIMARY_TEXT_COLOR
+                  : theme.SECONDARY_TEXT_COLOR,
             }}
           >
             {item}
           </MediumText>
         </TouchableOpacity>
-      )}
+      ))}
     </View>
-  )
-}
+  );
+};

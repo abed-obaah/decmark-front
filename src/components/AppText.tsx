@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { SIZES } from '../constants/theme';
+import { SIZES } from '@constants/theme';
 
 export const XtraLargeText = styled.Text`
   color: ${({theme}) => theme.PRIMARY_TEXT_COLOR};

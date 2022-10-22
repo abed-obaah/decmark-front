@@ -1,17 +1,30 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { COLORS, SIZES } from "@constants/theme";
-import { Feather } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 import { MediumText, ErrorText } from "./AppText";
-import useTheme from "@hooks/useAppTheme";
+import useAppTheme from "@hooks/useAppTheme";
 
-export default AppTextarea = ({
+interface AppInputProps {
+  label?: string;
+  password?: boolean;
+  error?: string;
+  marginTop?: number;
+  onFocus?: () => void;
+  autoCapitalize?: "none" | "sentences" | "words" | "characters";
+}
+
+const AppInput: FC<AppInputProps> = ({
   label,
+  password,
   error,
   marginTop,
   onFocus = () => {},
+  autoCapitalize,
+  ...props
 }) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
+  const [hidePassword, setHidePassword] = useState(password);
   const [backgroundColor, setBackgroundColor] = useState(
     theme.INPUT_BACKGROUND_COLOR
   );
@@ -21,10 +34,7 @@ export default AppTextarea = ({
     <View style={{ marginTop: marginTop ? marginTop : 20 }}>
       {label && (
         <MediumText
-          style={{
-            marginBottom: 3,
-            color: theme.PRIMARY_TEXT_COLOR,
-          }}
+          style={{ marginBottom: 3, color: theme.PRIMARY_TEXT_COLOR }}
         >
           {label}
         </MediumText>
@@ -45,17 +55,30 @@ export default AppTextarea = ({
           onFocus={() => {
             onFocus();
             setBackgroundColor(theme.PRIMARY_BACKGROUND_COLOR);
-            setBorderColor(theme.gold);
+            setBorderColor(COLORS.gold);
           }}
           style={{
-            textAlignVertical: "top",
+            flex: 1,
+            height: "100%",
             fontSize: SIZES.md,
             fontFamily: "FONT_SEMI_BOLD",
             color: theme.PRIMARY_TEXT_COLOR,
           }}
-          multiline={true}
-          numberOfLines={5}
+          secureTextEntry={hidePassword}
+          autoCapitalize={autoCapitalize}
+          {...props}
         />
+        {password && (
+          <Ionicons
+            name={hidePassword ? "ios-eye-off" : "ios-eye"}
+            style={{
+              color: COLORS.gold,
+              fontSize: 22,
+              marginLeft: 8,
+            }}
+            onPress={() => setHidePassword(!hidePassword)}
+          />
+        )}
       </View>
       {error && (
         <View
@@ -76,10 +99,15 @@ export default AppTextarea = ({
   );
 };
 
+export default AppInput;
+
 const styles = StyleSheet.create({
   inputContainer: {
-    padding: 15,
+    height: 50,
+    flexDirection: "row",
+    paddingHorizontal: 15,
     borderWidth: 1,
     borderRadius: SIZES.radius,
+    alignItems: "center",
   },
 });

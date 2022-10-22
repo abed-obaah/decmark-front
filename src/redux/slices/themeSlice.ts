@@ -18,5 +18,4 @@ const themeSlice = createSlice({
 
 // Actions
 export const { swithTheme } = themeSlice.actions
-
 export default themeSlice.reducer;

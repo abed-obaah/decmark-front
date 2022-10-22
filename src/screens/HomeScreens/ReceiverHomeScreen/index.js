@@ -7,7 +7,7 @@ import SwitchModeInfo from '../components/SwitchModeInfo';
 import useSwitchUserMode from '@hooks/useSwitchUserMode';
 
 export default ReceiverHomeScreen = () => {
-  const [a, b, isModeSwitch] = useSwitchUserMode()
+  const { isModeSwitch } = useSwitchUserMode()
 
   return (
     <>
