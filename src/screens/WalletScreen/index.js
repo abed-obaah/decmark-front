@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import { 
+import { useState } from "react";
+import {
   View,
   TouchableOpacity,
   useWindowDimensions,
-  StyleSheet
-} from 'react-native'
-import { AppRareScrollView, AppSafeAreaView, AppSectionView } from '@components/AppViews'
-import useTheme from '@hooks/useTheme';
-import { LargeText, MediumText, SmallText } from "@components/AppText"
-import { Ionicons } from '@expo/vector-icons';
+  StyleSheet,
+} from "react-native";
+import {
+  AppRareScrollView,
+  AppSafeAreaView,
+  AppSectionView,
+} from "@src/components/AppViews";
+import useTheme from "@src/hooks/useAppTheme";
+import { LargeText, MediumText, SmallText } from "@src/components/AppText";
+import { Ionicons } from "@expo/vector-icons";
 
 export default WalletScreen = () => {
-  const [theme] = useTheme()
-  const [amountVisible, setAmountVisible] = useState(true)
+  const { theme } = useTheme();
+  const [amountVisible, setAmountVisible] = useState(true);
 
-  const { width } = useWindowDimensions()
+  const { width } = useWindowDimensions();
 
   const options = [
     {
-      icon: 'card-outline',
-      text: 'Deposit'
+      icon: "card-outline",
+      text: "Deposit",
     },
     {
-      icon: 'paper-plane',
-      text: 'Withdraw'
+      icon: "paper-plane",
+      text: "Withdraw",
     },
     {
-      icon: 'move',
-      text: 'Transfer'
-    }
-  ]
+      icon: "move",
+      text: "Transfer",
+    },
+  ];
 
   return (
     <AppSafeAreaView>
@@ -37,69 +41,88 @@ export default WalletScreen = () => {
         <AppSectionView style={{ paddingHorizontal: 20 }}>
           <View
             style={[
-              styles.overview, { 
-                backgroundColor: theme.INPUT_BACKGROUND_COLOR, 
-                borderColor: theme.PRIMARY_BORDER_COLOR 
-              }
+              styles.overview,
+              {
+                backgroundColor: theme.INPUT_BACKGROUND_COLOR,
+                borderColor: theme.PRIMARY_BORDER_COLOR,
+              },
             ]}
           >
             <View>
-              <LargeText>₦ {amountVisible ? "100,000.00" : "XXXXXX.XX"}</LargeText>
-              <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR, marginTop: 10 }}>
-                Book Balance: 
-                <SmallText style={{ color: theme.GOLDEN_TEXT }}> ₦ {amountVisible ? "125,050.00" : "XXXXXX.XX"}</SmallText>
+              <LargeText>
+                ₦ {amountVisible ? "100,000.00" : "XXXXXX.XX"}
+              </LargeText>
+              <SmallText
+                style={{ color: theme.PRIMARY_TEXT_COLOR, marginTop: 10 }}
+              >
+                Book Balance:
+                <SmallText style={{ color: theme.GOLDEN_TEXT }}>
+                  {" "}
+                  ₦ {amountVisible ? "125,050.00" : "XXXXXX.XX"}
+                </SmallText>
               </SmallText>
             </View>
             <View>
-            <TouchableOpacity 
-              onPress={() => setAmountVisible(!amountVisible)}
-              style={{ paddingRight: 5 }}
-            >
-              <Ionicons 
-                name={amountVisible ? "eye-off" : "eye"} 
-                size={24} 
-                color={theme.PRIMARY_TEXT_COLOR} 
-              />
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => setAmountVisible(!amountVisible)}
+                style={{ paddingRight: 5 }}
+              >
+                <Ionicons
+                  name={amountVisible ? "eye-off" : "eye"}
+                  size={24}
+                  color={theme.PRIMARY_TEXT_COLOR}
+                />
+              </TouchableOpacity>
             </View>
           </View>
 
-          <View 
+          <View
             style={{
-              flexDirection: 'row',
-              paddingTop: 20
+              flexDirection: "row",
+              paddingTop: 20,
             }}
           >
-            {options.map((item, i) => 
-              <TouchableOpacity 
+            {options.map((item, i) => (
+              <TouchableOpacity
                 key={i}
                 style={{
                   width: (width - 40) / options.length,
-                  alignItems: 'center',
+                  alignItems: "center",
                   borderRightWidth: 1,
-                  borderRightColor: i + 1 === options.length ? 'transparent' : theme.PRIMARY_BORDER_COLOR 
+                  borderRightColor:
+                    i + 1 === options.length
+                      ? "transparent"
+                      : theme.PRIMARY_BORDER_COLOR,
                 }}
               >
-                <Ionicons name={item.icon} size={15} color={theme.PRIMARY_TEXT_COLOR} />
-                <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>{item.text}</SmallText>
+                <Ionicons
+                  name={item.icon}
+                  size={15}
+                  color={theme.PRIMARY_TEXT_COLOR}
+                />
+                <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+                  {item.text}
+                </SmallText>
               </TouchableOpacity>
-            )}
+            ))}
           </View>
         </AppSectionView>
         <AppSectionView>
-          <LargeText 
-            style={{ 
-              paddingBottom: 10, 
+          <LargeText
+            style={{
+              paddingBottom: 10,
               paddingHorizontal: 20,
-              borderBottomWidth: 1, 
-              borderBottomColor: theme.PRIMARY_BORDER_COLOR 
+              borderBottomWidth: 1,
+              borderBottomColor: theme.PRIMARY_BORDER_COLOR,
             }}
-          >Transactions</LargeText>
-          <View 
+          >
+            Transactions
+          </LargeText>
+          <View
             style={{
               height: 250,
-              alignItems: 'center',
-              justifyContent: 'center'
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <MediumText>Oops!</MediumText>
@@ -108,15 +131,15 @@ export default WalletScreen = () => {
         </AppSectionView>
       </AppRareScrollView>
     </AppSafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   overview: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 10,
-    borderRadius: 5
-  }
-})
+    borderRadius: 5,
+  },
+});

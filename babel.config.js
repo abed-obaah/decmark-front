@@ -1,25 +1,15 @@
-module.exports = function(api) {
-  api.cache(true);
-  return {
-    presets: ['babel-preset-expo'],
-    plugins: [
-      ["@babel/plugin-transform-flow-strip-types"],
-      ["@babel/plugin-proposal-decorators", { "legacy": true }],
-      ["@babel/plugin-proposal-class-properties", { "loose": true }],
-      ["module-resolver", {
+module.exports = {
+  presets: ["module:metro-react-native-babel-preset", "babel-preset-expo"],
+  plugins: [
+    [
+      require.resolve("babel-plugin-module-resolver"),
+      {
+        cwd: "babelrc",
+        extensions: [".ts", ".tsx", ".js", ".ios.js", ".android.js"],
         alias: {
-          '@src': './src',
-          '@assets': './src/assets',
-          '@components': './src/components',
-          '@constants': './src/constants',
-          '@globals': './src/globals',
-          '@hooks': './src/hooks',
-          '@navigators': './src/navigators',
-          '@redux': './src/redux',
-          '@screens': './src/screens',
+          "@src": "./src",
         },
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }],
-    ]
-  };
+      },
+    ],
+  ],
 };

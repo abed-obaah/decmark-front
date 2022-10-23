@@ -1,45 +1,45 @@
-import React from 'react';
-import { View } from 'react-native'
-import { AppSafeAreaView, AppScrollView } from '../../components/AppViews';
-import IndividualFields from './components/IndividualFields';
-import CompanyFields from './components/CompanyFields';
-import useTheme from '../../hooks/useTheme';
-import { useHeaderHeight } from '@react-navigation/elements';
+import React from "react";
+import { View } from "react-native";
+import { AppSafeAreaView, AppScrollView } from "../../components/AppViews";
+import IndividualFields from "./components/IndividualFields";
+import CompanyFields from "./components/CompanyFields";
+import useTheme from "../../hooks/useAppTheme";
+import { useHeaderHeight } from "@react-navigation/elements";
 
 export default SignUpWithNumber = ({ route }) => {
   const { phoneNumber } = route.params;
-  const [theme] = useTheme()
+  const { theme } = useTheme();
   const headerHeight = useHeaderHeight();
-  
-  const [toggleReferralID, setToggleReferralID] = React.useState(false)
-  const [activeTab, setActiveTab] = React.useState(0)
+
+  const [toggleReferralID, setToggleReferralID] = React.useState(false);
+  const [activeTab, setActiveTab] = React.useState(0);
 
   return (
     <AppSafeAreaView>
       <View style={{ marginTop: 15, marginBottom: 5 }}>
-        <GroupTab 
-          tabs={['Personal Account', 'Company Account']} 
+        <GroupTab
+          tabs={["Personal Account", "Company Account"]}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
       </View>
       <AppScrollView>
-        {activeTab ?
+        {activeTab ? (
           <CompanyFields
             theme={theme}
             phoneNumber={phoneNumber}
             toggleReferralID={toggleReferralID}
-            setToggleReferralID={setToggleReferralID} 
+            setToggleReferralID={setToggleReferralID}
           />
-        :
-          <IndividualFields 
+        ) : (
+          <IndividualFields
             theme={theme}
             phoneNumber={phoneNumber}
             toggleReferralID={toggleReferralID}
-            setToggleReferralID={setToggleReferralID} 
+            setToggleReferralID={setToggleReferralID}
           />
-        }
+        )}
       </AppScrollView>
     </AppSafeAreaView>
-  )
-}
+  );
+};

@@ -1,35 +1,42 @@
-import { useEffect, useState } from 'react';
-import { View, Text, TextInput, useWindowDimensions, Image, TouchableOpacity } from 'react-native'
-import { AppSafeAreaView, AppScrollView } from '@components/AppViews'
-import { SIZES } from '@constants/theme';
-import useTheme from '@hooks/useTheme';
-import { SmallText, MediumText } from "@components/AppText"
-import { Ionicons } from '@expo/vector-icons';
+import { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  useWindowDimensions,
+  Image,
+  TouchableOpacity,
+} from "react-native";
+import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
+import { SIZES } from "@src/constants/theme";
+import useTheme from "@src/hooks/useAppTheme";
+import { SmallText, MediumText } from "@src/components/AppText";
+import { Ionicons } from "@expo/vector-icons";
 
 export default AvailableServiceScreen = ({ navigation, route }) => {
   const { service } = route.params;
-  const [theme] = useTheme()
-  const { width } = useWindowDimensions()
+  const { theme } = useTheme();
+  const { width } = useWindowDimensions();
 
-  const data = [0,1,2,3,4,5,6,7,8,9,10]
+  const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const [searchText, setSearchText] = useState(service.toLowerCase())
-  const [isFocused, setIsFocused] = useState(false)
+  const [searchText, setSearchText] = useState(service.toLowerCase());
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     navigation.setOptions({
       headerTitle: () => (
         <TextInput
-          onChangeText={value => setSearchText(value)}
+          onChangeText={(value) => setSearchText(value)}
           defaultValue={searchText}
-          returnKeyType='search'
+          returnKeyType="search"
           selectionColor={theme.gold}
           style={{
             flex: 1,
             width: width - 110,
             fontSize: SIZES.md,
-            fontFamily: 'FONT_SEMI_BOLD',
-            color: theme.PRIMARY_TEXT_COLOR
+            fontFamily: "FONT_SEMI_BOLD",
+            color: theme.PRIMARY_TEXT_COLOR,
           }}
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}
@@ -38,18 +45,18 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
       headerRight: () => (
         <TouchableOpacity
           style={{
-            paddingRight: 15
+            paddingRight: 15,
           }}
         >
-          <Ionicons 
-            name={isFocused ? "close" : "search"} 
-            size={24} 
-            color={theme.SECONDARY_TEXT_COLOR} 
+          <Ionicons
+            name={isFocused ? "close" : "search"}
+            size={24}
+            color={theme.SECONDARY_TEXT_COLOR}
           />
         </TouchableOpacity>
       ),
-    })
-  }, [navigation, isFocused])
+    });
+  }, [navigation, isFocused]);
 
   return (
     <AppSafeAreaView>
@@ -67,37 +74,46 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
         </View>
       </View> */}
       <AppScrollView>
-        {data.map(item =>
-          <TouchableOpacity 
+        {data.map((item) => (
+          <TouchableOpacity
             key={item}
             style={{
-              flexDirection: 'row',
-              marginTop: 20
+              flexDirection: "row",
+              marginTop: 20,
             }}
-            onPress={() => navigation.navigate("ProfileStack", { screen: "ProviderProfileScreen" })}
+            onPress={() =>
+              navigation.navigate("ProfileStack", {
+                screen: "ProviderProfileScreen",
+              })
+            }
           >
-            <Image 
-              source={require("@assets/images/my_avatar.png")} 
+            <Image
+              source={require("@src/assets/images/my_avatar.png")}
               style={{
                 height: 65,
                 width: 65,
-                resizeMode: 'cover',
-                borderRadius: 10
-              }} 
+                resizeMode: "cover",
+                borderRadius: 10,
+              }}
             />
-            <View 
+            <View
               style={{
                 marginLeft: 10,
-                justifyContent: 'center'
+                justifyContent: "center",
               }}
             >
-              <MediumText style={{ color:theme.PRIMARY_TEXT_COLOR }}>John Adibe</MediumText>
-              <MediumText><Text style={{ color:theme.PRIMARY_TEXT_COLOR }}>Beauty</Text> ▪ General</MediumText>
+              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+                John Adibe
+              </MediumText>
+              <MediumText>
+                <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>Beauty</Text>{" "}
+                ▪ General
+              </MediumText>
               <View
                 style={{
-                  flexDirection: 'row',
+                  flexDirection: "row",
                   marginTop: 2.5,
-                  alignItems: 'center'
+                  alignItems: "center",
                 }}
               >
                 <Ionicons name="star" size={12} color={theme.gold} />
@@ -105,8 +121,8 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
               </View>
             </View>
           </TouchableOpacity>
-        )}
+        ))}
       </AppScrollView>
     </AppSafeAreaView>
-  )
-}
+  );
+};
