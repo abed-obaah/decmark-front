@@ -1,16 +1,28 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, FC } from "react";
 import { StyleSheet, View, TextInput, Pressable } from "react-native";
 import { COLORS, SIZES } from "@src/constants/theme";
 import { XtraLargeText } from "./AppText";
 import useAppTheme from "@src/hooks/useAppTheme";
 
-const OTPField = ({ code, setCode, setPinReady, maxLength }) => {
+interface OTPFieldProps {
+  code: any;
+  maxLength: number;
+  setCode: (value: any) => void;
+  setPinReady: (value: boolean) => void;
+}
+
+const OTPField: FC<OTPFieldProps> = ({
+  code,
+  setCode,
+  setPinReady,
+  maxLength,
+}) => {
   const { theme } = useAppTheme();
 
   const codeDigitsArray = new Array(maxLength).fill(0);
 
   // ref for text input
-  const textInputRef = useRef(null);
+  const textInputRef = useRef<TextInput>(null);
 
   const [inputIsFocused, setInputIsFocused] = useState(false);
 
@@ -28,7 +40,7 @@ const OTPField = ({ code, setCode, setPinReady, maxLength }) => {
     return () => setPinReady(false);
   }, [code]);
 
-  const toCodeDigitInput = (_, index) => {
+  const toCodeDigitInput = (_: any, index: any) => {
     const emptyInputChar = "";
     const digit = code[index] || emptyInputChar;
 

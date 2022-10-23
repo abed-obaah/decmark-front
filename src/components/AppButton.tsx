@@ -3,7 +3,7 @@ import { Text, TouchableOpacity } from "react-native";
 import { COLORS, SIZES } from "@src/constants/theme";
 import useAppTheme from "@src/hooks/useAppTheme";
 
-interface AppButtonProps {
+interface IAppButton {
   label?: string;
   background?: string;
   marginTop?: number;
@@ -13,7 +13,7 @@ interface AppButtonProps {
   disabled?: boolean;
 }
 
-const AppButton: FC<AppButtonProps> = ({
+const AppButton: FC<IAppButton> = ({
   label,
   marginTop,
   background,

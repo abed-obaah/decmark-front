@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, FC } from "react";
 import { StyleSheet, View, Image } from "react-native";
 import { AppSafeAreaView, AppScrollView } from "../../components/AppViews";
 import {
@@ -10,11 +10,12 @@ import {
 import PhoneNumberInput from "../../components/PhoneNumberInput";
 import useTheme from "../../hooks/useAppTheme";
 import { SIZES } from "../../constants/theme";
+import AppButton from "@src/components/AppButton";
 
-export default SignUp = ({ navigation }) => {
+const SignUp: FC<any> = ({ navigation }) => {
   const { theme } = useTheme();
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<any>(null);
 
   const handleValidateNumber = () => {
     if (phoneNumber.length > 10 || phoneNumber.length < 10) {
@@ -110,13 +111,14 @@ export default SignUp = ({ navigation }) => {
   );
 };
 
+export default SignUp;
+
 const styles = StyleSheet.create({
   line: {
     flex: 1,
     height: 1,
   },
   imgContainer: {
-    paddingTop: 0,
     width: 50,
     height: 50,
     paddingTop: 5,

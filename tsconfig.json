@@ -12,13 +12,6 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@constants/*": ["./src/constants/*"],
-      "@hooks/*": ["./src/hooks/*"],
-      "@navigations/*": ["./src/navigations/*"],
-      "@redux/*": ["./src/redux/*"],
-      "@screens/*": ["./src/screens/*"],
       "@src/*": ["src/*"]
     }
   },

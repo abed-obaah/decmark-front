@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev tsc-alias
+  C:\Program Files\nodejs\node.exe C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
 
 PATH: 
   C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files (x86)\Common Files\Acronis\VirtualFile\;C:\Program Files (x86)\Common Files\Acronis\VirtualFile64\;C:\Program Files (x86)\Common Files\Acronis\FileProtector\;C:\Program Files (x86)\Common Files\Acronis\FileProtector64\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\johna\AppData\Roaming\npm;C:\Users\johna\AppData\Local\Microsoft\WindowsApps;;C:\Users\johna\AppData\Local\Programs\Microsoft VS Code\bin
@@ -14,8 +14,17 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: getaddrinfo EAI_AGAIN registry.yarnpkg.com
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:109:26)
+  Error: https://registry.yarnpkg.com/@src/reduxjs/toolkit/-/toolkit-1.8.2.tgz: Request failed "404 Not Found"
+      at ResponseError.ExtendableBuiltin (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:696:66)
+      at new ResponseError (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:802:124)
+      at Request.<anonymous> (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66215:16)
+      at Request.emit (node:events:513:28)
+      at Request.module.exports.Request.onRequestResponse (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141767:10)
+      at ClientRequest.emit (node:events:513:28)
+      at HTTPParser.parserOnIncomingClient (node:_http_client:674:27)
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:128:17)
+      at TLSSocket.socketOnData (node:_http_client:521:22)
+      at TLSSocket.emit (node:events:513:28)
 
 npm manifest: 
   {
@@ -61,6 +70,7 @@ npm manifest:
       "@babel/core": "^7.12.9",
       "@types/react-native": "~0.64.12",
       "@types/react-native-global-props": "^1.1.1",
+      "babel-plugin-module-resolver": "^4.1.0",
       "typescript": "~4.3.5"
     },
     "private": true,
