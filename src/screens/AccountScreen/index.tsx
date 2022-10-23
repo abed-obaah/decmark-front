@@ -1,11 +1,11 @@
 import { View, StyleSheet, TouchableOpacity } from "react-native";
-import { AppScrollView, AppSafeAreaView } from "@components/AppViews";
+import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
 import MyAvatar from "../../global/MyAvatar";
 import { Ionicons } from "@expo/vector-icons";
-import useTheme from "@hooks/useAppTheme";
-import { MediumText, LargeText } from "@components/AppText";
-import { useAppSelector } from "@hooks/useAppStore";
-import { COLORS } from "@constants/theme";
+import useTheme from "@src/hooks/useAppTheme";
+import { MediumText, LargeText } from "@src/components/AppText";
+import { useAppSelector } from "@src/hooks/useAppStore";
+import { COLORS } from "@src/constants/theme";
 
 const AccountScreen = () => {
   const { theme } = useTheme();

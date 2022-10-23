@@ -1,8 +1,8 @@
 import { View, FlatList } from "react-native";
-import { SmallText, MediumText } from "@components/AppText";
-import AppButton from "@components/AppButton";
-import { SIZES } from "@constants/theme";
-import useTheme from "@hooks/useAppTheme";
+import { SmallText, MediumText } from "@src/components/AppText";
+import AppButton from "@src/components/AppButton";
+import { SIZES } from "@src/constants/theme";
+import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 

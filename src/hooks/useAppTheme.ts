@@ -1,5 +1,5 @@
-import { swithTheme } from "@redux/slices/themeSlice";
-import { lightTheme, darkTheme } from "@constants/theme";
+import { swithTheme } from "@src/redux/slices/themeSlice";
+import { lightTheme, darkTheme } from "@src/constants/theme";
 import { useAppDispatch, useAppSelector } from "./useAppStore";
 
 export default () => {

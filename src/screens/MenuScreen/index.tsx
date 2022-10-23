@@ -4,15 +4,15 @@ import {
   AppView,
   AppScrollView,
   AppSafeAreaView,
-} from "@components/AppViews";
+} from "@src/components/AppViews";
 import MyAvatar from "../../global/MyAvatar";
-import { SmallText, LargeText, MediumText } from "@components/AppText";
+import { SmallText, LargeText, MediumText } from "@src/components/AppText";
 import { Ionicons, EvilIcons } from "@expo/vector-icons";
-import useTheme from "@hooks/useAppTheme";
-import useSwitchUserMode from "@hooks/useSwitchUserMode";
+import useTheme from "@src/hooks/useAppTheme";
+import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
 import MenuOptions from "./components/MenuOptions";
-import { logoutUser } from "@redux/authSlice";
-import { useAppDispatch, useAppSelector } from "@hooks/useAppStore";
+import { logoutUser } from "@src/redux/authSlice";
+import { useAppDispatch, useAppSelector } from "@src/hooks/useAppStore";
 
 const MenuScreen = ({ navigation }) => {
   const dispatch = useAppDispatch();

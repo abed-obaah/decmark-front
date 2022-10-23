@@ -1,10 +1,10 @@
 import { useRef } from "react";
 import { View, Image, Animated, StyleSheet } from "react-native";
-import { AppScrollView, AppSafeAreaView } from "@components/AppViews";
-import { MediumText, LargeText, XtraLargeText } from "@components/AppText";
+import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
+import { MediumText, LargeText, XtraLargeText } from "@src/components/AppText";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import AppButton from "@components/AppButton";
-import useTheme from "@hooks/useAppTheme";
+import AppButton from "@src/components/AppButton";
+import useTheme from "@src/hooks/useAppTheme";
 
 export default OfferDetailScreen = () => {
   const { theme } = useTheme();
@@ -38,7 +38,7 @@ export default OfferDetailScreen = () => {
             style={styles.imgContainer(imgSize, IMG_SIZE, scrollY)}
           >
             <Image
-              source={require("@assets/images/lady.jpg")}
+              source={require("@src/assets/images/lady.jpg")}
               style={styles.img(IMG_SIZE)}
             />
           </Animated.View>

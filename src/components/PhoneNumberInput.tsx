@@ -1,19 +1,28 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { COLORS, SIZES } from "../constants/theme";
+import { COLORS, SIZES } from "@src/constants/theme";
 import { AntDesign, Feather } from "@expo/vector-icons";
 import { MediumText, ErrorText } from "./AppText";
-import useTheme from "../hooks/useAppTheme";
+import useAppTheme from "@src/hooks/useAppTheme";
 
-export default PhoneNumberInput = ({
+interface PhoneNumberInputProps {
+  label?: string;
+  placeholder: string;
+  error: string | null;
+  marginTop?: number;
+  onFocus: () => void;
+  onChangeText: (value: string) => void;
+}
+
+const PhoneNumberInput: FC<PhoneNumberInputProps> = ({
   label,
-  password,
+  placeholder,
   error,
   marginTop,
   onFocus = () => {},
-  ...props
+  onChangeText = () => {},
 }) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
   const [backgroundColor, setBackgroundColor] = useState(
     theme.INPUT_BACKGROUND_COLOR
   );
@@ -71,7 +80,7 @@ export default PhoneNumberInput = ({
           onFocus={() => {
             onFocus();
             setBackgroundColor(theme.PRIMARY_BACKGROUND_COLOR);
-            setBorderColor(theme.gold);
+            setBorderColor(COLORS.gold);
           }}
           style={{
             flex: 1,
@@ -81,8 +90,9 @@ export default PhoneNumberInput = ({
             color: theme.PRIMARY_TEXT_COLOR,
           }}
           keyboardType="numeric"
+          placeholder={placeholder}
           placeholderTextColor={theme.SECONDARY_TEXT_COLOR}
-          {...props}
+          onChangeText={onChangeText}
         />
       </View>
       {error && (
@@ -103,6 +113,8 @@ export default PhoneNumberInput = ({
     </View>
   );
 };
+
+export default PhoneNumberInput;
 
 const styles = StyleSheet.create({
   inputContainer: {

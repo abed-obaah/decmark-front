@@ -1,9 +1,9 @@
 import { FC, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { COLORS, SIZES } from "@constants/theme";
+import { COLORS, SIZES } from "@src/constants/theme";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import { MediumText, ErrorText } from "./AppText";
-import useAppTheme from "@hooks/useAppTheme";
+import useAppTheme from "@src/hooks/useAppTheme";
 
 interface AppInputProps {
   label?: string;

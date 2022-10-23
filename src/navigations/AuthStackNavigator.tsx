@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import useAppTheme from "@hooks/useAppTheme";
+import useAppTheme from "@src/hooks/useAppTheme";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useAppSelector } from "@hooks/useAppStore";
-import AppLoader from "@components/ui/AppLoader";
-import AppAlert from "@components/ui/AppAlert";
+import { useAppSelector } from "@src/hooks/useAppStore";
+import AppLoader from "@src/components/ui/AppLoader";
+import AppAlert from "@src/components/ui/AppAlert";
 import type { RootStackParamList } from "./navigation";
 
-import Onboarding from "@screens/Onboarding";
-import WelcomeScreen from "@screens/WelcomeScreen";
-import LogIn from "@screens/LogIn";
-import SignUp from "@screens/SignUp";
-import SignUpWithNumber from "@screens/SignUp/SignUpWithNumber";
-import OTPScreen from "@screens/OTPScreen";
-import ForgotPasswordScreen from "@screens/ForgotPasswordScreen";
+import Onboarding from "@src/screens/Onboarding";
+import WelcomeScreen from "@src/screens/WelcomeScreen";
+import LogIn from "@src/screens/LogIn";
+import SignUp from "@src/screens/SignUp";
+import SignUpWithNumber from "@src/screens/SignUp/SignUpWithNumber";
+import OTPScreen from "@src/screens/OTPScreen";
+import ForgotPasswordScreen from "@src/screens/ForgotPasswordScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -41,7 +41,7 @@ const AuthStackNavigator = () => {
 
   return (
     isAppFirstLaunch !== null && (
-      <React.Fragment>
+      <Fragment>
         {isLoading && <AppLoader />}
         {error && <AppAlert message={error} />}
         <Stack.Navigator
@@ -107,7 +107,7 @@ const AuthStackNavigator = () => {
             options={{ headerTitle: "Forgot Password" }}
           />
         </Stack.Navigator>
-      </React.Fragment>
+      </Fragment>
     )
   );
 };

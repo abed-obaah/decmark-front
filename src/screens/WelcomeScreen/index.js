@@ -9,14 +9,14 @@ import {
   NativeModules,
   useWindowDimensions,
 } from "react-native";
-import AppButton from "@components/AppButton";
-import useTheme from "@hooks/useAppTheme";
+import AppButton from "@src/components/AppButton";
+import useTheme from "@src/hooks/useAppTheme";
 import {
   XtraLargeText,
   MediumText,
   SmallText,
   LinkText,
-} from "@components/AppText";
+} from "@src/components/AppText";
 
 const { StatusBarManager } = NativeModules;
 

@@ -1,17 +1,17 @@
-import { View, Image, TouchableOpacity } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import useAppTheme from '@hooks/useAppTheme';
-import useSwitchUserMode from '@hooks/useSwitchUserMode';
-import { Ionicons } from '@expo/vector-icons';
-import { LargeText } from '@components/AppText';
-import MyAvatar from '../global/MyAvatar';
-import type { RootStackParamList } from './navigation';
+import { View, Image, TouchableOpacity } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import useAppTheme from "@src/hooks/useAppTheme";
+import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
+import { Ionicons } from "@expo/vector-icons";
+import { LargeText } from "@src/components/AppText";
+import MyAvatar from "../global/MyAvatar";
+import type { RootStackParamList } from "./navigation";
 
-import ReceiverHomeScreen from '@screens/HomeScreens/ReceiverHomeScreen';
-import ProviderHomeScreen from '@screens/HomeScreens/ProviderHomeScreen';
-import MyServiceScreen from '@screens/MyServiceScreen';
-import MessageScreen from '@screens/MessageScreen';
-import WalletScreen from '@screens/WalletScreen';
+import ReceiverHomeScreen from "@src/screens/HomeScreens/ReceiverHomeScreen";
+import ProviderHomeScreen from "@src/screens/HomeScreens/ProviderHomeScreen";
+import MyServiceScreen from "@src/screens/MyServiceScreen";
+import MessageScreen from "@src/screens/MessageScreen";
+import WalletScreen from "@src/screens/WalletScreen";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -25,42 +25,48 @@ const BottomTabNavigator = ({ navigation }) => {
         headerShown: !isModeSwitch,
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
-          display: isModeSwitch ? 'none' : 'flex',
+          display: isModeSwitch ? "none" : "flex",
           backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
           paddingVertical: 10,
-          borderTopColor: theme.PRIMARY_BORDER_COLOR
+          borderTopColor: theme.PRIMARY_BORDER_COLOR,
         },
         headerStyle: {
           backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
           elevation: 0,
           shadowOpacity: 0,
           borderBottomWidth: 0.5,
-          borderBottomColor: theme.PRIMARY_BORDER_COLOR
+          borderBottomColor: theme.PRIMARY_BORDER_COLOR,
         },
         headerTitleStyle: {
           color: theme.PRIMARY_TEXT_COLOR,
-          fontFamily: 'FONT_SEMI_BOLD'
-        }
+          fontFamily: "FONT_SEMI_BOLD",
+        },
       }}
     >
       <Tab.Screen
         name="HomeScreen"
-        component={userMode === 'receiver' ? ReceiverHomeScreen : ProviderHomeScreen}
+        component={
+          userMode === "receiver" ? ReceiverHomeScreen : ProviderHomeScreen
+        }
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: "Home",
           tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
           tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'home' : 'home-outline'}
-              color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR}
+              name={focused ? "home" : "home-outline"}
+              color={
+                focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR
+              }
               size={24}
             />
           ),
-          headerTitleAlign: 'center',
+          headerTitleAlign: "center",
           headerLeft: () => (
             <TouchableOpacity
-              onPress={() => navigation.navigate('ProfileStack', { screen: 'MenuScreen' })}
+              onPress={() =>
+                navigation.navigate("ProfileStack", { screen: "MenuScreen" })
+              }
               style={{ marginLeft: 20 }}
             >
               <MyAvatar />
@@ -69,15 +75,15 @@ const BottomTabNavigator = ({ navigation }) => {
           headerTitle: () => (
             <View
               style={{
-                flexDirection: 'row',
-                alignItems: 'center'
+                flexDirection: "row",
+                alignItems: "center",
               }}
             >
               <Image
-                source={require('@assets/images/logo.png')}
+                source={require("@src/assets/images/logo.png")}
                 style={{
                   width: 30,
-                  height: 30
+                  height: 30,
                 }}
               />
               <LargeText>DecMark</LargeText>
@@ -85,66 +91,80 @@ const BottomTabNavigator = ({ navigation }) => {
           ),
           headerRight: () => (
             <TouchableOpacity style={{ marginRight: 20 }}>
-              <Ionicons name="notifications" size={24} color={theme.PRIMARY_TEXT_COLOR} />
+              <Ionicons
+                name="notifications"
+                size={24}
+                color={theme.PRIMARY_TEXT_COLOR}
+              />
             </TouchableOpacity>
-          )
+          ),
         }}
       />
       <Tab.Screen
         name="MyServiceScreen"
         component={MyServiceScreen}
         options={{
-          tabBarLabel: 'Services',
+          tabBarLabel: "Services",
           tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
           tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'compass' : 'compass-outline'}
-              color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR}
+              name={focused ? "compass" : "compass-outline"}
+              color={
+                focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR
+              }
               size={24}
             />
           ),
-          headerTitle: 'My Services',
+          headerTitle: "My Services",
           headerStyle: {
             backgroundColor: theme.PRIMARY_BACKGROUND_COLOR,
             elevation: 0,
             shadowOpacity: 0,
-            borderBottomWidth: 0
-          }
+            borderBottomWidth: 0,
+          },
         }}
       />
       <Tab.Screen
         name="MessageScreen"
         component={MessageScreen}
         options={{
-          tabBarLabel: 'Messages',
+          tabBarLabel: "Messages",
           tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
           tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'ios-chatbox-ellipses' : 'ios-chatbox-ellipses-outline'}
-              color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR}
+              name={
+                focused
+                  ? "ios-chatbox-ellipses"
+                  : "ios-chatbox-ellipses-outline"
+              }
+              color={
+                focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR
+              }
               size={24}
             />
           ),
-          headerTitle: 'Messages'
+          headerTitle: "Messages",
         }}
       />
       <Tab.Screen
         name="WalletScreen"
         component={WalletScreen}
         options={{
-          tabBarLabel: 'Wallet',
+          tabBarLabel: "Wallet",
           tabBarActiveTintColor: theme.PRIMARY_TEXT_COLOR,
           tabBarInactiveTintColor: theme.SECONDARY_TEXT_COLOR,
           tabBarIcon: ({ focused }) => (
             <Ionicons
-              name={focused ? 'wallet' : 'wallet-outline'}
-              color={focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR}
+              name={focused ? "wallet" : "wallet-outline"}
+              color={
+                focused ? theme.PRIMARY_TEXT_COLOR : theme.SECONDARY_TEXT_COLOR
+              }
               size={24}
             />
           ),
-          headerTitle: 'Wallet'
+          headerTitle: "Wallet",
         }}
       />
     </Tab.Navigator>

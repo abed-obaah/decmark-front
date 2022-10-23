@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
-import { MediumText } from "@components/AppText";
+import { MediumText } from "@src/components/AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import useTheme from "@hooks/useAppTheme";
+import useTheme from "@src/hooks/useAppTheme";
 
 export default NoServices = ({ title }) => {
   const { theme } = useTheme();

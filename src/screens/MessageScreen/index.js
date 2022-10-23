@@ -1,8 +1,8 @@
 import React from "react";
 import { View } from "react-native";
-import { AppSafeAreaView } from "@components/AppViews";
-import { MediumText, SmallText } from "@components/AppText";
-import useTheme from "@hooks/useAppTheme";
+import { AppSafeAreaView } from "@src/components/AppViews";
+import { MediumText, SmallText } from "@src/components/AppText";
+import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
 
 export default MessageScreen = () => {

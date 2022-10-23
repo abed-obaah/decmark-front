@@ -1,21 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { lightTheme, darkTheme } from '../../constants/theme';
+import { createSlice } from "@reduxjs/toolkit";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { lightTheme, darkTheme } from "../../constants/theme";
 
 const initialState = {
-  theme: lightTheme
-}
+  theme: lightTheme,
+};
 
 const themeSlice = createSlice({
-  name: 'theme',
+  name: "theme",
   initialState,
   reducers: {
     swithTheme: (state, action) => {
-      state.theme = action.payload
-    }
-  }
-})
+      state.theme = action.payload;
+    },
+  },
+});
 
 // Actions
-export const { swithTheme } = themeSlice.actions
+export const { swithTheme } = themeSlice.actions;
 export default themeSlice.reducer;

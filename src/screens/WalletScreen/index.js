@@ -9,9 +9,9 @@ import {
   AppRareScrollView,
   AppSafeAreaView,
   AppSectionView,
-} from "@components/AppViews";
-import useTheme from "@hooks/useAppTheme";
-import { LargeText, MediumText, SmallText } from "@components/AppText";
+} from "@src/components/AppViews";
+import useTheme from "@src/hooks/useAppTheme";
+import { LargeText, MediumText, SmallText } from "@src/components/AppText";
 import { Ionicons } from "@expo/vector-icons";
 
 export default WalletScreen = () => {

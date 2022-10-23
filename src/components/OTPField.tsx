@@ -1,11 +1,11 @@
 import React, { useRef, useState, useEffect } from "react";
 import { StyleSheet, View, TextInput, Pressable } from "react-native";
-import { COLORS, SIZES } from "@constants/theme";
+import { COLORS, SIZES } from "@src/constants/theme";
 import { XtraLargeText } from "./AppText";
-import useTheme from "@hooks/useAppTheme";
+import useAppTheme from "@src/hooks/useAppTheme";
 
 const OTPField = ({ code, setCode, setPinReady, maxLength }) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
 
   const codeDigitsArray = new Array(maxLength).fill(0);
 

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { COLORS, SIZES } from "@constants/theme";
+import { COLORS, SIZES } from "../constants/theme";
 import { Feather } from "@expo/vector-icons";
 import { MediumText, ErrorText } from "./AppText";
-import useTheme from "@hooks/useAppTheme";
+import useTheme from "@src/hooks/useAppTheme";
 
 export default AppTextarea = ({
   label,

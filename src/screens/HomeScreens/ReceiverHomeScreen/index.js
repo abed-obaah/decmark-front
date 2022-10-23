@@ -1,19 +1,19 @@
-import React from 'react'
-import { AppSafeAreaView, AppRareScrollView } from '@components/AppViews'
+import React from "react";
+import { AppSafeAreaView, AppRareScrollView } from "@src/components/AppViews";
 import CategorySection from "./components/CategorySection";
-import PopularServices from './components/PopularServices';
-import RatedProviders from './components/RatedProviders';
-import SwitchModeInfo from '../components/SwitchModeInfo';
-import useSwitchUserMode from '@hooks/useSwitchUserMode';
+import PopularServices from "./components/PopularServices";
+import RatedProviders from "./components/RatedProviders";
+import SwitchModeInfo from "../components/SwitchModeInfo";
+import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
 
 export default ReceiverHomeScreen = () => {
-  const { isModeSwitch } = useSwitchUserMode()
+  const { isModeSwitch } = useSwitchUserMode();
 
   return (
     <>
-      {isModeSwitch ? 
+      {isModeSwitch ? (
         <SwitchModeInfo />
-      :
+      ) : (
         <AppSafeAreaView>
           <AppRareScrollView>
             <CategorySection />
@@ -21,7 +21,7 @@ export default ReceiverHomeScreen = () => {
             <RatedProviders />
           </AppRareScrollView>
         </AppSafeAreaView>
-      }
+      )}
     </>
-  )
-}
+  );
+};

@@ -1,8 +1,7 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-const BASE_URL = "https://api.decmark.com/v1/user";
+import { BASE_URL } from "../../configs";
 
 const config = {
   headers: {
@@ -18,7 +17,7 @@ export const registerUser = createAsyncThunk(
         ...inputs,
         password_confirmation: inputs.password,
       });
-    } catch (err) {
+    } catch (err: any) {
       return rejectWithValue(
         err.response && err.response.data.message
           ? err.response.data.message
@@ -37,7 +36,7 @@ export const loginUser = createAsyncThunk(
       });
       await AsyncStorage.setItem("user_info", JSON.stringify(data));
       return fulfillWithValue(data);
-    } catch (err) {
+    } catch (err: any) {
       return rejectWithValue(
         err.response && err.response.data.message
           ? err.response.data.message

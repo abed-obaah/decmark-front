@@ -5,12 +5,12 @@ import {
   StackNavigationOptions,
 } from "@react-navigation/stack";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import useAppTheme from "@hooks/useAppTheme";
+import useAppTheme from "@src/hooks/useAppTheme";
 import type { RootStackParamList } from "./navigation";
 
-import MenuScreen from "@screens/MenuScreen";
-import AccountScreen from "@screens/AccountScreen";
-import ProviderProfileScreen from "@screens/ProviderProfileScreen";
+import MenuScreen from "@src/screens/MenuScreen";
+import AccountScreen from "@src/screens/AccountScreen";
+import ProviderProfileScreen from "@src/screens/ProviderProfileScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 

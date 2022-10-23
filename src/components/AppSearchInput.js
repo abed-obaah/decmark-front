@@ -2,11 +2,11 @@ import { useState } from "react";
 import { StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 import { ErrorText } from "./AppText";
 import { COLORS, SIZES } from "../constants/theme";
-import useTheme from "../hooks/useAppTheme";
+import useAppTheme from "../hooks/useAppTheme";
 import { Feather, Ionicons } from "@expo/vector-icons";
 
 export default AppSearchInput = ({ error, onPress, onFocus, placeholder }) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
   const [backgroundColor, setBackgroundColor] = useState(
     theme.INPUT_BACKGROUND_COLOR
   );

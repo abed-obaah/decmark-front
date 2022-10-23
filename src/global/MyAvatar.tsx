@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import useAppTheme from "@hooks/useAppTheme";
-import { useAppSelector } from "@hooks/useAppStore";
+import useAppTheme from "@src/hooks/useAppTheme";
+import { useAppSelector } from "@src/hooks/useAppStore";
 
 const MyAvatar = ({ size, iconSize = 20 }) => {
   const { theme } = useAppTheme();

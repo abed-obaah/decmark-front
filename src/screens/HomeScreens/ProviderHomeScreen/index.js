@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
-import { AppSafeAreaView, AppSectionView } from "@components/AppViews";
+import { AppSafeAreaView, AppSectionView } from "@src/components/AppViews";
 import SwitchModeInfo from "../components/SwitchModeInfo";
-import useSwitchUserMode from "@hooks/useSwitchUserMode";
-import { LargeText, MediumText } from "@components/AppText";
-import useTheme from "@hooks/useAppTheme";
+import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
+import { LargeText, MediumText } from "@src/components/AppText";
+import useTheme from "@src/hooks/useAppTheme";
 import { FontAwesome } from "@expo/vector-icons";
-import GroupTab from "@components/GroupTab";
+import GroupTab from "@src/components/GroupTab";
 import MyServices from "./components/MyServices";
 import Offers from "./components/Offers";
 

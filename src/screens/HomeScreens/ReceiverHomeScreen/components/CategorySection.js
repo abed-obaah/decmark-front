@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { AppSectionView } from "../../../../components/AppViews";
 import { LargeText, MediumText } from "../../../../components/AppText";
 import AppSearchInput from "../../../../components/AppSearchInput";
-import useTheme from "@hooks/useAppTheme";
+import useTheme from "@src/hooks/useAppTheme";
 
 export default CategorySection = () => {
   const { theme } = useTheme();

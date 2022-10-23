@@ -1,7 +1,7 @@
 import { View } from "react-native";
-import useTheme from "@hooks/useAppTheme";
+import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
-import { MediumText, LargeText } from "@components/AppText";
+import { MediumText, LargeText } from "@src/components/AppText";
 
 export default Bio = () => {
   const { theme } = useTheme();

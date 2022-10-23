@@ -7,10 +7,10 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-import { AppSafeAreaView, AppScrollView } from "@components/AppViews";
-import { SIZES } from "@constants/theme";
-import useTheme from "@hooks/useAppTheme";
-import { SmallText, MediumText } from "@components/AppText";
+import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
+import { SIZES } from "@src/constants/theme";
+import useTheme from "@src/hooks/useAppTheme";
+import { SmallText, MediumText } from "@src/components/AppText";
 import { Ionicons } from "@expo/vector-icons";
 
 export default AvailableServiceScreen = ({ navigation, route }) => {
@@ -88,7 +88,7 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
             }
           >
             <Image
-              source={require("@assets/images/my_avatar.png")}
+              source={require("@src/assets/images/my_avatar.png")}
               style={{
                 height: 65,
                 width: 65,

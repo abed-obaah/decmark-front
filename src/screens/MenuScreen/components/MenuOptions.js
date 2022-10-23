@@ -1,12 +1,12 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { MediumText } from "@components/AppText";
+import { MediumText } from "@src/components/AppText";
 import {
   Ionicons,
   EvilIcons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import useTheme from "@hooks/useAppTheme";
+import useTheme from "@src/hooks/useAppTheme";
 
 export default MenuOptions = () => {
   const { theme } = useTheme();

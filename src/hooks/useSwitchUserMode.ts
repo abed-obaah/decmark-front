@@ -1,6 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { useAppDispatch, useAppSelector } from "./useAppStore";
-import { switchUserMode, toggleIsModeSwitch } from "@redux/slices/userSlice";
+import {
+  switchUserMode,
+  toggleIsModeSwitch,
+} from "@src/redux/slices/userSlice";
 
 export default () => {
   const navigation = useNavigation();

@@ -1,12 +1,12 @@
 import { View, TouchableOpacity } from "react-native";
-import useTheme from "@hooks/useAppTheme";
+import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
 import {
   MediumText,
   LargeText,
   XtraLargeText,
   SmallText,
-} from "@components/AppText";
+} from "@src/components/AppText";
 
 export default RatingsReviews = () => {
   const { theme } = useTheme();

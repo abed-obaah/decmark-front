@@ -1,10 +1,10 @@
 import { Image, View, FlatList, useWindowDimensions } from "react-native";
-import { LargeText, SmallText, MediumText } from "@components/AppText";
-import AppButton from "@components/AppButton";
-import { SIZES } from "@constants/theme";
-import useTheme from "@hooks/useAppTheme";
+import { LargeText, SmallText, MediumText } from "@src/components/AppText";
+import AppButton from "@src/components/AppButton";
+import { SIZES } from "@src/constants/theme";
+import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
-import { AppSectionView } from "@components/AppViews";
+import { AppSectionView } from "@src/components/AppViews";
 import providers from "../constants/providers";
 import { useNavigation } from "@react-navigation/native";
 
@@ -26,7 +26,7 @@ export default RatedProviders = () => {
         }}
       >
         <Image
-          source={require("@assets/images/my_avatar.png")}
+          source={require("@src/assets/images/my_avatar.png")}
           style={{
             width: "100%",
             height: 100,

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Platform, Image, NativeModules } from "react-native";
 import { useDispatch } from "react-redux";
-import { AppSafeAreaView, AppView } from "@components/AppViews";
-import { MediumText, XtraLargeText } from "@components/AppText";
-import useSwitchUserMode from "@hooks/useSwitchUserMode";
-import useTheme from "@hooks/useAppTheme";
-import { toggleIsModeSwitch } from "@redux/slices/userSlice";
+import { AppSafeAreaView, AppView } from "@src/components/AppViews";
+import { MediumText, XtraLargeText } from "@src/components/AppText";
+import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
+import useTheme from "@src/hooks/useAppTheme";
+import { toggleIsModeSwitch } from "@src/redux/slices/userSlice";
 
 const { StatusBarManager } = NativeModules;
 
@@ -29,7 +29,7 @@ export default SwitchModeInfo = () => {
         }}
       >
         <Image
-          source={require("@assets/images/logo.png")}
+          source={require("@src/assets/images/logo.png")}
           style={{
             width: 35,
             height: 35,

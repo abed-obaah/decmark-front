@@ -1,17 +1,26 @@
 {
   "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-native",
+    "target": "ES5",
+    "module": "commonjs",
+    "lib": ["es6", "ES2017"],
+    "strict": true,
+    "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@globals/*": ["./src/globals/*"],
-      "@screens/*": ["./src/screens/*"],
-      "@components/*": ["./src/components/*"],
-      "@hooks/*": ["./src/hooks/*"],
       "@assets/*": ["./src/assets/*"],
+      "@components/*": ["./src/components/*"],
       "@constants/*": ["./src/constants/*"],
-      "@navigations/*": ["src/navigations/*"],
-      "@redux/*": ["./src/redux/*"]
+      "@hooks/*": ["./src/hooks/*"],
+      "@navigations/*": ["./src/navigations/*"],
+      "@redux/*": ["./src/redux/*"],
+      "@screens/*": ["./src/screens/*"],
+      "@src/*": ["src/*"]
     }
   },
-  "extends": "expo/tsconfig.base",
-  "exclude": ["node_modules", "babel.config.js"]
+  "extends": "expo/tsconfig.base"
 }

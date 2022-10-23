@@ -1,9 +1,9 @@
 import React from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
-import useTheme from "@hooks/useAppTheme";
+import useAppTheme from "@src/hooks/useAppTheme";
 
 export const AppSafeAreaView = (props) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
 
   return (
     <SafeAreaView
@@ -19,7 +19,7 @@ export const AppSafeAreaView = (props) => {
 };
 
 export const AppScrollView = (props) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
 
   return (
     <ScrollView
@@ -38,7 +38,7 @@ export const AppScrollView = (props) => {
 };
 
 export const AppRareScrollView = (props) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
 
   return (
     <ScrollView
@@ -55,7 +55,7 @@ export const AppRareScrollView = (props) => {
 };
 
 export const AppSectionView = (props) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
 
   return (
     <View
@@ -72,7 +72,7 @@ export const AppSectionView = (props) => {
 };
 
 export const AppView = (props) => {
-  const { theme } = useTheme();
+  const { theme } = useAppTheme();
 
   return (
     <View

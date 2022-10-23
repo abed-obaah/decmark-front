@@ -7,9 +7,9 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { LargeText, SmallText, MediumText } from "@components/AppText";
-import { AppSectionView } from "@components/AppViews";
-import useTheme from "@hooks/useAppTheme";
+import { LargeText, SmallText, MediumText } from "@src/components/AppText";
+import { AppSectionView } from "@src/components/AppViews";
+import useTheme from "@src/hooks/useAppTheme";
 import services from "../constants/services";
 
 export default PopularServices = () => {

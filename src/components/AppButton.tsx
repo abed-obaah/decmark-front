@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { COLORS, SIZES } from "@constants/theme";
-import useAppTheme from "@hooks/useAppTheme";
+import { COLORS, SIZES } from "@src/constants/theme";
+import useAppTheme from "@src/hooks/useAppTheme";
 
 interface AppButtonProps {
   label?: string;
