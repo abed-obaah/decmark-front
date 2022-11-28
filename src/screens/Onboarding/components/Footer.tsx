@@ -1,19 +1,21 @@
 import React from "react";
 import { View } from "react-native";
+import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from "@src/@types/navigation";
 import { SIZES } from "../../../constants/theme";
 import Paginator from "./Paginator";
 import styled from "@src/constants/styled-components";
 import AppButton from "../../../components/AppButton";
 
-export default Footer = ({
+const Footer = ({
   currentIndex,
   handleNextSlide,
   handleSkipSlide,
   slides,
   scrollX,
-}) => {
-  const navigation = useNavigation();
+}: any) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <SlideFooter
@@ -29,7 +31,10 @@ export default Footer = ({
           <AppButton
             label="GET STARTED"
             radius={SIZES.rounded}
-            onPress={() => navigation.replace("WelcomeScreen")}
+            onPress={() =>
+              // navigation.replace("AuthStack", { screen: "WelcomeScreen" })
+              navigation.replace("WelcomeScreen")
+            }
           />
         ) : (
           <>
@@ -51,6 +56,8 @@ export default Footer = ({
     </SlideFooter>
   );
 };
+
+export default Footer;
 
 const SlideFooter = styled.View`
   background-color: ${({ theme }) => theme.PRIMARY_BACKGROUND_COLOR};

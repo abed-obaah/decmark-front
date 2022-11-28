@@ -1,17 +1,17 @@
 import React, { useEffect } from "react";
 import { StyleSheet, Platform, Image, NativeModules } from "react-native";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@src/hooks/useAppStore";
 import { AppSafeAreaView, AppView } from "@src/components/AppViews";
 import { MediumText, XtraLargeText } from "@src/components/AppText";
 import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
-import useTheme from "@src/hooks/useAppTheme";
-import { toggleIsModeSwitch } from "@src/redux/slices/userSlice";
+import useAppTheme from "@src/hooks/useAppTheme";
+import { toggleIsModeSwitch } from "@src/redux/appSlice";
 
 const { StatusBarManager } = NativeModules;
 
-export default SwitchModeInfo = () => {
-  const dispatch = useDispatch();
-  const { theme } = useTheme();
+const SwitchModeInfo = () => {
+  const dispatch = useAppDispatch();
+  const { theme } = useAppTheme();
   const { userMode } = useSwitchUserMode();
 
   useEffect(() => {
@@ -54,6 +54,8 @@ export default SwitchModeInfo = () => {
     </AppSafeAreaView>
   );
 };
+
+export default SwitchModeInfo;
 
 const styles = StyleSheet.create({
   container: {

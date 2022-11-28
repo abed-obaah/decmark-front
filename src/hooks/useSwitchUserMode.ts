@@ -3,14 +3,15 @@ import { useAppDispatch, useAppSelector } from "./useAppStore";
 import {
   switchUserMode,
   toggleIsModeSwitch,
-} from "@src/redux/slices/userSlice";
+  UserMode,
+} from "@src/redux/appSlice";
 
 export default () => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
-  const { userMode, isModeSwitch } = useAppSelector((state) => state.user);
+  const { userMode, isModeSwitch } = useAppSelector((state) => state.app);
 
-  const handleToggleUserMode = (mode) => {
+  const handleToggleUserMode = (mode: UserMode) => {
     dispatch(switchUserMode(mode));
 
     setTimeout(() => {

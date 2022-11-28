@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "@src/store";
 import { setCustomText, setCustomTextInput } from "react-native-global-props";
 import useFonts from "@src/hooks/useFonts";
-import "./src/axios/global";
+import "@src/global/axios";
 
 // const customTextProps = {
 //   style: { fontFamily: "FONT_REGULAR" },
