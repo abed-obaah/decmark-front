@@ -5,7 +5,7 @@ import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
 import { Ionicons } from "@expo/vector-icons";
 import { LargeText } from "@src/components/AppText";
 import MyAvatar from "../global/MyAvatar";
-import type { RootStackParamList } from "./navigation";
+import type { RootStackParamList } from "../@types/navigation";
 
 import ReceiverHomeScreen from "@src/screens/HomeScreens/ReceiverHomeScreen";
 import ProviderHomeScreen from "@src/screens/HomeScreens/ProviderHomeScreen";
@@ -15,7 +15,7 @@ import WalletScreen from "@src/screens/WalletScreen";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
-const BottomTabNavigator = ({ navigation }) => {
+const BottomTabNavigator = ({ navigation }: any) => {
   const { theme } = useAppTheme();
   const { userMode, isModeSwitch } = useSwitchUserMode();
 
@@ -39,7 +39,7 @@ const BottomTabNavigator = ({ navigation }) => {
         },
         headerTitleStyle: {
           color: theme.PRIMARY_TEXT_COLOR,
-          fontFamily: "FONT_SEMI_BOLD",
+          // fontFamily: "FONT_SEMI_BOLD",
         },
       }}
     >

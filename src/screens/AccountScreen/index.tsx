@@ -1,15 +1,35 @@
+import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
 import MyAvatar from "../../global/MyAvatar";
 import { Ionicons } from "@expo/vector-icons";
 import useTheme from "@src/hooks/useAppTheme";
 import { MediumText, LargeText } from "@src/components/AppText";
-import { useAppSelector } from "@src/hooks/useAppStore";
+import { useAppSelector, useAppDispatch } from "@src/hooks/useAppStore";
 import { COLORS } from "@src/constants/theme";
+import * as ImagePicker from "expo-image-picker";
+import { uploadProfileImg } from "@src/redux/accountSlice";
 
 const AccountScreen = () => {
   const { theme } = useTheme();
+  const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.auth);
+
+  const handlePickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const inputs = {
+        image: result.assets[0].uri,
+      };
+      dispatch(uploadProfileImg(inputs));
+    }
+  };
 
   const options = [
     {
@@ -58,6 +78,7 @@ const AccountScreen = () => {
             <MyAvatar size={200} iconSize={100} />
             <TouchableOpacity
               style={[{ backgroundColor: COLORS.gold }, styles.editAvatar]}
+              onPress={handlePickImage}
             >
               <Ionicons name="ios-camera" size={22} color={COLORS.dark} />
             </TouchableOpacity>
@@ -120,5 +141,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: 50,
+    zIndex: 1,
   },
 });

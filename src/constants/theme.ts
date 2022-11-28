@@ -1,20 +1,4 @@
-type mode = "dark" | "light";
-
-type themeProps = {
-  mode: mode;
-  PRIMARY_BACKGROUND_COLOR: string;
-  SECONDARY_BACKGROUND_COLOR: string;
-  RARE_BACKGROUND_COLOR: string;
-  PRIMARY_TEXT_COLOR: string;
-  SECONDARY_TEXT_COLOR: string;
-  GOLDEN_TEXT: string;
-  PRIMARY_BORDER_COLOR: string;
-  INPUT_BACKGROUND_COLOR: string;
-  NAVBAR_BUTTON_COLOR: mode;
-  NAVBAR_BACKGROUND_COLOR: string;
-  STATUS_BAR_STYLE: mode;
-  HEADER_BACKGROUND_COLOR: string;
-};
+import { DefaultTheme } from "styled-components/native";
 
 export const COLORS = {
   white: "#FFF",
@@ -30,7 +14,7 @@ export const COLORS = {
   lightGrey: "rgba(20, 20, 20, .35)",
 };
 
-export const lightTheme: themeProps = {
+export const lightTheme: DefaultTheme = {
   mode: "light",
   PRIMARY_BACKGROUND_COLOR: COLORS.white,
   SECONDARY_BACKGROUND_COLOR: COLORS.lighter,
@@ -47,7 +31,7 @@ export const lightTheme: themeProps = {
   ...COLORS,
 };
 
-export const darkTheme: themeProps = {
+export const darkTheme: DefaultTheme = {
   mode: "dark",
   PRIMARY_BACKGROUND_COLOR: COLORS.dark,
   SECONDARY_BACKGROUND_COLOR: COLORS.lightGrey,

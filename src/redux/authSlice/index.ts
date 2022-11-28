@@ -1,19 +1,12 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BASE_URL } from "../../configs";
-
-const config = {
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
 
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
   async (inputs: Record<any, any>, { rejectWithValue }) => {
     try {
-      await axios.put(BASE_URL + "/auth/register", {
+      await axios.put("/auth/register", {
         ...inputs,
         password_confirmation: inputs.password,
       });
@@ -31,7 +24,7 @@ export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (inputs: Record<any, any>, { fulfillWithValue, rejectWithValue }) => {
     try {
-      const { data } = await axios.post(BASE_URL + "/auth/login", {
+      const { data } = await axios.post("/auth/login", {
         ...inputs,
       });
       await AsyncStorage.setItem("user_info", JSON.stringify(data));

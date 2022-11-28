@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@src/constants/styled-components";
 import useTheme from "@src/hooks/useAppTheme";
 import * as NavigationBar from "expo-navigation-bar";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { setUserInfo } from "@src/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@src/hooks/useAppStore";
-import type { RootStackParamList } from "./navigation";
+import type { RootStackParamList } from "../@types/navigation";
 
 import AuthStackNavigator from "./AuthStackNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";

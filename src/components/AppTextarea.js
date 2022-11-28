@@ -50,7 +50,7 @@ export default AppTextarea = ({
           style={{
             textAlignVertical: "top",
             fontSize: SIZES.md,
-            fontFamily: "FONT_SEMI_BOLD",
+            // fontFamily: "FONT_SEMI_BOLD",
             color: theme.PRIMARY_TEXT_COLOR,
           }}
           multiline={true}

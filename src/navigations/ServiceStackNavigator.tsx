@@ -4,7 +4,7 @@ import {
 } from "@react-navigation/stack";
 import useAppTheme from "@src/hooks/useAppTheme";
 import { MaterialIcons } from "@expo/vector-icons";
-import type { RootStackParamList } from "./navigation";
+import type { RootStackParamList } from "../@types/navigation";
 
 import AddServiceScreen from "@src/screens/AddServiceScreen";
 import ScheduleServiceScreen from "@src/screens/ScheduleServiceScreen";
@@ -28,7 +28,7 @@ const ServiceStackNavigator = () => {
     headerTitleAlign: "center",
     headerTitleStyle: {
       color: theme.PRIMARY_TEXT_COLOR,
-      fontFamily: "FONT_SEMI_BOLD",
+      // fontFamily: "FONT_SEMI_BOLD",
     },
     headerBackImage: () => (
       <MaterialIcons name="west" size={24} color={theme.SECONDARY_TEXT_COLOR} />

@@ -53,7 +53,7 @@ const AppButton: FC<IAppButton> = ({
             ? theme.PRIMARY_TEXT_COLOR
             : COLORS.dark,
           fontSize: SIZES.md,
-          fontFamily: "FONT_SEMI_BOLD",
+          // fontFamily: "FONT_SEMI_BOLD",
         }}
       >
         {label}

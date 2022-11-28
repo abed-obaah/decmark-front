@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/stack";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import useAppTheme from "@src/hooks/useAppTheme";
-import type { RootStackParamList } from "./navigation";
+import type { RootStackParamList } from "../@types/navigation";
 
 import MenuScreen from "@src/screens/MenuScreen";
 import AccountScreen from "@src/screens/AccountScreen";
@@ -28,7 +28,7 @@ const ProfileStackNavigator = () => {
     headerTitleAlign: "center",
     headerTitleStyle: {
       color: theme.PRIMARY_TEXT_COLOR,
-      fontFamily: "FONT_SEMI_BOLD",
+      // fontFamily: "FONT_SEMI_BOLD",
     },
     headerTintColor: theme.SECONDARY_TEXT_COLOR,
     headerBackImage: () => (

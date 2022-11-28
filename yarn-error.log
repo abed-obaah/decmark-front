@@ -1,30 +1,30 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+  C:\Program Files\nodejs\node.exe C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add expo@^47.0.0
 
 PATH: 
-  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files (x86)\Common Files\Acronis\VirtualFile\;C:\Program Files (x86)\Common Files\Acronis\VirtualFile64\;C:\Program Files (x86)\Common Files\Acronis\FileProtector\;C:\Program Files (x86)\Common Files\Acronis\FileProtector64\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\johna\AppData\Roaming\npm;C:\Users\johna\AppData\Local\Microsoft\WindowsApps;;C:\Users\johna\AppData\Local\Programs\Microsoft VS Code\bin
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files (x86)\Common Files\Acronis\VirtualFile\;C:\Program Files (x86)\Common Files\Acronis\VirtualFile64\;C:\Program Files (x86)\Common Files\Acronis\FileProtector\;C:\Program Files (x86)\Common Files\Acronis\FileProtector64\;C:\Program Files\Git\cmd;C:\Users\johna\AppData\Roaming\npm;%NVM_HOME%;%NVM_SYMLINK%;C:\Users\johna\AppData\Local\Microsoft\WindowsApps;C:\Users\johna\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\johna\AppData\Roaming\nvm;C:\Program Files\nodejs
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  16.17.0
+  16.13.2
 
 Platform: 
   win32 x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@src/reduxjs/toolkit/-/toolkit-1.8.2.tgz: Request failed "404 Not Found"
-      at ResponseError.ExtendableBuiltin (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:696:66)
-      at new ResponseError (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:802:124)
-      at Request.<anonymous> (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:66215:16)
-      at Request.emit (node:events:513:28)
-      at Request.module.exports.Request.onRequestResponse (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:141767:10)
-      at ClientRequest.emit (node:events:513:28)
-      at HTTPParser.parserOnIncomingClient (node:_http_client:674:27)
-      at HTTPParser.parserOnHeadersComplete (node:_http_common:128:17)
-      at TLSSocket.socketOnData (node:_http_client:521:22)
-      at TLSSocket.emit (node:events:513:28)
+  Invariant Violation: expected hoisted manifest for "babel-preset-expo#metro-react-native-babel-preset#@babel/core#@babel/helper-compilation-targets#browserslist"
+      at invariant (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:2318:15)
+      at _loop2 (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:91029:9)
+      at PackageHoister.init (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:91099:19)
+      at PackageLinker.getFlatHoistedTree (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:48549:20)
+      at PackageLinker.<anonymous> (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:48560:27)
+      at Generator.next (<anonymous>)
+      at step (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:328:14
+      at new Promise (<anonymous>)
+      at new F (C:\Users\johna\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:5305:28)
 
 npm manifest: 
   {
@@ -43,12 +43,13 @@ npm manifest:
       "@react-navigation/bottom-tabs": "^6.3.1",
       "@react-navigation/native": "^6.0.10",
       "@react-navigation/stack": "^6.2.1",
-      "@src/reduxjs/toolkit": "^1.8.2",
+      "@reduxjs/toolkit": "^1.9.0",
       "axios": "^0.27.2",
       "expo": "~44.0.0",
       "expo-app-loading": "~1.3.0",
       "expo-clipboard": "~2.1.0",
       "expo-font": "~10.0.4",
+      "expo-image-picker": "~12.0.1",
       "expo-navigation-bar": "~1.1.1",
       "expo-status-bar": "~1.2.0",
       "expo-updates": "~0.11.7",
@@ -70,6 +71,7 @@ npm manifest:
       "@babel/core": "^7.12.9",
       "@types/react-native": "~0.64.12",
       "@types/react-native-global-props": "^1.1.1",
+      "@types/styled-components": "^5.1.26",
       "babel-plugin-module-resolver": "^4.1.0",
       "typescript": "~4.3.5"
     },
@@ -1693,15 +1695,15 @@ Lockfile:
       color "^3.1.3"
       warn-once "^0.1.0"
   
-  "@src/reduxjs/toolkit@^1.8.2":
-    version "1.8.2"
-    resolved "https://registry.yarnpkg.com/@src/reduxjs/toolkit/-/toolkit-1.8.2.tgz#352fd17bc858af51d21ce8d28183a930cab9e638"
-    integrity sha512-CtPw5TkN1pHRigMFCOS/0qg3b/yfPV5qGCsltVnIz7bx4PKTJlGHYfIxm97qskLknMzuGfjExaYdXJ77QTL0vg==
+  "@reduxjs/toolkit@^1.9.0":
+    version "1.9.0"
+    resolved "https://registry.yarnpkg.com/@reduxjs/toolkit/-/toolkit-1.9.0.tgz#76b264fcea677d256b18f86cc77e00743a9e02b0"
+    integrity sha512-ak11IrjYcUXRqlhNPwnz6AcvA2ynJTu8PzDbbqQw4a3xR4KZtgiqbNblQD+10CRbfK4+5C79SOyxnT9dhBqFnA==
     dependencies:
-      immer "^9.0.7"
-      redux "^4.1.2"
-      redux-thunk "^2.4.1"
-      reselect "^4.1.5"
+      immer "^9.0.16"
+      redux "^4.2.0"
+      redux-thunk "^2.4.2"
+      reselect "^4.1.7"
   
   "@sideway/address@^4.1.3":
     version "4.1.4"
@@ -1732,7 +1734,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/@types/hammerjs/-/hammerjs-2.0.41.tgz#f6ecf57d1b12d2befcce00e928a6a097c22980aa"
     integrity sha512-ewXv/ceBaJprikMcxCmWU1FKyMAQ2X7a9Gtmzw8fcg2kIePI1crERDM818W+XYrxqdBBOdlf2rm137bU+BltCA==
   
-  "@types/hoist-non-react-statics@^3.3.1":
+  "@types/hoist-non-react-statics@*", "@types/hoist-non-react-statics@^3.3.1":
     version "3.3.1"
     resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
     integrity sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==
@@ -1808,6 +1810,15 @@ Lockfile:
     version "0.16.2"
     resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.2.tgz#1a62f89525723dde24ba1b01b092bf5df8ad4d39"
     integrity sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==
+  
+  "@types/styled-components@^5.1.26":
+    version "5.1.26"
+    resolved "https://registry.yarnpkg.com/@types/styled-components/-/styled-components-5.1.26.tgz#5627e6812ee96d755028a98dae61d28e57c233af"
+    integrity sha512-KuKJ9Z6xb93uJiIyxo/+ksS7yLjS1KzG6iv5i78dhVg/X3u5t1H7juRWqVmodIdz6wGVaIApo1u01kmFRdJHVw==
+    dependencies:
+      "@types/hoist-non-react-statics" "*"
+      "@types/react" "*"
+      csstype "^3.0.2"
   
   "@types/use-sync-external-store@^0.0.3":
     version "0.0.3"
@@ -2939,6 +2950,14 @@ Lockfile:
     dependencies:
       fontfaceobserver "^2.1.0"
   
+  expo-image-picker@~12.0.1:
+    version "12.0.2"
+    resolved "https://registry.yarnpkg.com/expo-image-picker/-/expo-image-picker-12.0.2.tgz#4789c5419208ff8ede557784368a7f18f3878c30"
+    integrity sha512-rAoNGtofV5cg3UN+cdIGDVfbMvbutBX6uNV7jCIEw/WZxZlbW+R7HC8l5lGDFtoLVqcpkHE/6JpAXvESxVSAOA==
+    dependencies:
+      "@expo/config-plugins" "^4.0.2"
+      uuid "7.0.2"
+  
   expo-json-utils@~0.2.0:
     version "0.2.1"
     resolved "https://registry.yarnpkg.com/expo-json-utils/-/expo-json-utils-0.2.1.tgz#a8d15181e361f3fc782d5241ce381851bab4465b"
@@ -3496,10 +3515,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.6.3.tgz#e7e5c65bb534bd7cdcedd6cb5166272a85f75fb2"
     integrity sha512-47xSUiQioGaB96nqtp5/q55m0aBQSQdyIloMOc/x+QVTDZLNmXE892IIDrJ0hM1A5vcNUDD5tDffkSP5lCaIIA==
   
-  immer@^9.0.7:
-    version "9.0.14"
-    resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.14.tgz#e05b83b63999d26382bb71676c9d827831248a48"
-    integrity sha512-ubBeqQutOSLIFCUBN03jGeOS6a3DoYlSYwYJTa+gSKEZKU5redJIqkIdZ3JVv/4RZpfcXdAWH5zCNLWPRv2WDw==
+  immer@^9.0.16:
+    version "9.0.16"
+    resolved "https://registry.yarnpkg.com/immer/-/immer-9.0.16.tgz#8e7caab80118c2b54b37ad43e05758cdefad0198"
+    integrity sha512-qenGE7CstVm1NrHQbMh8YaSzTZTFNP3zPqr3YU0S0UY441j4bJTg4A2Hh5KAhwgaiU6ZZ1Ar6y/2f4TblnMReQ==
   
   import-fresh@^2.0.0:
     version "2.0.0"
@@ -5175,12 +5194,12 @@ Lockfile:
     dependencies:
       resolve "^1.1.6"
   
-  redux-thunk@^2.4.1:
-    version "2.4.1"
-    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.1.tgz#0dd8042cf47868f4b29699941de03c9301a75714"
-    integrity sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q==
+  redux-thunk@^2.4.2:
+    version "2.4.2"
+    resolved "https://registry.yarnpkg.com/redux-thunk/-/redux-thunk-2.4.2.tgz#b9d05d11994b99f7a91ea223e8b04cf0afa5ef3b"
+    integrity sha512-+P3TjtnP0k/FEjcBL5FZpoovtvrTNT/UXd4/sluaSyrURlSlhLSzEdfsTBW7WsKB6yPvgd7q/iZPICFjW4o57Q==
   
-  redux@^4.1.2, redux@^4.2.0:
+  redux@^4.2.0:
     version "4.2.0"
     resolved "https://registry.yarnpkg.com/redux/-/redux-4.2.0.tgz#46f10d6e29b6666df758780437651eeb2b969f13"
     integrity sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==
@@ -5278,10 +5297,15 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
     integrity sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=
   
-  reselect@^4.0.0, reselect@^4.1.5:
+  reselect@^4.0.0:
     version "4.1.5"
     resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.5.tgz#852c361247198da6756d07d9296c2b51eddb79f6"
     integrity sha512-uVdlz8J7OO+ASpBYoz1Zypgx0KasCY20H+N8JD13oUMtPvSHQuscrHop4KbXrbsBcdB9Ds7lVK7eRkBIfO43vQ==
+  
+  reselect@^4.1.7:
+    version "4.1.7"
+    resolved "https://registry.yarnpkg.com/reselect/-/reselect-4.1.7.tgz#56480d9ff3d3188970ee2b76527bd94a95567a42"
+    integrity sha512-Zu1xbUt3/OPwsXL46hvOOoQrap2azE7ZQbokq61BQfiXvhewsKDwhMeZjTX9sX0nvw1t/U5Audyn1I9P/m9z0A==
   
   resolve-from@^3.0.0:
     version "3.0.0"
@@ -6054,6 +6078,11 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
     integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
+  
+  uuid@7.0.2:
+    version "7.0.2"
+    resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
+    integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
   
   uuid@^3.3.2, uuid@^3.4.0:
     version "3.4.0"

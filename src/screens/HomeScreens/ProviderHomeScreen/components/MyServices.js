@@ -46,7 +46,7 @@ export default MyServices = () => {
                 numberOfLines={1}
                 style={{
                   color: theme.PRIMARY_TEXT_COLOR,
-                  fontFamily: "FONT_SEMI_BOLD",
+                  // fontFamily: "FONT_SEMI_BOLD",
                 }}
               >
                 {item.title}
@@ -57,7 +57,7 @@ export default MyServices = () => {
               <MediumText
                 style={{
                   color: theme.PRIMARY_TEXT_COLOR,
-                  fontFamily: "FONT_SEMI_BOLD",
+                  // fontFamily: "FONT_SEMI_BOLD",
                 }}
               >
                 ₦{item.price}

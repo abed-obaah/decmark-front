@@ -57,7 +57,7 @@ const PhoneNumberInput: FC<PhoneNumberInputProps> = ({
           <MediumText
             style={{
               color: theme.PRIMARY_TEXT_COLOR,
-              fontFamily: "FONT_SEMI_BOLD",
+              // fontFamily: "FONT_SEMI_BOLD",
               paddingRight: 7.5,
             }}
           >
@@ -86,7 +86,7 @@ const PhoneNumberInput: FC<PhoneNumberInputProps> = ({
             flex: 1,
             height: "100%",
             fontSize: SIZES.md,
-            fontFamily: "FONT_SEMI_BOLD",
+            // fontFamily: "FONT_SEMI_BOLD",
             color: theme.PRIMARY_TEXT_COLOR,
           }}
           keyboardType="numeric"

@@ -6,7 +6,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { useAppSelector } from "@src/hooks/useAppStore";
 import AppLoader from "@src/components/ui/AppLoader";
 import AppAlert from "@src/components/ui/AppAlert";
-import type { RootStackParamList } from "./navigation";
+import type { RootStackParamList } from "../@types/navigation";
 
 import Onboarding from "@src/screens/Onboarding";
 import WelcomeScreen from "@src/screens/WelcomeScreen";
@@ -31,7 +31,7 @@ const AuthStackNavigator = () => {
 
   const handleAppFirstLaunch = async () => {
     const appData = await AsyncStorage.getItem("isAppFirstLaunch");
-    if (!appData) {
+    if (appData === null) {
       setIsAppFirstLaunch(true);
       AsyncStorage.setItem("isAppFirstLaunch", "false");
     } else {
@@ -56,7 +56,7 @@ const AuthStackNavigator = () => {
             headerTitleAlign: "center",
             headerTitleStyle: {
               color: theme.PRIMARY_TEXT_COLOR,
-              fontFamily: "FONT_SEMI_BOLD",
+              // fontFamily: "FONT_SEMI_BOLD",
             },
             headerTintColor: theme.SECONDARY_TEXT_COLOR,
             headerBackImage: () => (

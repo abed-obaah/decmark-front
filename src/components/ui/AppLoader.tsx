@@ -1,9 +1,19 @@
-import React from "react";
+import React, { FC } from "react";
 import { StyleSheet, View, ActivityIndicator } from "react-native";
 
-const AppLoader = () => {
+interface AppLoaderProps {
+  rounded?: boolean;
+}
+
+const AppLoader: FC<AppLoaderProps> = ({ rounded }) => {
   return (
-    <View style={[StyleSheet.absoluteFillObject, styles.container]}>
+    <View
+      style={[
+        StyleSheet.absoluteFillObject,
+        styles.container,
+        { borderRadius: rounded ? 200 : 0 },
+      ]}
+    >
       <ActivityIndicator size="large" color="#DEB253" />
     </View>
   );

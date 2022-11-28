@@ -35,7 +35,7 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
             flex: 1,
             width: width - 110,
             fontSize: SIZES.md,
-            fontFamily: "FONT_SEMI_BOLD",
+            // fontFamily: "FONT_SEMI_BOLD",
             color: theme.PRIMARY_TEXT_COLOR,
           }}
           onBlur={() => setIsFocused(false)}

@@ -62,7 +62,7 @@ export default Bio = () => {
         <MediumText
           style={{
             color: theme.PRIMARY_TEXT_COLOR,
-            fontFamily: "FONT_SEMI_BOLD",
+            // fontFamily: "FONT_SEMI_BOLD",
           }}
         >
           27
