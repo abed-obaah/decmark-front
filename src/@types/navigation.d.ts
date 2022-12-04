@@ -23,6 +23,7 @@ export type RootStackParamList = {
   // PROFILE
   MenuScreen: undefined;
   AccountScreen: undefined;
+  EditProfileScreen: undefined;
   ProviderProfileScreen: undefined;
 
   // ROOTS
