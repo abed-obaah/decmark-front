@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useAppTheme from "@src/hooks/useAppTheme";
@@ -41,7 +41,7 @@ const AuthStackNavigator = () => {
 
   return (
     isAppFirstLaunch !== null && (
-      <Fragment>
+      <>
         {isLoading && <AppLoader />}
         {error && <AppAlert message={error} />}
         <Stack.Navigator
@@ -107,7 +107,7 @@ const AuthStackNavigator = () => {
             options={{ headerTitle: "Forgot Password" }}
           />
         </Stack.Navigator>
-      </Fragment>
+      </>
     )
   );
 };

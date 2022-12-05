@@ -5,17 +5,21 @@ import { RootState } from "@src/store";
 
 export const uploadProfileImg = createAsyncThunk(
   "account/uploadProfileImg",
-  async (inputs: any, thunkAPI) => {
+  async (data: any, thunkAPI) => {
     try {
-      const { auth: { userInfo } } = thunkAPI.getState() as RootState;
+      const {
+        auth: { userInfo },
+      } = thunkAPI.getState() as RootState;
       const config = {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": `multipart/form-data; boundary=${data._boundary}`,
           Accept: "application/json",
           Authorization: `Bearer ${userInfo?.authentication.token}`,
         },
       };
-      await axios.post("/account", inputs, config);
+      await axios
+        .post("/account", data, config)
+        .then((res) => console.log(res.data));
     } catch (err: any) {
       console.log(
         err.response && err.response.data.message

@@ -1,5 +1,5 @@
-import { useRef } from "react";
-import { View, Image, Animated, StyleSheet } from "react-native";
+import { useRef, FC } from "react";
+import { View, Image, Modal, Animated, StyleSheet } from "react-native";
 import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MediumText, XtraLargeText } from "@src/components/AppText";
@@ -7,12 +7,15 @@ import AppButton from "@src/components/AppButton";
 import WorkImages from "./components/WorkImages";
 import RatingsReviews from "./components/RatingsReviews";
 import Bio from "./components/Bio";
+import AppBottomSheet from "@src/components/ui/BottomSheet";
+import useBottomSheet from "@src/hooks/useBottomSheet";
+import { useNavigation } from "@react-navigation/native";
 
-export default ProviderProfileScreen = ({ navigation }) => {
+const ProviderProfileScreen = () => {
+  const navigation = useNavigation();
+  const { sheetRef, handleSnapPress } = useBottomSheet();
   const scrollY = useRef(new Animated.Value(0)).current;
-
   const IMG_SIZE = 200;
-
   const imgSize = scrollY.interpolate({
     inputRange: [0, 100],
     outputRange: [IMG_SIZE, IMG_SIZE / 2],
@@ -40,7 +43,7 @@ export default ProviderProfileScreen = ({ navigation }) => {
           >
             <Image
               source={require("@src/assets/images/my_avatar.png")}
-              style={styles.img(IMG_SIZE)}
+              style={styles.img(IMG_SIZE) as any}
             />
           </Animated.View>
         </View>
@@ -62,19 +65,18 @@ export default ProviderProfileScreen = ({ navigation }) => {
           label="Schedule"
           marginTop={20}
           buttonHeight={45}
-          onPress={() =>
-            navigation.navigate("ServiceStack", {
-              screen: "ScheduleServiceScreen",
-            })
-          }
+          onPress={() => handleSnapPress(0)}
         />
       </AppScrollView>
+      <AppBottomSheet sheetRef={sheetRef} />
     </AppSafeAreaView>
   );
 };
 
+export default ProviderProfileScreen;
+
 const styles = StyleSheet.create({
-  imgContainer: (imgSize, IMG_SIZE, scrollY) => ({
+  imgContainer: (imgSize: any, IMG_SIZE: any, scrollY: any) => ({
     height: imgSize,
     width: imgSize,
     marginTop: scrollY.interpolate({
@@ -83,7 +85,7 @@ const styles = StyleSheet.create({
       extrapolate: "clamp",
     }),
   }),
-  img: (IMG_SIZE) => ({
+  img: (IMG_SIZE: any) => ({
     height: "100%",
     width: "100%",
     resizeMode: "cover",

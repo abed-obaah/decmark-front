@@ -24,12 +24,9 @@ const AccountScreen = ({ navigation }: any) => {
     });
 
     if (!result.canceled) {
-      const formData = new FormData();
-      formData.append("image", result.assets[0].uri);
-      const inputs = {
-        image: formData,
-      };
-      dispatch(uploadProfileImg(inputs));
+      const form = new FormData();
+      form.append("image", result.assets[0].uri);
+      dispatch(uploadProfileImg(form));
     }
   };
 
