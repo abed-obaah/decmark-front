@@ -16,13 +16,13 @@ export type RootStackParamList = {
 
   // SERVICES
   AddServiceScreen: undefined;
-  ScheduleServiceScreen: undefined;
   OfferDetailScreen: undefined;
   AvailableServiceScreen: { service: string };
   
   // PROFILE
   MenuScreen: undefined;
   AccountScreen: undefined;
+  EditProfileScreen: undefined;
   ProviderProfileScreen: undefined;
 
   // ROOTS

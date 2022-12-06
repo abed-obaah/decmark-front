@@ -10,6 +10,7 @@ import type { RootStackParamList } from "../@types/navigation";
 
 import MenuScreen from "@src/screens/MenuScreen";
 import AccountScreen from "@src/screens/AccountScreen";
+import EditProfileScreen from "@src/screens/EditProfileScreen";
 import ProviderProfileScreen from "@src/screens/ProviderProfileScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -61,7 +62,14 @@ const ProfileStackNavigator = () => {
         name="AccountScreen"
         component={AccountScreen}
         options={{
-          headerTitle: "Account Info",
+          headerTitle: "My account",
+        }}
+      />
+      <Stack.Screen
+        name="EditProfileScreen"
+        component={EditProfileScreen}
+        options={{
+          headerTitle: "Edit profile",
         }}
       />
       <Stack.Screen

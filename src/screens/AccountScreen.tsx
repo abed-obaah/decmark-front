@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
-import MyAvatar from "../../global/MyAvatar";
+import MyAvatar from "@src/global/MyAvatar";
 import { Ionicons } from "@expo/vector-icons";
 import useTheme from "@src/hooks/useAppTheme";
 import { MediumText, LargeText } from "@src/components/AppText";
@@ -10,7 +10,7 @@ import { COLORS } from "@src/constants/theme";
 import * as ImagePicker from "expo-image-picker";
 import { uploadProfileImg } from "@src/redux/accountSlice";
 
-const AccountScreen = () => {
+const AccountScreen = ({ navigation }: any) => {
   const { theme } = useTheme();
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.auth);
@@ -24,16 +24,16 @@ const AccountScreen = () => {
     });
 
     if (!result.canceled) {
-      const inputs = {
-        image: result.assets[0].uri,
-      };
-      dispatch(uploadProfileImg(inputs));
+      const form = new FormData();
+      form.append("image", result.assets[0].uri);
+      dispatch(uploadProfileImg(form));
     }
   };
 
   const options = [
     {
-      name: "Edit Profle",
+      name: "Edit profile",
+      path: "",
       icon: (
         <Ionicons
           name="person-outline"
@@ -43,29 +43,21 @@ const AccountScreen = () => {
       ),
     },
     {
-      name: "Terms and Conditions",
+      name: "Activities",
+      path: "",
       icon: (
-        <Ionicons
-          name="newspaper-outline"
-          size={20}
-          color={theme.SECONDARY_TEXT_COLOR}
-        />
+        <Ionicons name="list" size={20} color={theme.SECONDARY_TEXT_COLOR} />
       ),
     },
     {
-      name: "Privacy Policy",
+      name: "Privacy",
+      path: "",
       icon: (
         <Ionicons
           name="shield-checkmark-outline"
           size={20}
           color={theme.SECONDARY_TEXT_COLOR}
         />
-      ),
-    },
-    {
-      name: "Activities",
-      icon: (
-        <Ionicons name="list" size={20} color={theme.SECONDARY_TEXT_COLOR} />
       ),
     },
   ];
@@ -100,23 +92,29 @@ const AccountScreen = () => {
             <View
               key={i}
               style={{
-                flexDirection: "row",
-                alignItems: "center",
-                paddingBottom: 20,
                 marginBottom: 20,
                 borderBottomWidth: 1,
                 borderBottomColor: theme.PRIMARY_BORDER_COLOR,
               }}
             >
-              {item.icon}
-              <MediumText
+              <TouchableOpacity
                 style={{
-                  color: theme.PRIMARY_TEXT_COLOR,
-                  paddingHorizontal: 10,
+                  paddingBottom: 20,
+                  flexDirection: "row",
+                  alignItems: "center",
                 }}
+                onPress={() => navigation.navigate("EditProfileScreen")}
               >
-                {item.name}
-              </MediumText>
+                {item.icon}
+                <MediumText
+                  style={{
+                    color: theme.PRIMARY_TEXT_COLOR,
+                    paddingHorizontal: 10,
+                  }}
+                >
+                  {item.name}
+                </MediumText>
+              </TouchableOpacity>
             </View>
           ))}
         </View>

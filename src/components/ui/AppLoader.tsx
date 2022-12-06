@@ -19,8 +19,6 @@ const AppLoader: FC<AppLoaderProps> = ({ rounded }) => {
   );
 };
 
-export default AppLoader;
-
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
@@ -29,3 +27,5 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
 });
+
+export default AppLoader;
