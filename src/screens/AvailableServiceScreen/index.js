@@ -25,6 +25,8 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     navigation.setOptions({
+      headerLeft: () => null,
+      headerTitleAlign: "center",
       headerTitle: () => (
         <TextInput
           onChangeText={(value) => setSearchText(value)}
@@ -35,8 +37,9 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
             flex: 1,
             width: width - 110,
             fontSize: SIZES.md,
-            // fontFamily: "FONT_SEMI_BOLD",
+            fontFamily: "SourceSansPro-SemiBold",
             color: theme.PRIMARY_TEXT_COLOR,
+            textAlign: "center",
           }}
           onBlur={() => setIsFocused(false)}
           onFocus={() => setIsFocused(true)}

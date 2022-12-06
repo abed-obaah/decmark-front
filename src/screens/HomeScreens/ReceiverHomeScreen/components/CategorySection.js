@@ -2,7 +2,11 @@ import React from "react";
 import { View, FlatList, TouchableOpacity } from "react-native";
 import { useSelector } from "react-redux";
 import { AppSectionView } from "../../../../components/AppViews";
-import { LargeText, MediumText } from "../../../../components/AppText";
+import {
+  LargeText,
+  MediumText,
+  SmallText,
+} from "../../../../components/AppText";
 import AppSearchInput from "../../../../components/AppSearchInput";
 import useTheme from "@src/hooks/useAppTheme";
 
@@ -49,17 +53,17 @@ export default CategorySection = () => {
             <View
               style={{
                 backgroundColor: theme.INPUT_BACKGROUND_COLOR,
-                padding: 5.5,
-                paddingHorizontal: 12,
-                marginRight: 5.5,
+                padding: 10,
+                paddingHorizontal: 16,
+                marginRight: 10,
                 borderWidth: 1,
                 borderRadius: 50,
                 borderColor: theme.PRIMARY_BORDER_COLOR,
               }}
             >
-              <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+              <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
                 {item.name}
-              </MediumText>
+              </SmallText>
             </View>
           </TouchableOpacity>
         )}

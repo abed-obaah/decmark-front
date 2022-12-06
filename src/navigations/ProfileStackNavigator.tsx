@@ -44,6 +44,7 @@ const ProfileStackNavigator = () => {
         component={MenuScreen}
         options={{
           headerTitle: "",
+          headerLeft: () =>null,
           headerRight: () => (
             <TouchableOpacity
               onPress={handleToggleTheme}
@@ -63,6 +64,7 @@ const ProfileStackNavigator = () => {
         component={AccountScreen}
         options={{
           headerTitle: "My account",
+          headerLeft:()=>null
         }}
       />
       <Stack.Screen
@@ -70,6 +72,7 @@ const ProfileStackNavigator = () => {
         component={EditProfileScreen}
         options={{
           headerTitle: "Edit profile",
+          headerLeft:()=>null
         }}
       />
       <Stack.Screen
@@ -77,6 +80,7 @@ const ProfileStackNavigator = () => {
         component={ProviderProfileScreen}
         options={{
           headerTitle: "Provider's Profile",
+          headerLeft:()=>null
         }}
       />
     </Stack.Navigator>
