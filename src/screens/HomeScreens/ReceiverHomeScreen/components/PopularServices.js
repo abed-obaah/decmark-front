@@ -66,9 +66,9 @@ export default PopularServices = () => {
               borderColor: theme.PRIMARY_BORDER_COLOR,
             }}
           >
-            <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+            <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
               More
-            </MediumText>
+            </SmallText>
           </View>
         </TouchableOpacity>
       </View>
