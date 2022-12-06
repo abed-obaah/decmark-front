@@ -13,30 +13,23 @@ import { loginUser, resetAuth } from "@src/redux/authSlice";
 export default PhoneNumber = () => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  const { success } = useSelector((state) => state.auth);
   const { inputs, handleChangeInput } = useOnChange({
     phoneNumber: "",
-    password: "",
   });
   const { errors, handleError, hanleValidateLogin } = useValidateLogin(
     inputs,
     "phoneNumber"
   );
 
-  useEffect(() => {
-    if (success) {
-      dispatch(resetAuth());
-    }
-  }, [success]);
-
-  const handleLoginUser = () => {
+  const handleVerifyUser = () => {
     Keyboard.dismiss();
     const valid = hanleValidateLogin();
     const userData = {
       handle: "234" + inputs.phoneNumber,
-      password: inputs.password,
     };
-    if (valid) dispatch(loginUser(userData));
+    if (valid) {
+      navigation.navigate("OTPScreen");
+    }
   };
 
   return (
@@ -48,7 +41,7 @@ export default PhoneNumber = () => {
         onChangeText={(value) => handleChangeInput("phoneNumber", value)}
       />
 
-      <AppButton label="Next" onPress={handleLoginUser} />
+      <AppButton label="Next" onPress={handleVerifyUser} />
     </>
   );
 };

@@ -46,7 +46,7 @@ export default CategorySection = () => {
         horizontal
         bounces={false}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ marginTop: 10, paddingHorizontal: 20 }}
+        contentContainerStyle={{ marginTop: 20, paddingHorizontal: 20 }}
         keyExtractor={(_, i) => i}
         renderItem={({ item }) => (
           <TouchableOpacity>
