@@ -14,6 +14,7 @@ import AuthStackNavigator from "./AuthStackNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import ProfileStackNavigator from "./ProfileStackNavigator";
 import ServiceStackNavigator from "./ServiceStackNavigator";
+import VerificationStackNavigator from "./VerificationStackNavigator";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -61,6 +62,10 @@ const RootNavigator = () => {
               <Stack.Screen
                 name="ServiceStack"
                 component={ServiceStackNavigator}
+              />
+               <Stack.Screen
+                name="VerificationStack"
+                component={VerificationStackNavigator}
               />
             </>
           )}

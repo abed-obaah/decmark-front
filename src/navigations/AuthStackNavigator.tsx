@@ -66,6 +66,7 @@ const AuthStackNavigator = () => {
                 color={theme.SECONDARY_TEXT_COLOR}
               />
             ),
+            headerLeft:()=>null
           }}
           initialRouteName={isAppFirstLaunch ? "Onboarding" : "WelcomeScreen"}
         >

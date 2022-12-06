@@ -5,7 +5,7 @@ import { COLORS } from "@src/constants/theme";
 export const XtraLargeText = styled.Text`
   color: ${({ theme }) => theme.PRIMARY_TEXT_COLOR};
   font-size: ${SIZES.xl}px;
-  /* font-family: "FONT_SEMI_BOLD"; */
+  font-family: "SourceSansPro-SemiBold";
 `;
 
 export const LargeText = styled.Text`
