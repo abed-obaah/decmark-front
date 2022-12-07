@@ -46,7 +46,7 @@ export default WelcomeScreen = ({ navigation }) => {
             }}
           />
         </View>
-        <View style={{ marginHorizontal: 20 }}>
+        <View style={{ marginHorizontal: 10 }}>
           <XtraLargeText>Welcome to DecMark!</XtraLargeText>
           <MediumText>
             It will only take you couple of minutes to get started.

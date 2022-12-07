@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { AppSafeAreaView, AppScrollView } from "../../components/AppViews";
-import EmailAddress from "./components/EmailAddress";
-import PhoneNumber from "./components/PhoneNumber";
 import { Keyboard, Pressable, View } from "react-native";
 import PageHeader from "@src/components/PageHeader";
-import OTPInputView from "@twotalltotems/react-native-otp-input";
 import OTPField from "@src/components/OTPField";
 import { LinkText, MediumText } from "@src/components/AppText";
 import AppButton from "@src/components/AppButton";
@@ -17,7 +14,7 @@ export default OTPScreen = ({ navigation }) => {
   const [pinReady, setPinReady] = useState(false);
 
   const handleVerifyOtp = () => {
-    navigation.navigate("BottomTabNavigator", { screen: "HomeScreen" });
+    navigation.navigate("UploadScreen");
   };
 
   return (

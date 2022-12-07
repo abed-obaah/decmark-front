@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     borderRadius: SIZES.radius,
     padding: 7,
     aspectRatio:1/1,
-    flex:1
+    flex:1,
+    margin:4
   },
 });

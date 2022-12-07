@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 import React from "react";
 import useAppTheme from "@src/hooks/useAppTheme";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SIZES } from "@src/constants/theme";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { SCREEN_WIDTH } from "@src/constants/variables";
 
 const PageHeader = ({ title }) => {
   const { theme } = useAppTheme();
@@ -20,6 +21,8 @@ const PageHeader = ({ title }) => {
       flexDirection: "row",
       padding: SIZES.md,
       justifyContent: "space-between",
+      top: StatusBar.currentHeight,
+      zIndex: 3,
     },
   });
   return (

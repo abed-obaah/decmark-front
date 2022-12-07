@@ -29,7 +29,7 @@ const AppButton: FC<IAppButton> = ({
     <TouchableOpacity
       onPress={onPress}
       style={{
-        flex: 1,
+        width:'100%',flexDirection:'row',flexShrink:1,
         height: buttonHeight ? buttonHeight : 50,
         backgroundColor: disabled
           ? COLORS.lightGold
