@@ -8,6 +8,7 @@ import { store } from "@src/store";
 import { setCustomText, setCustomTextInput } from "react-native-global-props";
 import { useFonts } from 'expo-font';
 import "@src/global/axios";
+import { Platform } from "react-native";
 
 // const customTextProps = {
 //   style: { fontFamily: "FONT_REGULAR" },
@@ -17,8 +18,8 @@ import "@src/global/axios";
 // setCustomTextInput(customTextProps);
 
 const App = () => {
-  NavigationBar.setBackgroundColorAsync("#141414");
-  NavigationBar.setButtonStyleAsync("light");
+  Platform.OS === 'android'&& NavigationBar.setBackgroundColorAsync("#141414");
+  Platform.OS === 'android'&& NavigationBar.setButtonStyleAsync("light");
 
   const [fontsLoaded] = useFonts({
     'SourceSansPro-Regular': require('./src/assets/fonts/SourceSansPro-Regular.ttf'),

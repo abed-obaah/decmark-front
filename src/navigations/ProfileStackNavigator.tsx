@@ -12,6 +12,8 @@ import MenuScreen from "@src/screens/MenuScreen";
 import AccountScreen from "@src/screens/AccountScreen";
 import EditProfileScreen from "@src/screens/EditProfileScreen";
 import ProviderProfileScreen from "@src/screens/ProviderProfileScreen";
+import HistoryScreen from "@src/screens/History/HistoryScreen";
+import NotificationScreen from "@src/screens/Notification/NotificationScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -81,6 +83,20 @@ const ProfileStackNavigator = () => {
         options={{
           headerTitle: "Provider's Profile",
           headerLeft:()=>null
+        }}
+      />
+       <Stack.Screen
+        name="HistoryScreen"
+        component={HistoryScreen}
+        options={{
+          header:()=>null
+        }}
+      />
+        <Stack.Screen
+        name="NotificationScreen"
+        component={NotificationScreen}
+        options={{
+          header:()=>null
         }}
       />
     </Stack.Navigator>

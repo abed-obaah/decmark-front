@@ -55,7 +55,10 @@ export default MenuOptions = () => {
           color={theme.PRIMARY_TEXT_COLOR}
         />
       ),
-      screen: "sdfsdf",
+      screen: () =>
+        navigation.navigate("ProfileStack", {
+          screen: "NotificationScreen",
+        }),
     },
     {
       lable: "History",
@@ -66,7 +69,8 @@ export default MenuOptions = () => {
           color={theme.PRIMARY_TEXT_COLOR}
         />
       ),
-      screen: "sdfsdf",
+      screen: () =>
+        navigation.navigate("ProfileStack", { screen: "HistoryScreen" }),
     },
     {
       lable: "Help & Support",
