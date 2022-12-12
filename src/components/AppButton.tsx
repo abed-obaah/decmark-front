@@ -20,7 +20,7 @@ const AppButton: FC<IAppButton> = ({
   radius,
   buttonHeight,
   onPress,
-  disabled,
+  disabled,styles,
   ...props
 }) => {
   const { theme } = useAppTheme();
@@ -42,6 +42,7 @@ const AppButton: FC<IAppButton> = ({
         borderWidth: 1,
         borderColor: disabled ? COLORS.lightGold : COLORS.gold,
         marginTop: marginTop ? marginTop : 25,
+        ...styles
       }}
       {...props}
     >

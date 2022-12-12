@@ -17,6 +17,7 @@ import ServiceStackNavigator from "./ServiceStackNavigator";
 import VerificationStackNavigator from "./VerificationStackNavigator";
 import OthersStackNavigator from "./OthersStackNavigator";
 import { Platform } from "react-native";
+import WalletStackNavigator from "./WalletStackNavigator";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -72,6 +73,10 @@ const RootNavigator = () => {
                 <Stack.Screen
                 name="OthersStack"
                 component={OthersStackNavigator}
+              />
+               <Stack.Screen
+                name="WalletStack"
+                component={WalletStackNavigator}
               />
             </>
           )}

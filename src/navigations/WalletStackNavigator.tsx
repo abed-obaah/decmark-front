@@ -4,11 +4,12 @@ import {
   StackNavigationOptions,
 } from "@react-navigation/stack";
 import type { RootStackParamList } from "../@types/navigation";
-import ChattingScreen from "@src/screens/MessageScreen/ChattingScreen";
+import FundWalletScreen from "@src/screens/Wallet/FundWalletScreen";
+import WithdrawScreen from "@src/screens/Wallet/WithdrawScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
-const OthersStackNavigator = () => {
+const WalletStackNavigator = () => {
 
   const options: StackNavigationOptions = {
     headerShown: false,
@@ -17,11 +18,15 @@ const OthersStackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={options}>
       <Stack.Screen
-        name="ChattingScreen"
-        component={ChattingScreen}
+        name="WithdrawScreen"
+        component={WithdrawScreen}
+      />
+       <Stack.Screen
+        name="FundWalletScreen"
+        component={FundWalletScreen}
       />
     </Stack.Navigator>
   );
 };
 
-export default OthersStackNavigator;
+export default WalletStackNavigator;
