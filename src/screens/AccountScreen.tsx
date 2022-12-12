@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
 import MyAvatar from "@src/global/MyAvatar";
@@ -24,9 +24,17 @@ const AccountScreen = ({ navigation }: any) => {
     });
 
     if (!result.canceled) {
-      const form = new FormData();
-      form.append("image", result.assets[0].uri);
-      dispatch(uploadProfileImg(form));
+      const data = new FormData();
+      data.append("image", {
+        uri: result.assets[0].uri,
+        name: result.assets[0].fileName,
+        type: `image/${
+          result.assets[0].uri.split(".")[
+            result.assets[0].uri.split(".").length - 1
+          ]
+        }`,
+      });
+      dispatch(uploadProfileImg(data));
     }
   };
 

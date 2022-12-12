@@ -1,14 +1,19 @@
-import React, { FC, useRef, useMemo, useCallback, forwardRef } from "react";
-import { StyleSheet, Text, View, useWindowDimensions } from "react-native";
-import BottomSheet from "@gorhom/bottom-sheet";
+import React, { FC, useMemo } from "react";
+import { StyleSheet, View, useWindowDimensions } from "react-native";
+import BottomSheet, {
+  useBottomSheetDynamicSnapPoints,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
 
 interface BottomSheetProps {
   sheetRef: any;
   snapPoints?: any[];
+  children: React.ReactNode;
 }
 
 const AppBottomSheet: FC<BottomSheetProps> = ({
   sheetRef,
+  children,
   snapPoints = ["50%", "100%"],
 }) => {
   const { height, width } = useWindowDimensions();
@@ -17,7 +22,7 @@ const AppBottomSheet: FC<BottomSheetProps> = ({
     <View style={[styles.container, { height, width }]}>
       <BottomSheet
         ref={sheetRef}
-        index={1}
+        index={-1}
         snapPoints={useMemo(() => [...snapPoints], [])}
         enablePanDownToClose
         backgroundStyle={{
@@ -43,11 +48,36 @@ const AppBottomSheet: FC<BottomSheetProps> = ({
         }}
         // onChange={handleSheetChanges}
       >
-        <View style={styles.contentContainer}>
-          <Text>Awesome 🎉</Text>
-        </View>
+        {children}
       </BottomSheet>
     </View>
+  );
+};
+
+export const AppBottomSheetDynamic: FC<BottomSheetProps> = ({ sheetRef }) => {
+  const initialSnapPoints = useMemo(() => ["25%", "CONTENT_HEIGHT"], []);
+
+  const {
+    animatedHandleHeight,
+    animatedSnapPoints,
+    animatedContentHeight,
+    handleContentLayout,
+  } = useBottomSheetDynamicSnapPoints(initialSnapPoints);
+
+  return (
+    <BottomSheet
+      ref={sheetRef}
+      snapPoints={animatedSnapPoints}
+      handleHeight={animatedHandleHeight}
+      contentHeight={animatedContentHeight}
+    >
+      <BottomSheetView
+        style={styles.contentContainer}
+        onLayout={handleContentLayout}
+      >
+        //... views to be measured
+      </BottomSheetView>
+    </BottomSheet>
   );
 };
 
@@ -59,8 +89,8 @@ const styles = StyleSheet.create({
     // backgroundColor: 'rgba(0,0,0,.25)'
   },
   contentContainer: {
-    flex: 1,
-    alignItems: "center",
+    // flex: 1,
+    // alignItems: "center",
   },
 });
 

@@ -10,6 +10,7 @@ import Bio from "./components/Bio";
 import AppBottomSheet from "@src/components/ui/BottomSheet";
 import useBottomSheet from "@src/hooks/useBottomSheet";
 import { useNavigation } from "@react-navigation/native";
+import AppInput from "@src/components/AppInput";
 
 const ProviderProfileScreen = () => {
   const navigation = useNavigation();
@@ -68,7 +69,9 @@ const ProviderProfileScreen = () => {
           onPress={() => handleSnapPress(0)}
         />
       </AppScrollView>
-      <AppBottomSheet sheetRef={sheetRef} />
+      <AppBottomSheet sheetRef={sheetRef}>
+        <AppInput label="Here" />
+      </AppBottomSheet>
     </AppSafeAreaView>
   );
 };
