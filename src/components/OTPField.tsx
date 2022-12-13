@@ -110,11 +110,13 @@ const styles = StyleSheet.create({
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-between",
-  },
+ },
   otpInput: {
-    minWidth: "18%",
     borderWidth: 1,
     borderRadius: SIZES.radius,
-    padding: 10,
+    padding: 7,
+    aspectRatio:1/1,
+    flex:1,
+    margin:4
   },
 });

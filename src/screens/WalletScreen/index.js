@@ -14,7 +14,7 @@ import useTheme from "@src/hooks/useAppTheme";
 import { LargeText, MediumText, SmallText } from "@src/components/AppText";
 import { Ionicons } from "@expo/vector-icons";
 
-export default WalletScreen = () => {
+export default WalletScreen = ({ navigation }) => {
   const { theme } = useTheme();
   const [amountVisible, setAmountVisible] = useState(true);
 
@@ -24,10 +24,13 @@ export default WalletScreen = () => {
     {
       icon: "card-outline",
       text: "Deposit",
+      fun: () =>
+        navigation.navigate("WalletStack", { screen: "FundWalletScreen" }),
     },
     {
       icon: "paper-plane",
       text: "Withdraw",
+      fun: () => navigation.navigate("WalletStack", { screen: "WalletScreen" }),
     },
     {
       icon: "move",
@@ -84,6 +87,7 @@ export default WalletScreen = () => {
           >
             {options.map((item, i) => (
               <TouchableOpacity
+                onPress={item.fun}
                 key={i}
                 style={{
                   width: (width - 40) / options.length,

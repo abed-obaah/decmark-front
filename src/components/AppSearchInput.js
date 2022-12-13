@@ -36,6 +36,7 @@ export default AppSearchInput = ({ error, onPress, onFocus, placeholder }) => {
             height: "100%",
             fontSize: SIZES.md,
             color: theme.PRIMARY_TEXT_COLOR,
+            fontFamily: "SourceSansPro-Regular",
           }}
           placeholder={placeholder}
           placeholderTextColor={theme.SECONDARY_TEXT_COLOR}

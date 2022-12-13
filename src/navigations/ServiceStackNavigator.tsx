@@ -27,7 +27,7 @@ const ServiceStackNavigator = () => {
     headerTitleAlign: "center",
     headerTitleStyle: {
       color: theme.PRIMARY_TEXT_COLOR,
-      // fontFamily: "FONT_SEMI_BOLD",
+      fontFamily: "SourceSansPro-SemiBold",
     },
     headerBackImage: () => (
       <MaterialIcons name="west" size={24} color={theme.SECONDARY_TEXT_COLOR} />

@@ -7,10 +7,11 @@ import {
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
 import useTheme from "@src/hooks/useAppTheme";
+import { useNavigation } from "@react-navigation/native";
 
 export default MenuOptions = () => {
   const { theme } = useTheme();
-
+  const navigation = useNavigation();
   const menuOptions = [
     {
       lable: "Settings",
@@ -43,7 +44,7 @@ export default MenuOptions = () => {
           color={theme.PRIMARY_TEXT_COLOR}
         />
       ),
-      screen: "sdfsdf",
+      screen: () => navigation.navigate("VerificationStack"),
     },
     {
       lable: "Notifications",
@@ -54,7 +55,10 @@ export default MenuOptions = () => {
           color={theme.PRIMARY_TEXT_COLOR}
         />
       ),
-      screen: "sdfsdf",
+      screen: () =>
+        navigation.navigate("ProfileStack", {
+          screen: "NotificationScreen",
+        }),
     },
     {
       lable: "History",
@@ -65,7 +69,8 @@ export default MenuOptions = () => {
           color={theme.PRIMARY_TEXT_COLOR}
         />
       ),
-      screen: "sdfsdf",
+      screen: () =>
+        navigation.navigate("ProfileStack", { screen: "HistoryScreen" }),
     },
     {
       lable: "Help & Support",
@@ -94,7 +99,7 @@ export default MenuOptions = () => {
   return (
     <>
       {menuOptions.map((item, i) => (
-        <TouchableOpacity key={i} onPress={() => item.screen}>
+        <TouchableOpacity key={i} onPress={item.screen}>
           <View style={styles.menuItem}>
             <View style={{ flexDirection: "row", alignItems: "center" }}>
               {item.icon}

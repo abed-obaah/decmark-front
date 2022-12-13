@@ -36,6 +36,9 @@ const BottomTabNavigator = ({ navigation }: any) => {
           shadowOpacity: 0,
           borderBottomWidth: 0.5,
           borderBottomColor: theme.PRIMARY_BORDER_COLOR,
+          elevation: 0,
+          shadowOpacity: 0,
+          borderBottomWidth: 0,
         },
         headerTitleStyle: {
           color: theme.PRIMARY_TEXT_COLOR,

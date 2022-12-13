@@ -14,6 +14,10 @@ import AuthStackNavigator from "./AuthStackNavigator";
 import BottomTabNavigator from "./BottomTabNavigator";
 import ProfileStackNavigator from "./ProfileStackNavigator";
 import ServiceStackNavigator from "./ServiceStackNavigator";
+import VerificationStackNavigator from "./VerificationStackNavigator";
+import OthersStackNavigator from "./OthersStackNavigator";
+import { Platform } from "react-native";
+import WalletStackNavigator from "./WalletStackNavigator";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -22,8 +26,8 @@ const RootNavigator = () => {
   const dispatch = useAppDispatch();
   const { userInfo, success } = useAppSelector((state) => state.auth);
 
-  NavigationBar.setBackgroundColorAsync(theme.NAVBAR_BACKGROUND_COLOR);
-  NavigationBar.setButtonStyleAsync(theme.NAVBAR_BUTTON_COLOR);
+  Platform.OS === 'android'&&  NavigationBar.setBackgroundColorAsync(theme.NAVBAR_BACKGROUND_COLOR);
+  Platform.OS === 'android'&&  NavigationBar.setButtonStyleAsync(theme.NAVBAR_BUTTON_COLOR);
 
   useEffect(() => {
     getUserInfo();
@@ -61,6 +65,18 @@ const RootNavigator = () => {
               <Stack.Screen
                 name="ServiceStack"
                 component={ServiceStackNavigator}
+              />
+               <Stack.Screen
+                name="VerificationStack"
+                component={VerificationStackNavigator}
+              />
+                <Stack.Screen
+                name="OthersStack"
+                component={OthersStackNavigator}
+              />
+               <Stack.Screen
+                name="WalletStack"
+                component={WalletStackNavigator}
               />
             </>
           )}

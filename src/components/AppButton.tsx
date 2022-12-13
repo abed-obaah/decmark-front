@@ -20,7 +20,7 @@ const AppButton: FC<IAppButton> = ({
   radius,
   buttonHeight,
   onPress,
-  disabled,
+  disabled,styles,
   ...props
 }) => {
   const { theme } = useAppTheme();
@@ -29,7 +29,7 @@ const AppButton: FC<IAppButton> = ({
     <TouchableOpacity
       onPress={onPress}
       style={{
-        flex: 1,
+        width:'100%',flexDirection:'row',flexShrink:1,
         height: buttonHeight ? buttonHeight : 50,
         backgroundColor: disabled
           ? COLORS.lightGold
@@ -42,6 +42,7 @@ const AppButton: FC<IAppButton> = ({
         borderWidth: 1,
         borderColor: disabled ? COLORS.lightGold : COLORS.gold,
         marginTop: marginTop ? marginTop : 25,
+        ...styles
       }}
       {...props}
     >
@@ -53,7 +54,8 @@ const AppButton: FC<IAppButton> = ({
             ? theme.PRIMARY_TEXT_COLOR
             : COLORS.dark,
           fontSize: SIZES.md,
-          // fontFamily: "FONT_SEMI_BOLD",
+          fontFamily: "SourceSansPro-Regular"
+
         }}
       >
         {label}

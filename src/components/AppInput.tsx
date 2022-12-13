@@ -61,7 +61,7 @@ const AppInput: FC<AppInputProps> = ({
             flex: 1,
             height: "100%",
             fontSize: SIZES.md,
-            // fontFamily: "FONT_SEMI_BOLD",
+          fontFamily: "SourceSansPro-SemiBold",
             color: theme.PRIMARY_TEXT_COLOR,
           }}
           secureTextEntry={hidePassword}
