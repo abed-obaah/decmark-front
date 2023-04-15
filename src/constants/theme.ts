@@ -2,7 +2,7 @@ import { DefaultTheme } from "styled-components/native";
 
 export const COLORS = {
   white: "#FFF",
-  dark: "#141414",
+  dark: "#000000",
   gold: "#DEB253",
   darkGold: "#825f15",
   lightGold: "rgba(222, 178, 83, .5)",
