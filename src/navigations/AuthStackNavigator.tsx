@@ -8,7 +8,7 @@ import AppLoader from "@src/components/ui/AppLoader";
 import AppAlert from "@src/components/ui/AppAlert";
 import type { RootStackParamList } from "../@types/navigation";
 
-import Onboarding from "@src/screens/Onboarding";
+import Onboarding from "../screens/Onboarding/index";
 import WelcomeScreen from "@src/screens/WelcomeScreen";
 import LogIn from "@src/screens/LogIn";
 import SignUp from "@src/screens/SignUp";

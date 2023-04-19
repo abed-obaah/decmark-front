@@ -10,9 +10,16 @@ import {
 import AppSearchInput from "../../../../components/AppSearchInput";
 import useTheme from "@src/hooks/useAppTheme";
 
+import {search} from "@src/redux/searchSlice";
+
 export default CategorySection = () => {
   const { theme } = useTheme();
   const { userInfo } = useSelector((state) => state.auth);
+
+  const handleSearch = () => {
+    Keyboard.dismiss();
+    dispatch(search(query));
+  };
 
   const categories = [
     {
@@ -35,20 +42,20 @@ export default CategorySection = () => {
 
   return (
     <AppSectionView>
-      <View style={{ paddingHorizontal: 20 }}>
-        <LargeText style={{ marginBottom: 10 }}>
+      <View style={{paddingHorizontal: 20}}>
+        <LargeText style={{marginBottom: 10}}>
           Hi, {userInfo?.data?.first_name} 👋
         </LargeText>
-        <AppSearchInput placeholder="Search for a service" />
+        <AppSearchInput value={query} placeholder="Search for a service" onPress={handleSearch} />
       </View>
       <FlatList
         data={categories}
         horizontal
         bounces={false}
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ marginTop: 20, paddingHorizontal: 20 }}
+        contentContainerStyle={{marginTop: 20, paddingHorizontal: 20}}
         keyExtractor={(_, i) => i}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <TouchableOpacity>
             <View
               style={{
@@ -61,7 +68,7 @@ export default CategorySection = () => {
                 borderColor: theme.PRIMARY_BORDER_COLOR,
               }}
             >
-              <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+              <SmallText style={{color: theme.PRIMARY_TEXT_COLOR}}>
                 {item.name}
               </SmallText>
             </View>
