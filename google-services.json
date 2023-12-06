@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "588375045897",
+    "firebase_url": "https://decmark-app-default-rtdb.firebaseio.com",
+    "project_id": "decmark-app",
+    "storage_bucket": "decmark-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588375045897:android:89d158112cdec749af85d8",
+        "android_client_info": {
+          "package_name": "com.abedc4.decmark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588375045897-246mqp6agug5ace3pvurrnbnran6tjoq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXBZhgx1Mu1UpqU1nbzWUOgnwxzg2Rv2w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588375045897-246mqp6agug5ace3pvurrnbnran6tjoq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

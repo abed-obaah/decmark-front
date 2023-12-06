@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>588375045897-677qkgm8l6c5keqmn4g1cb2cpv2egr9l.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.588375045897-677qkgm8l6c5keqmn4g1cb2cpv2egr9l</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA63UWOScR8lYJDZq-DiLN97c3zgrR2kNU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>588375045897</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.abedc4.decmark</string>
+	<key>PROJECT_ID</key>
+	<string>decmark-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>decmark-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:588375045897:ios:e0b395fc6cbf32e7af85d8</string>
+	<key>DATABASE_URL</key>
+	<string>https://decmark-app-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
