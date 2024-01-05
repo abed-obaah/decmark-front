@@ -33,7 +33,7 @@
         "backgroundColor": "#141414"
       },
       "package": "com.abedc4.decmark",
-      "runtimeVersion": "1.0.0"
+      "runtimeVersion": "43.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
