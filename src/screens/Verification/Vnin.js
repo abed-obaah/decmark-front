@@ -22,7 +22,7 @@ const Vnin = () => {
         url: 'https://api.prembly.com/identitypass/verification/vnin',
         headers: {
           accept: 'application/json',
-          'x-api-key': 'sandbox_sk_OcrtOg911Aidwis8V8tBHlOW07ly3KyoiN8ozdR',
+          'x-api-key': 'live_pk_QnbCl67MZWjFJv1IgBbpp8j1N2Bvbgy2C0mMHRj',
           'app-id': 'ca5723ac-c310-4279-bb08-23a40816f3d5',
           'content-type': 'application/json'
         },

@@ -36,7 +36,6 @@ export default useValidateLogin = (inputs, mode) => {
       handleError("password", "Password must be at least 8 characters")
       valid = false
     }
-    
     return valid;
   }
 

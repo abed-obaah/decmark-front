@@ -89,14 +89,14 @@ export default UploadScreen = () => {
     />
   );
 
-    // const clearAsyncStorage = async () => {
-    //   try {
-    //     await AsyncStorage.clear();
-    //     console.log('AsyncStorage cleared successfully.');
-    //   } catch (error) {
-    //     console.error('Error clearing AsyncStorage:', error);
-    //   }
-    // };
+    const clearAsyncStorage = async () => {
+      try {
+        await AsyncStorage.clear();
+        console.log('AsyncStorage cleared successfully.');
+      } catch (error) {
+        console.error('Error clearing AsyncStorage:', error);
+      }
+    };
 
   return (
     <AppSafeAreaView>
@@ -107,7 +107,7 @@ export default UploadScreen = () => {
         </MediumText>
         {documentData.map((document) => renderCheckbox(document))}
         <AppButton label="Next" onPress={handleNext} />
-        {/* <AppButton  label="Clear AsyncStorage" onPress={clearAsyncStorage} /> */}
+        <AppButton  label="Clear AsyncStorage" onPress={clearAsyncStorage} />
       </AppScrollView>
     </AppSafeAreaView>
   );

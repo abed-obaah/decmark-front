@@ -34,7 +34,7 @@ const DriversLic = () => {
         url: 'https://api.prembly.com/identitypass/verification/drivers_license/face',
         headers: {
           'Content-Type': 'multipart/form-data',
-          'x-api-key': 'sandbox_sk_OcrtOg911Aidwis8V8tBHlOW07ly3KyoiN8ozdR',
+          'x-api-key': 'live_sk_SkGMDub46Q1iLSTh1nQHpLYstN5khJvxBxsh4oG',
           'app-id': 'ca5723ac-c310-4279-bb08-23a40816f3d5',
         },
         data: formData,

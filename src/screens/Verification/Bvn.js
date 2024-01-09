@@ -7,12 +7,13 @@ import PageHeader from "@src/components/PageHeader";
 import AppTextarea from '@src/components/AppTextarea';
 import AppInput from '@src/components/AppInput';
 
+
 const Bvn = () => {
   const [loading, setLoading] = useState(false);
   const [number, setNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [failedModalVisible, setFailedModalVisible] = useState(false);
- 
+
 
   const handleVerifyVotersCard = async () => {
     try {
@@ -22,7 +23,7 @@ const Bvn = () => {
         url: 'https://api.prembly.com/identitypass/verification/bvn',
         headers: {
           accept: 'application/json',
-          'x-api-key': 'sandbox_sk_OcrtOg911Aidwis8V8tBHlOW07ly3KyoiN8ozdR',
+          'x-api-key': 'live_sk_SkGMDub46Q1iLSTh1nQHpLYstN5khJvxBxsh4oG',
           'app-id': 'ca5723ac-c310-4279-bb08-23a40816f3d5',
           'content-type': 'application/json'
         },
@@ -122,7 +123,7 @@ const Bvn = () => {
               alignItems: "center",
             }}
           >
-           <Text style={{ fontSize: 18, marginBottom: 10 }}>Verification failed!</Text>
+           <Text style={{ fontSize: 18, marginBottom: 10 }}>Verification faileds!</Text>
             <Text>Record not found.</Text>
             <Button title="Close" onPress={closeModal} />
           </View>

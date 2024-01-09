@@ -44,7 +44,7 @@ const VotersCard = () => {
 
       const headers = {
         accept: 'application/json',
-        'X-Api-Key': 'sandbox_sk_OcrtOg911Aidwis8V8tBHlOW07ly3KyoiN8ozdR',
+        'X-Api-Key': 'live_sk_SkGMDub46Q1iLSTh1nQHpLYstN5khJvxBxsh4oG',
         app_id: 'ca5723ac-c310-4279-bb08-23a40816f3d5',
         'content-type': 'application/x-www-form-urlencoded'
       };
