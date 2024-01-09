@@ -18,6 +18,7 @@ import VerificationStackNavigator from "./VerificationStackNavigator";
 import OthersStackNavigator from "./OthersStackNavigator";
 import { Platform } from "react-native";
 import WalletStackNavigator from "./WalletStackNavigator";
+import PayWithCardScreen from "./WalletStackNavigator";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -69,6 +70,7 @@ const RootNavigator = () => {
                <Stack.Screen
                 name="VerificationStack"
                 component={VerificationStackNavigator}
+                
               />
                 <Stack.Screen
                 name="OthersStack"
@@ -78,6 +80,7 @@ const RootNavigator = () => {
                 name="WalletStack"
                 component={WalletStackNavigator}
               />
+               
             </>
           )}
         </Stack.Navigator>

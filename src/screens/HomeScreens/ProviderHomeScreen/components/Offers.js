@@ -1,46 +1,72 @@
-import { View, FlatList } from "react-native";
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  View,
+  FlatList,
+  Text,
+  ActivityIndicator,
+  RefreshControl,
+  // Modal,
+  // TouchableOpacity,
+  // Animated,
+  StyleSheet,
+  // Image,
+} from "react-native";
 import { SmallText, MediumText } from "@src/components/AppText";
 import AppButton from "@src/components/AppButton";
 import { SIZES } from "@src/constants/theme";
 import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
-export default Offers = () => {
+const MyServices = () => {
   const { theme } = useTheme();
   const navigation = useNavigation();
+  const [services, setServices] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
-  const offers = [
-    {
-      name: "Helen Njokwu",
-      category: "Health",
-      price: "40,500",
-      description:
-        "Hi John! I am looking for a home massage, will you be available on Saturday by 6pm? 😉",
-      time: "45 mins ago",
-      location: "Ogba, Lagos",
-    },
-    {
-      name: "Helen Njokwu",
-      category: "Health",
-      price: "40,500",
-      description:
-        "Hi John! I am looking for a home massage, will you be available on Saturday by 6pm? 😉",
-      time: "45 mins ago",
-      location: "Ogba, Lagos",
-    },
-    {
-      name: "Helen Njokwu",
-      category: "Health",
-      price: "40,500",
-      description:
-        "Hi John! I am looking for a home massage, will you be available on Saturday by 6pm? 😉",
-      time: "45 mins ago",
-      location: "Ogba, Lagos",
-    },
-  ];
+  useEffect(() => {
+    fetchServices();
+  }, []);
 
-  const Offer = ({ item }) => {
+  const fetchServices = async () => {
+    try {
+      setRefreshing(true); // Set refreshing to true before making the request
+      const response = await axios.get("https://api.decmark.com/v1/user/errand/offers");
+      const data = response.data;
+      console.log(data); // Check the API response data
+      setServices(data);
+      setLoading(false); // Set loading to false when the data is fetched
+      setRefreshing(false); // Set refreshing to false after the data is fetched
+    } catch (error) {
+      console.log("Error fetching services:", error);
+      setLoading(false); // Set loading to false even if there's an error
+      setRefreshing(false); // Set refreshing to false if there's an error
+    }
+  };
+
+  
+
+  const Service = ({ item }) => {
+    const { theme } = useTheme();
+    const navigation = useNavigation();
+    const {
+      id,
+      image,
+      category,
+      title,
+      price,
+      description,
+      location,
+      type,
+      coordinate,
+      provider,
+      created_at
+    } = item; // Destructure the fields
+  
+   
+  
     return (
       <View
         style={{
@@ -52,6 +78,7 @@ export default Offers = () => {
           borderColor: theme.PRIMARY_BORDER_COLOR,
         }}
       >
+        
         <View style={{ padding: 10 }}>
           <View
             style={{
@@ -68,9 +95,9 @@ export default Offers = () => {
                   // fontFamily: "FONT_SEMI_BOLD",
                 }}
               >
-                {item.name}
+                {provider.firstName}{" "}{provider.lastName}
               </MediumText>
-              <MediumText>{item.category}</MediumText>
+              <MediumText>{type}</MediumText>
             </View>
             <View>
               <MediumText
@@ -79,63 +106,71 @@ export default Offers = () => {
                   // fontFamily: "FONT_SEMI_BOLD",
                 }}
               >
-                ₦{item.price}
+                ₦{price}
               </MediumText>
+              <View
+                style={{
+                  flexDirection: "row",
+                }}
+              >
+                <Ionicons name="star" size={12} color={theme.gold} />
+                <Ionicons name="star" size={12} color={theme.gold} />
+                <Ionicons name="star" size={12} color={theme.gold} />
+                <Ionicons name="star" size={12} color={theme.gold} />
+                <Ionicons name="star" size={12} color={theme.gold} />
+              </View>
             </View>
           </View>
-          <SmallText>{item.description}</SmallText>
-
+          <SmallText>{title}</SmallText>
+          <SmallText>{id}</SmallText>
           <View
             style={{
               flexDirection: "row",
               alignItems: "center",
-              marginTop: 15,
+              marginTop: 25,
             }}
           >
-            <Ionicons name="time-outline" size={20} color={theme.gold} />
-            <SmallText
-              numberOfLines={1}
+            <View
               style={{
-                color: theme.PRIMARY_TEXT_COLOR,
-                marginLeft: 1,
+                flexDirection: "row",
+                alignItems: "center",
+                width: "60%",
               }}
             >
-              {item.time}
-            </SmallText>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              marginTop: 15,
-            }}
-          >
-            <Ionicons name="location-outline" size={20} color={theme.gold} />
-            <SmallText
-              numberOfLines={1}
-              style={{
-                color: theme.PRIMARY_TEXT_COLOR,
-                marginLeft: 1,
-              }}
-            >
-              {item.location}
-            </SmallText>
-          </View>
-
-          <View
-            style={{
-              flexDirection: "row",
-              marginTop: 15,
-            }}
-          >
+              <Ionicons name="location-outline" size={20} color={theme.gold} />
+              <Text
+                numberOfLines={1}
+                style={{
+                  color: theme.PRIMARY_TEXT_COLOR,
+                  marginLeft: 1,
+                }}
+              >
+                {coordinate}
+              </Text>
+            </View>
             <AppButton
               label="Review & Accept Offer"
               marginTop={0.5}
-              buttonHeight={45}
+              buttonHeight={40}
               onPress={() =>
                 navigation.navigate("ServiceStack", {
                   screen: "OfferDetailScreen",
+                  params: {
+                    category,
+                    title,
+                    price,
+                    description,
+                    location,
+                    type,
+                    coordinate,
+                    created_at,
+                    id,
+                    provider: {
+                      firstName: provider.firstName,
+                      lastName: provider.lastName,
+                      image:provider.image
+                    },
+                  },
                 })
               }
             />
@@ -145,13 +180,38 @@ export default Offers = () => {
     );
   };
 
+  const handleRefresh = () => {
+    fetchServices(); // Call the fetchServices function to refresh the data
+  };
+
   return (
-    <FlatList
-      data={offers}
-      bounces={false}
-      contentContainerStyle={{ marginTop: 15, paddingHorizontal: 20 }}
-      keyExtractor={(_, i) => i}
-      renderItem={({ item }) => <Offer item={item} />}
-    />
+    <View style={{ flex: 1 }}>
+      {loading ? (
+        // Show loader while the API is loading
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator size="large" color={theme.PRIMARY_COLOR} />
+        </View>
+      ) : (
+        // Show service list when the data is loaded
+        <FlatList
+          data={services}
+          bounces={false}
+          contentContainerStyle={{ marginVertical: 15, paddingHorizontal: 20 }}
+          keyExtractor={(_, i) => i.toString()}
+          renderItem={({ item }) => <Service item={item} />}
+          refreshControl={(
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={handleRefresh}
+             colors={[theme.PRIMARY_COLOR]}
+            />
+          )}
+        />
+      )}
+    </View>
   );
 };
+
+
+
+export default MyServices;

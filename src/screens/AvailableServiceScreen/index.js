@@ -91,7 +91,7 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
             }
           >
             <Image
-              source={require("@src/assets/images/my_avatar.png")}
+              source={require("@src/assets/images/black.png")}
               style={{
                 height: 65,
                 width: 65,
@@ -106,7 +106,7 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
               }}
             >
               <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
-                John Adibe
+               names
               </MediumText>
               <MediumText>
                 <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>Beauty</Text>{" "}

@@ -1,5 +1,5 @@
 import { useRef, FC } from "react";
-import { View, Image, Modal, Animated, StyleSheet } from "react-native";
+import { View, Image, Modal, Animated, StyleSheet,Text, TouchableOpacity, Alert } from "react-native";
 import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MediumText, XtraLargeText } from "@src/components/AppText";
@@ -11,6 +11,11 @@ import AppBottomSheet from "@src/components/ui/BottomSheet";
 import useBottomSheet from "@src/hooks/useBottomSheet";
 import { useNavigation } from "@react-navigation/native";
 import AppInput from "@src/components/AppInput";
+import { useRoute } from "@react-navigation/native";
+import axios from "axios";
+import MyAvatar from "@src/global/MyAvatar";
+import Lightbox from 'react-native-lightbox';
+
 
 const ProviderProfileScreen = () => {
   const navigation = useNavigation();
@@ -22,6 +27,23 @@ const ProviderProfileScreen = () => {
     outputRange: [IMG_SIZE, IMG_SIZE / 2],
     extrapolate: "clamp",
   });
+  const route = useRoute();
+  const { 
+    id, 
+    name, 
+    image,
+    description, 
+    type, 
+    coordinate,
+    providerType,
+    created_at,
+    ratingScore,
+    ratingReviews,
+    user_id,
+    price} = route.params;
+
+
+
 
   return (
     <AppSafeAreaView>
@@ -42,10 +64,19 @@ const ProviderProfileScreen = () => {
           <Animated.View
             style={styles.imgContainer(imgSize, IMG_SIZE, scrollY)}
           >
-            <Image
+            {/* <Image
               source={require("@src/assets/images/my_avatar.png")}
               style={styles.img(IMG_SIZE) as any}
+            /> */}
+            {/* <Lightbox underlayColor="white" >
+            <Image
+              style={styles.img(IMG_SIZE) as any}
+              resizeMode="cover"
+               source={{ uri: image }}
             />
+          </Lightbox> */}
+             <MyAvatar size={200} iconSize={10} image={image}
+             />
           </Animated.View>
         </View>
         <View
@@ -54,20 +85,60 @@ const ProviderProfileScreen = () => {
           }}
         >
           <XtraLargeText>
-            John Adibe{" "}
+          {name}{" "}
             <MaterialIcons name="verified" size={24} color={"green"} />
           </XtraLargeText>
-          <MediumText>General Services &bull; Plumber</MediumText>
+          <MediumText>General Services &bull; {type}</MediumText>
         </View>
-        <Bio />
-        <RatingsReviews />
+        <Bio 
+          description={description}
+          coordinate={coordinate}
+          providerType={providerType}
+          created_at={created_at}
+          
+        />
+        <RatingsReviews
+          ratingScore={ratingScore}
+          ratingReviews={ratingReviews} name={name} type={type}
+          />
+
         <WorkImages />
-        <AppButton
+        {/* <AppButton
           label="Schedule"
           marginTop={20}
           buttonHeight={45}
           onPress={() => handleSnapPress(0)}
-        />
+        /> */}
+
+<AppButton
+              // style={{
+              //   backgroundColor: "#DEB253",
+              //   paddingHorizontal: 20,
+              //   paddingVertical: 10,
+              //   borderRadius: 5,
+              //   marginTop: 30,
+              // }}
+              buttonHeight={45}
+              marginTop={20}
+              label="Schedule"
+              onPress={() =>
+                
+                navigation.navigate("ProfileStack", {
+                  screen: "ScheduleScreen",
+                  params: {
+                    id: id,
+                    price:price,
+                    user_id:user_id,
+                    descriptions:description,
+                    type:type,
+                    providerType:providerType,
+                    names:name,
+                    // imgUrls:imgUrls,
+                  },
+                })
+              }
+            />
+
       </AppScrollView>
       <AppBottomSheet sheetRef={sheetRef}>
         <AppInput label="Here" />

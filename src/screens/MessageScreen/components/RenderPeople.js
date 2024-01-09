@@ -1,15 +1,25 @@
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text, Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
-
 import { MediumText } from "@src/components/AppText";
+import { useRoute } from '@react-navigation/native';
 
-const RenderPeople = ({ item, color, navigation }) => {
+
+
+
+
+
+
+const RenderPeople = ({ item, color, navigation,receiver_id}) => {
+  const route = useRoute();
+const { id, price, user_id, descriptions, type, providerType } = route.params;
   const navigateToChat = () => {
     navigation.navigate("OthersStack", {
-      screen: "ChattingScreen",
-      params: item,
+      screen: "ChatBody",
+      params: { ...item,},
+      receiver_id:user_id,
     });
   };
+  
   return (
     <TouchableOpacity
       onPress={navigateToChat}
@@ -31,12 +41,15 @@ const RenderPeople = ({ item, color, navigation }) => {
       />
       <View style={{ flex: 1 }}>
         <MediumText style={{ color, fontFamily: "SourceSansPro-SemiBold" }}>
-          {item.name}
+          {item.receiver.first_name} {''}
+          {item.receiver.last_name}
         </MediumText>
         <MediumText>{item.lastMsg}</MediumText>
       </View>
       <View>
         <MediumText>{item.time}</MediumText>
+        <Text style={{ fontFamily: 'your-font', color: 'your-color' }}>{item.senderId}</Text>
+       
       </View>
     </TouchableOpacity>
   );

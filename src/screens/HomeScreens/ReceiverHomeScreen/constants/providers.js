@@ -1,20 +1,20 @@
 export default [
   {
-    name: "John Adibe",
+    name: "chinedu",
     category: "Cleaner",
     price: '40,500',
     description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
     location: "Ogba, Lagos"
   },
   {
-    name: "Chidera",
+    name: "Abednego",
     category: "Repairs",
     price: '40,500',
     description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
     location: "Ikeja, Lagos"
   },
   {
-    name: "Paul",
+    name: "Obaah",
     category: "Repairs",
     price: '70,500',
     description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
@@ -28,14 +28,14 @@ export default [
     location: "Ikeja, Lagos"
   },
   {
-    name: "Christian",
+    name: "Dave",
     category: "Repairs",
     price: '70,500',
     description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",
     location: "Ikeja, Lagos"
   },
   {
-    name: "Dominic",
+    name: "Victoria",
     category: "Repairs",
     price: '70,500',
     description: "Hi there! I can perfom your cleaning services for you at a fast workrate.",

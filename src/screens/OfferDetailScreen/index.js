@@ -5,10 +5,36 @@ import { MediumText, LargeText, XtraLargeText } from "@src/components/AppText";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import AppButton from "@src/components/AppButton";
 import useTheme from "@src/hooks/useAppTheme";
+import { Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSelector, useDispatch } from "react-redux";
+import Toast from 'react-native-toast-message';
+import { useNavigation } from '@react-navigation/native';
+import MyAvatar from "@src/global/MyAvatar";
 
-export default OfferDetailScreen = () => {
+
+
+
+export default OfferDetailScreen = ({ route }) => {
   const { theme } = useTheme();
   const scrollY = useRef(new Animated.Value(0)).current;
+  const { userInfo } = useSelector((state) => state.auth);
+  const navigation = useNavigation();
+
+  const {
+    id,
+    
+    category,
+    title,
+    price,
+    description,
+    location,
+    type,
+    coordinate,
+    provider,
+    provider: { firstName, lastName,image },
+    created_at
+  } = route.params;
 
   const IMG_SIZE = 200;
 
@@ -17,6 +43,111 @@ export default OfferDetailScreen = () => {
     outputRange: [IMG_SIZE, IMG_SIZE / 2],
     extrapolate: "clamp",
   });
+
+
+  const showToast = () => {
+    Toast.show({
+      type: 'success',
+      text1: 'Errand Accepted',
+      text2: 'You have accepted the Errand, User will be notified👋'
+    });
+  }
+  
+
+  const handleDeclineOffer = async () => {
+  
+    const showToasts = () => {
+      Toast.show({
+        type: 'error',
+        text1: 'Errand Accepted',
+        text2: 'You have accepted the Errand, User will be notified👋'
+      });
+    }
+    try {
+      // Assuming you have the schedule ID
+      const scheduleId = id;
+      console.log(scheduleId);
+  
+      const payload = {
+        user_id: "cb7411c3-134d-429b-9ddc-237c6796120a",
+        action: "decline",
+      };
+  
+      const response = await fetch(`https://api.decmark.com/v1/user/errand/errands/${scheduleId}/book`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${userInfo?.authentication.token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Success:', responseData);
+        showToasts();
+        navigation.goBack();
+        
+      } else {
+        console.error('Error accepting offer:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Error accepting offer:', error.message);
+    }
+  };
+
+
+
+  const handleAcceptOffer = async () => {
+  
+    try {
+      // Assuming you have the schedule ID
+      const scheduleId = id;
+      console.log(scheduleId);
+  
+      const payload = {
+        user_id: "cb7411c3-134d-429b-9ddc-237c6796120a",
+        action: "accept",
+      };
+  
+      const response = await fetch(`https://api.decmark.com/v1/user/errand/errands/${scheduleId}/book`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+          Authorization: `Bearer ${userInfo?.authentication.token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log('Success:', responseData);
+        showToast();
+        // Handle success, e.g., navigate to a different screen or update the UI
+        // You may also want to fetch updated data from the server after accepting the offer
+        // For example, you can navigate to a different screen:
+        // navigation.navigate("AcceptedOfferScreen");
+        navigation.goBack();
+      } else {
+        console.error('Error accepting offer:', response.status, response.statusText);
+        // Handle the error, e.g., display an error message to the user
+        // You may want to add additional error handling based on your application's needs
+      }
+    } catch (error) {
+      console.error('Error accepting offer:', error.message);
+      // Handle the error, e.g., display an error message to the user
+      // You may want to add additional error handling based on your application's needs
+    }
+  };
+  
+  
+  
+  // const navigateBack = () => {
+  //   // Assuming you have the navigation prop from React Navigation
+  //   navigation.goBack();
+  // };
 
   return (
     <AppSafeAreaView>
@@ -37,10 +168,7 @@ export default OfferDetailScreen = () => {
           <Animated.View
             style={styles.imgContainer(imgSize, IMG_SIZE, scrollY)}
           >
-            <Image
-              source={require("@src/assets/images/lady.jpg")}
-              style={styles.img(IMG_SIZE)}
-            />
+            <MyAvatar size={200} iconSize={10} image={provider.image}/>
           </Animated.View>
         </View>
         <View
@@ -49,7 +177,7 @@ export default OfferDetailScreen = () => {
           }}
         >
           <XtraLargeText>
-            Helen Njokwu{" "}
+            {provider.firstName}{" "} {provider.lastName}
             <MaterialIcons name="verified" size={24} color={"green"} />
           </XtraLargeText>
           <MediumText>Service Receiver</MediumText>
@@ -85,24 +213,21 @@ export default OfferDetailScreen = () => {
               size={20}
               color={theme.PRIMARY_TEXT_COLOR}
             />
-            <MediumText style={{ marginLeft: 3.5 }}>45min ago</MediumText>
+            <MediumText style={{ marginLeft: 3.5 }}>{created_at}</MediumText>
           </View>
         </View>
         <View style={{ marginTop: 20 }}>
           <LargeText>Category</LargeText>
-          <MediumText>Beauty - Make up</MediumText>
+          <MediumText>{type} - {title} </MediumText>
         </View>
         <View style={{ marginTop: 20 }}>
           <LargeText>Budget</LargeText>
-          <MediumText>₦40,000</MediumText>
+          <MediumText>₦{price}</MediumText>
         </View>
         <View style={{ marginTop: 20 }}>
           <LargeText>Description</LargeText>
           <MediumText>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book
+            {description}
           </MediumText>
         </View>
         <View style={{ marginTop: 20 }}>
@@ -118,11 +243,18 @@ export default OfferDetailScreen = () => {
           <AppButton
             label="Decline"
             background="transparent"
+            onPress={() => handleDeclineOffer()}
             marginTop={20}
             buttonHeight={45}
           />
+
           <View style={{ width: 20 }} />
-          <AppButton label="Accept" marginTop={20} buttonHeight={45} />
+
+          <AppButton
+           onPress={() => handleAcceptOffer()}
+           label="Accept" 
+           marginTop={20} 
+           buttonHeight={45} />
         </View>
       </AppScrollView>
     </AppSafeAreaView>

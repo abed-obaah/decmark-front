@@ -8,8 +8,26 @@ import {
   SmallText,
 } from "@src/components/AppText";
 
-export default RatingsReviews = () => {
+export default RatingsReviews = ({
+    name,
+    type,
+    ratingScore,
+    ratingReviews
+}) => {
   const { theme } = useTheme();
+
+  const renderStars = () => {
+    const stars = [];
+    const fullStars = Math.floor(ratingScore);
+
+    for (let i = 0; i < fullStars; i++) {
+      stars.push(
+        <Ionicons key={i} name="star" size={12} color={theme.gold} />
+      );
+    }
+
+    return stars;
+  };
 
   return (
     <View style={{ marginTop: 20 }}>
@@ -33,7 +51,7 @@ export default RatingsReviews = () => {
           }}
         >
           <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
-            See All (17)
+            See All
           </SmallText>
         </TouchableOpacity>
       </View>
@@ -43,19 +61,15 @@ export default RatingsReviews = () => {
         }}
       >
         <View style={{ paddingRight: 10 }}>
-          <XtraLargeText>4.7</XtraLargeText>
+          <XtraLargeText>{ratingScore}</XtraLargeText>
           <View
             style={{
               flexDirection: "row",
             }}
           >
-            <Ionicons name="star" size={12} color={theme.gold} />
-            <Ionicons name="star" size={12} color={theme.gold} />
-            <Ionicons name="star" size={12} color={theme.gold} />
-            <Ionicons name="star" size={12} color={theme.gold} />
-            <Ionicons name="star" size={12} color={theme.gold} />
+            {renderStars()}
           </View>
-          <MediumText>25 ratings</MediumText>
+          <MediumText>{ratingScore} ratings</MediumText>
         </View>
 
         <View
@@ -67,7 +81,7 @@ export default RatingsReviews = () => {
           }}
         >
           <MediumText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
-            Miracle Olisa
+            {name}
           </MediumText>
           <View
             style={{
@@ -81,17 +95,12 @@ export default RatingsReviews = () => {
                 flexDirection: "row",
               }}
             >
-              <Ionicons name="star" size={12} color={theme.gold} />
-              <Ionicons name="star" size={12} color={theme.gold} />
-              <Ionicons name="star" size={12} color={theme.gold} />
-              <Ionicons name="star" size={12} color={theme.gold} />
-              <Ionicons name="star" size={12} color={theme.gold} />
+              {renderStars()}
             </View>
-            <SmallText style={{ marginLeft: 3.5 }}>05-07-2022</SmallText>
+            <SmallText style={{ marginLeft: 3.5 }}>{type}</SmallText>
           </View>
           <MediumText>
-            I don't understand what this guy is doing, but come to think of it
-            in my own judgement...
+            {ratingReviews}
           </MediumText>
         </View>
       </View>

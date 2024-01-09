@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity } from "react-native";
+import React, { useState,useEffect } from "react";
+import { View, TouchableOpacity, Image } from "react-native";
 import {
   AppView,
   AppScrollView,
@@ -13,6 +13,9 @@ import useSwitchUserMode from "@src/hooks/useSwitchUserMode";
 import MenuOptions from "./components/MenuOptions";
 import { logoutUser } from "@src/redux/authSlice";
 import { useAppDispatch, useAppSelector } from "@src/hooks/useAppStore";
+import axios from "axios";
+
+
 
 const MenuScreen = ({ navigation }) => {
   const dispatch = useAppDispatch();
@@ -20,6 +23,77 @@ const MenuScreen = ({ navigation }) => {
   const { userMode, handleToggleUserMode } = useSwitchUserMode();
   const [amountVisible, setAmountVisible] = useState(false);
   const { userInfo } = useAppSelector((state) => state.auth);
+  const [walletData, setWalletData] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchWallet();
+    // checkPinCreation();
+  }, []);
+
+  const fetchWallet = async () => {
+    try {
+      const userId = userInfo?.data?.id;
+
+      if (!userId) {
+        console.error("User ID is missing.");
+        return;
+      }
+
+      const response = await axios.get(
+        `https://api.decmark.com/v1/user/wallet?user_id=${userId}`,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${userInfo?.authentication.token}`,
+          },
+        }
+      );
+
+      const data = response.data;
+      setWalletData(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+
+  useEffect(() => {
+    fetchImage();
+    // checkPinCreation();
+  }, []);
+  
+
+  const fetchImage = async () => {
+    
+    try {
+      const userId = userInfo?.data?.id;
+
+      if (!userId) {
+        console.error("User ID is missing.");
+        return;
+      }
+
+      const response = await axios.get(
+        `https://api.decmark.com/v1/user/artisan/user/${userId}`,
+        {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${userInfo?.authentication.token}`,
+          },
+        }
+      );
+
+      const data = response.data;
+      console.log(data)
+      setSelectedImage(data.user.profile_img);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
 
   return (
     <AppSafeAreaView>
@@ -46,7 +120,7 @@ const MenuScreen = ({ navigation }) => {
               alignItems: "center",
             }}
           >
-            <MyAvatar size={45} />
+            <MyAvatar size={45} image={selectedImage}/>
             <View style={{ marginLeft: 10 }}>
               <LargeText>
                 @{userInfo?.data?.first_name.toLowerCase()}_
@@ -83,13 +157,13 @@ const MenuScreen = ({ navigation }) => {
           >
             <TouchableOpacity>
               <Ionicons
-                name="refresh-circle"
+                name="wallet"
                 size={26}
                 color={theme.PRIMARY_TEXT_COLOR}
               />
             </TouchableOpacity>
             <View style={{ width: 5 }} />
-            <LargeText>₦ {amountVisible ? "345,050.00" : "XXXXX.XX"}</LargeText>
+            <LargeText>₦ {amountVisible ? walletData?.amount?.amount : "XXXXXX.XX"}</LargeText>
           </View>
           <View
             style={{
@@ -97,7 +171,9 @@ const MenuScreen = ({ navigation }) => {
               alignItems: "center",
             }}
           >
+            
             <TouchableOpacity onPress={() => setAmountVisible(!amountVisible)}>
+              
               <Ionicons
                 name={amountVisible ? "eye-off-outline" : "eye-outline"}
                 size={26}
@@ -105,7 +181,10 @@ const MenuScreen = ({ navigation }) => {
               />
             </TouchableOpacity>
             <View style={{ width: 10 }} />
-            <TouchableOpacity>
+            <TouchableOpacity 
+                       onPress={() =>
+                        navigation.navigate('WalletScreen')}
+            >
               <Ionicons
                 name="add-circle"
                 size={26}
@@ -115,50 +194,46 @@ const MenuScreen = ({ navigation }) => {
           </View>
         </View>
 
-        <View
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', marginBottom:12 }}>
+  <MediumText  style={{
+          color: theme.PRIMARY_TEXT_COLOR,
+          alignItems: "center",
+          padding: 0.5,
+          paddingHorizontal: 5,
+          borderRadius: 25,
+        }}>Become a Service Provider?</MediumText>
+  <View style={{ flexDirection: 'row', alignItems: 'center', borderColor: theme.PRIMARY_BORDER_COLOR,borderWidth: 1,borderRadius: 25, marginBottom: 10, padding: 2.5, backgroundColor: theme.INPUT_BACKGROUND_COLOR,
+ }}>
+    {["receiver", "provider"].map((item, i) => (
+      <TouchableOpacity
+        key={i}
+        style={{
+          backgroundColor:
+            item === userMode ? theme.gold : "transparent",
+          alignItems: "center",
+          padding: 0.5,
+          paddingHorizontal: 5,
+          borderRadius: 25,
+          color: theme.PRIMARY_TEXT_COLOR
+          
+        }}
+        onPress={() => handleToggleUserMode(item)}
+      >
+        <MediumText
           style={{
-            justifyContent: "center",
-            alignItems: "center",
+            color:
+              item === userMode
+                ? theme.dark
+                : theme.SECONDARY_TEXT_COLOR,
+            textTransform: "capitalize",
+            color: theme.PRIMARY_TEXT_COLOR
           }}
         >
-          <View
-            style={{
-              backgroundColor: theme.INPUT_BACKGROUND_COLOR,
-              flexDirection: "row",
-              padding: 2.5,
-              marginBottom: 10,
-              borderRadius: 25,
-              borderWidth: 1,
-              borderColor: theme.PRIMARY_BORDER_COLOR,
-            }}
-          >
-            {["receiver", "provider"].map((item, i) => (
-              <TouchableOpacity
-                key={i}
-                style={{
-                  backgroundColor:
-                    item === userMode ? theme.gold : "transparent",
-                  alignItems: "center",
-                  padding: 8.5,
-                  paddingHorizontal: 25,
-                  borderRadius: 25,
-                }}
-                onPress={() => handleToggleUserMode(item)}
-              >
-                <MediumText
-                  style={{
-                    color:
-                      item === userMode
-                        ? theme.dark
-                        : theme.SECONDARY_TEXT_COLOR,
-                    textTransform: "capitalize",
-                  }}
-                >
-                  {item}
-                </MediumText>
-              </TouchableOpacity>
-            ))}
-          </View>
+          {item}
+        </MediumText>
+      </TouchableOpacity>
+    ))}
+  </View>
         </View>
       </AppView>
 
@@ -185,12 +260,29 @@ const MenuScreen = ({ navigation }) => {
             color={theme.PRIMARY_TEXT_COLOR}
           />
         </TouchableOpacity>
-        <TouchableOpacity style={{ paddingVertical: 10 }}>
-          <Ionicons
-            name="heart-outline"
+        <TouchableOpacity style={{ paddingVertical: 10 }}
+        onPress={() =>
+          navigation.navigate("ProfileStack", {
+            screen: "TippingPage",
+          })
+        }
+        >
+          {/* <Ionicons
+            name="pricetags-sharp"
             size={26}
             color={theme.PRIMARY_TEXT_COLOR}
-          />
+          /> */}
+
+        <Image
+          source={require("@src/assets/images/tip.png")}
+          style={{
+            height: 50, // Adjust the height as per your requirement
+            width: 50, // Adjust the width as per your requirement
+            borderRadius: 25, // Make the borderRadius half of the width/height for a rounded border effect
+            borderWidth: 26, // Set the border width
+           
+          }}
+        />
         </TouchableOpacity>
       </AppView>
     </AppSafeAreaView>

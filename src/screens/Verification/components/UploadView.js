@@ -1,39 +1,29 @@
-import React from "react";
-import { TouchableOpacity } from "react-native";
-import { StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, View, Image, StyleSheet } from "react-native";
 import { COLORS, SIZES } from "@src/constants/theme";
 import { Feather } from "@expo/vector-icons";
-import useAppTheme from "@src/hooks/useAppTheme";
 import { ErrorText, MediumText } from "@src/components/AppText";
 import * as ImagePicker from "expo-image-picker";
 
-export default UploadView = ({ label, error, setImage, image }) => {
-  const { theme } = useAppTheme();
-  const [backgroundColor, setBackgroundColor] = React.useState(
-    theme.INPUT_BACKGROUND_COLOR
-  );
-  const [borderColor, setBorderColor] = React.useState(
-    theme.PRIMARY_BORDER_COLOR
-  );
+const UploadView = ({ label, error, setImage, image }) => {
+  const [backgroundColor, setBackgroundColor] = useState(COLORS.white);
+  const [borderColor, setBorderColor] = useState(COLORS.primary);
+
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
     });
 
-    console.log(result);
-
-    if (!result.canceled) {
-      setImage({ uri: result.assets[0].uri, name: result.assets[0].fileName });
+    if (!result.cancelled) {
+      setImage({ uri: result.uri, name: result.fileName });
     }
   };
 
   return (
     <View style={{ marginTop: 20 }}>
       {label && (
-        <MediumText
-          style={{ marginBottom: 3, color: theme.PRIMARY_TEXT_COLOR }}
-        >
+        <MediumText style={{ marginBottom: 3, color: COLORS.primary }}>
           {label}
         </MediumText>
       )}
@@ -45,7 +35,7 @@ export default UploadView = ({ label, error, setImage, image }) => {
           error ? { borderColor: COLORS.red } : { borderColor },
         ]}
       >
-        <MediumText>{image.name}</MediumText>
+        {/* <MediumText>{image.name}</MediumText> */}
         <Feather
           name="upload"
           style={{
@@ -55,10 +45,14 @@ export default UploadView = ({ label, error, setImage, image }) => {
           }}
         />
       </TouchableOpacity>
+      {image && (
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: image.uri }} style={styles.image} />
+          {/* <MediumText>{image.name}</MediumText> */}
+        </View>
+      )}
       {error && (
-        <View
-          style={{ flexDirection: "row", alignItems: "center", marginTop: 4 }}
-        >
+        <View style={{ flexDirection: "row", alignItems: "center", marginTop: 4 }}>
           <Feather
             name="alert-circle"
             style={{
@@ -84,4 +78,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
+  imageContainer: {
+    marginTop: 10,
+    // alignItems: "center",
+  },
+  image: {
+    width: 100,
+    height: 100,
+    marginTop: 5,
+    borderRadius: SIZES.radius,
+  },
 });
+
+export default UploadView;

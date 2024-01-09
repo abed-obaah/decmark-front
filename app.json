@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#141414"
-      }
+      },
+      "package": "com.anwuli.decmark"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "0e2c1607-36ff-4dd6-9b1c-38d84869476a"
+      }
     }
   }
 }

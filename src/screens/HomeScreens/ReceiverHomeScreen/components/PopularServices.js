@@ -54,8 +54,13 @@ export default PopularServices = () => {
             </>
           </TouchableOpacity>
         ))}
-        <TouchableOpacity style={styles.box}>
+        <TouchableOpacity style={styles.box}
+        onPress={() =>
+          navigation.navigate("ServiceStack", {
+            screen: "MoreServices",
+          })}>
           <View
+          
             style={{
               width: "100%",
               height: (width - 40) * 0.23,
@@ -66,7 +71,12 @@ export default PopularServices = () => {
               borderColor: theme.PRIMARY_BORDER_COLOR,
             }}
           >
-            <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
+            <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}
+             onPress={() =>
+              navigation.navigate("ServiceStack", {
+                screen: "MoreServices",
+              })
+            }>
               More
             </SmallText>
           </View>

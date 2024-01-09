@@ -9,7 +9,7 @@ import { setCustomText, setCustomTextInput } from "react-native-global-props";
 import { useFonts } from 'expo-font';
 import "@src/global/axios";
 import { Platform } from "react-native";
-
+import Toast from 'react-native-toast-message'
 // const customTextProps = {
 //   style: { fontFamily: "FONT_REGULAR" },
 // };
@@ -41,6 +41,7 @@ const App = () => {
     <Provider store={store}>
       <StatusBar style="light" />
       <RootNavigator />
+      <Toast />
     </Provider>
   );
 };

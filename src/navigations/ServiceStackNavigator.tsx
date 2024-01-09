@@ -9,6 +9,7 @@ import type { RootStackParamList } from "../@types/navigation";
 import AddServiceScreen from "@src/screens/AddServiceScreen";
 import OfferDetailScreen from "@src/screens/OfferDetailScreen";
 import AvailableServiceScreen from "@src/screens/AvailableServiceScreen";
+import MoreServices from "@src/screens/AvailableServiceScreen/MoreServices";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -49,6 +50,11 @@ const ServiceStackNavigator = () => {
       <Stack.Screen
         name="AvailableServiceScreen"
         component={AvailableServiceScreen}
+        options={{ headerTitleAlign: "left" }}
+      />
+      <Stack.Screen
+        name="MoreServices"
+        component={MoreServices}
         options={{ headerTitleAlign: "left" }}
       />
     </Stack.Navigator>

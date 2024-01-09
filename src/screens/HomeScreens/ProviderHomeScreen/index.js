@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { AppSafeAreaView, AppSectionView } from "@src/components/AppViews";
 import SwitchModeInfo from "../components/SwitchModeInfo";
@@ -9,16 +9,41 @@ import { FontAwesome } from "@expo/vector-icons";
 import GroupTab from "@src/components/GroupTab";
 import MyServices from "./components/MyServices";
 import Offers from "./components/Offers";
+import { useSelector, useDispatch } from "react-redux";
 
 export default ProviderHomeScreen = ({ navigation }) => {
   const { theme } = useTheme();
   const { isModeSwitch } = useSwitchUserMode();
-
+  const { userInfo } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(1);
+  const [offersCount, setOffersCount] = useState(0);
+
   const tabs = {
     0: <Offers />,
     1: <MyServices />,
     2: <Offers />,
+  };
+
+  useEffect(() => {
+    // Fetch the offers count from the server or any other data source
+    // and update the offersCount state
+    fetchOffersCount();
+  }, []);
+
+  const fetchOffersCount = async () => {
+    try {
+      // Replace this with your API call to get the offers count
+      const response = await fetch("https://api.example.com/offers/count");
+      const data = await response.json();
+
+       // Update the offers count
+      setOffersCount(data.count);
+
+      console.log(data.count);
+    } catch (error) {
+      console.log("Error fetching offers count:", error);
+    }
   };
 
   return (
@@ -29,11 +54,11 @@ export default ProviderHomeScreen = ({ navigation }) => {
         <AppSafeAreaView style={{ position: "relative" }}>
           <View style={{ flex: 1 }}>
             <AppSectionView style={{ paddingHorizontal: 20 }}>
-              <LargeText>Hi, John 👋</LargeText>
+              <LargeText>Hi, {userInfo?.data?.first_name}👋</LargeText>
               <MediumText>Explore DecMark services</MediumText>
             </AppSectionView>
             <GroupTab
-              tabs={["Trending", "Services", `Offers(${5})`]}
+              tabs={["Trending", "Services", `Offers(${offersCount})`]}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />

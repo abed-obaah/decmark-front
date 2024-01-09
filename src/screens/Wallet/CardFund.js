@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import PageHeader from "@src/components/PageHeader";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
@@ -9,6 +9,12 @@ import { LargeText, MediumText, SmallText } from "@src/components/AppText";
 import useAppTheme from "@src/hooks/useAppTheme";
 import { SIZES } from "@src/constants/theme";
 import CashMethod from "./components/CashMethod";
+import QuickTeller from "./components/QuickTeller";
+import BankTransfer from "./components/BankTransfer";
+import PayWithQr from "./components/PayWithQr";
+import UssdMethod from "./components/UssdMethod";
+import BinanceMethod from "./components/BinanceMethod";
+// import { useNavigation } from "@react-navigation/native";
 
 const FundWalletScreen = () => {
   const { theme } = useAppTheme();
@@ -19,7 +25,11 @@ const FundWalletScreen = () => {
     if (amount) {
       setStage(1);
     }
+
+  const pop = () => {
+    alert("working");
   };
+
   return (
     <AppSafeAreaView>
       <PageHeader title={"Fund Account"} />
@@ -57,6 +67,7 @@ const FundWalletScreen = () => {
                   alignItems: "center",
                   paddingHorizontal: 20,
                 }}
+                onPress={pop}
               >
                 <MediumText style={{ color: "white" }}>Cancel</MediumText>
               </TouchableOpacity>
@@ -64,7 +75,28 @@ const FundWalletScreen = () => {
             <CashMethod
               title="Pay with Card"
               details="Verve, Visa, Mastercard, discover and
-Amex cards are all accepted."
+            Amex cards are all accepted."
+           
+            />
+            <QuickTeller
+              title="Pay with Quickteller"
+              details="Login to your quickteller wallet to get access to your saved cards."
+            />
+            <BankTransfer
+              title="Pay with Quickteller"
+              details="Login to your quickteller wallet to get access to your saved cards."
+            />
+            <PayWithQr
+              title="Pay with PayWithQr"
+              details="Login to your quickteller wallet to get access to your saved cards."
+            />
+            <UssdMethod
+              title="Pay with UssdMethod"
+              details="Login to your quickteller wallet to get access to your saved cards."
+            />
+            <BinanceMethod
+              title="Pay with Binance"
+              details="Login to your quickteller wallet to get access to your saved cards."
             />
           </>
         )}

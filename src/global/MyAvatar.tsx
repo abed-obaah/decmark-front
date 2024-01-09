@@ -1,32 +1,41 @@
-import React, { FC } from "react";
-import { View, Image } from "react-native";
+import React, { FC, useEffect, useState } from "react";
+import { View, Image, Text } from "react-native"; // Import Text component
 import { Ionicons } from "@expo/vector-icons";
 import useAppTheme from "@src/hooks/useAppTheme";
-import { useAppSelector } from "@src/hooks/useAppStore";
 import AppLoader from "@src/components/ui/AppLoader";
 
 interface MyAvatarProps {
   size?: number;
   iconSize?: number;
+  image?: string | null;
 }
 
-const MyAvatar: FC<MyAvatarProps> = ({ size = 35, iconSize = 20 }) => {
+const MyAvatar: FC<MyAvatarProps> = ({ size = 35, iconSize = 20, image }) => {
   const { theme } = useAppTheme();
-  const { userInfo } = useAppSelector((state) => state.auth);
-  const { isLoadingImg } = useAppSelector((state) => state.account);
+  const [isLoading, setIsLoading] = useState(true);
+  const [imageKey, setImageKey] = useState(0);
+
+  useEffect(() => {
+    if (image) {
+      setIsLoading(true);
+      // Update the key to force Image component to refresh
+      setImageKey(imageKey + 1);
+    }
+  }, [image]);
 
   return (
     <View style={{ height: size, width: size }}>
-      {isLoadingImg ? <AppLoader rounded /> : null}
-      {userInfo?.data?.profile_img ? (
+      {image ? (
         <Image
-          source={{ uri: userInfo?.data?.profile_img }}
+          key={imageKey}
+          source={{ uri: image }}
           style={{
             height: "100%",
             width: "100%",
             resizeMode: "cover",
             borderRadius: 200,
           }}
+          onLoadEnd={() => setIsLoading(false)}
         />
       ) : (
         <View
@@ -39,13 +48,16 @@ const MyAvatar: FC<MyAvatarProps> = ({ size = 35, iconSize = 20 }) => {
             borderRadius: 150,
           }}
         >
-          <Ionicons
-            name="person"
-            size={iconSize}
-            color={theme.PRIMARY_TEXT_COLOR}
-          />
+          <Text> {/* Use Text component to render text (icon) */}
+            <Ionicons
+              name="person"
+              size={iconSize}
+              color={theme.PRIMARY_TEXT_COLOR}
+            />
+          </Text>
         </View>
       )}
+      {isLoading && <AppLoader rounded />}
     </View>
   );
 };
