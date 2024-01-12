@@ -18,6 +18,10 @@ import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
 
 const MyServices = () => {
   const { theme } = useTheme();
@@ -25,7 +29,9 @@ const MyServices = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const { t} = useTranslation();
 
+  
   useEffect(() => {
     fetchServices();
   }, []);
