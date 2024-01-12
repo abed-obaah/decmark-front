@@ -16,6 +16,7 @@ const users = [
 
 const ReceiptScreen = ({route}) => {
     const { responseData } = route.params;
+    const { t} = useTranslation();
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -30,7 +31,7 @@ const ReceiptScreen = ({route}) => {
               </TouchableOpacity>
             </View>
 
-            <Text style={styles.headerTitle}>Receipt</Text>
+            <Text style={styles.headerTitle}>{t('receipt')}</Text>
 
             <View style={[styles.headerAction, { alignItems: 'flex-end' }]} />
           </View>
@@ -54,7 +55,7 @@ const ReceiptScreen = ({route}) => {
 
             <Text style={styles.receiptTitle}>Decmark.</Text>
 
-            <Text style={styles.receiptSubtitle}>Invoice {responseData.transaction.id}</Text>
+            <Text style={styles.receiptSubtitle}>{t('Invoice')}{responseData.transaction.id}</Text>
 
             <View style={styles.receiptPrice}>
               <Text style={styles.receiptPriceText}>{responseData.transaction.amount.amount}</Text>
@@ -82,46 +83,46 @@ const ReceiptScreen = ({route}) => {
             </View>
 
             <View style={styles.details}>
-              <Text style={styles.detailsTitle}>Transaction details</Text>
+              <Text style={styles.detailsTitle}>{t('Transactiondetails')}</Text>
 
               <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Date</Text>
+                <Text style={styles.detailsField}>{t('date')}</Text>
 
                 <Text style={styles.detailsValue}>{responseData.transaction.created_at}</Text>
               </View>
 
               <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Category</Text>
+                <Text style={styles.detailsField}>{t('category')}</Text>
 
                 <Text style={styles.detailsValue}>{responseData.transaction.type}</Text>
               </View>
 
               <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Payment method</Text>
+                <Text style={styles.detailsField}>{t('category')}Payment method</Text>
 
                 <Text style={styles.detailsValue}>{responseData.transaction.action}</Text>
               </View>
 
               <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Receipt Number</Text>
+                <Text style={styles.detailsField}>{t('ReceiptNumber')}</Text>
 
                 <Text style={styles.detailsValue}>{responseData.transaction.id}</Text>
               </View>
 
               <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Billing Name</Text>
+                <Text style={styles.detailsField}>{t('BillingName')}</Text>
 
                 <Text style={styles.detailsValue}>{responseData.transaction.title}</Text>
               </View>
 
               <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Balance Symbol</Text>
+                <Text style={styles.detailsField}>{t('symbol')}</Text>
 
                 <Text style={styles.detailsValue}>{responseData.transaction.balance.symbol}</Text>
               </View>
 
               <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Balance Currency</Text>
+                <Text style={styles.detailsField}>{t('currency')}</Text>
 
                 <Text style={styles.detailsValue}>{responseData.transaction.balance.currency}</Text>
               </View>
@@ -136,7 +137,7 @@ const ReceiptScreen = ({route}) => {
             // handle onPress
           }}>
           <View style={styles.btn}>
-            <Text style={styles.btnText}>Share Receipt</Text>
+            <Text style={styles.btnText}>{t('share')}</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
@@ -144,7 +145,7 @@ const ReceiptScreen = ({route}) => {
             // handle onPress
           }}>
           <View style={styles.btnSecondary}>
-            <Text style={styles.btnSecondaryText}>Save as PDF</Text>
+            <Text style={styles.btnSecondaryText}>{t('save')}</Text>
           </View>
         </TouchableOpacity>
       </View>
