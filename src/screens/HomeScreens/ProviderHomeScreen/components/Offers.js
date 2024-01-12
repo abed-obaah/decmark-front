@@ -31,7 +31,7 @@ const MyServices = () => {
   const [refreshing, setRefreshing] = useState(false);
   const { t} = useTranslation();
 
-  
+
   useEffect(() => {
     fetchServices();
   }, []);
@@ -155,7 +155,7 @@ const MyServices = () => {
               </Text>
             </View>
             <AppButton
-              label="Review & Accept Offer"
+              label={t('ReviewPostOffer')}
               marginTop={0.5}
               buttonHeight={40}
               onPress={() =>
