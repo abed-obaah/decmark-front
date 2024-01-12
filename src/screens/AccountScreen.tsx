@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { AppScrollView, AppSafeAreaView } from "@src/components/AppViews";
 import MyAvatar from "@src/global/MyAvatar";
 import { Ionicons } from "@expo/vector-icons";

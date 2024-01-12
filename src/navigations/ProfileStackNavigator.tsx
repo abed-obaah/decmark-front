@@ -516,18 +516,33 @@ const ProfileStackNavigator = () => {
       <Stack.Screen
         name="ProviderProfileScreen"
         component={ProviderProfileScreen}
-        options={{
+       
+        options={({ navigation }) => ({
           headerTitle: "Provider's Profile",
-          headerLeft: () => null
-        }}
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="ScheduleScreen"
         component={ScheduleScreen}
-        options={{
+        options={({ navigation }) => ({
           headerTitle: "Schedule Provider",
-          headerLeft: () => null
-        }}
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="TipConfirmed"
@@ -702,14 +717,29 @@ const ProfileStackNavigator = () => {
         name="HistoryScreen"
         component={HistoryScreen}
         options={{
-          header: () => null
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
         }}
       />
       <Stack.Screen
         name="NotificationScreen"
         component={NotificationScreen}
         options={{
-          header: () => null
+          
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
         }}
       />
     </Stack.Navigator>

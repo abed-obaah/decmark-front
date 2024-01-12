@@ -20,13 +20,18 @@ import  { Paystack , paystackProps}  from 'react-native-paystack-webview';
 
 
 
-const PayWithCardScreen = () => {
+const PayWithCardScreen = ({ route }) => {
+  const { amount: initialAmount } = route.params;
+
+  // Log the received initialAmount to check if it's received correctly
+  console.log("Initial Amount:", initialAmount);
   const [cvv, setCvv] = useState("");
   const [expiry, setExpiry] = useState("");
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState(initialAmount || '');
   const [card, setCardNumber] = useState(""); // Store card input as a string
   const paystackWebViewRef = useRef<paystackProps.PayStackRef>(); 
   const { userInfo } = useSelector((state) => state.auth);
+ 
 
   const validateAmount = () => {
     if (amount) {
@@ -78,7 +83,7 @@ const PayWithCardScreen = () => {
     <AppSafeAreaView>
       <AppScrollView>
         <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>
-          <MediumText>You're payingss</MediumText>
+          <MediumText>You're paying</MediumText>
           <LargeText>NGN {amount}</LargeText>
         </View>
 
@@ -89,6 +94,7 @@ const PayWithCardScreen = () => {
             value={amount}
             placeholder="Enter amount"
             onChangeText={(value) => setAmount(value)}
+            editable={false} 
           />
 
           <Text style={styles.label}>Billing Email</Text>
@@ -99,28 +105,9 @@ const PayWithCardScreen = () => {
             onChangeText={(value) => setCardNumber(value)}
           />
 
-          {/* <View style={styles.rowContainer}>
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>Expiry</Text>
-              <TextInput
-                style={[styles.input, styles.grayBorder]}
-                value={expiry}
-                onChangeText={(value) => setExpiry(value)}
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <Text style={styles.label}>CVV</Text>
-              <TextInput
-                style={[styles.input, styles.grayBorder]}
-                value={cvv}
-                onChangeText={(value) => setCvv(value)}
-              />
-            </View>
-          </View> */}
           
           <Paystack
-        paystackKey="pk_test_d55e2c5ae69892961f5a7a21ef34628960cbd0ff"
+        paystackKey="sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c"
         billingEmail={card}
         amount={amount.toString()}
         // CVV={cvv} // Pass cvv dynamically

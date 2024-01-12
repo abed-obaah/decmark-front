@@ -7,20 +7,27 @@ import {
   Platform,
   StyleSheet,
   Image,
- 
+  Clipboard,
+  Alert 
 } from 'react-native';
 import PageHeader from "@src/components/PageHeader";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
 import { MediumText,LargeText } from "@src/components/AppText";
 import QRCode from 'react-native-qrcode-svg';
 import BankName from './components/BankNames';
-
+import { Ionicons } from "@expo/vector-icons";
 
 const PayWithUssd = () => {
     const [CVV, setCVV] = useState('');
     const [Expiry, setExpiry] = useState('');
     const [Amount, setAmount] = useState("");
     const [carNumber, setCarNumber] = useState('');
+
+
+    const copyToClipboard = () => {
+      Clipboard.setString('0889705646');
+       Alert.alert("Copied", "Account Number copied to clipboard");
+    };
 
   return (
     <AppSafeAreaView>
@@ -43,11 +50,10 @@ const PayWithUssd = () => {
         <View style={styles.rowContainer}>
                     <View style={styles.boxContainer}>
                 <LargeText>COPY ACCOUNT NUMBER</LargeText>
-                <Image
-                    source={require("../../assets/images/Copy.png")}
-                    style={styles.image}
-                />
-                <MediumText>0889705646</MediumText>
+                <TouchableOpacity style={styles.copyButton} onPress={copyToClipboard}>
+            <Ionicons name="copy-outline" size={20} color="#DEB253" />
+          </TouchableOpacity>
+          <MediumText onPress={copyToClipboard}>0889705646</MediumText>
                 </View>
         </View>
         <BankName
@@ -56,7 +62,7 @@ const PayWithUssd = () => {
         imageSource={require("../../assets/images/tgt.png")}
         index={0}
       />
-          <BankName
+          {/* <BankName
             title="Zenith Bank"
             details="*737*50*0011*416#"
             imageSource={require("../../assets/images/zenith.jpeg")}
@@ -67,7 +73,7 @@ const PayWithUssd = () => {
             details="*737*50*0011*416#"
             imageSource={require("../../assets/images/polaris.png")}
             index={2}
-          />
+          /> */}
 
         {/* <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Pay NGN 40,000</Text>
@@ -178,5 +184,10 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: 'bold',
     },
+    copyButton: {
+      padding: 4,
+    },
+    
+
   });
 // export default PayWithCardScreen;

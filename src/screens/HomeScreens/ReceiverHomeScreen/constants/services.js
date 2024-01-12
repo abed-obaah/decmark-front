@@ -1,30 +1,34 @@
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 export default [
+  
   {
     image: require("../../../../assets/images/cleaner.jpg"),
-    label: "Cleaning"
+    label: "cleaning"
   },
   {
     image: require("../../../../assets/images/services-fashion.jpg"),
-    label: "Fashion"
+    label: "fashion"
   },
   {
     image: require("../../../../assets/images/services-beauty.jpg"),
-    label: "Beauty"
+    label: "beauty"
   },
   {
     image: require("../../../../assets/images/services-photography.jpg"),
-    label: "Photography"
+    label: "photography"
   },
   {
     image: require("../../../../assets/images/services-laundry.jpg"),
-    label: "Laundry"
+    label: "laundry"
   },
   {
     image: require("../../../../assets/images/repair.jpg"),
-    label: "Repair"
+    label: "repair"
   },
   {
     image: require("../../../../assets/images/services-furniture.jpg"),
-    label: "Furniture"
+    label: "furniture"
   },
 ]

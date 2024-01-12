@@ -11,15 +11,24 @@ import { LargeText, SmallText, MediumText } from "@src/components/AppText";
 import { AppSectionView } from "@src/components/AppViews";
 import useTheme from "@src/hooks/useAppTheme";
 import services from "../constants/services";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
+
+
+
 
 export default PopularServices = () => {
   const { width } = useWindowDimensions();
   const { theme } = useTheme();
   const navigation = useNavigation();
+  const { t} = useTranslation();
+
 
   return (
     <AppSectionView style={{ paddingHorizontal: 20 }}>
-      <LargeText style={{ marginVertical: 5 }}>Popular services</LargeText>
+      <LargeText style={{ marginVertical: 5 }}>{t('popularServices')}</LargeText>
       <View style={styles.boxContainer}>
         {services.map((item, i) => (
           <TouchableOpacity
@@ -49,7 +58,7 @@ export default PopularServices = () => {
                   color: theme.PRIMARY_TEXT_COLOR,
                 }}
               >
-                {item.label}
+                 {t(item.label)}
               </SmallText>
             </>
           </TouchableOpacity>
@@ -77,7 +86,7 @@ export default PopularServices = () => {
                 screen: "MoreServices",
               })
             }>
-              More
+             {t('more')}
             </SmallText>
           </View>
         </TouchableOpacity>

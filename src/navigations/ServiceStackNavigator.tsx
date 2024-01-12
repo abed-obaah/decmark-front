@@ -3,13 +3,15 @@ import {
   StackNavigationOptions,
 } from "@react-navigation/stack";
 import useAppTheme from "@src/hooks/useAppTheme";
-import { MaterialIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import type { RootStackParamList } from "../@types/navigation";
 
 import AddServiceScreen from "@src/screens/AddServiceScreen";
 import OfferDetailScreen from "@src/screens/OfferDetailScreen";
 import AvailableServiceScreen from "@src/screens/AvailableServiceScreen";
 import MoreServices from "@src/screens/AvailableServiceScreen/MoreServices";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import React from "react";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -40,22 +42,63 @@ const ServiceStackNavigator = () => {
       <Stack.Screen
         name="AddServiceScreen"
         component={AddServiceScreen}
-        options={{ headerTitle: "Create service" }}
+        options={({ navigation }) => ({
+          headerTitle: "Offer details",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="OfferDetailScreen"
         component={OfferDetailScreen}
-        options={{ headerTitle: "Offer details" }}
+        options={({ navigation }) => ({
+          headerTitle: "Offer details",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="AvailableServiceScreen"
         component={AvailableServiceScreen}
-        options={{ headerTitleAlign: "left" }}
+        options={({ navigation }) => ({
+          headerTitle: "",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+        
       />
       <Stack.Screen
         name="MoreServices"
         component={MoreServices}
-        options={{ headerTitleAlign: "left" }}
+        options={({ navigation }) => ({
+          headerTitle: "",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
     </Stack.Navigator>
   );

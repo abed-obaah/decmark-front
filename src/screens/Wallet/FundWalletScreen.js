@@ -1,4 +1,5 @@
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
 import React, { useState } from "react";
 import PageHeader from "@src/components/PageHeader";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
@@ -28,6 +29,7 @@ const FundWalletScreen = () => {
   const validateAmount = () => {
     if (amount) {
       setStage(1);
+      const amount = amount
     }
   };
 
@@ -94,12 +96,12 @@ const FundWalletScreen = () => {
             <CashMethod
               title="Pay with Card"
               details="Verve, Visa, Mastercard, discover and Amex cards are all accepted."
-              onPress={() => validate()}
-              // onPress={validate}
+              amount={amount} 
             />
             <QuickTeller
               title="Pay with Quickteller"
               details="Login to your quickteller wallet to get access to your saved cards."
+             
             />
             <BankTransfer
               title="Pay with Bank Transfer"

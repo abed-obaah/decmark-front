@@ -11,6 +11,10 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "@src/hooks/useAppStore";
 import MyAvatar from "@src/global/MyAvatar";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
 
 const StarRating = ({ rating, size, color, style }) => {
   const renderStars = () => {
@@ -70,7 +74,7 @@ const RatedProviders = () => {
   const navigation = useNavigation();
   const [providers, setProviders] = useState([]);
     const { userInfo } = useAppSelector((state) => state.auth);
- 
+    const { t} = useTranslation();
 
   useEffect(() => {
     fetchProviders();
@@ -225,7 +229,7 @@ const RatedProviders = () => {
               </SmallText>
             </View>
             <AppButton
-              label="Hire"
+              label={t('hire')}
               marginTop={0.5}
               buttonHeight={40}
               onPress={() =>
@@ -257,7 +261,7 @@ const RatedProviders = () => {
   return (
     <AppSectionView>
       <LargeText style={{ paddingHorizontal: 20, fontSize: 20 }}>
-        Most Rated Providers
+      {t('mostRated')}
       </LargeText>
       <FlatList
         data={providers}

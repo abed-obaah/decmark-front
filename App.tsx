@@ -10,6 +10,8 @@ import { useFonts } from 'expo-font';
 import "@src/global/axios";
 import { Platform } from "react-native";
 import Toast from 'react-native-toast-message'
+import './src/i18n/i18n.config'
+import { useTranslation } from 'react-i18next';
 // const customTextProps = {
 //   style: { fontFamily: "FONT_REGULAR" },
 // };

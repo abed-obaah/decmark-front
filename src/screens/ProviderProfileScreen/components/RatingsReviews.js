@@ -40,7 +40,7 @@ export default RatingsReviews = ({
         }}
       >
         <LargeText>Ratings and reviews</LargeText>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             borderRadius: 50,
             alignSelf: "flex-start",
@@ -53,7 +53,7 @@ export default RatingsReviews = ({
           <SmallText style={{ color: theme.PRIMARY_TEXT_COLOR }}>
             See All
           </SmallText>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
       <View
         style={{

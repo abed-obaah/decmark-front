@@ -35,7 +35,7 @@ const MyAvatar: FC<MyAvatarProps> = ({ size = 35, iconSize = 20, image }) => {
             resizeMode: "cover",
             borderRadius: 200,
           }}
-          onLoadEnd={() => setIsLoading(false)}
+        
         />
       ) : (
         <View
@@ -57,7 +57,7 @@ const MyAvatar: FC<MyAvatarProps> = ({ size = 35, iconSize = 20, image }) => {
           </Text>
         </View>
       )}
-      {isLoading && <AppLoader rounded />}
+     
     </View>
   );
 };

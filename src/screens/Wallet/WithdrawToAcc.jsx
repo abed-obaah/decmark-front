@@ -51,7 +51,7 @@ const FundWalletScreen = () => {
 
   const fetchBankList = async () => {
     try {
-      const SECRET_KEY = 'sk_test_d15130cc5c9cbbc5878a676ec1a8e65606b94ff1';
+      const SECRET_KEY = 'sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c';
       const response = await axios.get('https://api.paystack.co/bank', {
         headers: {
           Authorization: `Bearer ${SECRET_KEY}`,

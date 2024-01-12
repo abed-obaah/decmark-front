@@ -10,6 +10,10 @@ import GroupTab from "@src/components/GroupTab";
 import MyServices from "./components/MyServices";
 import Offers from "./components/Offers";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
 
 export default ProviderHomeScreen = ({ navigation }) => {
   const { theme } = useTheme();
@@ -18,7 +22,8 @@ export default ProviderHomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [activeTab, setActiveTab] = useState(1);
   const [offersCount, setOffersCount] = useState(0);
-
+  const { t} = useTranslation();
+  
   const tabs = {
     0: <Offers />,
     1: <MyServices />,
@@ -54,11 +59,11 @@ export default ProviderHomeScreen = ({ navigation }) => {
         <AppSafeAreaView style={{ position: "relative" }}>
           <View style={{ flex: 1 }}>
             <AppSectionView style={{ paddingHorizontal: 20 }}>
-              <LargeText>Hi, {userInfo?.data?.first_name}👋</LargeText>
-              <MediumText>Explore DecMark services</MediumText>
+              <LargeText>{t('hello')}, {userInfo?.data?.first_name}👋</LargeText>
+              <MediumText>{t('explore')} DecMark {t('services')}</MediumText>
             </AppSectionView>
             <GroupTab
-              tabs={["Trending", "Services", `Offers(${offersCount})`]}
+              tabs={[`${t('trending')}`, `${t('services')}`, `${t('offers')} (${offersCount})`]}
               activeTab={activeTab}
               setActiveTab={setActiveTab}
             />

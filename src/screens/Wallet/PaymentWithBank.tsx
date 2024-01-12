@@ -7,11 +7,15 @@ import {
   Platform,
   StyleSheet,
   Image,
- 
+  Clipboard,
+  Alert 
 } from 'react-native';
 import PageHeader from "@src/components/PageHeader";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
 import { MediumText,LargeText } from "@src/components/AppText";
+import { Ionicons } from "@expo/vector-icons";
+
+
 
 const PayWithCardScreen = ({ amount, goBack }) => {
 
@@ -23,11 +27,10 @@ const PayWithCardScreen = ({ amount, goBack }) => {
 
   
 
-  // const handleSubmit = () => {
-  //   // Handle form submission
-  //   alert('still working on it');
-  // };
-
+  const copyToClipboard = () => {
+    Clipboard.setString('0889705646');
+     Alert.alert("Copied", "Account Number copied to clipboard");
+  };
   const formatPlaceholder = "xxxx-xxxx-xxxx-xxxx"; 
   return (
     <AppSafeAreaView>
@@ -37,14 +40,16 @@ const PayWithCardScreen = ({ amount, goBack }) => {
         </View>
         
         <View style={styles.container}>
-        <Image
-          source={require("../../assets/images/Copy.png")}
-          style={styles.image}
-        />
+        <TouchableOpacity style={styles.copyButton} onPress={copyToClipboard}>
+            <Ionicons name="copy-outline" size={24} color="#DEB253" />
+          </TouchableOpacity>
         <View style={styles.textContainer}>
-          <LargeText>0889705646</LargeText>
-          <Text>GT Bank</Text>
-          <Text>DecMark Limited</Text>
+        <TouchableOpacity >
+      <LargeText onPress={copyToClipboard}>0889705646</LargeText>
+      {/* Additionally, display the bank details */}
+      <Text>GT Bank</Text>
+      <Text>DecMark Limited</Text>
+    </TouchableOpacity>
         </View>
       </View>
       </AppScrollView>
@@ -67,6 +72,9 @@ const styles = StyleSheet.create({
     },
     textContainer: {
       flex: 1,
+    },
+    copyButton: {
+      padding: 10,
     },
   });
 export default PayWithCardScreen;

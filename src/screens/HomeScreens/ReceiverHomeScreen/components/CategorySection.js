@@ -20,6 +20,11 @@ import { Ionicons } from "@expo/vector-icons";
 import axios from "axios";
 import { SIZES } from "@src/constants/theme";
 import MyAvatar from "@src/global/MyAvatar";
+// import {en, es, ja} from '@src/constants/localization';
+import * as Localization from 'expo-localization';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 
 
@@ -30,6 +35,7 @@ const CategorySection = ({ item }) => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { width, height } = useWindowDimensions();
+  const { t} = useTranslation();
 
   const [searchQuery, setSearchQuery] = useState(""); // Corrected variable name
   const [searchResults, setSearchResults] = useState([]); // Added state for search results
@@ -56,18 +62,18 @@ const CategorySection = ({ item }) => {
       setLoading(false);
     }
   };
-
+  
   const categories = [
     {
-      name: "General",
+      name: `${t('general')}`,
       Path: "GeneralScreen",
     },
     {
-      name: "Errand",
+      name: `${t('errand')}`,
       Path: "ErrandScreen",
     },
     {
-      name: "Courier",
+      name: `${t('courier')}`,
       Path: "CourierScreen",
     },
     // {
@@ -90,7 +96,8 @@ const CategorySection = ({ item }) => {
 
   const SearchResults = ({ data }) => {
     const { theme } = useTheme();
-  
+    const { t} = useTranslation();
+    
     return (
       <View style={{ paddingHorizontal: 20 }}>
         {data.map((result) => (
@@ -225,18 +232,19 @@ const CategorySection = ({ item }) => {
       </View>
     );
   };
-
+  
+  
   return (
     <AppSectionView>
       <View style={{ paddingHorizontal: 20 }}>
         <LargeText style={{ marginBottom: 10 }}>
           {/* Hi, {userInfo?.data?.id} 👋 */}
-          Hi, {userInfo?.data?.first_name} 👋
+          {t('hello')}, {userInfo?.data?.first_name} 👋
         </LargeText>
         <View style={styles.inputContainer}>
           <TextInput
             value={searchQuery} // Corrected variable name
-            placeholder="Search for a service"
+            placeholder={t('search')}
             autoCorrect={false}
             clearButtonMode="always"
             onChangeText={(query) => setSearchQuery(query)} // Corrected variable name

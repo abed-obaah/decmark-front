@@ -12,6 +12,7 @@ import {
   Image,
   TextInput
 } from "react-native";
+
 import { Ionicons } from '@expo/vector-icons';
 import { LargeText, MediumText } from "@src/components/AppText";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
@@ -30,11 +31,14 @@ import { resetAuth } from "@src/redux/authSlice";
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 const OfferScreen = () => {
   const navigation = useNavigation();
+  const progressStepsRef = useRef(null);
   const [step, setStep] = useState(0);
+  const [stepChanged, setStepChanged] = useState(false);
   const dispatch = useDispatch();
   const { success } = useSelector((state) => state.auth);
   const { userInfo } = useSelector((state) => state.auth);
@@ -56,7 +60,9 @@ const OfferScreen = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const baseUrl = "https://api.decmark.com/v1/user";
   const [selected, setSelected] = React.useState("");
-  
+  const { t} = useTranslation();
+
+  const scrollY = useRef(new Animated.Value(0)).current;
 
 
   const handleDateChange = (event, date) => {
@@ -268,6 +274,29 @@ const data = [
   {key:'6', value:'REPAIR '},
   {key:'7', value:'FURNITURE '},
 ]
+
+useEffect(() => {
+    if (stepChanged) {
+      setStepChanged(false);
+    }
+  }, [step, stepChanged]);
+
+  const goToNextStep = () => {
+    if (progressStepsRef.current) {
+      progressStepsRef.current.onNext();
+      setStepChanged(true);
+      setStep(prevStep => prevStep + 1);
+    }
+  };
+
+  const goToPreviousStep = () => {
+    if (progressStepsRef.current) {
+      progressStepsRef.current.onPrevious();
+      setStepChanged(true);
+      setStep(prevStep => prevStep - 1);
+    }
+  };
+
   return(
     <View style={{flex: 1}}>
       <View>
@@ -301,8 +330,11 @@ const data = [
         activeLabelColor="#DEB253"
         completedProgressBarColor="#DEB253"
         completedStepIconColor="#DEB253"
+        activeStep={step}
+        ref={progressStepsRef}
+       
         >
-        <ProgressStep label="Create an Offer" nextBtnTextStyle={buttonTextStyle} previousBtnTextStyle={buttonTextStyle}>
+        <ProgressStep label={t('createOffer')} nextBtnTextStyle={buttonTextStyle} previousBtnTextStyle={buttonTextStyle}>
             <View style={{ alignItems: 'center' }}>
                     <TouchableOpacity
                 onPress={() => setStep(1)} // Set the step value to the next step (1)
@@ -314,18 +346,18 @@ const data = [
                         <Ionicons name="add" size={40} color="black" />
                       </View>
                     </View>
-                    <LargeText style={styles.createOfferText}>Create An Offer</LargeText>
+                    <LargeText style={styles.createOfferText}>{t('createOffer')}</LargeText>
                   </View>
                 </View>
         </TouchableOpacity>
 
             </View>
         </ProgressStep>
-        <ProgressStep label="Offer Details" nextBtnTextStyle={buttonTextStyle} previousBtnTextStyle={buttonTextStyle}>
+        <ProgressStep label={t('OfferDetails')}  nextBtnTextStyle={buttonTextStyle} previousBtnTextStyle={buttonTextStyle}>
             <View style={styles.container}>
-            <Text style={styles.label}>Select Date:</Text>
+            <Text style={styles.label}>{t('select')}</Text>
                 <TouchableOpacity style={styles.datePickerContainer} onPress={handleDateSelection}>
-                  <Text style={styles.dateText}>{selectedDate ? selectedDate.toDateString() : 'Select a date'}</Text>
+                  <Text style={styles.dateText}>{selectedDate ? selectedDate.toDateString() : `${t('select')}`}</Text>
                 </TouchableOpacity>
 
         {showDatePicker && (
@@ -340,10 +372,10 @@ const data = [
 
         
         {/* Select Time */}
-        <Text style={styles.label}>Select Time:</Text>
+        <Text style={styles.label}>{t('selectTime')}</Text>
         <TouchableOpacity style={styles.durationInput} onPress={toggleModal}>
             <Text style={styles.durationInputText}>
-              {selectedHours ? `${selectedHours} hours` : 'Duration'}
+              {selectedHours ? `${selectedHours} hours` : `${t('Duration')}`}
             </Text>
             <Ionicons name="time-outline" size={24} color="black" />
           </TouchableOpacity>
@@ -370,10 +402,10 @@ const data = [
                 >
                   <Text style={styles.hourOptionText}>3 hours</Text>
                 </TouchableOpacity>
-                {/* Add more hour options as needed */}
+                
                 <TextInput
                   style={styles.customHoursInput}
-                  placeholder="Custom Duration (hours)"
+                  placeholder={t('customDuration')}
                   value={customHours}
                   onChangeText={handleCustomHourChange}
                   keyboardType="numeric"
@@ -382,16 +414,16 @@ const data = [
                   style={styles.hourOption}
                   onPress={() => handleHourSelection(parseInt(customHours))}
                 >
-                  <Text style={styles.hourOptionText}>Set Custom Duration</Text>
+                  <Text style={styles.hourOptionText}>{t('customDuration')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.cancelButton} onPress={() => setModalVisible(false)}>
-                  <Text style={styles.cancelButtonText}>Cancel</Text>
+                  <Text style={styles.cancelButtonText}>{t('cancel')}</Text>
                 </TouchableOpacity>
               </View>
             </View>
         </Modal>
           <View>
-          <Text>Type</Text>
+          <Text>{t('type')}</Text>
           <SelectList
                 setSelected={(val) => setSelected(val)} 
                 data={data} 
@@ -400,27 +432,19 @@ const data = [
           </View>
       
 
-        <View style={{width:"100%",paddingVertical:12}}>
+        <View style={{width:"100%"}}>
 
-             <AppInput label="Title"
+             <AppInput label={t('title')}
                 value={title}
                 onChangeText={(value) => setTitle(value)}
             />
 
-            {/* <AppInput 
-               value={type}
-               onChangeText={(value) => setType(value)}
-            /> */}
-            {/* <AppInput label="work done"
-               value={work_done}
-               onChangeText={(value) => setWorkDone(value)}
-            /> */}
            <AppInput
-                label="Location"
-                value={coordinate.join(", ")} // Join the coordinate array to display as a string
-                onChangeText={(value) => setCoordinate(value.split(", ").map(Number))} // Convert the input string to an array of numbers
+                label={t('coordinate')}
+                value={coordinate.join(", ")}
+                onChangeText={(value) => setCoordinate(value.split(", ").map(Number))}
               />
-            <AppInput label="Descriptions:"
+            <AppInput label={t('description')}
               value={description}
               onChangeText={(value) => setDescription(value)}
             />
@@ -428,7 +452,7 @@ const data = [
         
             </View>
         </ProgressStep>
-        <ProgressStep label="Budget" nextBtnTextStyle={buttonTextStyle} previousBtnTextStyle={buttonTextStyle}
+        <ProgressStep label={t('Budget')} nextBtnTextStyle={buttonTextStyle} previousBtnTextStyle={buttonTextStyle}
         onSubmit={errandApi}>
             <View>
             <AppScrollView contentContainerStyle={styles.containerBudget}>
@@ -446,17 +470,17 @@ const data = [
             value={`₦${value}`}
             keyboardType="numeric"
             onChangeText={handleInputChange}
-            placeholder="Enter value"
+            placeholder={t('enterValue')}
           />
         </View>
         <View style={{paddingVertical:12}}>
-          <MediumText>Enter amount</MediumText>
+          <MediumText>{t('enterAmount')}</MediumText>
         </View>
       </AppScrollView>
             </View>
         </ProgressStep>
     </ProgressSteps>
-</View>
+  </View>
   );
 };
 
@@ -465,8 +489,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     // alignItems: 'center',
-    paddingVertical: 20,
-    paddingHorizontal:10
+    paddingVertical: 70,
+    marginBottom:50,
+    paddingHorizontal:2
   },
   containerBudget: {
     flex: 1,
@@ -657,6 +682,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
+  
 });
 
 export default OfferScreen;

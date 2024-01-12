@@ -16,6 +16,12 @@ import AppInput from "@src/components/AppInput";
 import AppButton from "@src/components/AppButton";
 import AppTextarea from "@src/components/AppTextarea";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
+
+
 
 const AddServiceScreen = () => {
   const [type, setType] = useState("");
@@ -27,7 +33,7 @@ const AddServiceScreen = () => {
   const [coordinate, setCoordinate] = useState([1, 0]);
   const baseUrl = "https://api.decmark.com/v1/user";
   const apiKey = "base64:vhMcjElk3d0BYItZB09fP5MbUEPXH2JRtqW3G5/tKSk="; // Replace with your actual API key
-
+ const { t} = useTranslation();
   const postServiceApi = () => {
     const requestBody = {
       type,
@@ -80,12 +86,7 @@ const AddServiceScreen = () => {
           setShowModal(false);
         });
       }
-  
-      // if (visible) {
-      //   setTimeout(() => {
-      //     setShowModal(false);
-      //   }, 4000);
-      // }
+     
     };
 
     return (

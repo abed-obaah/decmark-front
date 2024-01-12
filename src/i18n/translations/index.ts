@@ -1,0 +1,8 @@
+export { default as en } from './en.json'
+export { default as hi } from './hi.json'
+export { default as fr } from './fr.json'
+export { default as hu } from './hu.json'
+export { default as ig } from './ig.json'
+export { default as pg } from './pg.json'
+export { default as yo } from './yo.json'
+export { default as zh } from './zh.json'

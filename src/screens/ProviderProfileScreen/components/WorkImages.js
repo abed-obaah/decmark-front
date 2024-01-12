@@ -1,67 +1,178 @@
-import React from "react";
-import { View, Image, useWindowDimensions, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { LargeText } from "@src/components/AppText";
+import React, { Component, useState, useEffect } from 'react';
+import {
+  Animated,
+  Button,
+  Dimensions,
+  FlatList,
+  Image,
+  LayoutAnimation,
+  Modal,
+  Platform,
+  StyleSheet,
+  TouchableOpacity,
+  UIManager,
+  View
+} from 'react-native';
 
-const imageSources = {
-  image1: require("@src/assets/images/repair.jpg"),
-  image2: require("@src/assets/images/repair.jpg"),
-  image3: require("@src/assets/images/repair.jpg"),
-  // Adjust image paths or add more images here
-};
+const { width } = Dimensions.get('screen');
 
-const WorkImages = () => {
-  const { width } = useWindowDimensions();
-  const navigation = useNavigation();
-  const imagesArray = Object.keys(imageSources);
+let data = [1, 2,3];
 
-  const handleImageClick = (imageKey) => {
-    navigation.navigate("ImageView", { selectedImage: imageSources[imageKey] });
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
+
+export default function WorkImages() {
+  const [layoutData, setData] = useState(null);
+
+  return (
+    <View>
+      <FlatList
+        data={data}
+        contentContainerStyle={{ paddingVertical: 20 }}
+        keyExtractor={(item) => item.toString()}
+        renderItem={({ item: index }) => (
+          <RenderItem index={index} toggleModal={(data) => setData(data)} />
+        )}
+        numColumns={2}
+      />
+      {layoutData !== null && (
+        <ModalView layoutData={layoutData} close={() => setData(null)} />
+      )}
+    </View>
+  );
+}
+
+function ModalView({ layoutData, close }) {
+  const { x, y, _width, _height } = layoutData;
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      LayoutAnimation.easeInEaseOut();
+      setExpanded(true);
+    }, 10);
+  }, []);
+
+  const onRequestClose = () => {
+    LayoutAnimation.configureNext(
+      LayoutAnimation.create(
+        150,
+        LayoutAnimation.Types.easeInEaseOut,
+        LayoutAnimation.Properties.opacity
+      ),
+      () => {
+        close();
+      }
+    );
+    setExpanded(false);
   };
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <LargeText style={{ marginBottom: 5 }}>Images</LargeText>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <TouchableOpacity onPress={() => handleImageClick(imagesArray[0])} style={{ width: (width - 50) / 2 }}>
-          <Image
-            source={imageSources[imagesArray[0]]}
-            style={{
-              height: 200,
-              width: "100%",
-              resizeMode: "cover",
-              borderRadius: 5,
-            }}
+    <Modal visible onRequestClose={onRequestClose} transparent>
+      <View style={styles.center}>
+        {expanded && (
+          <View
+            style={[StyleSheet.absoluteFill, { backgroundColor: '#000000aa' }]}
           />
-        </TouchableOpacity>
-        <View style={{ width: (width - 50) / 2, justifyContent: "space-between" }}>
-          <TouchableOpacity onPress={() => handleImageClick(imagesArray[1])}>
-            <Image
-              source={imageSources[imagesArray[1]]}
-              style={{
-                height: 95,
-                width: "100%",
-                resizeMode: "cover",
-                borderRadius: 5,
-              }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => handleImageClick(imagesArray[2])}>
-            <Image
-              source={imageSources[imagesArray[2]]}
-              style={{
-                height: 95,
-                width: "100%",
-                resizeMode: "cover",
-                borderRadius: 5,
-                marginTop: 10, // Space between second and third image
-              }}
-            />
-          </TouchableOpacity>
+        )}
+        <View
+          style={[
+            expanded
+              ? { height: '90%', width: '95%' }
+              : {
+                  height: _height,
+                  width: _width,
+                  left: x,
+                  top: y,
+                  position: 'absolute',
+                },
+            { backgroundColor: '#ccc', overflow: 'hidden' },
+          ]}
+        >
+          <Image
+           source={require('@src/assets/images/repair.jpg')}
+            resizeMode="cover"
+            style={styles.fill}
+          />
+          {expanded && (
+            <View style={styles.close}>
+              <Button title="close" onPress={onRequestClose} />
+            </View>
+          )}
         </View>
       </View>
-    </View>
+    </Modal>
   );
-};
+}
 
-export default WorkImages;
+class RenderItem extends Component {
+  shouldComponentUpdate = () => false;
+
+  render() {
+    const { index, toggleModal } = this.props;
+    return (
+      <View style={styles.item}>
+        <TouchableOpacity
+          style={{ flex: 1, backgroundColor: '#fff' }}
+          onPress={() => toggleModal(index)}
+          onLongPress={() => toggleModal(index)}
+          activeOpacity={0.7}>
+          <Image
+             source={require('@src/assets/images/repair.jpg')}
+            resizeMode="cover"
+            style={[styles.fill, imageStyles[index % 3]]} // Applying different styles based on the index
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  }
+}
+
+const imageStyles = [
+  {
+    height: 200,
+    width: '100%',
+    resizeMode: 'cover',
+    borderRadius: 5,
+  },
+  {
+    height: 95,
+    width: '100%',
+    resizeMode: 'cover',
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  {
+    height: 95,
+    width: '100%',
+    resizeMode: 'cover',
+    borderRadius: 5,
+    marginTop: 10,
+  },
+];
+
+const styles = StyleSheet.create({
+  item: {
+    height: width / 3.5,
+    flex: 1,
+    padding: 3,
+  },
+  close: {
+    position: 'absolute',
+    right: 10,
+    top: 10,
+  },
+  center: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fill: {
+    height: '100%',
+    width: '100%',
+  },
+});
+

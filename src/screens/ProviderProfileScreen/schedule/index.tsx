@@ -229,7 +229,7 @@ const ScheduleForm = () => {
                 <Text style={styles.hourOptionText}>Set Custom Duration</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.cancelButton} onPress={() => setModalVisible(false)}>
-                <Text style={styles.cancelButtonText}>Cancel</Text>
+                <Text style={styles.cancelButtonText}>done</Text>
               </TouchableOpacity>
             </View>
           </View>
