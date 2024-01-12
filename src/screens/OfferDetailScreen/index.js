@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from "react-redux";
 import Toast from 'react-native-toast-message';
 import { useNavigation } from '@react-navigation/native';
 import MyAvatar from "@src/global/MyAvatar";
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 
@@ -20,7 +21,7 @@ export default OfferDetailScreen = ({ route }) => {
   const scrollY = useRef(new Animated.Value(0)).current;
   const { userInfo } = useSelector((state) => state.auth);
   const navigation = useNavigation();
-
+  const { t} = useTranslation();
   const {
     id,
     
@@ -180,7 +181,7 @@ export default OfferDetailScreen = ({ route }) => {
             {provider.firstName}{" "} {provider.lastName}
             <MaterialIcons name="verified" size={24} color={"green"} />
           </XtraLargeText>
-          <MediumText>Service Receiver</MediumText>
+          <MediumText>{t('scheduleReceiver')} </MediumText>
         </View>
         <View
           style={{
@@ -217,22 +218,22 @@ export default OfferDetailScreen = ({ route }) => {
           </View>
         </View>
         <View style={{ marginTop: 20 }}>
-          <LargeText>Category</LargeText>
+          <LargeText>{t('category')}</LargeText>
           <MediumText>{type} - {title} </MediumText>
         </View>
         <View style={{ marginTop: 20 }}>
-          <LargeText>Budget</LargeText>
+          <LargeText>{t('budget')}</LargeText>
           <MediumText>₦{price}</MediumText>
         </View>
         <View style={{ marginTop: 20 }}>
-          <LargeText>Description</LargeText>
+          <LargeText>{t('Description')}</LargeText>
           <MediumText>
             {description}
           </MediumText>
         </View>
         <View style={{ marginTop: 20 }}>
-          <LargeText>Attached Files</LargeText>
-          <MediumText>No attached files</MediumText>
+          <LargeText>{t('AttachedFiles')}</LargeText>
+          <MediumText>{t('AttachedFilesSubtext')}</MediumText>
         </View>
         <View
           style={{
@@ -241,7 +242,7 @@ export default OfferDetailScreen = ({ route }) => {
           }}
         >
           <AppButton
-            label="Decline"
+            label={t('Decline')}
             background="transparent"
             onPress={() => handleDeclineOffer()}
             marginTop={20}
@@ -252,7 +253,7 @@ export default OfferDetailScreen = ({ route }) => {
 
           <AppButton
            onPress={() => handleAcceptOffer()}
-           label="Accept" 
+           label={t('accept')} 
            marginTop={20} 
            buttonHeight={45} />
         </View>

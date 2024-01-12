@@ -15,6 +15,8 @@ import {
 } from 'react-native';
 
 const { width } = Dimensions.get('screen');
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 let data = [1, 2,3];
 
@@ -69,7 +71,7 @@ function ModalView({ layoutData, close }) {
     );
     setExpanded(false);
   };
-
+  const { t} = useTranslation();
   return (
     <Modal visible onRequestClose={onRequestClose} transparent>
       <View style={styles.center}>
@@ -99,7 +101,7 @@ function ModalView({ layoutData, close }) {
           />
           {expanded && (
             <View style={styles.close}>
-              <Button title="close" onPress={onRequestClose} />
+              <Button title={t('close')} onPress={onRequestClose} />
             </View>
           )}
         </View>

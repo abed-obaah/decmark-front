@@ -2,6 +2,9 @@ import { View } from "react-native";
 import useTheme from "@src/hooks/useAppTheme";
 import { Ionicons } from "@expo/vector-icons";
 import { MediumText, LargeText } from "@src/components/AppText";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 export default Bio = ({description, 
   coordinate,
@@ -9,11 +12,13 @@ export default Bio = ({description,
   created_at,
   ratingScore}) => {
   const { theme } = useTheme();
+  const { t} = useTranslation();
+  
 
   return (
     <>
       <View style={{ marginTop: 10 }}>
-        <LargeText style={{ marginBottom: 2 }}>Bio</LargeText>
+        <LargeText style={{ marginBottom: 2 }}>{t('bio')}</LargeText>
         <MediumText>
          {description}
         </MediumText>
@@ -64,7 +69,7 @@ export default Bio = ({description,
             size={15}
             color={theme.PRIMARY_TEXT_COLORs}
           />
-          <MediumText style={{ marginLeft: 3.5 }}>Joined {created_at}</MediumText>
+          <MediumText style={{ marginLeft: 3.5 }}>{t('joined')}  {created_at}</MediumText>
         </View>
       </View>
 

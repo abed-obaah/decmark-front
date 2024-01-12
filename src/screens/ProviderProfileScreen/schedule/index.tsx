@@ -27,7 +27,8 @@ import { COLORS, SIZES } from "@src/constants/theme";
 import { Ionicons, Feather } from "@expo/vector-icons";
 import useAppTheme from "@src/hooks/useAppTheme";
 import { SelectList } from 'react-native-dropdown-select-list'
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 
@@ -43,7 +44,7 @@ const ScheduleForm = () => {
   const [selected, setSelected] = React.useState("");
   const route = useRoute();
   const { id, price, user_id, descriptions, type, providerType, names } = route.params;
-
+  const { t} = useTranslation();
   const [selectedDate, setSelectedDate] = useState(null);
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [description, setDescription] = useState('');
@@ -158,14 +159,14 @@ const ScheduleForm = () => {
       <AppScrollView>
         {/* Select Date */}
         {/* <Text style={{ styles.label, color: theme.PRIMARY_TEXT_COLOR,}}>Select Date:</Text> */}
-        <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>Select Date:</Text>
+        <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}> {t('select')}</Text>
 
         <TouchableOpacity style={[styles.datePickerContainer, {borderColor: theme.PRIMARY_BORDER_COLOR,}]} onPress={handleDateSelection}>
           {/* <Text style={styles.dateText}>
             {selectedDate ? format(new Date(selectedDate), 'yyyy-MM-dd HH:mm:ss') : 'Select a date'}
           </Text> */}
           <Text style={{borderColor: theme.PRIMARY_BORDER_COLOR, color: theme.PRIMARY_TEXT_COLOR,backgroundColor: theme.INPUT_BACKGROUND_COLOR}}>
-            {selectedDate ? format(new Date(selectedDate), 'yyyy-MM-dd') : 'Select a date'}
+            {selectedDate ? format(new Date(selectedDate), 'yyyy-MM-dd') : `${t('select')}`}
             {/* {selectedDate ? format(new Date(selectedDate), 'yyyy-MM-dd HH:mm:ss') : 'Select a date'} */}
           </Text>
         </TouchableOpacity>
@@ -185,10 +186,10 @@ const ScheduleForm = () => {
         )}
 
         {/* Select Time */}
-        <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>Select Duration:</Text>
+        <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>{t('selectDuration')}:</Text>
         <TouchableOpacity style={[styles.durationInput, { borderColor: theme.PRIMARY_BORDER_COLOR, backgroundColor: theme.INPUT_BACKGROUND_COLOR }]} onPress={toggleModal}>
           <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>
-            {selectedHours ? `${selectedHours} hours` : 'Duration'}
+            {selectedHours ? `${selectedHours} hours` : `${t('Duration')}`}
           </Text>
           <Ionicons name="time-outline" size={24} color="black" />
         </TouchableOpacity>
@@ -217,7 +218,7 @@ const ScheduleForm = () => {
               </TouchableOpacity>
               <TextInput
                 style={styles.customHoursInput}
-                placeholder="Custom Duration (hours)"
+                placeholder={t('customDuration')}
                 value={customHours}
                 onChangeText={handleCustomHourChange}
                 keyboardType="numeric"
@@ -226,10 +227,10 @@ const ScheduleForm = () => {
                 style={styles.hourOption}
                 onPress={() => handleHourSelection(parseInt(customHours))}
               >
-                <Text style={styles.hourOptionText}>Set Custom Duration</Text>
+                <Text style={styles.hourOptionText}>{t('customDuration')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.cancelButton} onPress={() => setModalVisible(false)}>
-                <Text style={styles.cancelButtonText}>done</Text>
+                <Text style={styles.cancelButtonText}>{t('done')}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -240,7 +241,7 @@ const ScheduleForm = () => {
           <View style={styles.MessageModalContainer}>
             <View style={styles.MessageModalContent}>
               <View style={styles.centerTop}>
-                <LargeText style={styles.hourOptionText}>Schedule Created Successfully.</LargeText>
+                <LargeText style={styles.hourOptionText}>{t('ScheduleCreatedSuccessfully')}</LargeText>
                 {/* <MaterialIcons name="verified" size={24} color={"green"} /> */}
               </View>
               <View style={styles.content}>
@@ -257,7 +258,7 @@ const ScheduleForm = () => {
                 onPress={() => handleHourSelection(parseInt(customHours))}
               >
                 <AppButton
-                  label="Message"
+                  label={t('messages')}
                   onPress={() =>
                     navigation.navigate("OthersStack", {
                       screen: "ChattingScreen",
@@ -269,14 +270,14 @@ const ScheduleForm = () => {
                         type: type,
                         providerType: providerType,
                         names: names,
-                        label: 'Messages'
+                        label: `${t('messages')}`,
                       },
                     })
                   }
                 />
               </TouchableOpacity>
               <TouchableOpacity style={styles.cancelButton} onPress={() => setModalMessageVisible(false)}>
-                <Text style={styles.cancelButtonText}>Cancel</Text>
+                <Text style={styles.cancelButtonText}>{t('cancel')}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -284,15 +285,15 @@ const ScheduleForm = () => {
 
         {/* Rest of the form */}
         <View>
-      <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>How Often:</Text>
+      <Text style={{ color: theme.PRIMARY_TEXT_COLOR }}>{t('howOften')}:</Text>
       {selected === 'Custom' ? (
         <View>
           <AppInput
-            placeholder="Enter custom service"
+            placeholder={t('customService')}
             value={customValue}
             onChangeText={(text) => setCustomValue(text)}
           />
-          <AppButton label="Save" onPress={handleSaveCustom} />
+          <AppButton label={t('Save')} onPress={handleSaveCustom} />
         </View>
       ) : (
         <SelectList boxStyles={{borderColor: theme.PRIMARY_BORDER_COLOR}}setSelected={(val) => setSelected(val)} data={data} save="value" />
@@ -300,15 +301,15 @@ const ScheduleForm = () => {
     </View>
         {/* <AppInput label="" value={id ? id.toString() : 'N/A'} editable={false} />
         <AppInput label="" value={userId ? userId.toString() : 'N/A'} editable={false} /> */}
-        <AppInput label="Price" value={price} editable={false} />
+        <AppInput label={t('price')} value={price} editable={false} />
         <AppInput
-          label="Description:"
+          label={t('Description')}
           value={description}
           onChangeText={(value) => setDescription(value)}
           multiline={true}
           numberOfLines={4}
         />
-        <AppTextarea label="Location:" value={coordinate} onChangeText={(value) => setCoordinate(value)} />
+        <AppTextarea label={t('location')} value={coordinate} onChangeText={(value) => setCoordinate(value)} />
         <AppButton label="Schedule" onPress={ScheduleApi} />
       </AppScrollView>
     </AppSafeAreaView>

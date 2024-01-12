@@ -18,6 +18,8 @@ import BinanceMethod from "./components/BinanceMethod";
 import PayWithCardScreen from "./PayWithCardScreen";
 import { useNavigation } from "@react-navigation/native";
 import  { Paystack , paystackProps}  from 'react-native-paystack-webview';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 const FundWalletScreen = () => {
   const { theme } = useAppTheme();
@@ -25,6 +27,7 @@ const FundWalletScreen = () => {
   const [amount, setAmount] = useState("");
   const [stage, setStage] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
+  const { t} = useTranslation();
 
   const validateAmount = () => {
     if (amount) {
@@ -52,7 +55,7 @@ const FundWalletScreen = () => {
         {stage === 0 ? (
           <>
             <AppInput
-              label="Amount"
+              label={t('amount')}
               autoCapitalize="none"
               keyboardType="numeric"
               onChangeText={(value) => setAmount(value)}
@@ -70,7 +73,7 @@ const FundWalletScreen = () => {
               }}
             >
               <View style={{}}>
-                <MediumText>You're paying</MediumText>
+                <MediumText>{t('payment')}</MediumText>
                 <LargeText>NGN {amount}</LargeText>
               </View>
               <TouchableOpacity
@@ -93,31 +96,30 @@ const FundWalletScreen = () => {
                 <MediumText style={{ color: "white" }}>Cancel</MediumText>
               </TouchableOpacity>
             </View>
-            <CashMethod
-              title="Pay with Card"
-              details="Verve, Visa, Mastercard, discover and Amex cards are all accepted."
+             <CashMethod
+              title={t('payCard')}
+              details={t('payCardDetails')}
               amount={amount} 
             />
             <QuickTeller
-              title="Pay with Quickteller"
-              details="Login to your quickteller wallet to get access to your saved cards."
-             
+              title={t('payQuickTeller')}
+              details={t('payQuickTellerDetails')}
             />
             <BankTransfer
-              title="Pay with Bank Transfer"
-              details="Make a transfer directly from your bank account to complete a transaction."
+              title={t('payBank')}
+              details={t('payBankDetails')}
             />
             <PayWithQr
-              title="Pay with Pay With Qr Code"
-              details="Generate a QR Code you can scan with your bank app to pay."
+              title={t('payQr')}
+              details={t('payQrDetails')}
             />
             <UssdMethod
-              title="Pay with Pay With USSD"
-              details="Dail a USSD string from any of 17+ banks."
+              title={t('payUssd')}
+              details={t('payUssdDetails')}
             />
             <BinanceMethod
-              title="Pay with Pay With Binance"
-              details="Fund your e-wallet using binance and crypto currency options."
+              title={t('payBinance')}
+              details={t('payBinanceDetails')}
             />
           </>
         ) : (

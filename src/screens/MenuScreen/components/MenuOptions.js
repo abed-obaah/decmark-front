@@ -1,6 +1,8 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { MediumText } from "@src/components/AppText";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 import {
   Ionicons,
@@ -13,9 +15,10 @@ import { useNavigation } from "@react-navigation/native";
 export default MenuOptions = () => {
   const { theme } = useTheme();
   const navigation = useNavigation();
+  const { t} = useTranslation();
   const menuOptions = [
     {
-      lable: "Notifications",
+      lable: `${t('notifications')}`,
       icon: (
         <Ionicons
           name="notifications-outline"
@@ -30,7 +33,7 @@ export default MenuOptions = () => {
         }),
     },
     {
-      lable: "Messages",
+      lable: `${t('message')}`,
       icon: (
         <Ionicons
           name="mail-outline"
@@ -44,7 +47,7 @@ export default MenuOptions = () => {
         }),
     },
     {
-      lable: "History",
+      lable: `${t('history')}`,
       icon: (
         <Ionicons
           name="time-outline"
@@ -56,7 +59,7 @@ export default MenuOptions = () => {
         navigation.navigate("ProfileStack", { screen: "HistoryScreen" }),
     },
     {
-      lable: "My Referral",
+      lable: `${t('myReferral')}`,
       icon: (
         <Ionicons
           name="person-add-outline"
@@ -70,7 +73,7 @@ export default MenuOptions = () => {
     
    
     {
-      lable: "Customer Care",
+      lable: `${t('customerCare')}`,
       icon: (
         <Ionicons
           name="shield-checkmark-outline"
@@ -82,7 +85,7 @@ export default MenuOptions = () => {
       navigation.navigate("ProfileStack", { screen: "CustomerCareScreen" }),
   },
     {
-      lable: "Verification",
+      lable:`${t('Verification')}`,
       icon: (
         <MaterialCommunityIcons
           name="card-account-details-star-outline"
@@ -119,7 +122,7 @@ export default MenuOptions = () => {
     //     navigation.navigate("ProfileStack", { screen: "HistoryScreen" }),
     // },
     {
-      lable: "FAQs",
+      lable: `${t('FAQ')}`,
       icon: (
         <Ionicons
           name="help-circle-outline"
@@ -132,7 +135,7 @@ export default MenuOptions = () => {
   },
 
     {
-      lable: "Account Settings",
+      lable: `${t('AccountSettings')}`,
       icon: (
         <Ionicons
           name="settings-outline"
@@ -152,7 +155,7 @@ export default MenuOptions = () => {
       ),
   },
   {
-    lable: "How to use App",
+    lable: `${t('HowToUseApp')}`,
     screen: () => navigation.navigate("HowToUseApp"),
     headerLeft: () => (
       <TouchableOpacity

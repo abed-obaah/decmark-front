@@ -5,14 +5,15 @@ import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "@src/hooks/useAppStore";
 import MyAvatar from "@src/global/MyAvatar";
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 const StylistCard = ({ name, occupation, navigation }) => {
   const { userInfo } = useAppSelector((state) => state.auth);
   const [referredUsers, setReferredUsers] = useState([]);
   // https://api.decmark.com/v1/user/artisan/user/925c0b6e-e735-4487-9f83-6ccb517ec093/referred
-
+  const { t} = useTranslation();
 
   useEffect(() => {
     const fetchReferredUsers = async () => {
@@ -69,7 +70,7 @@ const StylistCard = ({ name, occupation, navigation }) => {
                 </View>
               ))
             ) : (
-              <MediumText>No referred users found</MediumText>
+              <MediumText> {t('NoReferredUsersFound')}</MediumText>
             )}
           </View>
 

@@ -16,13 +16,17 @@ import { MediumText,LargeText } from "@src/components/AppText";
 import QRCode from 'react-native-qrcode-svg';
 import BankName from './components/BankNames';
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
 
 const PayWithUssd = () => {
     const [CVV, setCVV] = useState('');
     const [Expiry, setExpiry] = useState('');
     const [Amount, setAmount] = useState("");
     const [carNumber, setCarNumber] = useState('');
-
+    const { t} = useTranslation();
 
     const copyToClipboard = () => {
       Clipboard.setString('0889705646');
@@ -34,22 +38,22 @@ const PayWithUssd = () => {
         <AppScrollView>
         
         <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
-          <LargeText>Dail a USSD string from any of 17+ banks to complete a transaction.</LargeText>
+          <LargeText>{t('dail')}</LargeText>
         </View>
         <View style={styles.container}>
 
-        <Text style={styles.label}>Amount</Text>
+        <Text style={styles.label}>{t('amount')}</Text>
         <TextInput
           style={styles.input}
           value={Amount}
-          placeholder="Enter amount"
+          placeholder={t('enterAmount')}
           onChangeText={text => setAmount(text)}
         />
        
 
         <View style={styles.rowContainer}>
                     <View style={styles.boxContainer}>
-                <LargeText>COPY ACCOUNT NUMBER</LargeText>
+                <LargeText>{t('accountCopy')}</LargeText>
                 <TouchableOpacity style={styles.copyButton} onPress={copyToClipboard}>
             <Ionicons name="copy-outline" size={20} color="#DEB253" />
           </TouchableOpacity>

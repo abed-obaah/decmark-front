@@ -15,9 +15,14 @@ import PayWithQr from "./components/PayWithQr";
 import UssdMethod from "./components/UssdMethod";
 import BinanceMethod from "./components/BinanceMethod";
 // import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 const FundWalletScreen = () => {
   const { theme } = useAppTheme();
+
+  const { t} = useTranslation();
 
   const [amount, setAmount] = useState("");
   const [stage, setStage] = useState(0);
@@ -32,18 +37,18 @@ const FundWalletScreen = () => {
 
   return (
     <AppSafeAreaView>
-      <PageHeader title={"Fund Account"} />
+      <PageHeader title={t('fundAccount')} />
       <AppScrollView>
         {stage === 0 ? (
           <>
             <AppInput
-              label="Amount"
+              label={t('amount')} 
               autoCapitalize="none"
               // error={errorAmount}
               // onFocus={() => handleError("email", null)}
               onChangeText={(value) => setAmount(value)}
             />
-            <AppButton label="Next" onPress={validateAmount} />
+            <AppButton label={t('next')}  onPress={validateAmount} />
           </>
         ) : (
           <>
@@ -56,7 +61,7 @@ const FundWalletScreen = () => {
               }}
             >
               <View style={{}}>
-                <SmallText>You're paying</SmallText>
+                <SmallText>{t('payment')}</SmallText>
                 <LargeText>NGN {amount}</LargeText>
               </View>
               <TouchableOpacity
@@ -69,34 +74,33 @@ const FundWalletScreen = () => {
                 }}
                 onPress={pop}
               >
-                <MediumText style={{ color: "white" }}>Cancel</MediumText>
+                <MediumText style={{ color: "white" }}>{t('cancel')}</MediumText>
               </TouchableOpacity>
             </View>
             <CashMethod
-              title="Pay with Card"
-              details="Verve, Visa, Mastercard, discover and
-            Amex cards are all accepted."
+              title={t('payCard')}
+              details={t('payCardDetails')}
            
             />
             <QuickTeller
-              title="Pay with Quickteller"
-              details="Login to your quickteller wallet to get access to your saved cards."
+              title={t('payQuickTeller')}
+              details={t('payQuickTellerDetails')}
             />
             <BankTransfer
-              title="Pay with Quickteller"
-              details="Login to your quickteller wallet to get access to your saved cards."
+              title={t('payBank')}
+              details={t('payBankDetails')}
             />
             <PayWithQr
-              title="Pay with PayWithQr"
-              details="Login to your quickteller wallet to get access to your saved cards."
+              title={t('payQr')}
+              details={t('payQrDetails')}
             />
             <UssdMethod
-              title="Pay with UssdMethod"
-              details="Login to your quickteller wallet to get access to your saved cards."
+              title={t('payUssd')}
+              details={t('payUssdDetails')}
             />
             <BinanceMethod
-              title="Pay with Binance"
-              details="Login to your quickteller wallet to get access to your saved cards."
+              title={t('payBinance')}
+              details={t('payBinanceDetails')}
             />
           </>
         )}

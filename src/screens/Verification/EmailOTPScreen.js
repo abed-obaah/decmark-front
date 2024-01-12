@@ -10,6 +10,9 @@ import axios from "axios";
 // import Dialog from "react-native-popup-dialog";
 import Toast from 'react-native-toast-message';
 import { useAppSelector, useAppDispatch } from "@src/hooks/useAppStore";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 const apiKey = 'TL24THSrbgLpCFPH0Cibo7gnU2eT4uzUyQb29O7sHSpPUb5nMMdvTpG8nFnnTg';
 
@@ -19,7 +22,7 @@ const EmailOTPScreen = ({ navigation, route }) => {
   const email = route.params?.email || "";
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.auth);
-  
+  const { t} = useTranslation();
   const MAX_CODE_LENGTH = 6;
 
   const [code, setCode] = useState("");
@@ -55,12 +58,12 @@ const EmailOTPScreen = ({ navigation, route }) => {
   };
   return (
     <AppSafeAreaView>
-      <PageHeader title={"Verification Code"} />
+      <PageHeader title={t('VerificationCode')} />
 
       <AppScrollView style={{marginTop: 12}}>
         <Pressable onPress={Keyboard.dismiss}>
           <MediumText style={{ textAlign: "center", marginTop: 20 }}>
-            We have sent a code to your Email
+          {t('otpMessageEmail')}
           </MediumText>
           <LinkText
             style={{
@@ -89,13 +92,13 @@ const EmailOTPScreen = ({ navigation, route }) => {
             marginVertical: 15,
           }}
         >
-          <MediumText>Didn't receive a text?</MediumText>
+          <MediumText>{t('VerifyText')}</MediumText>
           <LinkText
             style={{
               fontSize: SIZES.md,
             }}
           >
-            Resend code
+            {t('ResendCode')}
           </LinkText>
         </View>
       </AppScrollView>

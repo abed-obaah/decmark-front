@@ -17,7 +17,8 @@ import { useSelector, useDispatch } from "react-redux";
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import  { Paystack , paystackProps}  from 'react-native-paystack-webview';
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 const PayWithCardScreen = ({ route }) => {
@@ -31,7 +32,7 @@ const PayWithCardScreen = ({ route }) => {
   const [card, setCardNumber] = useState(""); // Store card input as a string
   const paystackWebViewRef = useRef<paystackProps.PayStackRef>(); 
   const { userInfo } = useSelector((state) => state.auth);
- 
+  const { t} = useTranslation();
 
   const validateAmount = () => {
     if (amount) {
@@ -83,21 +84,21 @@ const PayWithCardScreen = ({ route }) => {
     <AppSafeAreaView>
       <AppScrollView>
         <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>
-          <MediumText>You're paying</MediumText>
+          <MediumText>{t('payment')}</MediumText>
           <LargeText>NGN {amount}</LargeText>
         </View>
 
         <View style={styles.container}>
-          <Text style={styles.label}>Amount</Text>
+          <Text style={styles.label}>{t('amount')}</Text>
           <TextInput
             style={styles.input}
             value={amount}
-            placeholder="Enter amount"
+            placeholder={t('enterAmount')}
             onChangeText={(value) => setAmount(value)}
             editable={false} 
           />
 
-          <Text style={styles.label}>Billing Email</Text>
+          <Text style={styles.label}>{t('billing')}</Text>
           <TextInput
             style={styles.input}
             value={card}

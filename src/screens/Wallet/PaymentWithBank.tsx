@@ -14,11 +14,12 @@ import PageHeader from "@src/components/PageHeader";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
 import { MediumText,LargeText } from "@src/components/AppText";
 import { Ionicons } from "@expo/vector-icons";
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 const PayWithCardScreen = ({ amount, goBack }) => {
-
+  const { t} = useTranslation();
   const validateAmount = () => {
     if (amount) {
       // setStage(1);
@@ -36,7 +37,7 @@ const PayWithCardScreen = ({ amount, goBack }) => {
     <AppSafeAreaView>
       <AppScrollView>
         <View style={{ paddingHorizontal: 30, paddingVertical: 10 }}>
-          <MediumText>Copy the account number below and make transfer to the account.</MediumText>
+          <MediumText>{t('copy')}</MediumText>
         </View>
         
         <View style={styles.container}>

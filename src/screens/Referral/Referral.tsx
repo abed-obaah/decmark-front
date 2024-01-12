@@ -10,12 +10,18 @@ import { Clipboard } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useAppSelector } from "@src/hooks/useAppStore";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
+
 
 const Referral = () => {
   const navigation = useNavigation();
   const [referralLink, setReferralLink] = useState("");
   const { userInfo } = useAppSelector((state) => state.auth);
   const [tag, setTag] = useState<string | null>(null);
+  const { t} = useTranslation();
 
   const fetchImage = async () => {
     try {
@@ -59,13 +65,13 @@ const Referral = () => {
       <AppScrollView>
         <View style={styles.container}>
           <View style={styles.inputContainer}>
-            <AppInput label="Referral" value={tag} disabled />
+            <AppInput label={t('Referral')}  value={tag} disabled />
           </View>
           <TouchableOpacity style={styles.copyButton} onPress={copyToClipboard}>
             <Ionicons name="copy-outline" size={24} color="black" />
           </TouchableOpacity>
         </View>
-        <AppButton label="Generate" onPress={handleGenerate} />
+        <AppButton label={t('generate')} onPress={handleGenerate} />
 
         <MediumText
           style={{ marginVertical: 8 }}
@@ -75,7 +81,7 @@ const Referral = () => {
             })
           }
         >
-          View Referred Users
+          {t('View Referred Users')}
         </MediumText>
       </AppScrollView>
     </AppSafeAreaView>

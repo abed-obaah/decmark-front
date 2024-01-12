@@ -8,12 +8,15 @@ import {
   AppSafeAreaView,
 } from "@src/components/AppViews";
 
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 const HowToUseAppScreen = () => {
   const openYouTubeLink = () => {
     const youtubeLink = "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"; // Replace with your YouTube video link
     Linking.openURL(youtubeLink);
   };
-
+  const { t} = useTranslation();
   return (
     <AppSafeAreaView>
       <AppScrollView>
@@ -29,7 +32,7 @@ const HowToUseAppScreen = () => {
           <TouchableOpacity onPress={openYouTubeLink}>
             <View style={styles.videoFrame}>
               {/* Your video frame component here */}
-              <LargeText style={styles.videoText}>Click to Watch Video</LargeText>
+              <LargeText style={styles.videoText}>{t('update')}</LargeText>
             </View>
           </TouchableOpacity>
         </View>

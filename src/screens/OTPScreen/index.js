@@ -5,11 +5,15 @@ import OTPField from "@src/components/OTPField";
 import { SIZES } from "@src/constants/theme";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
 import { MediumText, LinkText } from "@src/components/AppText";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 export default OTPScreen = ({ navigation }) => {
   const [code, setCode] = useState("");
   const [pinReady, setPinReady] = useState(false);
   const MAX_CODE_LENGTH = 5;
+  const { t} = useTranslation();
 
   const handleVerifyOtp = () => {
     navigation.navigate("BottomTabNavigator", { screen: "HomeScreen" });
@@ -19,7 +23,7 @@ export default OTPScreen = ({ navigation }) => {
     <AppSafeAreaView>
       <AppScrollView>
         <Pressable onPress={Keyboard.dismiss}>
-          <MediumText>We have sent a code to your mobile number</MediumText>
+          <MediumText>{t('otpMessage')}</MediumText>
           <LinkText style={{ fontSize: SIZES.md, marginBottom: 10 }}>
             +2348141726099
           </LinkText>
@@ -31,7 +35,7 @@ export default OTPScreen = ({ navigation }) => {
           />
         </Pressable>
         <AppButton
-          label="Verify"
+          label={t('Verify')}
           disabled={!pinReady}
           onPress={handleVerifyOtp}
         />
@@ -41,13 +45,13 @@ export default OTPScreen = ({ navigation }) => {
             marginVertical: 15,
           }}
         >
-          <MediumText>Didn't receive a text?</MediumText>
+          <MediumText>{t('VerifyText')} </MediumText>
           <LinkText
             style={{
               fontSize: SIZES.md,
             }}
           >
-            Resend code
+            {t('ResendCode')}
           </LinkText>
         </View>
       </AppScrollView>

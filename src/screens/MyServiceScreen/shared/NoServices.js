@@ -2,10 +2,14 @@ import { View, StyleSheet } from "react-native";
 import { MediumText } from "@src/components/AppText";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import useTheme from "@src/hooks/useAppTheme";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 export default NoServices = ({ title }) => {
   const { theme } = useTheme();
-
+  const { t} = useTranslation();
+  
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
       <MaterialCommunityIcons
@@ -14,7 +18,7 @@ export default NoServices = ({ title }) => {
         color={theme.PRIMARY_TEXT_COLOR}
       />
       <MediumText style={styles.text(theme)}>
-        You don't have any {title} Services
+      {t('emptyServices')} {title} {t('services')} 
       </MediumText>
     </View>
   );

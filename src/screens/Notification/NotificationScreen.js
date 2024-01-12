@@ -5,10 +5,15 @@ import useAppTheme from "@src/hooks/useAppTheme";
 import PageHeader from "@src/components/PageHeader";
 // import { getNotificationInbox } from 'native-notify';
 import { FlatList, StyleSheet, Text, View } from "react-native";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 const NotificationScreen = () => {
   const { theme } = useAppTheme();
   const [data, setData] = useState([]);
+  const { t} = useTranslation();
+
 
   useEffect(async () => {
     let notifications = await getNotificationInbox(10360, 'bt5HPDNHpKOD4SdARVdthY');
@@ -31,9 +36,9 @@ const NotificationScreen = () => {
       <PageHeader title={"Notification"} />
       {data.length === 0 ? (
         <View style={styles.emptyContainer}>
-          <LargeText style={styles.emptyText}>No Notification</LargeText>
+          <LargeText style={styles.emptyText}>{t('Nonotifications')}</LargeText>
           <SmallText style={styles.emptyText}>
-            We send you notifications to update you on your schedule and service delivery.
+          {t('notificationsText')}
           </SmallText>
         </View>
       ) : (

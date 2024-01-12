@@ -6,13 +6,16 @@ import AppButton from '@src/components/AppButton';
 import PageHeader from "@src/components/PageHeader";
 import AppTextarea from '@src/components/AppTextarea';
 import AppInput from '@src/components/AppInput';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 const Vnin = () => {
   const [loading, setLoading] = useState(false);
   const [number, setNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [failedModalVisible, setFailedModalVisible] = useState(false);
- 
+  const { t} = useTranslation();
 
   const handleVerifyVNIN = async () => {
     try {
@@ -86,9 +89,9 @@ const Vnin = () => {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 18, marginBottom: 10 }}>Success!</Text>
-            <Text>Your document has been verified.</Text>
-            <Button title="Close" onPress={closeModal} />
+            <Text style={{ fontSize: 18, marginBottom: 10 }}>{t('success')} !</Text>
+            <Text>{t('docV')} </Text>
+            <Button title={t('close')}  onPress={closeModal} />
           </View>
         </View>
       </Modal>
@@ -121,9 +124,9 @@ const Vnin = () => {
               alignItems: "center",
             }}
           >
-           <Text style={{ fontSize: 18, marginBottom: 10 }}>Verification failed!</Text>
-            <Text>Record not found.</Text>
-            <Button title="Close" onPress={closeModal} />
+           <Text style={{ fontSize: 18, marginBottom: 10 }}>{t('AccountVerificationFailed')}!</Text>
+            <Text>{t('AccountVerificationFailedRecord')}</Text>
+            <Button title={t('close')}  onPress={closeModal} />
           </View>
         </View>
       </Modal>
@@ -134,7 +137,7 @@ const Vnin = () => {
                       onChangeText={text => setNumber(text)}
                   />
            
-            <AppButton label="Verify VNIN" onPress={handleVerifyVNIN}/>
+            <AppButton label={t('verify')}  onPress={handleVerifyVNIN}/>
 
           {loading && (
             <View>

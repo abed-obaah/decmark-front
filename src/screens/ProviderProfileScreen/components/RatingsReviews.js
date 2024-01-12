@@ -7,6 +7,10 @@ import {
   XtraLargeText,
   SmallText,
 } from "@src/components/AppText";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
 
 export default RatingsReviews = ({
     name,
@@ -15,6 +19,7 @@ export default RatingsReviews = ({
     ratingReviews
 }) => {
   const { theme } = useTheme();
+  const { t} = useTranslation();
 
   const renderStars = () => {
     const stars = [];
@@ -39,7 +44,7 @@ export default RatingsReviews = ({
           marginBottom: 5,
         }}
       >
-        <LargeText>Ratings and reviews</LargeText>
+        <LargeText>{t('ratings')}</LargeText>
         {/* <TouchableOpacity
           style={{
             borderRadius: 50,
@@ -69,7 +74,7 @@ export default RatingsReviews = ({
           >
             {renderStars()}
           </View>
-          <MediumText>{ratingScore} ratings</MediumText>
+          <MediumText>{ratingScore} {t('rate')}</MediumText>
         </View>
 
         <View

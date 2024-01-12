@@ -10,6 +10,9 @@ import axios from 'axios';
 import { RectButton, Swipeable } from 'react-native-gesture-handler';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector, useDispatch } from "react-redux";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 // const notificationApi = 'https://app.nativenotify.com/api/notification'
 
@@ -20,6 +23,8 @@ const MyServices = () => {
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const { userInfo } = useSelector((state) => state.auth);
+  const { t} = useTranslation();
+
 
   useEffect(() => {
     fetchServices();
@@ -212,7 +217,7 @@ const MyServices = () => {
               </Text>
             </View>
             <AppButton
-              label="Update"
+              label={t('update')}
               marginTop={0.5}
               buttonHeight={40}
               onPress={() => navigation.navigate('ProfileStack',

@@ -8,13 +8,18 @@ import AppButton from "@src/components/AppButton";
 import { SIZES } from "@src/constants/theme";
 import axios from "axios";
 // import Dialog from "react-native-popup-dialog";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
+
 
 const apiKey = 'TL24THSrbgLpCFPH0Cibo7gnU2eT4uzUyQb29O7sHSpPUb5nMMdvTpG8nFnnTg';
 
 const OTPScreen = ({ navigation, route }) => {
   const phoneNumber = route.params?.phoneNumber || "";
   const pinId = route.params?.pinId || "";
-
+  const { t} = useTranslation();
   const MAX_CODE_LENGTH = 6;
 
   const [code, setCode] = useState("");
@@ -49,12 +54,12 @@ const OTPScreen = ({ navigation, route }) => {
 
   return (
     <AppSafeAreaView>
-      <PageHeader title={"Verification Code"} />
+      <PageHeader title={t('VerificationCode')} />
 
       <AppScrollView style={{marginTop: 12}}>
         <Pressable onPress={Keyboard.dismiss}>
           <MediumText style={{ textAlign: "center", marginTop: 20 }}>
-            We have sent a code to your mobile number
+            {t('otpMessage')}
           </MediumText>
           <LinkText
             style={{
@@ -73,7 +78,7 @@ const OTPScreen = ({ navigation, route }) => {
           />
         </Pressable>
         <AppButton
-          label="Verify"
+          label={t('Verify')}
           disabled={!pinReady}
           onPress={handleVerifyOtp}
         />
@@ -83,13 +88,13 @@ const OTPScreen = ({ navigation, route }) => {
             marginVertical: 15,
           }}
         >
-          <MediumText>Didn't receive a text?</MediumText>
+          <MediumText>{t('VerifyText')}</MediumText>
           <LinkText
             style={{
               fontSize: SIZES.md,
             }}
           >
-            Resend code
+            {t('ResendCode')}
           </LinkText>
         </View>
       </AppScrollView>

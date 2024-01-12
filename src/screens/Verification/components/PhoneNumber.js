@@ -6,10 +6,16 @@ import { useNavigation } from "@react-navigation/native";
 import useValidateLogin from "@src/screens/LogIn/hooks/useValidateLogin";
 import useOnChange from "@src/hooks/forms/useOnChange";
 import axios from "axios";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
+
 
 const apiKey = 'TL24THSrbgLpCFPH0Cibo7gnU2eT4uzUyQb29O7sHSpPUb5nMMdvTpG8nFnnTg';
 
 const PhoneNumberScreen = () => {
+  const { t} = useTranslation();
   const navigation = useNavigation();
   const { inputs, handleChangeInput } = useOnChange({
     phoneNumber: "",
@@ -87,13 +93,13 @@ const PhoneNumberScreen = () => {
   return (
     <>
       <PhoneNumberInput
-        label="Phone Number"
+        label={t('phoneNumber')}
         error={errors.phoneNumber}
         onFocus={() => handleError("phoneNumber", null)}
         onChangeText={(value) => handleChangeInput("phoneNumber", value)}
       />
 
-      <AppButton label="Next" onPress={handleVerifyUser} />
+      <AppButton label={t('next')} onPress={handleVerifyUser} />
     </>
   );
 };

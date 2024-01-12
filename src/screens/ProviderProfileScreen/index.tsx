@@ -15,13 +15,15 @@ import { useRoute } from "@react-navigation/native";
 import axios from "axios";
 import MyAvatar from "@src/global/MyAvatar";
 import Lightbox from 'react-native-lightbox';
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 const ProviderProfileScreen = () => {
   const navigation = useNavigation();
   const { sheetRef, handleSnapPress } = useBottomSheet();
   const scrollY = useRef(new Animated.Value(0)).current;
   const IMG_SIZE = 200;
+  const { t} = useTranslation();
   const imgSize = scrollY.interpolate({
     inputRange: [0, 100],
     outputRange: [IMG_SIZE, IMG_SIZE / 2],
@@ -88,7 +90,7 @@ const ProviderProfileScreen = () => {
           {name}{" "}
             <MaterialIcons name="verified" size={24} color={"green"} />
           </XtraLargeText>
-          <MediumText>General Services &bull; {type}</MediumText>
+          <MediumText>{t('general')} {t('services')} &bull; {type}</MediumText>
         </View>
         <Bio 
           description={description}
@@ -120,7 +122,7 @@ const ProviderProfileScreen = () => {
               // }}
               buttonHeight={45}
               marginTop={20}
-              label="Schedule"
+              label={t('schedule')}
               onPress={() =>
                 
                 navigation.navigate("ProfileStack", {
@@ -141,7 +143,7 @@ const ProviderProfileScreen = () => {
 
       </AppScrollView>
       <AppBottomSheet sheetRef={sheetRef}>
-        <AppInput label="Here" />
+        <AppInput label={t('here')} />
       </AppBottomSheet>
     </AppSafeAreaView>
   );

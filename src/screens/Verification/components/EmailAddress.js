@@ -8,7 +8,8 @@ import useValidateLogin from "@src/screens/LogIn/hooks/useValidateLogin";
 import axios from "axios";
 import Toast from 'react-native-toast-message';
 import { useAppSelector, useAppDispatch } from "@src/hooks/useAppStore";
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 const apiKey = 'TL24THSrbgLpCFPH0Cibo7gnU2eT4uzUyQb29O7sHSpPUb5nMMdvTpG8nFnnTg';
@@ -16,7 +17,7 @@ export default EmailAddress = () => {
   const navigation = useNavigation();
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.auth);
-
+  const { t} = useTranslation();
 
   const { inputs, handleChangeInput } = useOnChange({
     email: "",
@@ -28,17 +29,17 @@ export default EmailAddress = () => {
 
   const showToast = () => {
     Toast.show({
-      type: 'success',
-      text1: 'OTP Sent',
-      text2: 'Your OTP Has been sent successfully'
+      type: `${t('success')}`,
+      text1: `${t('otpSent')}`,
+      text2: `${t('sentSuccess')}`
     });
   }
 
   const showToasts = () => {
     Toast.show({
-      type: 'error',
-      text1: 'OTP Error',
-      text2: 'There was an error sending Your OTP'
+      type: `${t('err')}`,
+      text1: `${t('otpSentError')}`,
+      text2: `${t('sentError')}`
     });
   }
 
@@ -77,13 +78,13 @@ export default EmailAddress = () => {
   return (
     <>
       <AppInput
-        label="Email"
+        label={t('email')}
         autoCapitalize="none"
         error={errors.email}
         onFocus={() => handleError("email", null)}
         onChangeText={(value) => handleChangeInput("email", value)}
       />
-      <AppButton label="Next" onPress={handleVerifyUser} />
+      <AppButton label={t('next')} onPress={handleVerifyUser} />
     </>
   );
 };

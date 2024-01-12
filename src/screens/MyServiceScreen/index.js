@@ -24,11 +24,15 @@ import useTheme from '@src/hooks/useAppTheme';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
  import NoServices from "./shared/NoServices.js";
+ import { useTranslation } from 'react-i18next';
+ import { changeLanguage } from "i18next";
+
 
 const MyServiceScreen = () => {
   const [activeTab, setActiveTab] = useState(0);
   const { theme } = useTheme();
   const navigation = useNavigation();
+  const { t} = useTranslation();
 
   const screens = [
     <BookedServicesScreen />,
@@ -39,7 +43,7 @@ const MyServiceScreen = () => {
   return (
     <AppSafeAreaView >
       <GroupTab
-        tabs={["Booked", "Open", "Settled"]}
+        tabs={[`${t('booked')}`, `${t('open')}`, `${t('settled')}`]}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />

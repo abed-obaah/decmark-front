@@ -12,18 +12,19 @@ import {
 import PageHeader from "@src/components/PageHeader";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
 import { MediumText,LargeText } from "@src/components/AppText";
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 const PayWithBinance = () => {
- 
+  const { t} = useTranslation();
 
   return (
     <AppSafeAreaView>
         <AppScrollView>
         
         <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
-          <LargeText>Copy the wallet address below and make transfer to the Account.</LargeText>
+          <LargeText>{t('copyWallet')}</LargeText>
         </View>
         <View style={styles.container}>
 
@@ -40,7 +41,7 @@ const PayWithBinance = () => {
         </View>
        
         <View style={{ paddingHorizontal: 20, paddingVertical: 10 }}>
-          <MediumText>we are only accepting USDT.</MediumText>
+          <MediumText>{t('paymentAccept')}</MediumText>
         </View>
         {/* <TouchableOpacity style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Pay NGN 40,000</Text>

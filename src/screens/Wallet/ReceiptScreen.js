@@ -3,6 +3,9 @@ import { StyleSheet, View, SafeAreaView, ScrollView, Text, TouchableOpacity, Ima
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import decmark from '../../assets/images/adaptive-icon.png'
 import { SIZES } from "@src/constants/theme";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
 
 const users = [
   'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80',

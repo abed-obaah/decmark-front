@@ -6,14 +6,15 @@ import AppButton from '@src/components/AppButton';
 import PageHeader from "@src/components/PageHeader";
 import AppTextarea from '@src/components/AppTextarea';
 import AppInput from '@src/components/AppInput';
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 const Bvn = () => {
   const [loading, setLoading] = useState(false);
   const [number, setNumber] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [failedModalVisible, setFailedModalVisible] = useState(false);
-
+  const { t} = useTranslation();
 
   const handleVerifyVotersCard = async () => {
     try {
@@ -88,9 +89,9 @@ const Bvn = () => {
               alignItems: "center",
             }}
           >
-            <Text style={{ fontSize: 18, marginBottom: 10 }}>Success!</Text>
-            <Text>Your document has been verified.</Text>
-            <Button title="Close" onPress={closeModal} />
+            <Text style={{ fontSize: 18, marginBottom: 10 }}>{t('success')}!</Text>
+            <Text>{t('docV')}</Text>
+            <Button title={t('close')} onPress={closeModal} />
           </View>
         </View>
       </Modal>
@@ -123,21 +124,21 @@ const Bvn = () => {
               alignItems: "center",
             }}
           >
-           <Text style={{ fontSize: 18, marginBottom: 10 }}>Verification faileds!</Text>
-            <Text>Record not found.</Text>
-            <Button title="Close" onPress={closeModal} />
+           <Text style={{ fontSize: 18, marginBottom: 10 }}>{t('AccountVerificationFailed')}</Text>
+            <Text>{t('AccountVerificationFailedRecord')}</Text>
+            <Button title={t('close')} onPress={closeModal} />
           </View>
         </View>
       </Modal>
 
             <View>
-            <AppInput label="Number"
+            <AppInput label={t('number')}
                       value={number}
                       onChangeText={text => setNumber(text)}
                   />
           
             {/* Add more input fields for lga, state, number if needed */}
-            <AppButton label="Verify Voters Card" onPress={handleVerifyVotersCard}/>
+            <AppButton label={t('verify')} onPress={handleVerifyVotersCard}/>
             
 
             {loading && (
