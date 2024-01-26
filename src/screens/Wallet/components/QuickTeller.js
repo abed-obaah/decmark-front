@@ -1,4 +1,4 @@
-import { StyleSheet, Image, View, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet,Text, Image, View, TouchableOpacity, Alert } from "react-native";
 import React from "react";
 import { LargeText, MediumText } from "@src/components/AppText";
 import { SIZES } from "@src/constants/theme";
@@ -8,11 +8,12 @@ import { Ionicons } from "@expo/vector-icons";
 const showsc =() => {
   alert("pay with quick Teller");
 }
-const QuickTeller = ({ title, details }) => {
+const QuickTeller = ({ title, details, onPress, amount }) => {
   return (
     <TouchableOpacity
       style={{ flexDirection: "row", marginTop: 30, alignItems: "center" }}
       onPress={showsc}
+      
     >
       <Image
       source={require('../../../assets/images/quickteller3.png')}
@@ -28,6 +29,7 @@ const QuickTeller = ({ title, details }) => {
       <View style={{ flex: 1 }}>
         <LargeText>{title}</LargeText>
         <MediumText>{details}</MediumText>
+        {amount && <Text>Amount: {amount}</Text>}
       </View>
       <Ionicons size={20} name={"chevron-forward-outline"} />
     </TouchableOpacity>

@@ -13,7 +13,8 @@ import WithdrawQr from "./components/WithdrawQr";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector, useDispatch } from "react-redux";
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 
 const WithdrawScreen = () => {
@@ -23,7 +24,7 @@ const WithdrawScreen = () => {
   const [stage, setStage] = useState(0);
   const [walletData, setWalletData] = useState(null);
   const { userInfo } = useSelector((state) => state.auth);
-
+  const { t} = useTranslation();
 
 
 
@@ -81,12 +82,12 @@ const WithdrawScreen = () => {
   
   return (
     <AppSafeAreaView>
-      <PageHeader title={"Withdraw Funds"} />
+      <PageHeader title={ `${t('withdraw')}`} />
       <AppScrollView>
         {stage === 0 ? (
           <>
             <AppInput
-              label="Amounts"
+              label= {t('amount')}
               autoCapitalize="none"
               keyboardType="numeric"
               // error={errorAmount}
@@ -94,10 +95,10 @@ const WithdrawScreen = () => {
               onChangeText={(value) => setAmount(value)}
             />
             <View style={{}}>
-                <SmallText>Balance</SmallText>
+                <SmallText> {t('balance')}</SmallText>
                 <LargeText>NGN {walletData?.amount?.amount}</LargeText>
               </View>
-            <AppButton label="Next" onPress={validateAmount} />
+            <AppButton label= {t('next')} onPress={validateAmount} />
           </>
         ) : (
           <>
@@ -110,7 +111,7 @@ const WithdrawScreen = () => {
               }}
             >
               <View style={{}}>
-                <SmallText>You're Withdrawing</SmallText>
+                <SmallText>{t('withdrawPayment')}</SmallText>
                 <LargeText>NGN {amount}</LargeText>
               </View>
 
@@ -124,22 +125,20 @@ const WithdrawScreen = () => {
                 }}
                 onPress={show}
               >
-                <MediumText style={{ color: "white" }}>Cancel</MediumText>
+                <MediumText style={{ color: "white" }}>{t('cancel')}</MediumText>
               </TouchableOpacity>
             </View>
             <View>
                 <WithdrawAcc
-                  title="Withdraw to Accounts"
-                  details="White listed bank accounts like Wema, UBA,
-                  Zenith UBA, etc"
+                  title={t('withdrawWithQrDetails')}
+                  details={t('cancel')}
                   onPress={show}
                 />
             </View>
            
             <WithdrawQr
-              title="Withdraw with Qr Codes"
-              details="White listed bank accounts like Wema, UBA,
-              Zenith UBA, etc"
+              title={t('withdrawWithQr')}
+              details={t('withdrawWithQrDetails')}
             />
           </>
         )}

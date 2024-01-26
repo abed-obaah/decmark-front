@@ -86,7 +86,7 @@ const HistoryScreen = () => {
 
   return (
     <AppSafeAreaView>
-      <PageHeader title={"History"} />
+     
       {/* <View
         style={{
           flex: 1,

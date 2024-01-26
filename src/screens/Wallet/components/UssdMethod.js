@@ -1,4 +1,4 @@
-import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
+import { StyleSheet,Text, Image, View, TouchableOpacity } from "react-native";
 import React from "react";
 import { LargeText, MediumText } from "@src/components/AppText";
 import { SIZES } from "@src/constants/theme";
@@ -9,7 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 const showsc =() => {
   alert("pay with ussd");
 }
-const UssdMethod = ({ title, details }) => {
+const UssdMethod = ({ title, details, onPress, amount }) => {
   const navigation = useNavigation();
   
   const bankData = [
@@ -45,6 +45,7 @@ const UssdMethod = ({ title, details }) => {
       <View style={{ flex: 1 }}>
         <LargeText>{title}</LargeText>
         <MediumText>{details}</MediumText>
+        {amount && <Text>Amount: {amount}</Text>}
       </View>
       <Ionicons size={20} name={"chevron-forward-outline"} />
     </TouchableOpacity>

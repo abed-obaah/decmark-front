@@ -18,7 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { changeLanguage } from "i18next";
 
 
-const PayWithCardScreen = ({ amount, goBack }) => {
+const PayWithCardScreen = ({ amount, goBack,route  }) => {
   const { t} = useTranslation();
   const validateAmount = () => {
     if (amount) {

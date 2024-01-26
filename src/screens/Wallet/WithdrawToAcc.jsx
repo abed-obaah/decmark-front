@@ -21,9 +21,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { v4 as uuidv4 } from 'uuid';
+import { t } from "i18next";
 // import PDF from 'react-native-pdf';
 // import RNFS from 'react-native-fs';
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 const FundWalletScreen = () => {
   const navigation = useNavigation();
@@ -42,7 +44,7 @@ const FundWalletScreen = () => {
   const [resolvedAccountName, setResolvedAccountName] = useState('');
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showReceipt, setShowReceipt] = useState(false);
-
+  const { t} = useTranslation();
 
 
   useEffect(() => {
@@ -270,7 +272,7 @@ const FundWalletScreen = () => {
         <View style={styles.modalBackground}>
           <View style={styles.modalContainer}>
             <AppInput
-              placeholder="Search Banks"
+              placeholder={t('searchBanks')}
               value={searchKeyword}
               onChangeText={(text) => handleSearch(text)}
             />
@@ -286,7 +288,7 @@ const FundWalletScreen = () => {
             <TouchableOpacity
               onPress={() => setShowBankModal(false)}
               style={styles.cancelButton}>
-              <Text>Cancel</Text>
+              <Text>{t('cancel')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -296,10 +298,10 @@ const FundWalletScreen = () => {
     <Modal transparent visible={showSuccessModal}>
           <View style={styles.modalBackground}>
             <View style={styles.modalContainer}>
-              <Text style={styles.successText}>Transfer Successful!</Text>
+              <Text style={styles.successText}>{t('transferSuccess')}!</Text>
               <AppButton label="View Receipt" onPress={viewReceipt} />
               <TouchableOpacity onPress={hideSuccess} style={styles.cancelButton}>
-                <Text>Close</Text>
+                <Text>{t('close')}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -310,10 +312,10 @@ const FundWalletScreen = () => {
           <View style={styles.modalContainer}>
             <Receipt receiptData={receiptData} />
             <TouchableOpacity onPress={() => setShowReceipt(false)} style={styles.closeButton}>
-              <Text>Close Receipt</Text>
+              <Text>{t('closeReceipt')}</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={createAndSavePDF} style={styles.downloadButton}>
-              <Text>Download as PDF</Text>
+              <Text>{t('save')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -321,14 +323,14 @@ const FundWalletScreen = () => {
 
 
         <AppInput
-          label="Select Bank"
+          label={t('selectBank')}
           value={selectedBank ? selectedBank.name : ''}
           onPress={() => setShowBankModal(true)}
           editable={true}
         />
 
         <AppInput
-          label="Account Number"
+          label={t('accountNum')}
           autoCapitalize="none"
           value={tag}
           onChangeText={(value) => setWalletTag(value)}
@@ -338,7 +340,7 @@ const FundWalletScreen = () => {
         ) : null}
 
         <AppInput
-          label="Amount"
+          label={t('amount')}
           autoCapitalize="none"
           keyboardType="numeric"
           value={amount}
@@ -346,7 +348,7 @@ const FundWalletScreen = () => {
         />
 
         <AppInput
-          label="Remarks"
+          label={t('remarks')}
           autoCapitalize="none"
           value={remarks}
           onChangeText={(value) => {
@@ -358,11 +360,11 @@ const FundWalletScreen = () => {
           <SmallText style={styles.errorText}>{remarkError}</SmallText>
         ) : (
           <SmallText style={styles.remarkNote}>
-            Remark is required and must be at least 10 characters.
+            {t('remarksDetails')}
           </SmallText>
         )}
         <AppButton
-          label="Transfer"
+          label={t('Transfer')}
           onPress={areAllFieldsFilled() ? Transfer : null}
           disabled={!areAllFieldsFilled()}
         />

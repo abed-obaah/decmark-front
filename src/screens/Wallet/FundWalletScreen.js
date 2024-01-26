@@ -104,22 +104,27 @@ const FundWalletScreen = () => {
             <QuickTeller
               title={t('payQuickTeller')}
               details={t('payQuickTellerDetails')}
+              amount={amount} 
             />
             <BankTransfer
               title={t('payBank')}
               details={t('payBankDetails')}
+              amount={amount} 
             />
             <PayWithQr
               title={t('payQr')}
               details={t('payQrDetails')}
+              amount={amount} 
             />
             <UssdMethod
               title={t('payUssd')}
               details={t('payUssdDetails')}
+              amount={amount} 
             />
             <BinanceMethod
               title={t('payBinance')}
               details={t('payBinanceDetails')}
+              amount={amount} 
             />
           </>
         ) : (

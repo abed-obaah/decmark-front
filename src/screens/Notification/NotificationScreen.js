@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AppSafeAreaView } from "@src/components/AppViews";
 import { LargeText, SmallText } from "@src/components/AppText";
 import useAppTheme from "@src/hooks/useAppTheme";
-import PageHeader from "@src/components/PageHeader";
+// import PageHeader from "@src/components/PageHeader";
 // import { getNotificationInbox } from 'native-notify';
 import { FlatList, StyleSheet, Text, View } from "react-native";
 import { useTranslation } from 'react-i18next';
@@ -33,7 +33,7 @@ const NotificationScreen = () => {
 
   return (
     <AppSafeAreaView>
-      <PageHeader title={"Notification"} />
+      
       {data.length === 0 ? (
         <View style={styles.emptyContainer}>
           <LargeText style={styles.emptyText}>{t('Nonotifications')}</LargeText>

@@ -29,7 +29,7 @@ export default EmailAddress = () => {
 
   const showToast = () => {
     Toast.show({
-      type: `${t('success')}`,
+      type: 'success',
       text1: `${t('otpSent')}`,
       text2: `${t('sentSuccess')}`
     });
@@ -37,7 +37,7 @@ export default EmailAddress = () => {
 
   const showToasts = () => {
     Toast.show({
-      type: `${t('err')}`,
+      type: 'error',
       text1: `${t('otpSentError')}`,
       text2: `${t('sentError')}`
     });

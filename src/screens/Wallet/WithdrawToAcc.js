@@ -24,6 +24,11 @@ import { v4 as uuidv4 } from 'uuid';
 // import RNFS from 'react-native-fs';
 import axios from "axios";
 
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
+
+
+
 const FundWalletScreen = () => {
   const navigation = useNavigation();
   const { userInfo } = useSelector((state) => state.auth);

@@ -18,7 +18,7 @@ import { changeLanguage } from "i18next";
 
 const PayWithQr = () => {
   // const data = 'Hello kiddo welcome!';
-  const data = '';
+  const data = '0889705646';
   const { t} = useTranslation();
   return (
     <AppSafeAreaView>

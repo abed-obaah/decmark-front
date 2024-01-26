@@ -7,17 +7,18 @@ import PageHeader from "@src/components/PageHeader";
 import { AppSafeAreaView, AppScrollView } from "@src/components/AppViews";
 import { MediumText,LargeText } from "@src/components/AppText";
 import QRCode from 'react-native-qrcode-svg';
-
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 const WithdrawWithQr = () => {
   const data = 'Hello,this is a with draw logic!';
-
+  const { t} = useTranslation();
   return (
     <AppSafeAreaView>
         <AppScrollView>
         
         <View style={{ paddingHorizontal: 40, paddingVertical: 10 }}>
-          <LargeText>Generate a Qr Code you can scan with your bank app to Withdraw.</LargeText>
+          <LargeText>{t('generateQrWithdraw')}</LargeText>
         </View>
         
         <View style={styles.container}>

@@ -36,7 +36,7 @@ import Rider from "@src/screens/HomeScreens/ReceiverHomeScreen/RideHailing/compo
 import RiderDone from "@src/screens/HomeScreens/ReceiverHomeScreen/RideHailing/components/RiderDone";
 import OfferScreen from "@src/screens/HomeScreens/ReceiverHomeScreen/RideHailing/components/OfferCreateScreen";
 import Budget from "@src/screens/HomeScreens/ReceiverHomeScreen/RideHailing/components/Budget";
-
+import { useTranslation } from 'react-i18next';
 
 
 import ProviderProfileScreen from "@src/screens/ProviderProfileScreen";
@@ -63,6 +63,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const ProfileStackNavigator = () => {
   const { theme, handleToggleTheme } = useAppTheme();
+  const { t} = useTranslation();
 
   const options: StackNavigationOptions = {
     headerShown: true,
@@ -88,7 +89,11 @@ const ProfileStackNavigator = () => {
       <Stack.Screen
         name="MenuScreen"
         component={MenuScreen}
-        options={{
+      //  options={{ title: i18n.t("profile.menu") }}
+
+
+
+        options={({ navigation }) => ({
           headerTitle: "",
           headerLeft: () => null,
           headerRight: () => (
@@ -103,7 +108,15 @@ const ProfileStackNavigator = () => {
               />
             </TouchableOpacity>
           ),
-        }}
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24}  color={theme.mode === "light" ? "black" : "white"} />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="AccountScreen"
@@ -432,10 +445,17 @@ const ProfileStackNavigator = () => {
       <Stack.Screen
         name="ChangeLanguageScreen"
         component={ChangeLanguageScreen}
-        options={{
+        options={({ navigation }) => ({
           headerTitle: "Change Language",
-          headerLeft: () => null
-        }}
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="CreatePinScreen"
@@ -508,10 +528,17 @@ const ProfileStackNavigator = () => {
       <Stack.Screen
         name="PrivacyPolicyScreen"
         component={PrivacyPolicyScreen}
-        options={{
+        options={({ navigation }) => ({
           headerTitle: "Privacy Policy",
-          headerLeft: () => null
-        }}
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
       />
       <Stack.Screen
         name="ProviderProfileScreen"
@@ -716,7 +743,8 @@ const ProfileStackNavigator = () => {
       <Stack.Screen
         name="HistoryScreen"
         component={HistoryScreen}
-        options={{
+        options={({ navigation }) => ({
+          headerTitle: "History Screen",
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -725,13 +753,14 @@ const ProfileStackNavigator = () => {
               <Ionicons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
           ),
-        }}
+        })}
+        
       />
       <Stack.Screen
         name="NotificationScreen"
         component={NotificationScreen}
-        options={{
-          
+        options={({ navigation }) => ({
+          headerTitle: "Notification Screen",
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -740,7 +769,7 @@ const ProfileStackNavigator = () => {
               <Ionicons name="arrow-back" size={24} color="black" />
             </TouchableOpacity>
           ),
-        }}
+        })}
       />
     </Stack.Navigator>
   );

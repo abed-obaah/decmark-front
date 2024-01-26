@@ -22,11 +22,15 @@ import useAppTheme from "@src/hooks/useAppTheme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from "i18next";
 
 const FundWalletScreen = () => {
   const navigation = useNavigation();
   const { userInfo } = useSelector((state) => state.auth);
   const { theme } = useAppTheme();
+  const { t} = useTranslation();
+
 
   const [amount, setAmount] = useState("");
   const [tag, setWalletTag] = useState("");
@@ -160,7 +164,7 @@ const FundWalletScreen = () => {
   const [visible, setVisible] = useState(false);
   return (
     <AppSafeAreaView>
-      <PageHeader title={"Transfer Account"} />
+      <PageHeader title={t('transferAccount')} />
       <AppScrollView>
         <>
         <View>
@@ -182,10 +186,10 @@ const FundWalletScreen = () => {
               />
             </View>
             <Text style={{ marginVertical: 30, fontSize: 20, textAlign: 'center' }}>
-              Transfer Success!
+            {t('transferSuccess')}!
             </Text>
                   <AppButton
-                    label="Generate Receipt"
+                    label={t('generateReceipt')}
                     onPress={() => {
                       if (areAllFieldsFilled()) {
                         Transfer();
@@ -201,13 +205,13 @@ const FundWalletScreen = () => {
         </View>
           
           <AppInput
-            label="Wallet Tag"
+            label={t('tag')}
             autoCapitalize="none"
             value={tag}
             onChangeText={(value) => setWalletTag(value)}
           />
           <AppInput
-            label="Amount"
+            label={t('amount')}
             autoCapitalize="none"
             keyboardType="numeric"
             value={amount}
@@ -221,7 +225,7 @@ const FundWalletScreen = () => {
             editable={false}
           />
           <AppInput
-            label="Remarks"
+            label={t('remarks')}
             autoCapitalize="none"
             value={remarks}
             onChangeText={(value) => {
@@ -233,11 +237,11 @@ const FundWalletScreen = () => {
             <SmallText style={styles.errorText}>{remarkError}</SmallText>
           ) : (
             <SmallText style={styles.remarkNote}>
-              The remark is required and must be up to 10 characters.
+              {t('remarksDetails')}
             </SmallText>
           )}
           <AppButton
-            label="Transfer"
+            label={t('Transfer')}
             onPress={areAllFieldsFilled() ? Transfer : null}
             disabled={!areAllFieldsFilled()}
           />
