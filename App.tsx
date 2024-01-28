@@ -12,6 +12,7 @@ import { Platform } from "react-native";
 import Toast from 'react-native-toast-message'
 import './src/i18n/i18n.config'
 import { useTranslation } from 'react-i18next';
+import { VerificationProvider } from './src/context/VerificationContext';
 // const customTextProps = {
 //   style: { fontFamily: "FONT_REGULAR" },
 // };
@@ -41,9 +42,11 @@ const App = () => {
 
   return (
     <Provider store={store}>
+      <VerificationProvider>
       <StatusBar style="light" />
       <RootNavigator />
       <Toast />
+      </VerificationProvider>
     </Provider>
   );
 };

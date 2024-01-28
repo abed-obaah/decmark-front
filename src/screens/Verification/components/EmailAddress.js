@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Keyboard } from "react-native";
 import AppButton from "@src/components/AppButton";
 import AppInput from "@src/components/AppInput";
@@ -18,6 +18,9 @@ export default EmailAddress = () => {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.auth);
   const { t} = useTranslation();
+  const [isEmailVerified, setVerified] = useState("");
+
+  const baseUrl = "https://api.decmark.com/v1/user";
 
   const { inputs, handleChangeInput } = useOnChange({
     email: "",
@@ -44,6 +47,7 @@ export default EmailAddress = () => {
   }
 
  const handleVerifyUser = async () => {
+  const userId = userInfo?.data?.id;
   Keyboard.dismiss();
   const valid = hanleValidateLogin();
   const userData = {
@@ -58,20 +62,42 @@ export default EmailAddress = () => {
   }
 
   if (!valid && inputs.email.trim() !== "") {
-    navigation.navigate("EmailOTPScreen", { email: inputs.email });
-    try {
-      const response = await axios.post("https://api.ng.termii.com/api/email/otp/send", {
-        email_address: inputs.email,
-        code: "092471",
-        api_key: apiKey,
-        email_configuration_id: "82918d29-5660-4fe5-969b-7ad7a49931e6"
-      });
-      showToast();
-      console.log(response.data);
-    } catch (error) {
-      showToasts();
-      // console.log("APi Error:", error)
-    }
+    
+    axios
+    .get(`${baseUrl}/auth/user/${userId}`,{
+      headers:{
+        Accept:"application/json",
+        Authorization: `Bearer ${userInfo?.authentication.token}`,
+      }
+    })
+    .then(async (res) => {
+      const userDetails = res.data.data;
+      console.log(userDetails.email_verified_at)
+      if(userDetails.email_verified_at === null){
+        navigation.navigate("EmailOTPScreen", { email: inputs.email});
+        // navigation.navigate("EmailOTPScreen", { isVerified: false });
+        try {
+          const response = await axios.post("https://api.ng.termii.com/api/email/otp/sends", {
+            email_address: inputs.email,
+            code: "092471",
+            api_key: apiKey,
+            email_configuration_id: "82918d29-5660-4fe5-969b-7ad7a49931e6"
+          });
+          showToast();
+          console.log(response.data);
+        } catch (error) {
+          showToasts();
+          // console.log("APi Error:", error)
+        }
+      }else{
+        navigation.navigate('VerifiedScreen')
+      }
+    })
+    .catch((err) => {
+      alert("Error Validating user");
+    })
+    
+    setVerified(userDetails.email_verified_at);
   }
 };
 

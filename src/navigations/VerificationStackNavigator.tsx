@@ -7,6 +7,7 @@ import AccountVerification from "@src/screens/Verification/AccountVerification";
 import OTPScreen from "@src/screens/Verification/OTPScreen";
 import EmailOTPScreen from "@src/screens/Verification/EmailOTPScreen";
 import UploadScreen from "@src/screens/Verification/UploadScreen";
+import VerifiedScreen from "@src/screens/Verification/VerifiedScreen";
 import DocumentDetails from "@src/screens/Verification/DocumentDetails";
 import DriversLic from "@src/screens/Verification/DriversLic";
 import Bvn from "@src/screens/Verification/Bvn";
@@ -16,6 +17,7 @@ import NationalPass from "@src/screens/Verification/NationalPass";
 import TakeSnapshot from "@src/screens/Verification/TakeSnapshot";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import React from "react";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -87,6 +89,24 @@ const VerificationStackNavigator = () => {
           ),
         })}
       />
+      <Stack.Screen
+        name="VerifiedScreen"
+        component={VerifiedScreen}
+        options={({ navigation }) => ({
+          headerTitle: "",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+
+
+      
       <Stack.Screen
         name="DocumentDetails"
         component={DocumentDetails}
