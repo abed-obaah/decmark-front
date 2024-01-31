@@ -5,7 +5,7 @@ import { SIZES } from "@src/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
-const BankName = ({ title, details, imageSource, index }) => {
+const BankName = ({ title, details, imageSource, index,name }) => {
   const navigation = useNavigation();
 
   const colors = ["#FF5733", "#FF0000", "#FF33FF"]; // Add more colors if needed
@@ -47,6 +47,9 @@ const BankName = ({ title, details, imageSource, index }) => {
         <LargeText>{title}</LargeText>
         <MediumText style={{ color: textColor, fontSize: 20 }}>
           {details}
+        </MediumText>
+        <MediumText style={{ color: textColor, fontSize: 20 }}>
+          {name}
         </MediumText>
       </View>
     </TouchableOpacity>

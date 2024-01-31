@@ -39,18 +39,24 @@ interface IAuthProps {
   isLoadingImg: boolean;
   success: any;
   error: any;
+  dedicatedAccountId: string | null; // Added this line
 }
 
 const initialState: IAuthProps = {
   isLoadingImg: false,
   success: null,
   error: null,
+  dedicatedAccountId: null, // Added this line
 };
 
 const accountSlice = createSlice({
   name: "account",
   initialState,
-  reducers: {},
+  reducers: {
+    setDedicatedAccountId: (state, action) => {
+      state.dedicatedAccountId = action.payload;
+    },
+  },
   extraReducers(builder) {
     builder
       // Upload Image
@@ -68,4 +74,5 @@ const accountSlice = createSlice({
   },
 });
 
+export const { setDedicatedAccountId } = accountSlice.actions;
 export default accountSlice.reducer;

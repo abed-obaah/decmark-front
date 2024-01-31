@@ -49,11 +49,23 @@ export default WalletScreen = ({ navigation }) => {
   const { width } = useWindowDimensions();
   const [requiresPinCreation, setRequiresPinCreation] = useState(false);
 
+
+
+  
+  const [customerCode, setCustomerCode] = useState(null);
+  const [dedicatedAccountId, setDedicatedAccountId] = useState("");
+
   const [transactions, setTransactions] = useState([]);
   const [userData, setUserData] = useState(null);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [singleRecipt, setRecipts] = useState([]);
- 
+  const baseUrl = "https://api.decmark.com/v1/user";
+  const [userDetails, setUserDetails] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    phone: ''
+  });
 
 
   useEffect(() => {
@@ -82,6 +94,7 @@ export default WalletScreen = ({ navigation }) => {
 
       const data = response.data;
       setWalletData(data);
+      // console.log(data)
     } catch (error) {
       console.error(error);
     }
@@ -146,7 +159,7 @@ export default WalletScreen = ({ navigation }) => {
       const transactionsData = response.data;
         setUserData(transactionsData.user);
         setTransactions(transactionsData.transactions);
-        console.log(transactionsData)
+        // console.log(transactionsData)
     } catch (error) {
       console.log("Error fetching transactions:", error.response);
     }
@@ -262,6 +275,128 @@ export default WalletScreen = ({ navigation }) => {
       console.error('Error fetching data:', error);
     }
   };
+
+
+  useEffect(() => {
+    const userId = userInfo?.data?.id;
+    // Fetch user details when the component mounts
+    axios
+      .get(`${baseUrl}/auth/user/${userId}`, {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${userInfo?.authentication.token}`,
+        },
+      })
+      .then((res) => {
+        const { first_name, last_name, email, phone } = res.data.data;
+        setUserDetails({ first_name, last_name, email, phone });
+  
+        console.log(first_name, last_name, email, phone);
+        createPaystackCustomer({ first_name, last_name, email, phone });
+      })
+      .catch((err) => {
+        alert("Error fetching user details:");
+      });
+  }, []);
+  
+
+
+  const createPaystackCustomer = async (userData) => {
+    
+    const url = 'https://api.paystack.co/customer';
+    const data = {
+      email: userData.email,
+    first_name: userData.first_name,
+    last_name: userData.last_name,
+    phone: userData.phone,
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (response.ok) {
+        console.log(responseData)
+        const customerCode = responseData.data.customer_code;
+        setCustomerCode(customerCode);
+        console.log(responseData)
+        console.log(customerCode)
+        createDedicatedAccount(customerCode);
+      } else {
+        console.error('Error creating Paystack customer:', responseData.message);
+      }
+    } catch (error) {
+      console.error('Errored:', error);
+    }
+  };
+  
+
+  const createDedicatedAccount = async (customerCode) => {
+    const url = 'https://api.paystack.co/dedicated_account';
+    const data = {
+      customer: customerCode, 
+      preferred_bank: "wema-bank"
+    };
+  
+    try {
+      const response = await axios.post(url, data, {
+        headers: {
+          'Authorization': 'Bearer sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      console.log(response.data);
+      const dedicatedAccountId = response.data.data.id;
+      console.log(dedicatedAccountId);
+      setDedicatedAccountId(dedicatedAccountId);
+      // getDedicatedAccount(dedicatedAccountId);
+      updateUserDetails(dedicatedAccountId);
+    } catch (error) {
+      console.error('Errors:', error.response ? error.response.data : error.message);
+    }
+  };
+
+  
+  const updateUserDetails = async (dedicatedAccountId) => {
+    const userId = userInfo?.data?.id;
+    const url = `https://api.decmark.com/v1/user/auth/users/${userId}`;
+    const data = {
+      dedicatedAccountId: dedicatedAccountId,
+    };
+  
+    try {
+      const response = await axios.put(url, data, {
+        headers: {
+          'Content-Type': 'application/json',
+          // Add your authorization header here, if needed
+          // 'Authorization': 'Bearer YOUR_TOKEN'
+        },
+      });
+  
+      if (response.status === 200) {
+        console.log('User details updated successfully:', response.data);
+        // Handle the successful response here
+      } else {
+        console.error('Failed to update user details:', response.data);
+        // Handle the error response here
+      }
+    } catch (error) {
+      console.error('Errory:', error.response ? error.response.data : error.message);
+      // Handle the error here
+    }
+  };
+  
+
+  
   
 
   

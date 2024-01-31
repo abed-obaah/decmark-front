@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -18,6 +18,10 @@ import BankName from './components/BankNames';
 import { Ionicons } from "@expo/vector-icons";
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from "i18next";
+import { useAppSelector, useAppDispatch } from "@src/hooks/useAppStore";
+import axios from 'axios';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useSelector, useDispatch } from "react-redux";
 
 
 
@@ -27,11 +31,71 @@ const PayWithUssd = () => {
     const [Amount, setAmount] = useState("");
     const [carNumber, setCarNumber] = useState('');
     const { t} = useTranslation();
+    const { userInfo } = useSelector((state) => state.auth);
+    const [accountName, setAccountName] = useState('');
+    const [accountNumber, setAccountNumber] = useState('');
+    const [bankName, setBankName] = useState('');
+    
+
+    const baseUrl = "https://api.decmark.com/v1/user";
 
     const copyToClipboard = () => {
-      Clipboard.setString('0889705646');
+      Clipboard.setString(accountNumber);
        Alert.alert("Copied", "Account Number copied to clipboard");
     };
+
+    useEffect(() => {
+      const userId = userInfo?.data?.id;
+      // Fetch user details when the component mounts
+      axios
+        .get(`${baseUrl}/auth/user/${userId}`, {
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${userInfo?.authentication.token}`,
+          },
+        })
+        .then((res) => {
+          const userData = res.data.data.dedicatedAccountId;
+        const dedicatedAccountId= userData 
+          
+          getDedicatedAccount(dedicatedAccountId)
+        })
+        .catch((err) => {
+          alert("Error fetching user details:");
+        });
+    }, []);
+
+
+    const getDedicatedAccount = async (dedicatedAccountId) => {
+      if (!dedicatedAccountId) {
+        console.log('No dedicated account ID provided');
+        return;
+      }
+    
+      const url = `https://api.paystack.co/dedicated_account/${dedicatedAccountId}`;
+      const authorizationToken = 'Bearer sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c';
+    
+      try {
+        const response = await axios.get(url, {
+          headers: {
+            'Authorization': authorizationToken,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const res = response.data.data;
+
+        setAccountName(res.account_name);
+        setAccountNumber(res.account_number);
+        setBankName(res.bank.name);
+        // Handle the response data
+      } catch (error) {
+        console.error('Error:', error.response ? error.response.data : error.message);
+        // Handle the error
+      }
+    };
+
+
 
   return (
     <AppSafeAreaView>
@@ -57,11 +121,15 @@ const PayWithUssd = () => {
                 <TouchableOpacity style={styles.copyButton} onPress={copyToClipboard}>
             <Ionicons name="copy-outline" size={20} color="#DEB253" />
           </TouchableOpacity>
-          <MediumText onPress={copyToClipboard}>0889705646</MediumText>
+          <MediumText onPress={copyToClipboard}>{accountNumber}</MediumText>
+          
                 </View>
+                
         </View>
+        
         <BankName
-        title="GTBank"
+        title={bankName}
+        name={accountName}
         details="*737*50*0011*416#"
         imageSource={require("../../assets/images/tgt.png")}
         index={0}
