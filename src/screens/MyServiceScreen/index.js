@@ -78,7 +78,7 @@ const BookedServicesScreen = () => {
 
         // Assuming the response data is an array of booked services
         const bookedServices = response.data.data;
-
+            console.log(bookedServices)
         // Update the state with all the fetched data
         setAppointments(bookedServices);
       } catch (error) {
@@ -92,13 +92,7 @@ const BookedServicesScreen = () => {
 
   // Render item function for FlatList
   const renderItem = ({ item }) => (
-    // <View>
-    //   <Text>Names: {item.reciever.name}</Text>
-    //   <Text>Description: {item.description}</Text>
-    //   <Text>Due Date: {item.dueDate}</Text>
-    //   {/* Add more fields as needed */}
-    //   <Text>--------------------------</Text>
-    // </View>
+   
     <View
     style={{
       backgroundColor: 'transparent',
@@ -189,13 +183,20 @@ const BookedServicesScreen = () => {
         </Text>
       </View>
       <AppButton
-        // label={item.status}
         label="View"
         marginTop={0.5}
         buttonHeight={40}
         onPress={() => navigation.navigate('ProfileStack',
-         { screen: 'EditService' })}
-        // onPress={() => setVisible(true)}
+         { screen: 'TaskDetails',
+         params: {
+          dueDate: item.dueDate, 
+          recieverType: item.recieverType, 
+          description: item.description, 
+          reciever: item.reciever.name, 
+          recieverImage: item.reciever.image, 
+        },
+        
+         })}
       />
     </View>
   </View>

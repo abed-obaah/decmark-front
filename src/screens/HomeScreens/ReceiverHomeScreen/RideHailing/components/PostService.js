@@ -30,7 +30,7 @@ const PostService = () => {
   const [selectedHours, setSelectedHours] = useState(0);
   const [customHours, setCustomHours] = useState('');
   const [price, setPrice] = useState();
-  const [coordinate, setCoordinate] = useState([1, 0]);
+  const [coordinate, setCoordinate] = useState('');
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState('');
   const [type, setType] = useState("");
@@ -239,7 +239,7 @@ const [visible, setVisible] = useState(false);
           <AppInput
            label="Location:"
            value={coordinate}
-           onChangeText={(value) => setCoordinate([1, 0])}
+           onChangeText={(value) => setCoordinate(value)}
            />
           <AppInput label="Budget:"
           value={price}

@@ -31,14 +31,17 @@ const CourierScreen = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [price, setPrice] = useState(false);
   const [title, setTitle] = useState('');
-  const [destination, setDestination] = useState([1, 0]);
+  // const [destination, setDestination] = useState([1, 0]);
+  const [destination, setDestination] = useState('');
   const [description, setDescription] = useState('');
-  const [origin, setOrigin] = useState([1, 0]);
-  const baseUrl = "https://api.decmark.com/v1/user";
-  const { userInfo } = useSelector((state) => state.auth);
+  // const [origin, setOrigin] = useState([1, 0]);
+  const [origin, setOrigin] = useState('');
+ const { userInfo } = useSelector((state) => state.auth);
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const { t} = useTranslation();
+
+  const baseUrl = "https://api.decmark.com/v1/user";
 
 const CourierService = () => {
   const userId = userInfo?.data?.id;
@@ -106,14 +109,18 @@ const CourierService = () => {
       </SmallText>
         <AppInput
           label={t('whereLocate')}
-          value={origin.toString()} // Convert the array to a string for display
-          onChangeText={(value) => setOrigin(value.split(',').map(Number))} // Split the string and convert it back to an array
+          // value={origin.toString()} // Convert the array to a string for display
+          value={origin}
+          // onChangeText={(value) => setOrigin(value.split(',').map(Number))} // Split the string and convert it back to an array
+          onChangeText={(value) => setOrigin(value)}
         />
 
         <AppInput
           label={t('whereTo')}
-          value={destination.toString()} // Convert the array to a string for display
-          onChangeText={(value) => setDestination(value.split(',').map(Number))} // Split the string and convert it back to an array
+          // value={destination.toString()} // Convert the array to a string for display
+          value={destination}
+          // onChangeText={(value) => setDestination(value.split(',').map(Number))} // Split the string and convert it back to an array
+          onChangeText={(value) => setDestination(value)}
         />
 
 

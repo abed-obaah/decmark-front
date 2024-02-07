@@ -22,7 +22,7 @@ import { ProgressSteps, ProgressStep } from 'react-native-progress-steps';
 import AppButton from '@src/components/AppButton';
 import AppTextarea from '@src/components/AppTextarea';
 import AppInput from '@src/components/AppInput';
-// import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { FontAwesome } from '@expo/vector-icons';
 import { SelectList } from 'react-native-dropdown-select-list'
 import useOnChange from "@src/hooks/forms/useOnChange";
@@ -53,7 +53,7 @@ const OfferScreen = () => {
   const [description, setDescription] = useState('');
   const [type, setType] = useState('');
   const [title, setTitle] = useState('');
-  const [coordinate, setCoordinate] = useState([1, 0]);
+  const [coordinate, setCoordinate] = useState('');
   const [location, setLocation] = useState("");
   // const [work_done, setWorkDone] = useState('');
   const [showTimePicker, setShowTimePicker] = useState(false);
@@ -441,8 +441,8 @@ useEffect(() => {
 
            <AppInput
                 label={t('coordinate')}
-                value={coordinate.join(", ")}
-                onChangeText={(value) => setCoordinate(value.split(", ").map(Number))}
+                value={coordinate}
+                onChangeText={(value) => setCoordinate(value)}
               />
             <AppInput label={t('description')}
               value={description}
@@ -570,11 +570,7 @@ const styles = StyleSheet.create({
   timePickerText: {
     fontSize: 16,
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
+  
   modalContent: {
     backgroundColor: 'white',
     paddingVertical: 20,
@@ -656,9 +652,7 @@ const styles = StyleSheet.create({
     width:"90%",
     marginLeft:12
   },
-  // label:{
-  //   marginLeft:10
-  // }
+  
   marginBottom: {
     marginBottom: 26, // Adjust the margin value as needed
   },
@@ -668,14 +662,21 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
   modalContainer: {
-    width: '80%',
+    width: '100%', // Make the modal cover the entire screen width
     backgroundColor: 'white',
-    paddingHorizontal: 20,
     paddingVertical: 30,
     borderRadius: 20,
     elevation: 20,
+    
+    // Positioning the modal at the bottom
+    position: 'absolute',
+    bottom: 0, // Align the modal at the bottom of the screen
+    
+    // Optional: If you still want some padding inside but want the modal to extend fully, consider adjusting content padding separately
   },
+  
   header: {
     width: '100%',
     height: 40,

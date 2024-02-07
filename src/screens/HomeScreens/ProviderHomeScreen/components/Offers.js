@@ -151,7 +151,8 @@ const MyServices = () => {
                   marginLeft: 1,
                 }}
               >
-                {coordinate}
+                {coordinate.coordinate}
+                {/* {`${coordinate},${coordinate}`} */}
               </Text>
             </View>
             <AppButton

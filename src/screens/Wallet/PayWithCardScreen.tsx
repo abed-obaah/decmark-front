@@ -40,6 +40,7 @@ const PayWithCardScreen = ({ route }) => {
     }
   };
 
+  // for card topup its not working dont bother
   const handlePayment = async () => {
     const userId = userInfo?.data?.id;
     console.log(card);

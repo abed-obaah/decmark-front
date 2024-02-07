@@ -10,6 +10,7 @@ import type { RootStackParamList } from "../@types/navigation";
 
 import Onboarding from "../screens/Onboarding/index";
 import WelcomeScreen from "@src/screens/WelcomeScreen";
+import HomeScreen from "@src/screens/HomeScreens/ReceiverHomeScreen/index";
 import LogIn from "@src/screens/LogIn";
 import SignUp from "@src/screens/SignUp";
 import SignUpWithNumber from "@src/screens/SignUp/SignUpWithNumber";
@@ -68,7 +69,8 @@ const AuthStackNavigator = () => {
             ),
             headerLeft:()=>null
           }}
-          initialRouteName={isAppFirstLaunch ? "Onboarding" : "WelcomeScreen"}
+          // initialRouteName={isAppFirstLaunch ? "Onboarding" : "WelcomeScreen"}
+          initialRouteName={isAppFirstLaunch ? "Onboarding" : "HomeScreen"}
         >
           {isAppFirstLaunch && (
             <Stack.Screen

@@ -14,11 +14,6 @@ import services from "../constants/services";
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from "i18next";
 
-
-
-
-
-
 export default PopularServices = () => {
   const { width } = useWindowDimensions();
   const { theme } = useTheme();

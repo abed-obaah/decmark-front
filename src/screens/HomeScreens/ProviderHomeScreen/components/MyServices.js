@@ -213,11 +213,11 @@ const MyServices = () => {
                   marginLeft: 1,
                 }}
               >
-                {coordinate}
+                {coordinate.coordinate}
               </Text>
             </View>
             <AppButton
-              label={t('update')}
+              label={t('updates')}
               marginTop={0.5}
               buttonHeight={40}
               onPress={() => navigation.navigate('ProfileStack',

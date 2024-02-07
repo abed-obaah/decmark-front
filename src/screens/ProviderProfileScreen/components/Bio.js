@@ -43,7 +43,7 @@ export default Bio = ({description,
             size={15}
             color={theme.PRIMARY_TEXT_COLORs}
           />
-          <MediumText style={{ marginLeft: 3.5 }}>{coordinate}</MediumText>
+          <MediumText style={{ marginLeft: 3.5 }}>{coordinate.coordinate}</MediumText>
         </View>
         <View
           style={{

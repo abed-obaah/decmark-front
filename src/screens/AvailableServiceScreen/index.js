@@ -86,7 +86,7 @@ export default AvailableServiceScreen = ({ navigation, route }) => {
             }}
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >

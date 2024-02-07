@@ -82,9 +82,14 @@ export default MoreServices = ({ navigation}) => {
               flexDirection: "row",
               marginTop: 20,
             }}
+            // onPress={() =>
+            //   navigation.navigate("ProfileStack", {
+            //     screen: "ProviderProfileScreen",
+            //   })
+            // }
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >
@@ -127,9 +132,14 @@ export default MoreServices = ({ navigation}) => {
               flexDirection: "row",
               marginTop: 20,
             }}
+            // onPress={() =>
+            //   navigation.navigate("ProfileStack", {
+            //     screen: "ProviderProfileScreen",
+            //   })
+            // }
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >
@@ -172,9 +182,14 @@ export default MoreServices = ({ navigation}) => {
               flexDirection: "row",
               marginTop: 20,
             }}
+            // onPress={() =>
+            //   navigation.navigate("ProfileStack", {
+            //     screen: "ProviderProfileScreen",
+            //   })
+            // }
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >
@@ -217,9 +232,14 @@ export default MoreServices = ({ navigation}) => {
               flexDirection: "row",
               marginTop: 20,
             }}
+            // onPress={() =>
+            //   navigation.navigate("ProfileStack", {
+            //     screen: "ProviderProfileScreen",
+            //   })
+            // }
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >
@@ -262,9 +282,14 @@ export default MoreServices = ({ navigation}) => {
               flexDirection: "row",
               marginTop: 20,
             }}
+            // onPress={() =>
+            //   navigation.navigate("ProfileStack", {
+            //     screen: "ProviderProfileScreen",
+            //   })
+            // }
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >
@@ -307,9 +332,14 @@ export default MoreServices = ({ navigation}) => {
               flexDirection: "row",
               marginTop: 20,
             }}
+            // onPress={() =>
+            //   navigation.navigate("ProfileStack", {
+            //     screen: "ProviderProfileScreen",
+            //   })
+            // }
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >
@@ -352,9 +382,14 @@ export default MoreServices = ({ navigation}) => {
               flexDirection: "row",
               marginTop: 20,
             }}
+            // onPress={() =>
+            //   navigation.navigate("ProfileStack", {
+            //     screen: "ProviderProfileScreen",
+            //   })
+            // }
             onPress={() =>
               navigation.navigate("ProfileStack", {
-                screen: "ProviderProfileScreen",
+                screen: "UnAvailableScreen",
               })
             }
           >

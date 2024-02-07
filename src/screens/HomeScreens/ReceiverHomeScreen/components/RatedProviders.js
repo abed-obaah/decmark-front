@@ -224,8 +224,9 @@ const RatedProviders = () => {
                   fontWeight:"bold"
                 }}
               >
-                {coordinate}
-                {ratingScore}
+                {coordinate.coordinate}
+                {/* {`${coordinate},${coordinate}`} */}
+                {/* {ratingScore} */}
               </SmallText>
             </View>
             <AppButton

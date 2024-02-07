@@ -40,6 +40,8 @@ import { useTranslation } from 'react-i18next';
 
 
 import ProviderProfileScreen from "@src/screens/ProviderProfileScreen";
+import TaskDetails from "@src/screens/MyServiceScreen/TaskDetails";
+import UnAvailableScreen from "@src/screens/AvailableServiceScreen/UnAvailableScreen";
 import HistoryScreen from "@src/screens/History/HistoryScreen";
 import NotificationScreen from "@src/screens/Notification/NotificationScreen";
 import ScheduleScreen from "@src/screens/ProviderProfileScreen/schedule/index";
@@ -123,6 +125,21 @@ const ProfileStackNavigator = () => {
         component={AccountScreen}
         options={({ navigation }) => ({
           headerTitle: "My Account",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+      <Stack.Screen
+        name="TaskDetails"
+        component={TaskDetails}
+        options={({ navigation }) => ({
+          headerTitle: "Task Details",
           headerLeft: () => (
             <TouchableOpacity
               onPress={() => navigation.goBack()}
@@ -540,6 +557,7 @@ const ProfileStackNavigator = () => {
           ),
         })}
       />
+
       <Stack.Screen
         name="ProviderProfileScreen"
         component={ProviderProfileScreen}
@@ -556,6 +574,23 @@ const ProfileStackNavigator = () => {
           ),
         })}
       />
+      <Stack.Screen
+        name="UnAvailableScreen"
+        component={UnAvailableScreen}
+       
+        options={({ navigation }) => ({
+          headerTitle: "Provider's Profile",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="arrow-back" size={24} color="black" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
+
       <Stack.Screen
         name="ScheduleScreen"
         component={ScheduleScreen}
