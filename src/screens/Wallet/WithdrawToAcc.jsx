@@ -53,8 +53,8 @@ const FundWalletScreen = () => {
 
   const fetchBankList = async () => {
     try {
-      // const SECRET_KEY = 'pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
-      const SECRET_KEY = 'pk_test_d55e2c5ae69892961f5a7a21ef34628960cbd0ff';
+      const SECRET_KEY = 'pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
+      // const SECRET_KEY = 'pk_test_d55e2c5ae69892961f5a7a21ef34628960cbd0ff';
       const response = await axios.get('https://api.paystack.co/bank', {
         headers: {
           Authorization: `Bearer ${SECRET_KEY}`,
@@ -101,8 +101,8 @@ const FundWalletScreen = () => {
     }
 
     try {
-      // const SECRET_KEY = 'pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
-      const SECRET_KEY = 'pk_test_d55e2c5ae69892961f5a7a21ef34628960cbd0ff';
+      const SECRET_KEY = 'pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
+      // const SECRET_KEY = 'pk_test_d55e2c5ae69892961f5a7a21ef34628960cbd0ff';
       
       const resolveEndpoint = `https://api.paystack.co/bank/resolve?account_number=${tag}&bank_code=${selectedBank.code}`;
       const response = await axios.get(resolveEndpoint, {

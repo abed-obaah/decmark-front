@@ -109,8 +109,8 @@ const PayWithCardScreen = ({ route }) => {
 
           
           <Paystack
-        // paystackKey="pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45"
-        paystackKey="pk_test_d55e2c5ae69892961f5a7a21ef34628960cbd0ff"
+        paystackKey="pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45"
+        // paystackKey="pk_test_d55e2c5ae69892961f5a7a21ef34628960cbd0ff"
         billingEmail={card}
         amount={amount.toString()}
         // CVV={cvv} // Pass cvv dynamically

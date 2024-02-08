@@ -315,7 +315,7 @@ export default WalletScreen = ({ navigation }) => {
       const response = await fetch(url, {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c',
+          'Authorization': 'Bearer sk_live_f85b4a554de90fe14614460385a90071a1ba8384',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
@@ -349,7 +349,7 @@ export default WalletScreen = ({ navigation }) => {
     try {
       const response = await axios.post(url, data, {
         headers: {
-          'Authorization': 'Bearer sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c',
+          'Authorization': 'Bearer sk_live_f85b4a554de90fe14614460385a90071a1ba8384',
           'Content-Type': 'application/json'
         }
       });
