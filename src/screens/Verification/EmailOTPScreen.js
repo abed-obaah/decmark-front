@@ -66,7 +66,7 @@ const handleResendCode = async () => {
     setCountdown(60); // Restart the countdown
 
     try {
-      const response = await axios.post("https://api.ng.termii.com/api/email/otp/sends", {
+      const response = await axios.post("https://api.ng.termii.com/api/email/otp/send", {
         email_address: email, // Use the email from the state or props
         code: "092471",
         api_key: apiKey,

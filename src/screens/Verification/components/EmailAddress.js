@@ -77,7 +77,7 @@ export default EmailAddress = () => {
         navigation.navigate("EmailOTPScreen", { email: inputs.email});
         // navigation.navigate("EmailOTPScreen", { isVerified: false });
         try {
-          const response = await axios.post("https://api.ng.termii.com/api/email/otp/sends", {
+          const response = await axios.post("https://api.ng.termii.com/api/email/otp/send", {
             email_address: inputs.email,
             code: "092471",
             api_key: apiKey,

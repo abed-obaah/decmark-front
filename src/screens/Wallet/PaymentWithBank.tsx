@@ -69,7 +69,8 @@ const PayWithCardScreen = ({ amount, goBack,route  }) => {
     }
   
     const url = `https://api.paystack.co/dedicated_account/${dedicatedAccountId}`;
-    const authorizationToken = 'Bearer sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c';
+    // const authorizationToken = 'Bearer pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
+    const authorizationToken = 'Bearer pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
   
     try {
       const response = await axios.get(url, {
