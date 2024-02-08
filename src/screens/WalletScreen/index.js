@@ -356,6 +356,7 @@ export default WalletScreen = ({ navigation }) => {
 
       console.log(response.data);
       const dedicatedAccountId = response.data.data.id;
+      // const dedicatedAccountId = response.data.data.account_number;
       console.log(dedicatedAccountId);
       setDedicatedAccountId(dedicatedAccountId);
       // getDedicatedAccount(dedicatedAccountId);

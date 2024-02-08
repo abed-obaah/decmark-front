@@ -73,7 +73,7 @@ const PayWithUssd = () => {
       }
     
       const url = `https://api.paystack.co/dedicated_account/${dedicatedAccountId}`;
-      const authorizationToken = 'Bearer sk_live_b9f0ebe1da3834cc08b7e12ca8dc2cb5d7719b7c';
+      const authorizationToken = 'Bearer sk_live_f85b4a554de90fe14614460385a90071a1ba8384';
     
       try {
         const response = await axios.get(url, {

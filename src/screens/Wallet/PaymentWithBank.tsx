@@ -62,7 +62,7 @@ const PayWithCardScreen = ({ amount, goBack,route  }) => {
   }, []);
 
 
-  const getDedicatedAccount = async (dedicatedAccountId) => {
+  const getDedicatedAccount = async (dedicatedAccountId: any) => {
     if (!dedicatedAccountId) {
       console.log('No dedicated account ID provided');
       return;
@@ -70,7 +70,7 @@ const PayWithCardScreen = ({ amount, goBack,route  }) => {
   
     const url = `https://api.paystack.co/dedicated_account/${dedicatedAccountId}`;
     // const authorizationToken = 'Bearer pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
-    const authorizationToken = 'Bearer pk_live_897d77bf82968eb17c2eaf5972dbc8fcfe7bbe45';
+    const authorizationToken = 'Bearer sk_live_f85b4a554de90fe14614460385a90071a1ba8384';
   
     try {
       const response = await axios.get(url, {
@@ -81,7 +81,7 @@ const PayWithCardScreen = ({ amount, goBack,route  }) => {
       });
 
       const res = response.data.data;
-
+        console.log(res.account_name)
       setAccountName(res.account_name);
       setAccountNumber(res.account_number);
       setBankName(res.bank.name);
